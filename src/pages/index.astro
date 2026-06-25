@@ -1,49 +1,174 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import { getCollection } from 'astro:content';
+import IconMission from '../components/icons/IconMission.astro';
+import IconStats from '../components/icons/IconStats.astro';
+import IconContact from '../components/icons/IconContact.astro';
+import IconLab from '../components/icons/IconLab.astro';
+
+const posts = await getCollection('blog');
+const latest = posts.filter(p => !p.data.draft).sort((a,b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())[0];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout>
+  <Hero />
+
+  <section id="mundurowe" class="py-20 lg:py-28 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Elitarny Profil Technikum nr 1</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Technik Logistyk – Klasy mundurowe i&nbsp;Oddziały Przygotowania Wojskowego</p>
+                <p class="text-lg text-slate-600 dark:text-slate-300">
+                    Nasz autorski program łączy pełne kształcenie zawodowe technika logistyka z wszechstronnym przygotowaniem do pracy w formacjach mundurowych.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900 dark:bg-slate-700 text-white flex items-center justify-center font-bold text-xl">🛡️</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Przygotowanie do służby</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Zajęcia z zakresu funkcjonowania Policji, Straży Granicznej oraz innych formacji bezpieczeństwa publicznego. Poznasz procedury, prawo i etykę zawodową od podszewki.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl">🎯</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Taktyka i strzelectwo</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Obozy poligonowe, regularne ćwiczenia taktyczne, musztra oraz zaawansowane szkolenia na naszej nowoczesnej <strong>wirtualnej strzelnicy</strong> dostępnej w budynku szkoły.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-xl">📦</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Potęga Logistyki</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Zarządzanie łańcuchem dostaw, logistyka wojskowa i kryzysowa. Zdobywasz pełnoprawny tytuł Technika Logistyka, niezwykle pożądany również na cywilnym rynku pracy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-slate-900 dark:bg-slate-700 text-white rounded-3xl p-8 lg:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-2">
+                    <h4 class="text-xl font-bold">Unikalna szansa w regionie</h4>
+                    <p class="text-slate-400 text-sm max-w-2xl">
+                        Jesteśmy jedyną placówką w powiecie mikołowskim oferującą tak bogaty program klas mundurowych. Współpracujemy z lokalnymi komendami i jednostkami, dając Ci realną przewagę na starcie rekrutacji do służb mundurowych.
+                    </p>
+                </div>
+                <a href="/kontakt" class="shrink-0 px-5 py-3 rounded-xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition text-sm">
+                    Zapytaj o program zajęć
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+  <section class="py-12 bg-gray-50 dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800">
+    <div class="container max-w-6xl text-center">
+      <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych</h2>
+      <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Szkoła z tradycjami, stawiająca na nowoczesność, praktyczne umiejętności i sukcesy zawodowe naszych uczniów.</p>
+    </div>
+  </section>
+
+  <Features />
+
+
+  <section class="py-12">
+    <div class="container max-w-6xl">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex gap-4 items-start">
+          <IconMission />
+          <div>
+            <h3 class="font-semibold">Nasza misja</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">ZSEiU łączy teorię z praktyką — kształcimy w systemie zawodowym i ogólnokształcącym, przygotowując uczniów do pracy w przemyśle, energetyce i IT.</p>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex gap-4 items-start">
+          <IconStats />
+          <div>
+            <h3 class="font-semibold">Statystyki (2025/2026)</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">~520 uczniów, ~57 nauczycieli, 22 oddziały.</p>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex gap-4 items-start">
+          <IconContact />
+          <div>
+            <h3 class="font-semibold">Kontakt</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">ul. Chopina 11b, 43-170 Łaziska Górne<br />tel. 32 224 24 15<br /><a href="mailto:sekretariat@zseiulaziska.pl" class="text-primary-700">sekretariat@zseiulaziska.pl</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-gray-50 dark:bg-slate-900">
+    <div class="container max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <div>
+          <h2 class="text-2xl font-semibold">Infrastruktura i pracownie</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">Szkoła dysponuje pracowniami energetyki odnawialnej, laboratorium TAURON, pracowniami informatycznymi, pracowniami logistycznymi i warsztatami wyposażonymi w maszyny i narzędzia umożliwiające praktyczne zajęcia.</p>
+          <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-600 dark:text-slate-300">
+            <li class="flex gap-3 items-start"><IconLab /><span>Laboratorium TAURON — wyposażone stanowiska do energetyki</span></li>
+            <li class="flex gap-3 items-start"><svg class="w-12 h-12 text-indigo-500" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l3 6 6 1-4.5 4 1 6L12 17 6.5 19l1-6L3 9l6-1 3-6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Pracownie inteligentnych domów i automatyki</span></li>
+            <li class="flex gap-3 items-start"><svg class="w-12 h-12 text-sky-500" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 8l9 6 9-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Pracownie informatyczne (GitHub Campus partner)</span></li>
+            <li class="flex gap-3 items-start"><svg class="w-12 h-12 text-amber-500" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Warsztaty i pracownie technologii</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-semibold">Projekty i mobilności</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300">Aktywne programy Erasmus+ (praktyki w Grecji i we Włoszech) oraz projekty EFS i regionalne wspierające praktyki i doposażenie pracowni.</p>
+          <p class="mt-4"><a href="/projekty" class="inline-block px-4 py-2 bg-primary-500 text-white rounded-md">Dowiedz się więcej o projektach</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="container max-w-6xl">
+      <div class="md:flex md:items-center md:justify-between gap-6">
+        <div>
+          <h2 class="text-2xl font-semibold">Kierunki i praktyki</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Oferujemy kierunki takie jak technik elektryk, technik informatyk, technik logistyk (w tym klasy mundurowe), technik OZE, technik chłodnictwa oraz wiele branżowych zawodów I stopnia.</p>
+          <p class="mt-3"><a href="/kierunki" class="text-primary-700 hover:underline">Zobacz pełną listę kierunków</a></p>
+        </div>
+
+        <aside class="mt-6 md:mt-0">
+          <h3 class="font-semibold">Aktualności</h3>
+          {latest ? (
+            <div class="mt-3 p-4 bg-white dark:bg-slate-800 rounded">
+              <a href={`/blog/${latest.slug}`} class="text-primary-700 font-semibold">{latest.data.title}</a>
+              <div class="text-sm text-slate-600">{latest.data.pubDate.toLocaleDateString()}</div>
+              <p class="mt-2 text-slate-600 dark:text-slate-300">{latest.data.description}</p>
+            </div>
+          ) : (
+            <p class="mt-3 text-slate-600 dark:text-slate-300">Brak opublikowanych wpisów.</p>
+          )}
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-primary-50 dark:bg-slate-800">
+    <div class="container max-w-6xl text-center">
+      <h2 class="text-2xl font-semibold">Zacznij swoją ścieżkę kariery</h2>
+      <p class="mt-2 text-slate-700 dark:text-slate-300">Dołącz do szkoły, która łączy praktykę z realnymi partnerstwami branżowymi.</p>
+      <div class="mt-4 flex justify-center gap-3">
+        <a href="/rekrutacja" class="px-6 py-3 bg-accent-500 text-white rounded-md">Rekrutacja</a>
+        <a href="/informacje" class="px-6 py-3 border border-gray-200 rounded-md">Więcej informacji</a>
+      </div>
+    </div>
+  </section>
+</Layout>

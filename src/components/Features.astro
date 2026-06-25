@@ -1,0 +1,25 @@
+---
+---
+<section id="kierunki" class="py-12 bg-white dark:bg-slate-900">
+  <div class="container max-w-6xl">
+    <h2 class="text-3xl font-bold mb-8 text-slate-900 dark:text-white text-center">Nasze kierunki kształcenia</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[
+        { title: 'Technik informatyk', icon: '💻' },
+        { title: 'Technik elektryk', icon: '⚡' },
+        { title: 'Technik logistyk', icon: '📦' },
+        { title: 'Technik organizacji turystyki', icon: '✈️' },
+        { title: 'Technik stylista', icon: '✂️' },
+        { title: 'Technik urządzeń i systemów OZE', icon: '☀️' },
+        { title: 'Mechanik - monter maszyn', icon: '⚙️' },
+        { title: 'Operator maszyn do przetwórstwa tworzyw', icon: '🏭' },
+        { title: 'Klasy wielozawodowe', icon: '🎓' }
+      ].map((kierunek) => (
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center gap-4 hover:border-primary-500 transition">
+          <div class="text-3xl">{kierunek.icon}</div>
+          <h3 class="font-semibold text-slate-900 dark:text-white">{kierunek.title}</h3>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

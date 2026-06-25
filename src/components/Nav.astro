@@ -1,0 +1,177 @@
+---
+---
+<nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between" aria-label="Główna nawigacja">
+  <a href="/" class="text-xl font-semibold flex items-center gap-2">
+    <img src="/images/logo-szkoly-mono-granat.png" alt="Logo ZSEiU" class="w-8 h-8" />
+    ZSEiU
+  </a>
+  
+  
+  <!-- Desktop links grouped into thematic submenus -->
+  <ul class="hidden md:flex gap-6 items-center">
+    <li><a href="/">Strona główna</a></li>
+
+    <li class="relative">
+      <details class="group" onclick="closeOtherDetails(this)">
+        <summary class="cursor-pointer">O szkole</summary>
+        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-slate-700">
+          <ul class="space-y-2">
+            <li><a href="/informacje" class="block">Informacje o szkole</a></li>
+            <li><a href="/historia" class="block">Historia</a></li>
+            <li><a href="/dyrekcja" class="block">Dyrekcja i kierownictwo</a></li>
+            <li><a href="/grono-pedagogiczne" class="block">Grono pedagogiczne</a></li>
+            <li><a href="/nasza-spolecznosc" class="block">Nasza społeczność</a></li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li class="relative">
+      <details class="group" onclick="closeOtherDetails(this)">
+        <summary class="cursor-pointer">Edukacja</summary>
+        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-slate-700">
+          <ul class="space-y-2">
+            <li><a href="/kierunki" class="block">Kierunki kształcenia</a></li>
+            <li><a href="/kierunki-ksztalcenia" class="block">Oferta 2025/2026</a></li>
+            <li><a href="/klasy-mundurowe" class="block">Klasy mundurowe</a></li>
+            <li><a href="/klasa-policyjna" class="block">Klasa policyjna</a></li>
+            <li><a href="/podreczniki" class="block">Podręczniki</a></li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li class="relative">
+      <details class="group" onclick="closeOtherDetails(this)">
+        <summary class="cursor-pointer">Projekty i dokumenty</summary>
+        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-slate-700">
+          <ul class="space-y-2">
+            <li><a href="/projekty" class="block">Projekty i Erasmus+</a></li>
+            <li><a href="/erasmus" class="block">Erasmus+</a></li>
+            <li><a href="/dokumenty-szkolne" class="block">Dokumenty szkolne</a></li>
+            <li><a href="/dokumenty" class="block">Dokumenty i polityki</a></li>
+            <li><a href="/dostepnosc" class="block">Dostępność</a></li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li class="relative">
+      <details class="group" onclick="closeOtherDetails(this)">
+        <summary class="cursor-pointer">Uczniowie i rodzice</summary>
+        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-slate-700">
+          <ul class="space-y-2">
+            <li><a href="/dla-uczniow" class="block">Dla uczniów</a></li>
+            <li><a href="/dla-rodzicow" class="block">Dla rodziców</a></li>
+            <li><a href="/rekrutacja" class="block">Rekrutacja</a></li>
+            <li><a href="/kalendarz" class="block">Kalendarz</a></li>
+            <li><a href="/egzaminy-zawodowe" class="block">Egzaminy zawodowe</a></li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li class="relative">
+      <details class="group" onclick="closeOtherDetails(this)">
+        <summary class="cursor-pointer">Media i usługi</summary>
+        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-slate-700">
+          <ul class="space-y-2">
+            <li><a href="/blog" class="block">Blog</a></li>
+            <li><a href="/booking" class="block">Booking</a></li>
+            <li><a href="/booking-my-account" class="block">Booking My Account</a></li>
+            <li><a href="/covid19" class="block">COVID-19</a></li>
+            <li><a href="/aktywna-przerwa" class="block">Aktywna przerwa</a></li>
+          </ul>
+        </div>
+      </details>
+    </li>
+
+    <li><a href="/kontakt">Kontakt</a></li>
+  </ul>
+
+  <!-- Mobile: details/summary hamburger (enhanced with small JS) -->
+  <details id="mobile-nav" class="md:hidden relative">
+    <summary id="mobile-nav-toggle" class="list-none cursor-pointer flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-slate-800">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="sr-only">Otwórz nawigację</span>
+    </summary>
+
+    <div class="absolute right-0 mt-2 w-72 bg-white dark:bg-slate-800 rounded-lg shadow-lg ring-1 ring-black/5">
+      <ul class="flex flex-col p-2">
+        <li><a href="/" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Strona główna</a></li>
+        <li class="border-t border-gray-100 dark:border-slate-700 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">O szkole</strong></li>
+        <li><a href="/informacje" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Informacje o szkole</a></li>
+        <li><a href="/historia" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Historia</a></li>
+        <li><a href="/dyrekcja" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Dyrekcja</a></li>
+        <li><a href="/grono-pedagogiczne" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Grono pedagogiczne</a></li>
+        <li><a href="/nasza-spolecznosc" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Nasza społeczność</a></li>
+
+        <li class="border-t border-gray-100 dark:border-slate-700 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Edukacja</strong></li>
+        <li><a href="/kierunki" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Kierunki kształcenia</a></li>
+        <li><a href="/kierunki-ksztalcenia" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Oferta 2025/2026</a></li>
+        <li><a href="/klasy-mundurowe" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Klasy mundurowe</a></li>
+        <li><a href="/klasa-policyjna" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Klasa policyjna</a></li>
+        <li><a href="/podreczniki" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Podręczniki</a></li>
+
+        <li class="border-t border-gray-100 dark:border-slate-700 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Projekty i dokumenty</strong></li>
+        <li><a href="/projekty" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Projekty i Erasmus+</a></li>
+        <li><a href="/erasmus" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Erasmus+</a></li>
+        <li><a href="/dokumenty-szkolne" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Dokumenty szkolne</a></li>
+        <li><a href="/dokumenty" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Dokumenty i polityki</a></li>
+        <li><a href="/dostepnosc" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Dostępność</a></li>
+
+        <li class="border-t border-gray-100 dark:border-slate-700 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Uczniowie i rodzice</strong></li>
+        <li><a href="/dla-uczniow" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Dla uczniów</a></li>
+        <li><a href="/dla-rodzicow" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Dla rodziców</a></li>
+        <li><a href="/rekrutacja" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Rekrutacja</a></li>
+        <li><a href="/kalendarz" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Kalendarz</a></li>
+        <li><a href="/egzaminy-zawodowe" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Egzaminy zawodowe</a></li>
+
+        <li class="border-t border-gray-100 dark:border-slate-700 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Media i usługi</strong></li>
+        <li><a href="/blog" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Blog</a></li>
+        <li><a href="/booking" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Booking</a></li>
+        <li><a href="/booking-my-account" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Booking My Account</a></li>
+        <li><a href="/covid19" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">COVID-19</a></li>
+        <li><a href="/aktywna-przerwa" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Aktywna przerwa</a></li>
+
+        <li class="border-t border-gray-100 dark:border-slate-700 mt-1 pt-2"><a href="/kontakt" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-slate-700">Kontakt</a></li>
+      </ul>
+    </div>
+  </details>
+
+  <script>
+    // Close other details menus when one is opened
+    window.closeOtherDetails = (currentDetails) => {
+      document.querySelectorAll('details').forEach((d) => {
+        if (d !== currentDetails) d.removeAttribute('open');
+      });
+    };
+
+    // Small client-side enhancement: close mobile details menu after clicking a link
+    (function () {
+      try {
+        const details = document.getElementById('mobile-nav');
+        if (!details) return;
+        const links = details.querySelectorAll('a.nav-link');
+        links.forEach(a => a.addEventListener('click', () => { details.open = false; }));
+
+        // Mark active link based on current pathname
+        const allNavLinks = document.querySelectorAll('a[href]');
+        const path = location.pathname.replace(/\/+$/, '') || '/';
+        allNavLinks.forEach(a => {
+          try {
+            const href = new URL(a.href, location.origin).pathname.replace(/\/+$/, '') || '/';
+            if (href === path) {
+              a.setAttribute('aria-current', 'page');
+              a.classList.add('font-semibold');
+            }
+          } catch (e) {
+            // ignore invalid hrefs
+          }
+        });
+      } catch (e) {
+        // non-fatal
+      }
+    })();
+  </script>
+</nav>
