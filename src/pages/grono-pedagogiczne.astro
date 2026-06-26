@@ -1,10 +1,514 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+interface Teacher {
+  name: string;
+  role?: string;
+  subjects: string[];
+}
+
+const management: Teacher[] = [
+  {
+    name: "Anna Jadasz",
+    role: "Dyrektor",
+    subjects: ["Podstawy turystyki", "Biznes i zarządzanie"],
+  },
+  {
+    name: "Dorota Brudny",
+    role: "Wicedyrektor",
+    subjects: [
+      "Język angielski",
+      "Język angielski rozszerzony",
+      "Zajęcia z wychowawcą",
+      "Godziny do dyspozycji dyrektora - zawodowe kompetencje językowe",
+      "Język angielski w branży logistycznej",
+      "Język angielski w branży turystycznej",
+    ],
+  },
+  {
+    name: "Piotr Dębowski",
+    role: "Kierownik szkolenia praktycznego",
+    subjects: ["Informatyka", "Pracownia stron internetowych", "Pracownia aplikacji internetowych"],
+  },
+];
+
+const teachers: Teacher[] = [
+  {
+    name: "Jacek Antoniuk",
+    subjects: ["Informatyka", "Informatyka rozszerzona", "Zajęcia praktyczne"],
+  },
+  {
+    name: "Marian Augustyniak",
+    subjects: [
+      "Pracownia wykonywania połączeń elementów z tworzyw sztucznych",
+      "Pracownia wytwarzania wyrobów z tworzyw sztucznych",
+    ],
+  },
+  {
+    name: "Maciej Bąk",
+    subjects: ["Edukacja dla bezpieczeństwa"],
+  },
+  {
+    name: "Wojciech Błażyca",
+    subjects: [
+      "Historia",
+      "Wiedza o społeczeństwie",
+      "Wiedza o społeczeństwie rozszerzona",
+      "Geografia",
+      "Bezpieczeństwo i higiena pracy",
+    ],
+  },
+  {
+    name: "Ewa Brągiel",
+    subjects: ["Język polski", "Zajęcia z wychowawcą"],
+  },
+  {
+    name: "Danuta Brych",
+    subjects: ["Wychowanie fizyczne", "Zajęcia z wychowawcą"],
+  },
+  {
+    name: "Norbert Burek",
+    subjects: [
+      "Informatyka",
+      "Eksploatacja urządzeń peryferyjnych",
+      "Pracownia eksploatacji urządzeń peryferyjnych",
+      "Pracownia montażu i eksploatacji lokalnej sieci komputerowej",
+      "Montaż, konfiguracja i naprawa lokalnych sieci komputerowych",
+    ],
+  },
+  {
+    name: "Dorota Charzewska",
+    subjects: [
+      "Matematyka",
+      "Matematyka rozszerzona",
+      "Zajęcia z wychowawcą",
+      "Zajęcia dydaktyczno-wyrównawcze",
+    ],
+  },
+  {
+    name: "Katarzyna Chrapiec",
+    subjects: ["Język niemiecki"],
+  },
+  {
+    name: "Renata Ciesielska-Prasoł",
+    subjects: ["Geografia", "Geografia rozszerzona", "Geografia turystyczna"],
+  },
+  {
+    name: "Agnieszka Danisz",
+    subjects: ["Chemia", "Biologia"],
+  },
+  {
+    name: "Agata Drobik",
+    subjects: [
+      "Język angielski",
+      "Język angielski rozszerzony",
+      "Zajęcia z wychowawcą",
+      "Język angielski w branży elektrycznej",
+      "Język angielski w branży turystycznej",
+    ],
+  },
+  {
+    name: "Iwona Dziduch",
+    subjects: ["Geografia", "Geografia rozszerzona"],
+  },
+  {
+    name: "Barbara Erkier",
+    subjects: ["Historia"],
+  },
+  {
+    name: "Marek Fenisz",
+    subjects: ["Religia"],
+  },
+  {
+    name: "Paulina Gaik",
+    subjects: [
+      "Pracownia obsługi turystycznej",
+      "Obsługa turystyczna",
+      "Pracownia rozliczania imprez i usług turystycznych",
+      "Pracownia informacji i promocji turystycznej",
+      "Pracownia organizacji imprez turystycznych",
+    ],
+  },
+  {
+    name: "Zenon Gałązka",
+    subjects: ["Zajęcia praktyczne"],
+  },
+  {
+    name: "Dariusz Grajner",
+    subjects: [
+      "Podstawy logistyki",
+      "Usługi transportowo-spedycyjne",
+      "Dystrybucja",
+      "Procesy transportowe w logistyce",
+      "Pracownia montażu systemów energetyki odnawialnej",
+      "Systemy energetyki odnawialnej",
+      "Pracownia eksploatacji systemów energetyki odnawialnej",
+    ],
+  },
+  {
+    name: "Paulina Gwóźdź",
+    subjects: [
+      "Logistyka zaopatrzenia i produkcji",
+      "Zapasy i magazynowanie",
+      "Procesy transportowe w logistyce",
+      "Dokumentacja logistyczna",
+    ],
+  },
+  {
+    name: "Zofia Haluch",
+    subjects: ["Język polski", "Zajęcia z wychowawcą"],
+  },
+  {
+    name: "Małgorzata Herman",
+    subjects: ["Dystrybucja", "Organizacja pracy magazynów"],
+  },
+  {
+    name: "Oliwia Hupka-Holecka",
+    subjects: [
+      "Podstawy turystyki",
+      "Pracownia organizacji imprez i usług turystycznych",
+      "Pracownia obsługi turystycznej",
+      "Zajęcia z wychowawcą",
+      "Organizacja imprez i usług turystycznych",
+      "Obsługa turystyczna",
+      "Marketing usług turystycznych",
+      "Pracownia rozliczania imprez i usług turystycznych",
+      "Pracownia informacji i promocji turystycznej",
+      "Działalność gospodarcza w turystyce",
+      "Usługi turystyczne",
+    ],
+  },
+  {
+    name: "Bernadeta Ignacy",
+    subjects: [
+      "Rysunek techniczny",
+      "Podstawy konstrukcji maszyn",
+      "Technologia przetwórstwa tworzyw sztucznych",
+      "Eksploatacja maszyn i urządzeń",
+      "Technologia konstrukcji mechanicznych",
+      "Podstawy budowy maszyn i urządzeń",
+      "Procesy wytwarzania wyrobów z tworzyw sztucznych",
+    ],
+  },
+  {
+    name: "Agata Kalita-Bojdoł",
+    subjects: [
+      "Matematyka",
+      "Matematyka rozszerzona",
+      "Zajęcia z wychowawcą",
+      "Zajęcia dydaktyczno-wyrównawcze",
+    ],
+  },
+  {
+    name: "Ilona Karwot",
+    subjects: ["Język polski", "Zajęcia z wychowawcą", "Obowiązki bibliotekarza"],
+  },
+  {
+    name: "Jan Kaźmierczak",
+    subjects: [
+      "Język angielski",
+      "Język angielski rozszerzony",
+      "Zajęcia z wychowawcą",
+      "Język angielski zawodowy",
+      "Język angielski w branży informatycznej",
+      "Język angielski w branży elektrycznej",
+      "Język angielski w branży logistycznej",
+      "Język angielski w branży turystycznej",
+    ],
+  },
+  {
+    name: "Bartosz Kiszewski",
+    subjects: [
+      "Informatyka",
+      "Informatyka rozszerzona",
+      "Urządzenia techniki komputerowej",
+      "Montaż i eksploatacja urządzeń techniki komputerowej",
+      "Naprawa urządzeń techniki komputerowej",
+      "Pracownia naprawy urządzeń techniki komputerowej",
+    ],
+  },
+  {
+    name: "Alina Kozdoń-Majdzik",
+    subjects: ["Instalacje elektryczne", "Maszyny i urządzenia elektryczne"],
+  },
+  {
+    name: "Anna Krzemień",
+    subjects: ["Wychowanie do życia w rodzinie", "Religia"],
+  },
+  {
+    name: "Agnieszka Leszczyńska",
+    subjects: [
+      "Zajęcia z wychowawcą",
+      "Logistyka zaopatrzenia i produkcji",
+      "Zapasy i magazynowanie",
+      "Usługi transportowo-spedycyjne",
+      "Planowanie produkcji i dystrybucji",
+      "Procesy transportowe w logistyce",
+      "Procesy magazynowe",
+      "Dokumentacja logistyczna",
+      "Pracownia magazynowa",
+    ],
+  },
+  {
+    name: "Piotr Majdzik",
+    subjects: [
+      "Montaż uruchamianie i konserwacja maszyn i urządzeń elektrycznych",
+      "Montaż uruchamianie i konserwacja instalacji elektrycznych",
+    ],
+  },
+  {
+    name: "Michał Małyska",
+    subjects: ["Wychowanie fizyczne", "Zajęcia z wychowawcą"],
+  },
+  {
+    name: "Krzysztof Marekwia",
+    subjects: [
+      "Administrowanie systemami operacyjnymi",
+      "Informatyka",
+      "Informatyka rozszerzona",
+      "Lokalne sieci komputerowe",
+      "Systemy operacyjne",
+      "Programowanie aplikacji internetowych",
+      "Eksploatacja urządzeń sieciowych",
+      "Montaż i eksploatacja lokalnej sieci komputerowej",
+      "Administrowanie serwerowymi systemami operacyjnymi",
+      "Projektowanie i tworzenie stron internetowych",
+      "Pracownia eksploatacji urządzeń sieciowych",
+      "Pracownia administrowania serwerowymi systemami operacyjnymi",
+    ],
+  },
+  {
+    name: "Dariusz Mildner",
+    subjects: [
+      "Podstawy turystyki",
+      "Wychowanie fizyczne",
+      "Organizacja imprez i usług turystycznych",
+      "Obsługa turystyczna",
+      "Marketing usług turystycznych",
+    ],
+  },
+  {
+    name: "Katarzyna Nitkowska",
+    subjects: ["Język niemiecki", "Zajęcia z wychowawcą"],
+  },
+  {
+    name: "Mariola Ostafińska",
+    subjects: ["Język angielski", "Język angielski rozszerzony", "Język angielski w branży turystycznej"],
+  },
+  {
+    name: "Mariola Paduch",
+    subjects: ["Chemia"],
+  },
+  {
+    name: "Maria Pawełczyk",
+    subjects: ["Usługi transportowo-spedycyjne", "Procesy transportowe"],
+  },
+  {
+    name: "Ireneusz Pietrasz",
+    subjects: [
+      "Historia",
+      "Wiedza o społeczeństwie",
+      "Zajęcia z wychowawcą",
+      "Filozofia",
+      "Historia i teraźniejszość",
+    ],
+  },
+  {
+    name: "Agnieszka Pilarska",
+    subjects: ["Obowiązki pedagoga", "Obowiązki pedagoga specjalnego"],
+  },
+  {
+    name: "Alicja Popenda",
+    subjects: ["Język polski"],
+  },
+  {
+    name: "Irena Radomska",
+    subjects: ["Język polski", "Podstawy przedsiębiorczości", "Doradztwo zawodowe", "Biznes i zarządzanie"],
+  },
+  {
+    name: "Elżbieta Rataj",
+    subjects: ["Zapasy i magazynowanie", "Planowanie produkcji i dystrybucji", "Pracownia magazynowa"],
+  },
+  {
+    name: "Jolanta Rejnisz",
+    subjects: [
+      "Fizyka",
+      "Geografia",
+      "Bezpieczeństwo i higiena pracy",
+      "Pracownia organizacji eksploatacji złóż",
+      "Eksploatacja maszyn i urządzeń",
+      "Technologia konstrukcji mechanicznych",
+    ],
+  },
+  {
+    name: "Dominika Romanek",
+    subjects: ["Język niemiecki", "Zajęcia z wychowawcą"],
+  },
+  {
+    name: "Honorata Skrzypiec",
+    subjects: [
+      "Język angielski",
+      "Język angielski rozszerzony",
+      "Zajęcia z wychowawcą",
+      "Język angielski w branży logistycznej",
+    ],
+  },
+  {
+    name: "Krystian Skubij",
+    subjects: ["Historia"],
+  },
+  {
+    name: "Andrzej Stępień",
+    subjects: [
+      "Pracownia instalacji i urządzeń do wytwarzania energii elektrycznej",
+      "Pracownia instalacji i urządzeń do wytwarzania energii cieplnej",
+    ],
+  },
+  {
+    name: "Marcelina Suchanek",
+    subjects: [
+      "Zajęcia z wychowawcą",
+      "Instalacje elektryczne",
+      "Maszyny i urządzenia elektryczne",
+      "Elektrotechnika i elektronika",
+      "Eksploatacja maszyn, urządzeń i instalacji elektrycznych",
+      "Pomiary w elektrotechnice i elektronice",
+      "Montaż uruchamianie i konserwacja instalacji elektrycznych",
+      "Wytwarzanie energii elektrycznej",
+      "Wytwarzanie energii cieplnej",
+      "Elektrotechnika i mechatronika",
+    ],
+  },
+  {
+    name: "Wioletta Syrek",
+    subjects: ["Matematyka", "Matematyka rozszerzona"],
+  },
+  {
+    name: "Tadeusz Szczypka",
+    subjects: ["Fizyka", "Maszyny i urządzenia górnicze"],
+  },
+  {
+    name: "Beata Szlejter",
+    subjects: ["Obowiązki bibliotekarza", "Zajęcia korekcyjno-kompensacyjne", "Obowiązki pedagoga specjalnego"],
+  },
+  {
+    name: "Andrzej Szymczyk",
+    subjects: ["Wychowanie fizyczne", "Zajęcia z wychowawcą"],
+  },
+  {
+    name: "Agnieszka Tkacz",
+    subjects: ["Obowiązki psychologa"],
+  },
+  {
+    name: "Sławomir Tokarz",
+    subjects: ["Taktyka i techniki interwencji w służbach mundurowych"],
+  },
+  {
+    name: "Teresa Truś",
+    subjects: [
+      "Podstawy logistyki",
+      "Usługi transportowo-spedycyjne",
+      "Planowanie produkcji i dystrybucji",
+      "Procesy transportowe w logistyce",
+      "Procesy magazynowe",
+      "Dokumentacja logistyczna",
+    ],
+  },
+  {
+    name: "Mirosław Wojtynek",
+    subjects: ["Zajęcia praktyczne"],
+  },
+];
+
+const sorted = [...teachers].sort((a, b) => a.name.localeCompare(b.name, "pl"));
+const total = management.length + sorted.length;
 ---
 
 <Layout>
-  <article class="prose max-w-4xl dark:prose-invert">
-    <h1>Grono pedagogiczne</h1>
-    <p>Lista nauczycieli i ich odpowiedzialności (fragmenty z site.md). Jeśli chcesz, mogę rozbić to na szczegółową stronę z kartami nauczycieli.</p>
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <article>
+    <!-- Hero -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-700 text-white mb-16 shadow-[inset_-2px_-2px_12px_rgba(0,0,0,0.2),8px_8px_24px_rgba(0,0,0,0.15)]">
+      <div class="absolute inset-0 bg-slate-950/30"></div>
+      <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 25% 25%, white 0%, transparent 50%), radial-gradient(circle at 75% 75%, white 0%, transparent 50%);"></div>
+      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, white 40px, white 41px);"></div>
+      <div class="relative px-8 py-16 lg:px-20 lg:py-24 text-center">
+        <p class="text-primary-200 uppercase tracking-[0.2em] text-sm font-semibold">Rok szkolny 2025/2026</p>
+        <h1 class="text-4xl lg:text-5xl font-bold mt-4" style="font-family: 'EB Garamond', serif;">Grono Pedagogiczne</h1>
+        <p class="mt-3 text-lg text-white/80 max-w-xl mx-auto leading-relaxed">
+          {total} nauczycieli i pracowników tworzących społeczność ZSEiU
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3 justify-center">
+          <a href="#dyrekcja" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/15 text-white rounded-xl font-semibold border border-white/20 hover:bg-white/25 transition-all duration-300 backdrop-blur-sm">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
+            Dyrekcja
+          </a>
+          <a href="#nauczyciele" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/15 text-white rounded-xl font-semibold border border-white/20 hover:bg-white/25 transition-all duration-300 backdrop-blur-sm">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c3 3 9 3 12 0v-5" stroke="currentColor" stroke-width="2"/></svg>
+            Nauczyciele
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dyrekcja -->
+    <section id="dyrekcja" class="mb-20">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center" style="font-family: 'EB Garamond', serif;">
+        Dyrekcja i kierownictwo
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {
+          management.map((person) => (
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-800/90 border-2 border-primary-100 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.03),4px_4px_12px_rgba(0,0,0,0.06)] hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.03),6px_6px_20px_rgba(0,0,0,0.1)] transition-all duration-300 text-center">
+              <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-800 dark:to-primary-700 flex items-center justify-center mb-4 shadow-md">
+                <span class="text-2xl font-bold text-primary-700 dark:text-primary-300" style="font-family: 'EB Garamond', serif;">
+                  {person.name.charAt(0)}
+                </span>
+              </div>
+              <p class="font-bold text-lg text-slate-900 dark:text-white">{person.name}</p>
+              <span class="inline-block mt-1.5 px-3 py-0.5 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-700/30 dark:text-primary-300 text-xs font-semibold tracking-wide uppercase">
+                {person.role}
+              </span>
+              <ul class="mt-4 space-y-1">
+                {person.subjects.map((s) => (
+                  <li class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{s}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Nauczyciele -->
+    <section id="nauczyciele">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center" style="font-family: 'EB Garamond', serif;">
+        Nauczyciele
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+        {
+          sorted.map((person) => (
+            <div class="p-5 rounded-2xl bg-white dark:bg-slate-800/90 border-2 border-slate-100 dark:border-slate-700 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),6px_6px_20px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-300">
+              <p class="font-semibold text-slate-900 dark:text-white">{person.name}</p>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {person.subjects.map((s) => (
+                  <span class="inline-block px-2.5 py-0.5 rounded-lg bg-slate-50 dark:bg-slate-700/60 text-xs text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-600 leading-relaxed">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Footer note -->
+    <p class="max-w-3xl mx-auto mt-16 text-center text-sm text-slate-400 dark:text-slate-500">
+      Stan na rok szkolny 2025/2026
+    </p>
   </article>
 </Layout>

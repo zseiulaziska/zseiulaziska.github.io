@@ -1,10 +1,395 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TimelineEvent from '../components/TimelineEvent.astro';
 ---
 
 <Layout>
-  <article class="prose max-w-4xl dark:prose-invert">
-    <h1>Historia</h1>
-    <p>Rys historyczny szkoły: od 1945 roku, rozwój, zmiany nazw, oddanie budynku przy ul. Chopina 11 w 1968 r., nadanie imienia prof. dr inż. Wacława Cybulskiego w 1978 r., i dalszy rozwój do dziś.</p>
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <article>
+    <!-- Hero -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-700 text-white mb-16 shadow-[inset_-2px_-2px_12px_rgba(0,0,0,0.2),8px_8px_24px_rgba(0,0,0,0.15)]">
+      <div class="absolute inset-0 bg-slate-950/30"></div>
+      <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 25% 25%, white 0%, transparent 50%), radial-gradient(circle at 75% 75%, white 0%, transparent 50%);"></div>
+      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, white 40px, white 41px);"></div>
+      <div class="relative px-8 py-16 lg:px-20 lg:py-28 text-center">
+        <p class="text-primary-200 uppercase tracking-[0.2em] text-sm font-semibold">1945 &mdash; dziś</p>
+        <h1 class="text-4xl lg:text-6xl font-bold mt-4" style="font-family: 'EB Garamond', serif;">Historia ZSEiU</h1>
+        <p class="mt-4 text-lg lg:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+          Rys historyczny Zespołu Szkół Energetycznych i Usługowych<br />
+          w Łaziskach Górnych
+        </p>
+
+        <!-- Stats -->
+        <!-- <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+          <div class="text-center">
+            <p class="text-3xl lg:text-4xl font-bold text-white">1945</p>
+            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">rok założenia</p>
+          </div>
+          <div class="text-center">
+            <p class="text-3xl lg:text-4xl font-bold text-white">80+</p>
+            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">lat tradycji</p>
+          </div>
+          <div class="text-center">
+            <p class="text-3xl lg:text-4xl font-bold text-white">5</p>
+            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">kierunki technikum</p>
+          </div>
+          <div class="text-center">
+            <p class="text-3xl lg:text-4xl font-bold text-white">4</p>
+            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">szkoły w zespole</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="max-w-3xl mx-auto mb-16">
+      <div class="p-8 lg:p-10 rounded-3xl bg-primary-50 dark:bg-slate-800/60 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Początki szkoły</h2>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Początki istnienia szkoły wiążą się z datą <strong class="text-slate-900 dark:text-white font-semibold">15 sierpnia 1945 roku</strong>,
+          kiedy to staraniem dyrekcji kopalni węgla kamiennego &bdquo;Bolesław Śmiały&rdquo; otwarto
+          <strong class="text-slate-900 dark:text-white font-semibold">Szkołę Przemysłowo-Górniczą</strong> w pomieszczeniach dawnej administracji
+          kopalni &bdquo;Brada&rdquo;. Pierwszym kierownikiem szkoły został
+          <strong class="text-slate-900 dark:text-white font-semibold">Franciszek Chowaniec</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative max-w-4xl mx-auto">
+      <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-primary-200 dark:bg-primary-700/50 hidden md:block"></div>
+
+      <TimelineEvent year="1945" side="right" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Szkoła Przemysłowo-Górnicza</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          15 sierpnia 1945 roku staraniem dyrekcji kopalni węgla kamiennego &bdquo;Bolesław Śmiały&rdquo;
+          otwarto <strong>Szkołę Przemysłowo-Górniczą</strong> w pomieszczeniach dawnej administracji
+          kopalni &bdquo;Brada&rdquo;. Pierwszym kierownikiem szkoły został <strong>Franciszek Chowaniec</strong>.
+          Szkoła powstała w odpowiedzi na potrzebę kształcenia kadr dla odbudowującego się po wojnie
+          przemysłu górniczego na Górnym Śląsku.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1951" side="left">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Reforma &mdash; Zasadnicza Szkoła Górnicza</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Rok 1951 przyniósł zasadnicze zmiany w kształceniu zawodowym. Dokonano reformy szkolnictwa
+          zawodowego, w wyniku której Szkoła Przemysłowo-Górnicza w Łaziskach Górnych zmienia się na
+          dwuletnią <strong>Zasadniczą Szkołę Górniczą</strong>. Zreformowana szkoła kształciła młodzież
+          w specjalnościach: górnik-wrębiarz, górnik, cieśla górniczy i elektromonter górniczy.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1959" side="right">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Trzyletnia nauka i integracja z kopalnią</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Nowa reforma wprowadzona z dniem 1 kwietnia 1959 roku zachowała nazwę szkoły i wprowadziła
+          <strong>trzyletni okres nauki</strong>. Zasadnicza Szkoła Górnicza stała się szkołą przypisaną
+          macierzystej kopalni &bdquo;Bolesław Śmiały&rdquo;. Przyniosło to szkole i jej wychowankom
+          wiele korzyści. Zintegrowana z kopalnią szkoła rozpoczęła kształcenie kadr robotników w nowych
+          specjalnościach, takich jak: górnik węgla kamiennego, mechanik maszyn i urządzeń górniczych,
+          elektromonter górnictwa podziemnego oraz mechanik maszyn i urządzeń przeróbczych.
+        </p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Odbudowa ze zniszczeń wojennych i rozwój przemysłu w regionie otwarły drzwi na Śląsk młodzieży
+          z centralnej Polski. Do szkoły zaczęła napływać młodzież zamiejscowa. Otwarcie w latach 60.
+          szkół zawodowych w Mikołowie, Tychach i innych okolicznych miastach spowodowało spadek naboru,
+          co zrodziło potrzebę rekrutacji młodzieży spoza terenu Śląska i otwarcia dla niej internatu.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1968" side="left" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Nowy budynek przy Chopina 11</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          <strong>13 września 1968 roku</strong> oddano do użytku nowocześnie wyposażony budynek szkolny
+          przy <strong>ulicy Chopina 11</strong>. W budynku znajdowało się wówczas 10 pomieszczeń
+          dydaktycznych, sala gimnastyczna, świetlica i pomieszczenia pomocnicze. Po rozbudowie
+          do dziś jest on siedzibą naszej szkoły.
+        </p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+          W nowych warunkach szkoła rozbudowała swoją strukturę i otworzyła filię Zaocznego Technikum
+          Górniczego w Katowicach-Brynowie (działającą w latach 1961–1969) oraz Technikum Górniczego
+          dla Pracujących w Tychach (1991–1994).
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1976" side="right">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Zmiana dyrekcji i rozkwit szkoły</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          W 1976 roku na emeryturę odszedł wieloletni dyrektor szkoły <strong>mgr Robert Prochaska</strong>.
+          Jego miejsce zajął <strong>mgr inż. Leszek Machnik</strong>. W latach 70. priorytetową gałęzią
+          gospodarki było górnictwo, co w przypadku szkoły skutkowało rozmachem działalności w latach
+          1976–1978.
+        </p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+          W 1977 roku oddano do użytku nowy internat przy ul. Chopina, w którym zamieszkało 160 świeżo
+          przyjętych wychowanków. Zwiększone zapotrzebowanie kopalni spowodowało, że w obu internatach
+          (starym i nowym) zamieszkiwało ponad <strong>250 wychowanków</strong>. W 1978 roku macierzysta
+          kopalnia przekazała szkole nowe warsztaty zlokalizowane na terenie kopalni. Naukę zawodu
+          rozpoczyna rekordowa liczba: <strong>581 uczniów</strong> ZSG i SPZ oraz 93 uczniów Zakładu
+          Budowy Urządzeń i Aparatury Naukowo-Doświadczalnej GIG i 102 uczniów w filiach ZSG w Pucku
+          i Nowym Dworze.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1978" side="left" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Patron i sztandar</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          <strong>29 listopada 1978 roku</strong> uroczyście nadano szkole imię
+          <strong>prof. dr inż. Wacława Cybulskiego</strong>. Ukoronowaniem roku 1978 było nadanie
+          szkole <strong>sztandaru</strong> ufundowanego przez załogę kopalni &bdquo;Bolesław Śmiały&rdquo;
+          za zasługi w kształceniu kadry górniczej. Absolwenci Zasadniczej Szkoły Górniczej stanowili
+          w tym czasie ponad <strong>40% załogi</strong> kopalni Bolesław Śmiały.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1979" side="right">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Złota odznaka</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Pod koniec czerwca 1979 roku Zasadnicza Szkoła Górnicza w Łaziskach Górnych &mdash; za wieloletnią
+          działalność dydaktyczno-wychowawczą &mdash; zostaje wyróżniona <strong>złotą odznaką</strong>
+          &bdquo;Zasłużonemu w Rozwoju Województwa Katowickiego&rdquo;.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1984 — 1986" side="left">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Najlepsza szkoła górnicza</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          W latach 1984–1986 szkoła zdobywa <strong>3-krotnie pierwsze miejsce</strong> we
+          współzawodnictwie o tytuł najlepszej szkoły górniczej na szczeblu Jaworznicko-Mikołowskiego
+          Zjednoczenia. Świętem hucznie obchodzonym przez kolejne dziesięciolecia istnienia Zasadniczej
+          Szkoły Górniczej była <strong>&bdquo;Barbórka&rdquo;</strong> &mdash; uroczystości z nią
+          związane budziły autentyczne emocje uczniów i nauczycieli.
+        </p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+          W latach 1978–1984 dyrektorem szkoły był <strong>Emil Parot</strong>,
+          a w latach 1984–1991 <strong>inż. Henryk Kubasa</strong>.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1989 — 1991" side="right">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Przemiany ustrojowe i nowe wyzwania</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Rok 1989 był bogaty w przemiany ustrojowe w Polsce, co wiązało się ze zmniejszonym
+          zapotrzebowaniem na absolwentów szkół górniczych. Reforma szkolnictwa zawodowego w latach
+          1990–1991 ograniczyła nabór do szkół górniczych. Rozpoczęła się ich likwidacja,
+          a macierzyste zakłady, w tym także KWK &bdquo;Bolesław Śmiały&rdquo;, wycofały się ze
+          wszystkich zobowiązań wobec uczniów i szkół. Uczniowie utracili stypendia i inną pomoc:
+          ubrania robocze, przybory, podręczniki, dożywianie.
+        </p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Decyzją Rady Pracowniczej i Dyrektora KWK &bdquo;Bolesław Śmiały&rdquo; postanowiono szkołę
+          przekazać <strong>Kuratorium Oświaty w Katowicach</strong>.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1991" side="left" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Nowa era &mdash; Zespół Szkół Nr 1</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Dyrektorem Zasadniczej Szkoły Górniczej zostaje <strong>mgr Stanisław Cyrulski</strong>,
+          który w nowych realiach starał się przeprofilować szkołę i przekształca ją w
+          <strong>Zespół Szkół Nr 1</strong>. Od 1 września 1991 roku młodzież rozpoczęła naukę
+          w otwartym w szkole <strong>Technikum Mechaniczno-Elektrycznym</strong> dla pracujących,
+          a 1 września 1993 roku otwarto <strong>Technikum Mechaniczno-Górnicze</strong> po szkole
+          podstawowej.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="1996" side="right">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Połączenie w jedną szkołę</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          W 1996 roku wszystkie szkoły istniejące w budynku przy ul. Chopina 11 zostały połączone
+          w jedną szkołę &mdash; <strong>Zespół Szkół nr 1</strong> w Łaziskach Górnych.
+          Zakończenie kształcenia w Zasadniczej Szkole Górniczej nastąpiło w czerwcu 1996 roku.
+        </p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Od połowy lat 90. w kalendarium roku szkolnego pojawiają się nowe, cykliczne wydarzenia
+          i uroczystości: dni maturzysty, bale studniówkowe, egzaminy maturalne, obrony prac technika.
+          Kolejne roczniki młodzieży zdobywały w murach szkoły zawód i życiowe doświadczenie.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="2001 — 2008" side="left">
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Zespół Szkół Ponadgimnazjalnych</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          W latach 2001–2008 dyrektorem placówki był <strong>mgr Tadeusz Marekwia</strong>.
+          Po reformie szkolnictwa w 2002 roku nazwa szkoły zostaje zmieniona na
+          <strong>Zespół Szkół Ponadgimnazjalnych</strong>. W ramach Zespołu pojawiły się nowe szkoły:
+          Liceum Profilowane (lata 2002–2005), Technikum Uzupełniające dla Dorosłych
+          i Uzupełniające Liceum Ogólnokształcące dla Dorosłych. Absolwenci Liceum Profilowanego
+          byli pierwszymi uczniami zdającymi nowy egzamin maturalny.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="2008" side="right" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Nowe kierunki &mdash; nowe możliwości</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Dyrektorem ZSP w Łaziskach Górnych zostaje <strong>dr Teresa Kmita-Drenda</strong>,
+          która wprowadza do oferty edukacyjnej nowe, niezwykle atrakcyjne kierunki, m.in.
+          <strong>technik logistyk</strong> i technik spedytor. Te nowe profile kształcenia
+          odpowiadały na zmieniające się potrzeby rynku pracy i otworzyły przed absolwentami
+          nowe perspektywy zawodowe.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="2011" side="left" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">ZSEiU &mdash; nowa tożsamość</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Dochodzi do historycznego połączenia Zespołu Szkół Ponadgimnazjalnych i
+          <strong>Zespołu Szkół Energetycznych PKE SA</strong> &mdash; Elektrownia Łaziska.
+          W konsekwencji nazwa szkoły zmienia się na <strong>Zespół Szkół Energetycznych
+          i Usługowych</strong> w Łaziskach Górnych. Do szkoły dołączyli nowi uczniowie
+          i nauczyciele, a baza dydaktyczna wzbogaciła się o nowoczesne pracownie specjalistyczne.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="2017 — 2018" side="right" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Klasy mundurowe i patronat TAURON</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Rok szkolny 2017/2018 to kolejne wielkie zmiany &mdash; po raz pierwszy uruchomione
+          zostają <strong>klasy mundurowe</strong>, które na dobre stają się wizytówką szkoły
+          w regionie. W roku 2018 na podstawie porozumienia z <strong>TAURON-SERWIS</strong> otwarto
+          klasy patronackie w zawodzie technik energetyk. Wygrany konkurs na laboratorium TAURONA
+          pozwolił na doposażenie laboratorium inteligentnych domów i automatyki przemysłowej.
+        </p>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Dzięki udziałowi w projekcie &bdquo;Efektywne Funkcjonalne Szkoły&rdquo; placówka
+          wzbogaciła się o nowoczesne laboratorium energetyki odnawialnej.
+        </p>
+      </TimelineEvent>
+
+      <TimelineEvent year="Dziś" side="left" highlight>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Współczesność</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+          Obecnie Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych to nowoczesna
+          placówka kształcąca w zawodach przyszłości. Szkoła dysponuje:
+        </p>
+        <ul class="mt-3 space-y-2 text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0"></span>
+            laboratorium TAURON inteligentnych domów i automatyki przemysłowej
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0"></span>
+            nowoczesną pracownią energetyki odnawialnej
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0"></span>
+            wirtualną strzelnicą &mdash; unikatem w skali powiatu
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0"></span>
+            bogatą ofertą kierunków &mdash; od technika elektryka, informatyka, logistyka,
+            po technika OZE i turystyki
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0"></span>
+            aktywnym programem Erasmus+, oferującym praktyki zagraniczne w Grecji i we Włoszech
+          </li>
+        </ul>
+      </TimelineEvent>
+    </div>
+
+    <!-- Directors section -->
+    <div class="max-w-4xl mx-auto mt-20">
+      <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-10" style="font-family: 'EB Garamond', serif;">
+        Dyrektorzy w historii szkoły
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">Franciszek Chowaniec</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">1945 &mdash; kierownik</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">mgr Robert Prochaska</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">wieloletni dyrektor (do 1976)</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">mgr inż. Leszek Machnik</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">1976–1978</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">Emil Parot</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">1978–1984</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">inż. Henryk Kubasa</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">1984–1991</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">mgr Stanisław Cyrulski</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">1991–2001</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">mgr Tadeusz Marekwia</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">2001–2008</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-slate-100 dark:border-slate-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">dr Teresa Kmita-Drenda</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">2008–...</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-800/60 border-2 border-primary-200 dark:border-primary-700 text-center transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-500 cursor-pointer">
+          <p class="font-semibold text-slate-900 dark:text-white">mgr Anna Jadasz</p>
+          <p class="text-sm text-primary-700 dark:text-primary-300 font-medium">obecnie</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing CTA -->
+    <div class="max-w-3xl mx-auto mt-20 p-8 lg:p-10 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-slate-800 dark:to-slate-800/60 rounded-3xl text-center border-2 border-primary-200 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">
+        Tworzymy historię od 1945 roku
+      </h2>
+      <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+        Przez dekady szkoła ewoluowała, dostosowując się do zmieniających się realiów,
+        zawsze stawiając na rozwój i jakość kształcenia. Dziś, z bogatym dziedzictwem
+        i nowoczesnym zapleczem, z sukcesem przygotowujemy młodzież do wyzwań przyszłości.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a href="/kierunki" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+          Poznaj nasze kierunki
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/dyrekcja" class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-xl font-semibold border-2 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-300 hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.06)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+          Poznaj dyrekcję
+        </a>
+      </div>
+    </div>
   </article>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const events = document.querySelectorAll('.timeline-event');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const show = (el) => {
+      el.classList.remove(
+        'opacity-0', 'translate-x-8', '-translate-x-8',
+        'md:opacity-0', 'md:translate-x-8', 'md:-translate-x-8'
+      );
+      el.classList.add('opacity-100', 'translate-x-0');
+    };
+
+    if (prefersReducedMotion) {
+      events.forEach(show);
+    } else if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              show(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      events.forEach((el) => observer.observe(el));
+    } else {
+      events.forEach(show);
+    }
+  });
+</script>
