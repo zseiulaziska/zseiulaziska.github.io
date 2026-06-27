@@ -16,10 +16,27 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<script>
+			(function() {
+				var storage = 'theme';
+				var stored = localStorage.getItem(storage);
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				}
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+					if (!localStorage.getItem(storage)) {
+						document.documentElement.classList.toggle('dark', e.matches);
+					}
+				});
+			})();
+		</script>
 		<style>
 			main {
 				width: calc(100% - 2em);
@@ -40,7 +57,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				max-width: calc(100% - 2em);
 				margin: auto;
 				padding: 1em;
-				color: rgb(var(--gray-dark));
+				color: #334155;
+			}
+			.dark .prose {
+				color: #cbd5e1;
 			}
 			.title {
 				margin-bottom: 1em;
@@ -51,9 +71,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.title h1 {
 				margin: 0 0 0.5em 0;
 			}
+			:global(.dark) .title h1 {
+				color: #f1f5f9;
+			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: #64748b;
+			}
+			.dark .date {
+				color: #94a3b8;
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -63,7 +89,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 	<body class="min-h-screen flex flex-col">
 		<SkipLink />
-		<header class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+		<header class="bg-gray-100 dark:bg-navy-800 text-gray-900 dark:text-white">
 			<Nav />
 		</header>
 		<main id="content" class="flex-1" tabindex="-1">

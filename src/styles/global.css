@@ -1,3 +1,5 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "tailwindcss";
 
 @theme {
@@ -9,14 +11,27 @@
   --color-primary-700: #0077cc;
   --color-accent-50: #fff8f3;
   --color-accent-500: #ff7a59;
+
+  --color-navy-950: #070d1a;
+  --color-navy-900: #0a1628;
+  --color-navy-850: #0c1a30;
+  --color-navy-800: #0f1d35;
+  --color-navy-750: #122240;
+  --color-navy-700: #152a4a;
+  --color-navy-650: #183255;
+  --color-navy-600: #1e3a5f;
+  --color-navy-500: #2a4a7a;
+  --color-navy-400: #3a6a9a;
+  --color-navy-300: #5a8aba;
+  --color-navy-200: #8abae0;
+  --color-navy-100: #badaf0;
+  --color-navy-50: #eaf4fc;
 }
 
-/* Accessible focus defaults */
 @utility focus-ring-custom {
   @apply outline-none ring-4 ring-primary-500 ring-offset-2;
 }
 
-/* Skip link */
 .skip-link {
   @apply absolute left-4 top-4 -translate-y-full transition-transform bg-white text-primary-700 px-3 py-2 rounded z-50;
 }
@@ -24,12 +39,49 @@
   @apply translate-y-0 focus-ring-custom;
 }
 
-/* Desktop submenu behaviour */
 details[open] > .submenu, details.group:hover > .submenu {
   display: block;
 }
 .submenu { display: none; }
 
-/* Base font sizing and body styles */
-html { font-size: 100%; }
-body { @apply font-sans text-gray-900 bg-white leading-relaxed; }
+html {
+  font-size: 100%;
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html,
+html *,
+html *::before,
+html *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  html *,
+  html *::before,
+  html *::after {
+    transition: none !important;
+  }
+}
+
+body {
+  @apply font-sans text-gray-900 bg-white leading-relaxed;
+}
+
+html.dark body {
+  @apply bg-navy-900 text-slate-200;
+}
+
+::selection {
+  @apply bg-primary-200 text-navy-900;
+}
+
+html.dark ::selection {
+  @apply bg-primary-700/60 text-white;
+}

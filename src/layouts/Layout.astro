@@ -10,23 +10,36 @@ import Footer from '../components/Footer.astro';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Google Fonts for Inter (body) + Poppins (display) -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <slot name="head" />
+    <script>
+      (function() {
+        var storage = 'theme';
+        var stored = localStorage.getItem(storage);
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          if (!localStorage.getItem(storage)) {
+            document.documentElement.classList.toggle('dark', e.matches);
+          }
+        });
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
-    <!-- Skip link must be first focusable element -->
     <SkipLink />
-
-    <header class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <header class="bg-gray-100 dark:bg-navy-800 text-gray-900 dark:text-white">
       <Nav />
     </header>
-
+    <slot name="hero" />
     <main id="content" class="flex-1 max-w-6xl mx-auto px-4 py-8" tabindex="-1">
       <slot />
     </main>
-
     <Footer />
   </body>
 </html>
