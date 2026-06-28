@@ -24,10 +24,18 @@ jobs:
     steps:
       - name: Checkout your repository
         uses: actions/checkout@v4
+
+      # --- TUTAJ JEST POPRAWKA: WYMUSZENIE NODE.JS 22 ---
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm' # Automatycznie przyspieszy kolejne instalacje pakietów
+      # --------------------------------------------------
         
       - name: Install, lint, build or cache
         uses: withastro/action@v3
-        # Jeśli używasz pnpm, odkomentuj poniższą linię:
+        # Jeśli używasz pnpm zamiast npm, odkomentuj te dwie linie poniżej:
         # with:
         #   package-manager: pnpm@latest
 
