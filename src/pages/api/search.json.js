@@ -10,7 +10,12 @@ function extractText(content) {
     .replace(/<script[\s\S]*?<\/script>/gi, '')
     .replace(/<style[\s\S]*?<\/style>/gi, '')
     .replace(/<[^>]+>/g, ' ')
-    .replace(/\{[^}]*\}/g, ' ')
+    .replace(/\{[\s\S]*?\}/g, function (m) {
+      var inner = m.slice(1, -1).trim();
+      if (/^[a-zA-Z_$][a-zA-Z0-9_$.\[\]'"]*$/.test(inner)) return inner;
+      if (/^['"]/.test(inner)) return inner.replace(/['"]/g, '');
+      return ' ';
+    })
     .replace(/&[a-z]+;/gi, ' ')
     .replace(/https?:\/\/\S+/g, '')
     .replace(/[#*`~\[\]()>|_\\]/g, ' ')
@@ -35,7 +40,6 @@ const pageFiles = {
   '/dyrekcja': 'src/pages/dyrekcja.astro',
   '/grono-pedagogiczne': 'src/pages/grono-pedagogiczne.astro',
   '/nasza-spolecznosc': 'src/pages/nasza-spolecznosc.astro',
-  '/aktywna-przerwa': 'src/pages/aktywna-przerwa.astro',
   '/kierunki': 'src/pages/kierunki.astro',
   '/kierunki-ksztalcenia': 'src/pages/kierunki-ksztalcenia.astro',
   '/klasy-mundurowe': 'src/pages/klasy-mundurowe.astro',
@@ -52,8 +56,6 @@ const pageFiles = {
   '/kalendarz': 'src/pages/kalendarz.astro',
   '/egzaminy-zawodowe': 'src/pages/egzaminy-zawodowe.astro',
   '/blog': 'src/pages/blog/index.astro',
-  '/booking': 'src/pages/booking.astro',
-  '/covid19': 'src/pages/covid19.astro',
   '/about': 'src/pages/about.astro',
   '/klienci-i-partnerzy': 'src/pages/klienci-i-partnerzy.astro',
 };
@@ -65,9 +67,9 @@ const staticPages = [
   { title: 'Informacje o szkole', url: '/informacje', description: 'Podstawowe informacje o ZSEiU' },
   { title: 'Historia', url: '/historia', description: 'Historia Zespołu Szkół Ekonomiczno-Usługowych' },
   { title: 'Dyrekcja i kierownictwo', url: '/dyrekcja', description: 'Dyrekcja i kierownictwo szkoły' },
-  { title: 'Grono pedagogiczne', url: '/grono-pedagogiczne', description: 'Nauczyciele i pracownicy ZSEiU' },
+  { title: 'Grono pedagogiczne', url: '/grono-pedagogiczne', description: 'Nauczyciele i pracownicy ZSEiU',
+    body: 'Anna Jadasz Dyrektor Dorota Brudny Wicedyrektor Piotr Dębowski Kierownik szkolenia praktycznego Jacek Antoniuk Marian Augustyniak Maciej Bąk Wojciech Błażyca Ewa Brągiel Danuta Brych Norbert Burek Dorota Charzewska Katarzyna Chrapiec Renata Ciesielska-Prasoł Agnieszka Danisz Agata Drobik Iwona Dziduch Barbara Erkier Marek Fenisz Paulina Gaik Zenon Gałązka Dariusz Grajner Paulina Gwóźdź Zofia Haluch Małgorzata Herman Oliwia Hupka-Holecka Bernadeta Ignacy Agata Kalita-Bojdoł Ilona Karwot Jan Kaźmierczak Bartosz Kiszewski Alina Kozdoń-Majdzik Anna Krzemień Agnieszka Leszczyńska Piotr Majdzik Michał Małyska Krzysztof Marekwia Dariusz Mildner Katarzyna Nitkowska Mariola Ostafińska Mariola Paduch Maria Pawełczyk Ireneusz Pietrasz Agnieszka Pilarska Alicja Popenda Irena Radomska Elżbieta Rataj Jolanta Rejnisz Dominika Romanek Honorata Skrzypiec Krystian Skubij Andrzej Stępień Marcelina Suchanek Wioletta Syrek Tadeusz Szczypka Beata Szlejter Andrzej Szymczyk Agnieszka Tkacz Sławomir Tokarz Teresa Truś Mirosław Wojtynek' },
   { title: 'Nasza społeczność', url: '/nasza-spolecznosc', description: 'Społeczność szkolna ZSEiU' },
-  { title: 'Aktywna przerwa', url: '/aktywna-przerwa', description: 'Program Aktywna przerwa w ZSEiU' },
   { title: 'Kierunki kształcenia', url: '/kierunki', description: 'Kierunki kształcenia w ZSEiU' },
   { title: 'Oferta 2025/2026', url: '/kierunki-ksztalcenia', description: 'Oferta edukacyjna na rok 2025/2026' },
   { title: 'Klasy mundurowe', url: '/klasy-mundurowe', description: 'Klasy mundurowe w ZSEiU' },
@@ -84,8 +86,6 @@ const staticPages = [
   { title: 'Kalendarz', url: '/kalendarz', description: 'Kalendarz roku szkolnego' },
   { title: 'Egzaminy zawodowe', url: '/egzaminy-zawodowe', description: 'Egzaminy zawodowe w ZSEiU' },
   { title: 'Blog - aktualności', url: '/blog', description: 'Aktualności z życia szkoły' },
-  { title: 'Booking', url: '/booking', description: 'Booking - rezerwacje' },
-  { title: 'COVID-19', url: '/covid19', description: 'Informacje dotyczące COVID-19' },
   { title: 'O nas', url: '/about', description: 'O Zespole Szkół Ekonomiczno-Usługowych' },
   { title: 'Klienci i partnerzy', url: '/klienci-i-partnerzy', description: 'Klienci i partnerzy ZSEiU' },
 ];
@@ -93,8 +93,8 @@ const staticPages = [
 export async function GET() {
   const pages = staticPages.map(function (page) {
     var file = pageFiles[page.url.replace(/\/$/, '') || '/'];
-    var body = '';
-    if (file) {
+    var body = page.body || '';
+    if (!page.body && file) {
       try {
         var src = fs.readFileSync(path.join(rootDir, file), 'utf-8');
         body = extractText(src);
