@@ -1,218 +1,562 @@
 ---
 ---
-<nav class="max-w-8xl mx-auto px-4 py-4 flex items-center justify-between" aria-label="Główna nawigacja">
-  <span class="flex items-center gap-8  ">
-  <a href="/" class="text-xl font-semibold flex items-center gap-2">
-    <img src="/images/logo-szkoly-light.png" alt="Logo ZSEiU" class="w-8 h-8 dark:hidden" />
-    <img src="/images/logo-szkoly-dark.png" alt="Logo ZSEiU" class="w-8 h-8 hidden dark:block" />
-    ZSEiU
-  </a>
-<span class="flex items-center gap-2  ">
-    <img src="/images/Herb_Polski.svg" alt="Herb Polski" class="h-8 w-auto" />
-    <img src="/images/Herb_powiatu.svg" alt="Herb powiatu" class="h-8 w-auto" />
-  </span>
-  </span>
-  
-  <!-- Desktop links grouped into thematic submenus -->
-  <ul class="hidden md:flex gap-6 items-center">
-    <li><a href="/">Strona główna</a></li>
 
-    <li class="relative">
-      <details class="group" onclick="closeOtherDetails(this)">
-        <summary class="cursor-pointer">O szkole</summary>
-        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-navy-750 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-navy-600">
-          <ul class="space-y-2">
-            <li><a href="/informacje" class="block">Informacje o szkole</a></li>
-            <li><a href="/historia" class="block">Historia</a></li>
-            <li><a href="/dyrekcja" class="block">Dyrekcja i kierownictwo</a></li>
-            <li><a href="/grono-pedagogiczne" class="block">Grono pedagogiczne</a></li>
-            <li><a href="/nasza-spolecznosc" class="block">Nasza społeczność</a></li>
-            <li><a href="/aktywna-przerwa" class="block">Aktywna przerwa</a></li>
-          </ul>
+<header class="bg-gray-50 dark:bg-navy-800 text-gray-900 dark:text-white">
+  <!-- ===== TOP ROW ===== -->
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <!-- Left: Coats of arms -->
+    <div class="hidden md:flex items-center gap-2 shrink-0">
+      <!-- Center: School logo -->
+      <a href="/" class="flex items-center gap-3 text-2xl font-bold tracking-tight shrink-0">
+        <img src="/images/logo-szkoly-mono-granat.png" alt="Logo ZSEiU" class="h-12 w-auto" />
+        <span class="hidden sm:inline">ZSEiU</span>
+      </a>
+      <img src="/images/Herb_Polski.svg" alt="Herb Polski" class="h-10 w-auto" />
+      <img src="/images/Herb_powiatu.svg" alt="Herb powiatu" class="h-10 w-auto" />
+    </div>
+
+
+    <!-- Right: Search + utilities -->
+    <div class="flex items-center gap-3 shrink-0">
+      <!-- Desktop Search (visible from lg) -->
+      <div class="relative hidden lg:block">
+        <div class="flex items-center">
+          <svg class="absolute left-3 h-4 w-4 text-gray-400 pointer-events-none" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" />
+            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <input id="search-input" type="text" placeholder="Szukaj..." autocomplete="off"
+            class="w-56 pl-9 pr-3 py-2 rounded-lg border border-gray-200 dark:border-navy-600 bg-white dark:bg-navy-750 text-sm placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
         </div>
-      </details>
-    </li>
-
-    <li class="relative">
-      <details class="group" onclick="closeOtherDetails(this)">
-        <summary class="cursor-pointer">Edukacja</summary>
-        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-navy-750 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-navy-600">
-          <ul class="space-y-2">
-            <li><a href="/kierunki" class="block">Kierunki kształcenia</a></li>
-            <li><a href="/kierunki-ksztalcenia" class="block">Oferta 2025/2026</a></li>
-            <li><a href="/klasy-mundurowe" class="block">Klasy mundurowe</a></li>
-            <li><a href="/klasa-policyjna" class="block">Klasa policyjna</a></li>
-            <li><a href="/podreczniki" class="block">Podręczniki</a></li>
-          </ul>
+        <!-- Search results -->
+        <div id="search-results"
+          class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-navy-750 rounded-lg shadow-xl border border-gray-100 dark:border-navy-600 z-50 max-h-96 overflow-y-auto">
         </div>
-      </details>
-    </li>
+      </div>
 
-    <li class="relative">
-      <details class="group" onclick="closeOtherDetails(this)">
-        <summary class="cursor-pointer">Projekty i dokumenty</summary>
-        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-navy-750 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-navy-600">
-          <ul class="space-y-2">
-            <li><a href="/projekty" class="block">Projekty i Erasmus+</a></li>
-            <li><a href="/erasmus" class="block">Erasmus+</a></li>
-            <li><a href="/dokumenty-szkolne" class="block">Dokumenty szkolne</a></li>
-            <li><a href="/dokumenty" class="block">Dokumenty i polityki</a></li>
-            <li><a href="/dostepnosc" class="block">Dostępność</a></li>
-          </ul>
-        </div>
-      </details>
-    </li>
-
-    <li class="relative">
-      <details class="group" onclick="closeOtherDetails(this)">
-        <summary class="cursor-pointer">Uczniowie i rodzice</summary>
-        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-navy-750 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-navy-600">
-          <ul class="space-y-2">
-            <li><a href="/dla-uczniow" class="block">Dla uczniów</a></li>
-            <li><a href="/dla-rodzicow" class="block">Dla rodziców</a></li>
-            <li><a href="/rekrutacja" class="block">Rekrutacja</a></li>
-            <li><a href="/kalendarz" class="block">Kalendarz</a></li>
-            <li><a href="/egzaminy-zawodowe" class="block">Egzaminy zawodowe</a></li>
-          </ul>
-        </div>
-      </details>
-    </li>
-
-    <li class="relative">
-      <details class="group" onclick="closeOtherDetails(this)">
-        <summary class="cursor-pointer">Media</summary>
-        <div class="submenu absolute left-0 mt-2 w-64 bg-white dark:bg-navy-750 rounded-md shadow-lg p-3 z-50 border border-gray-100 dark:border-navy-600">
-          <ul class="space-y-2">
-            <li><a href="/blog" class="block">Blog</a></li>
-            <li><a href="/booking" class="block">Booking</a></li>
-            <li><a href="/booking-my-account" class="block">Booking My Account</a></li>
-            <li><a href="/covid19" class="block">COVID-19</a></li>
-          </ul>
-        </div>
-      </details>
-    </li>
-
-    <li><a href="/kontakt">Kontakt</a></li>
-
-    <li>
-      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-navy-700 transition-colors duration-200" aria-label="Przełącz tryb ciemny/jasny">
+      <!-- Theme toggle -->
+      <button id="theme-toggle"
+        class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-navy-700 transition-colors" aria-label="Przełącz tryb ciemny/jasny">
         <svg class="w-5 h-5 dark:hidden" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
         </svg>
         <svg class="w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" />
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
       </button>
-    </li>
 
-    <span class="flex items-center gap-2">
-    <li><a href="https://zseiu.ssdip.bip.gov.pl/" target="_blank" rel="noopener noreferrer"><img src="/images/bip_simple.svg" alt="BIP" class="h-4 w-auto" /></a></li>
-    <li><a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="h-4 w-auto" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></li>
-    <li><a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="h-4 w-auto" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></li>
-    </span>
+      <!-- BIP & Social (visible from lg) -->
+      <span class="hidden lg:flex items-center gap-2">
+        <a href="https://zseiu.ssdip.bip.gov.pl/" target="_blank" rel="noopener noreferrer"
+          class="hover:opacity-80 transition-opacity" aria-label="BIP">
+          <img src="/images/bip_simple.svg" alt="BIP" class="h-5 w-auto" />
+        </a>
+        <a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer"
+          class="hover:opacity-80 transition-opacity" aria-label="Facebook">
+          <svg class="h-5 w-auto" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer"
+          class="hover:opacity-80 transition-opacity" aria-label="Instagram">
+          <svg class="h-5 w-auto" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+          </svg>
+        </a>
+      </span>
 
-  </ul>
+      <!-- Mobile hamburger -->
+      <details id="mobile-nav" class="md:hidden relative">
+        <summary id="mobile-nav-toggle"
+          class="list-none cursor-pointer flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-200 dark:hover:bg-navy-700">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div
+          class="absolute right-0 mt-2 w-80 bg-white dark:bg-navy-750 rounded-lg shadow-xl ring-1 ring-black/5 z-50 max-h-[85vh] overflow-y-auto">
+          <div class="p-3 border-b border-gray-100 dark:border-navy-600">
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" />
+                <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <input id="mobile-search-input" type="text" placeholder="Szukaj..." autocomplete="off"
+                class="w-full pl-9 pr-3 py-2 rounded-lg border border-gray-200 dark:border-navy-600 bg-gray-50 dark:bg-navy-800 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+            </div>
+            <div id="mobile-search-results" class="mt-2 hidden"></div>
+          </div>
+          <ul class="flex flex-col p-2">
+            <li><a href="/" class="nav-link">Strona główna</a></li>
+            <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2">
+              <strong class="px-3 text-sm text-slate-500 dark:text-slate-400">O szkole</strong>
+            </li>
+            <li><a href="/informacje" class="nav-link">Informacje o szkole</a></li>
+            <li><a href="/historia" class="nav-link">Historia</a></li>
+            <li><a href="/dyrekcja" class="nav-link">Dyrekcja i kierownictwo</a></li>
+            <li><a href="/grono-pedagogiczne" class="nav-link">Grono pedagogiczne</a></li>
+            <li><a href="/nasza-spolecznosc" class="nav-link">Nasza społeczność</a></li>
+            <li><a href="/aktywna-przerwa" class="nav-link">Aktywna przerwa</a></li>
+            <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2">
+              <strong class="px-3 text-sm text-slate-500 dark:text-slate-400">Edukacja</strong>
+            </li>
+            <li><a href="/kierunki" class="nav-link">Kierunki kształcenia</a></li>
+            <li><a href="/kierunki-ksztalcenia" class="nav-link">Oferta 2025/2026</a></li>
+            <li><a href="/klasy-mundurowe" class="nav-link">Klasy mundurowe</a></li>
+            <li><a href="/klasa-policyjna" class="nav-link">Klasa policyjna</a></li>
+            <li><a href="/podreczniki" class="nav-link">Podręczniki</a></li>
+            <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2">
+              <strong class="px-3 text-sm text-slate-500 dark:text-slate-400">Projekty i dokumenty</strong>
+            </li>
+            <li><a href="/projekty" class="nav-link">Projekty i Erasmus+</a></li>
+            <li><a href="/erasmus" class="nav-link">Erasmus+</a></li>
+            <li><a href="/dokumenty-szkolne" class="nav-link">Dokumenty szkolne</a></li>
+            <li><a href="/dokumenty" class="nav-link">Dokumenty i polityki</a></li>
+            <li><a href="/dostepnosc" class="nav-link">Dostępność</a></li>
+            <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2">
+              <strong class="px-3 text-sm text-slate-500 dark:text-slate-400">Uczniowie i rodzice</strong>
+            </li>
+            <li><a href="/dla-uczniow" class="nav-link">Dla uczniów</a></li>
+            <li><a href="/dla-rodzicow" class="nav-link">Dla rodziców</a></li>
+            <li><a href="/rekrutacja" class="nav-link">Rekrutacja</a></li>
+            <li><a href="/kalendarz" class="nav-link">Kalendarz</a></li>
+            <li><a href="/egzaminy-zawodowe" class="nav-link">Egzaminy zawodowe</a></li>
+            <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2">
+              <strong class="px-3 text-sm text-slate-500 dark:text-slate-400">Media</strong>
+            </li>
+            <li><a href="/blog" class="nav-link">Blog</a></li>
+            <li><a href="/booking" class="nav-link">Booking</a></li>
+            <li><a href="/booking-my-account" class="nav-link">Booking My Account</a></li>
+            <li><a href="/covid19" class="nav-link">COVID-19</a></li>
+            <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><a href="/kontakt" class="nav-link">Kontakt</a></li>
+            <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2">
+              <strong class="px-3 text-sm text-slate-500 dark:text-slate-400">Linki zewnętrzne</strong>
+            </li>
+            <li><a href="https://zseiu.ssdip.bip.gov.pl/" target="_blank" rel="noopener noreferrer" class="nav-link"><img
+                  src="/images/bip_simple.svg" alt="BIP" class="h-3 w-auto inline-block align-middle" /> BIP</a></li>
+            <li><a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer" class="nav-link">
+                <svg class="h-4 w-auto inline-block align-middle" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+                Facebook</a></li>
+            <li><a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer"
+                class="nav-link">
+                <svg class="h-4 w-auto inline-block align-middle" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                </svg>
+                Instagram</a></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
 
-  <!-- Mobile: details/summary hamburger (enhanced with small JS) -->
-  <details id="mobile-nav" class="md:hidden relative">
-    <summary id="mobile-nav-toggle" class="list-none cursor-pointer flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-navy-700">
-      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="sr-only">Otwórz nawigację</span>
-    </summary>
+  <!-- ===== BOTTOM ROW - Mega Menu ===== -->
+  <nav class="border-t border-gray-200 dark:border-navy-700 bg-white dark:bg-navy-850 shadow-sm"
+    aria-label="Główna nawigacja">
+    <div class="max-w-6xl mx-auto px-4">
+      <ul class="hidden md:flex items-center justify-center">
+        <li><a href="/" class="mega-nav-link">Strona główna</a></li>
 
-    <div class="absolute right-0 mt-2 w-72 bg-white dark:bg-navy-750 rounded-lg shadow-lg ring-1 ring-black/5 z-50">
-      <ul class="flex flex-col p-2">
-        <li><a href="/" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Strona główna</a></li>
-        <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">O szkole</strong></li>
-        <li><a href="/informacje" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Informacje o szkole</a></li>
-        <li><a href="/historia" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Historia</a></li>
-        <li><a href="/dyrekcja" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Dyrekcja</a></li>
-        <li><a href="/grono-pedagogiczne" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Grono pedagogiczne</a></li>
-        <li><a href="/nasza-spolecznosc" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Nasza społeczność</a></li>
-        <li><a href="/aktywna-przerwa" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Aktywna przerwa</a></li>
+        <!-- O szkole -->
+        <li class="relative group">
+          <span class="mega-nav-link cursor-pointer select-none">
+            O szkole
+            <svg class="w-3 h-3 ml-1 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 24 24"
+              fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div
+            class="absolute left-0 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div
+              class="bg-white dark:bg-navy-750 rounded-lg shadow-xl border border-gray-100 dark:border-navy-600 p-6 w-[600px]">
+              <div class="grid grid-cols-3 gap-6">
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    O szkole</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/informacje"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Informacje
+                        o szkole</a></li>
+                    <li><a href="/historia"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Historia</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Kierownictwo</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/dyrekcja"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Dyrekcja
+                        i kierownictwo</a></li>
+                    <li><a href="/grono-pedagogiczne"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Grono
+                        pedagogiczne</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Społeczność</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/nasza-spolecznosc"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Nasza
+                        społeczność</a></li>
+                    <li><a href="/aktywna-przerwa"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Aktywna
+                        przerwa</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
 
-        <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Edukacja</strong></li>
-        <li><a href="/kierunki" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Kierunki kształcenia</a></li>
-        <li><a href="/kierunki-ksztalcenia" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Oferta 2025/2026</a></li>
-        <li><a href="/klasy-mundurowe" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Klasy mundurowe</a></li>
-        <li><a href="/klasa-policyjna" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Klasa policyjna</a></li>
-        <li><a href="/podreczniki" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Podręczniki</a></li>
+        <!-- Edukacja -->
+        <li class="relative group">
+          <span class="mega-nav-link cursor-pointer select-none">
+            Edukacja
+            <svg class="w-3 h-3 ml-1 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 24 24"
+              fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div
+            class="absolute left-0 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div
+              class="bg-white dark:bg-navy-750 rounded-lg shadow-xl border border-gray-100 dark:border-navy-600 p-6 w-[550px]">
+              <div class="grid grid-cols-2 gap-6">
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Oferta edukacyjna</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/kierunki"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Kierunki
+                        kształcenia</a></li>
+                    <li><a href="/kierunki-ksztalcenia"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Oferta
+                        2025/2026</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Klasy</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/klasy-mundurowe"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Klasy
+                        mundurowe</a></li>
+                    <li><a href="/klasa-policyjna"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Klasa
+                        policyjna</a></li>
+                    <li><a href="/podreczniki"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Podręczniki</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
 
-        <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Projekty i dokumenty</strong></li>
-        <li><a href="/projekty" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Projekty i Erasmus+</a></li>
-        <li><a href="/erasmus" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Erasmus+</a></li>
-        <li><a href="/dokumenty-szkolne" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Dokumenty szkolne</a></li>
-        <li><a href="/dokumenty" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Dokumenty i polityki</a></li>
-        <li><a href="/dostepnosc" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Dostępność</a></li>
+        <!-- Projekty i dokumenty -->
+        <li class="relative group">
+          <span class="mega-nav-link cursor-pointer select-none">
+            Projekty i dokumenty
+            <svg class="w-3 h-3 ml-1 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 24 24"
+              fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div
+            class="absolute left-0 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div
+              class="bg-white dark:bg-navy-750 rounded-lg shadow-xl border border-gray-100 dark:border-navy-600 p-6 w-[500px]">
+              <div class="grid grid-cols-2 gap-6">
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Projekty</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/projekty"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Projekty
+                        i Erasmus+</a></li>
+                    <li><a href="/erasmus"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Erasmus+</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Dokumenty</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/dokumenty-szkolne"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Dokumenty
+                        szkolne</a></li>
+                    <li><a href="/dokumenty"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Dokumenty
+                        i polityki</a></li>
+                    <li><a href="/dostepnosc"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Dostępność</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
 
-        <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Uczniowie i rodzice</strong></li>
-        <li><a href="/dla-uczniow" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Dla uczniów</a></li>
-        <li><a href="/dla-rodzicow" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Dla rodziców</a></li>
-        <li><a href="/rekrutacja" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Rekrutacja</a></li>
-        <li><a href="/kalendarz" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Kalendarz</a></li>
-        <li><a href="/egzaminy-zawodowe" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Egzaminy zawodowe</a></li>
+        <!-- Uczniowie i rodzice -->
+        <li class="relative group">
+          <span class="mega-nav-link cursor-pointer select-none">
+            Uczniowie i rodzice
+            <svg class="w-3 h-3 ml-1 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 24 24"
+              fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div
+            class="absolute left-0 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div
+              class="bg-white dark:bg-navy-750 rounded-lg shadow-xl border border-gray-100 dark:border-navy-600 p-6 w-[500px]">
+              <div class="grid grid-cols-2 gap-6">
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Dla uczniów i rodziców</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/dla-uczniow"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Dla
+                        uczniów</a></li>
+                    <li><a href="/dla-rodzicow"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Dla
+                        rodziców</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold uppercase tracking-wider text-primary-500 dark:text-primary-300 mb-3">
+                    Ważne informacje</h3>
+                  <ul class="space-y-2">
+                    <li><a href="/rekrutacja"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Rekrutacja</a>
+                    </li>
+                    <li><a href="/kalendarz"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Kalendarz</a>
+                    </li>
+                    <li><a href="/egzaminy-zawodowe"
+                        class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Egzaminy
+                        zawodowe</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
 
-        <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><strong class="px-3 text-sm text-slate-500">Media</strong></li>
-        <li><a href="/blog" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Blog</a></li>
-        <li><a href="/booking" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Booking</a></li>
-        <li><a href="/booking-my-account" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Booking My Account</a></li>
-        <li><a href="/covid19" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">COVID-19</a></li>
+        <!-- Media -->
+        <li class="relative group">
+          <span class="mega-nav-link cursor-pointer select-none">
+            Media
+            <svg class="w-3 h-3 ml-1 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 24 24"
+              fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div
+              class="bg-white dark:bg-navy-750 rounded-lg shadow-xl border border-gray-100 dark:border-navy-600 p-6 w-[350px]">
+              <ul class="space-y-2">
+                <li><a href="/blog"
+                    class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Blog</a>
+                </li>
+                <li><a href="/booking"
+                    class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Booking</a>
+                </li>
+                <li><a href="/booking-my-account"
+                    class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">Booking
+                    My Account</a></li>
+                <li><a href="/covid19"
+                    class="block text-sm text-gray-700 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">COVID-19</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
 
-        <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><a href="/kontakt" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650">Kontakt</a></li>
-        <li class="border-t border-gray-100 dark:border-navy-600 mt-1 pt-2"><a href="https://zseiu.ssdip.bip.gov.pl/" target="_blank" rel="noopener noreferrer" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650"><img src="/images/bip_simple.svg" alt="BIP" class="h-2.5 w-auto inline-block align-middle" /> BIP</a></li>
-        <li><a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650"><svg class="h-4 w-auto inline-block align-middle" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a></li>
-        <li><a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer" class="nav-link block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650"><svg class="h-4 w-auto inline-block align-middle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</a></li>
+        <li><a href="/kontakt" class="mega-nav-link">Kontakt</a></li>
       </ul>
     </div>
-  </details>
+  </nav>
+</header>
 
-  <script>
-    // Close other details menus when one is opened
-    window.closeOtherDetails = (currentDetails) => {
-      document.querySelectorAll('details').forEach((d) => {
-        if (d !== currentDetails) d.removeAttribute('open');
-      });
-    };
+<script>
+  (function () {
+    // ===== SEARCH =====
+    try {
+      const searchInput = document.getElementById('search-input');
+      const searchResults = document.getElementById('search-results');
+      const mobileSearchInput = document.getElementById('mobile-search-input');
+      const mobileSearchResults = document.getElementById('mobile-search-results');
 
-    // Dark mode toggle
-    (function() {
-      try {
-        const btn = document.getElementById('theme-toggle');
-        if (!btn) return;
-        const storageKey = 'theme';
-        btn.addEventListener('click', () => {
-          const isDark = document.documentElement.classList.toggle('dark');
-          localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
+      let searchIndex = [];
+
+      fetch('/api/search.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) { searchIndex = data; })
+        .catch(function () { });
+
+      function escapeRegExp(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+
+      function highlightMatch(text, query) {
+        var regex = new RegExp('(' + escapeRegExp(query) + ')', 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+      }
+
+      function performSearch(query, resultsContainer) {
+        var q = query.trim().toLowerCase();
+        if (q.length < 2) {
+          resultsContainer.classList.add('hidden');
+          return;
+        }
+
+        var results = searchIndex.filter(function (item) {
+          return item.title.toLowerCase().indexOf(q) !== -1 ||
+            (item.description && item.description.toLowerCase().indexOf(q) !== -1) ||
+            (item.body && item.body.toLowerCase().indexOf(q) !== -1);
+        }).slice(0, 8);
+
+        if (results.length === 0) {
+          resultsContainer.innerHTML =
+            '<div class="px-4 py-3 text-sm text-gray-500 dark:text-slate-400">Brak wyników</div>';
+          resultsContainer.classList.remove('hidden');
+          return;
+        }
+
+        var html = '';
+        results.forEach(function (item) {
+          var title = highlightMatch(item.title, q);
+          var snippet = item.description || '';
+          if (item.body && !snippet.toLowerCase().includes(q)) {
+            var idx = item.body.toLowerCase().indexOf(q);
+            var start = Math.max(0, idx - 60);
+            var end = Math.min(item.body.length, idx + q.length + 100);
+            snippet = (start > 0 ? '…' : '') + item.body.substring(start, end) + (end < item.body.length ? '…' : '');
+          }
+          var desc = highlightMatch(snippet, q);
+          html += '<a href="' + item.url +
+            '" class="search-result-item"><span class="text-sm font-medium">' +
+            title + '</span><span class="text-xs text-gray-500 dark:text-slate-400 block mt-0.5">' +
+            desc + '</span></a>';
         });
-      } catch (e) { /* non-fatal */ }
-    })();
 
-    // Small client-side enhancement: close mobile details menu after clicking a link
-    (function () {
-      try {
-        const details = document.getElementById('mobile-nav');
-        if (!details) return;
-        const links = details.querySelectorAll('a.nav-link');
-        links.forEach(a => a.addEventListener('click', () => { details.open = false; }));
+        resultsContainer.innerHTML = html;
+        resultsContainer.classList.remove('hidden');
+      }
 
-        // Mark active link based on current pathname
-        const allNavLinks = document.querySelectorAll('a[href]');
-        const path = location.pathname.replace(/\/+$/, '') || '/';
-        allNavLinks.forEach(a => {
-          try {
-            const href = new URL(a.href, location.origin).pathname.replace(/\/+$/, '') || '/';
-            if (href === path) {
-              a.setAttribute('aria-current', 'page');
-              a.classList.add('font-semibold');
-            }
-          } catch (e) {
-            // ignore invalid hrefs
+      function setupSearch(input, results) {
+        if (!input || !results) return;
+
+        input.addEventListener('input', function () {
+          performSearch(this.value, results);
+        });
+
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            results.classList.add('hidden');
+            this.blur();
+          }
+          var items = results.querySelectorAll('a');
+          if (items.length === 0) return;
+          var currentIndex = Array.from(items).indexOf(document.activeElement);
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            var next = currentIndex + 1 < items.length ? currentIndex + 1 : 0;
+            items[next].focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            var prev = currentIndex - 1 >= 0 ? currentIndex - 1 : items.length - 1;
+            items[prev].focus();
           }
         });
-      } catch (e) {
-        // non-fatal
+
+        document.addEventListener('click', function (e) {
+          if (!input.contains(e.target) && !results.contains(e.target)) {
+            results.classList.add('hidden');
+          }
+        });
       }
-    })();
-  </script>
-</nav>
+
+      setupSearch(searchInput, searchResults);
+      setupSearch(mobileSearchInput, mobileSearchResults);
+    } catch (e) { /* non-fatal */ }
+
+    // ===== DARK MODE =====
+    try {
+      var btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var isDark = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+      }
+    } catch (e) { /* non-fatal */ }
+
+    // ===== MOBILE NAV CLOSE ON LINK CLICK =====
+    try {
+      var details = document.getElementById('mobile-nav');
+      if (details) {
+        var mobileLinks = details.querySelectorAll('a');
+        mobileLinks.forEach(function (a) {
+          // Only close for internal links
+          if (a.getAttribute('href') && a.getAttribute('href').startsWith('/')) {
+            a.addEventListener('click', function () { details.open = false; });
+          }
+        });
+      }
+    } catch (e) { /* non-fatal */ }
+
+    // ===== ACTIVE LINK HIGHLIGHTING =====
+    try {
+      var path = location.pathname.replace(/\/+$/, '') || '/';
+      var allNavLinks = document.querySelectorAll('.mega-nav-link, .nav-link');
+      allNavLinks.forEach(function (a) {
+        try {
+          var href = a.getAttribute('href');
+          if (!href) return;
+          var linkPath = new URL(href, location.origin).pathname.replace(/\/+$/, '') || '/';
+          if (linkPath === path) {
+            a.setAttribute('aria-current', 'page');
+            a.classList.add('active');
+          }
+        } catch (e) { /* ignore */ }
+      });
+    } catch (e) { /* non-fatal */ }
+
+    // ===== CLOSE MEGA MENUS ON ESCAPE =====
+    try {
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          // close search results if open
+          var sr = document.getElementById('search-results');
+          if (sr) sr.classList.add('hidden');
+        }
+      });
+    } catch (e) { /* non-fatal */ }
+  })();
+</script>

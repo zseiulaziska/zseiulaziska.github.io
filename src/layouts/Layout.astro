@@ -33,9 +33,7 @@ import Footer from '../components/Footer.astro';
   </head>
   <body class="min-h-screen flex flex-col">
     <SkipLink />
-    <header class="bg-gray-100 dark:bg-navy-800 text-gray-900 dark:text-white">
-      <Nav />
-    </header>
+    <Nav />
     <slot name="hero" />
     <main id="content" class="flex-1 max-w-6xl mx-auto px-4 py-8" tabindex="-1">
       <slot />

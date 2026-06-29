@@ -39,6 +39,38 @@
   @apply translate-y-0 focus-ring-custom;
 }
 
+/* Mega menu & submenu styles */
+.mega-nav-link {
+  @apply px-4 py-3 text-sm font-medium inline-flex items-center text-gray-700 dark:text-slate-200 hover:text-primary-500 dark:hover:text-primary-300 transition-colors relative;
+}
+.mega-nav-link.active {
+  @apply text-primary-500 dark:text-primary-300;
+}
+.mega-nav-link.active::after {
+  content: '';
+  @apply absolute bottom-0 left-4 right-4 h-0.5 bg-primary-500 dark:bg-primary-300 rounded-full;
+}
+
+/* Mobile nav link style */
+.nav-link {
+  @apply block px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-navy-650 transition-colors;
+}
+
+/* Search results */
+.search-result-item {
+  @apply block px-4 py-3 hover:bg-gray-50 dark:hover:bg-navy-650 border-b border-gray-100 dark:border-navy-600 last:border-0 transition-colors;
+}
+.search-result-item:first-child {
+  @apply rounded-t-lg;
+}
+.search-result-item:last-child {
+  @apply rounded-b-lg;
+}
+.search-result-item mark {
+  @apply bg-primary-100 dark:bg-primary-700/40 text-primary-700 dark:text-primary-200 rounded-sm px-0.5;
+}
+
+/* Keep existing submenu behavior for backward compatibility */
 details[open] > .submenu, details.group:hover > .submenu {
   display: block;
 }
