@@ -3,62 +3,519 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <article class="prose prose-lg dark:prose-invert max-w-4xl">
-    <h1>Zespół Szkół Energetycznych i Usługowych (ZSEiU)</h1>
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-    <nav aria-label="Spis treści" class="mb-6">
-      <h2 class="sr-only">Spis treści</h2>
-      <ul class="flex flex-col sm:flex-row sm:gap-4 gap-2 text-sm">
-        <li><a href="#najwazniejsze" class="hover:underline">Najważniejsze informacje</a></li>
-        <li><a href="#misja" class="hover:underline">Misja</a></li>
-        <li><a href="#kierunki" class="hover:underline">Kierunki</a></li>
-        <li><a href="#projekty" class="hover:underline">Projekty</a></li>
-        <li><a href="#kontakt" class="hover:underline">Kontakt</a></li>
-      </ul>
+  <article>
+    <!-- Hero -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-700 text-white mb-16 shadow-[inset_-2px_-2px_12px_rgba(0,0,0,0.2),8px_8px_24px_rgba(0,0,0,0.15)]">
+      <div class="absolute inset-0 bg-slate-950/30"></div>
+      <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 25% 25%, white 0%, transparent 50%), radial-gradient(circle at 75% 75%, white 0%, transparent 50%);"></div>
+      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, white 40px, white 41px);"></div>
+      <div class="relative px-8 py-16 lg:px-20 lg:py-28 text-center">
+        <p class="text-primary-200 uppercase tracking-[0.2em] text-sm font-semibold">Zespół Szkół Energetycznych i Usługowych</p>
+        <h1 class="text-4xl lg:text-6xl font-bold mt-4" style="font-family: 'EB Garamond', serif;">Informacje o szkole</h1>
+        <p class="mt-4 text-lg lg:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+          Łaziska Górne &middot; od 1945 roku kształcimy profesjonalistów
+        </p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Spis treści" class="max-w-4xl mx-auto mb-12">
+      <div class="flex flex-wrap gap-2 justify-center">
+        <a href="#najwazniejsze" class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">Najważniejsze</a>
+        <a href="#misja" class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">Misja</a>
+        <a href="#struktura" class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">Struktura</a>
+        <a href="#kierunki" class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">Kierunki</a>
+        <a href="#infrastruktura" class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">Infrastruktura</a>
+        <a href="#projekty" class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">Projekty</a>
+        <a href="#kontakt" class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">Kontakt</a>
+      </div>
     </nav>
 
-    <section id="najwazniejsze">
-      <h2>Najważniejsze informacje</h2>
-      <ul>
-        <li><strong>Nazwa:</strong> Zespół Szkół Energetycznych i Usługowych (ZSEiU) w Łaziskach Górnych</li>
-        <li><strong>Adres:</strong> ul. Chopina 11b, 43-170 Łaziska Górne</li>
-        <li><strong>Telefon:</strong> 32 224 24 15</li>
-        <li><strong>E-mail (sekretariat):</strong> <a href="mailto:sekretariat@zseiulaziska.pl">sekretariat@zseiulaziska.pl</a></li>
-        <li><strong>Dyrektor:</strong> mgr Anna Jadasz</li>
-        <li><strong>Wicedyrektor:</strong> mgr Dorota Brudny</li>
-        <li><strong>Kierownik szkolenia praktycznego:</strong> mgr inż. Piotr Dębowski</li>
-        <li><strong>Statystyki (2025/2026):</strong> ~520 uczniów, ~57 nauczycieli, 22 oddziały</li>
-      </ul>
+    <!-- Najważniejsze informacje -->
+    <section id="najwazniejsze" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <div class="p-8 lg:p-10 rounded-3xl bg-primary-50 dark:bg-navy-800/60 border-2 border-primary-100 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Najważniejsze informacje</h2>
+        <dl class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Nazwa</dt>
+            <dd class="mt-1 text-slate-900 dark:text-white font-medium">Zespół Szkół Energetycznych i Usługowych (ZSEiU) w Łaziskach Górnych</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Adres</dt>
+            <dd class="mt-1 text-slate-900 dark:text-white font-medium">ul. Chopina 11b, 43-170 Łaziska Górne</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Telefon</dt>
+            <dd class="mt-1 text-slate-900 dark:text-white font-medium">32 224 24 15</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">E-mail</dt>
+            <dd class="mt-1"><a href="mailto:sekretariat@zseiulaziska.pl" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">sekretariat@zseiulaziska.pl</a></dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Dyrektor</dt>
+            <dd class="mt-1 text-slate-900 dark:text-white font-medium">mgr Anna Jadasz</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Wicedyrektor</dt>
+            <dd class="mt-1 text-slate-900 dark:text-white font-medium">mgr Dorota Brudny</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Kierownik szkolenia praktycznego</dt>
+            <dd class="mt-1 text-slate-900 dark:text-white font-medium">mgr inż. Piotr Dębowski</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Statystyki (2025/2026)</dt>
+            <dd class="mt-1 text-slate-900 dark:text-white font-medium">~520 uczniów, ~57 nauczycieli, 22 oddziały</dd>
+          </div>
+        </dl>
+      </div>
     </section>
 
-    <section id="misja">
-      <h2>Misja i charakterystyka</h2>
-      <p>ZSEiU kształci w systemie zawodowym i ogólnokształcącym, łącząc teorię z praktyką. Szkoła dysponuje nowoczesnymi pracowniami i laboratoriami (m.in. pracownie energetyki odnawialnej, laboratorium TAURON, pracownie informatyczne) i współpracuje z firmami branżowymi. Realizuje projekty krajowe i międzynarodowe, w tym Erasmus+.</p>
+    <!-- Misja i charakterystyka -->
+    <section id="misja" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+        <div class="lg:col-span-3">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Misja i charakterystyka</h2>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            ZSEiU kształci w systemie zawodowym i ogólnokształcącym, łącząc teorię z praktyką. Szkoła dysponuje nowoczesnymi pracowniami i laboratoriami oraz współpracuje z firmami branżowymi. Realizuje projekty krajowe i międzynarodowe, w tym Erasmus+.
+          </p>
+          <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+            Jesteśmy dumni z naszej szkoły, która od lat kształci najlepszych fachowców i specjalistów. Naszym priorytetem jest dostarczenie uczniom wiedzy i umiejętności, które pozwolą im realizować swoje marzenia i osiągnąć sukces w wybranej przez siebie dziedzinie.
+          </p>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <h3 class="font-semibold text-slate-900 dark:text-white">Edukacja zawodowa</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Kształcimy w Technikum, Branżowej Szkole I i II stopnia oraz Liceum Ogólnokształcącym dla Dorosłych.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="kierunki">
-      <h2>Kierunki kształcenia (wybrane)</h2>
-      <ul>
-        <li>Technik elektryk</li>
-        <li>Technik informatyk</li>
-        <li>Technik logistyk</li>
-        <li>Technik urządzeń i systemów energetyki odnawialnej (technik OZE)</li>
-        <li>Technik chłodnictwa i klimatyzacji</li>
-        <li>Branżowe zawody: mechanik-monter, operator maszyn, ślusarz, magazynier-logistyk</li>
-      </ul>
+    <!-- Struktura organizacyjna -->
+    <section id="struktura" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8" style="font-family: 'EB Garamond', serif;">Struktura organizacyjna</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
+          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">Technikum Nr 1</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">5 lat &middot; matura + zawód</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
+          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">Branżowa Szkoła I stopnia</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">3 lata &middot; praktyka zawodowa</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
+          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c3 3 9 3 12 0v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">Branżowa Szkoła II stopnia</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">2 lata &middot; uzupełnienie wykształcenia</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
+          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2"/><path d="M8 7h8M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">LO dla Dorosłych</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">3 lata &middot; zaocznie, bezpłatnie</p>
+        </div>
+      </div>
     </section>
 
-    <section id="projekty">
-      <h2>Projekty i mobilności</h2>
-      <p>Szkoła uczestniczy w programach Erasmus+ (praktyki w Grecji i Włoszech) oraz projektach EFS i regionalnych wspierających praktyki i doposażenie pracowni.</p>
-      <p>Zobacz też: <a href="/projekty">Szczegóły projektów</a>.</p>
+    <!-- Kierunki kształcenia -->
+    <section id="kierunki" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <div class="p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-primary-50 to-primary-100 dark:from-navy-800 dark:to-navy-800/60 border-2 border-primary-200 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center" style="font-family: 'EB Garamond', serif;">Kierunki kształcenia</h2>
+        <p class="mt-2 text-center text-slate-600 dark:text-slate-400">Oferta edukacyjna na rok szkolny 2025/2026</p>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+              Technikum Nr 1
+            </h3>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik elektryk
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik informatyk
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik logistyk (w tym klasa policyjna / mundurowa)
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik urządzeń i systemów energetyki odnawialnej (OZE)
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik organizacji turystyki
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik chłodnictwa i klimatyzacji
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik spedytor
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik górnictwa podziemnego
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik stylista
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+              Branżowa Szkoła I stopnia
+            </h3>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Mechanik-monter maszyn i urządzeń
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Ślusarz
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Magazynier-logistyk
+              </li>
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Sprzedawca (klasa wielozawodowa)
+              </li>
+            </ul>
+            <h3 class="mt-6 font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+              Branżowa Szkoła II stopnia
+            </h3>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Technik mechanik
+              </li>
+            </ul>
+            <h3 class="mt-6 font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+              Liceum Ogólnokształcące dla Dorosłych
+            </h3>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Profil ogólny &mdash; nauka bezpłatna, zaoczna
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <a href="/kierunki" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+            Szczegółowe kierunki
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <section id="kontakt">
-      <h2>Kontakt</h2>
-      <p>Sekretariat: tel. 32 22‑42‑415, e‑mail: <a href="mailto:sekretariat@zseiulaziska.pl">sekretariat@zseiulaziska.pl</a></p>
-      <p>Godziny pracy sekretariatu: 7:30–15:00</p>
-      <p>Przejdź do: <a href="/dokumenty">Dokumenty i polityki</a> lub <a href="/kierunki">Szczegółowe kierunki</a>.</p>
+    <!-- Klasy mundurowe -->
+    <section id="klasy-mundurowe" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="p-8 rounded-3xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.06)]">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Klasy mundurowe</h2>
+          <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+            ZSEiU prowadzi klasy mundurowe (m.in. klasa policyjna) &mdash; <strong class="text-slate-900 dark:text-white font-semibold">jedyna taka oferta w powiecie</strong>. Program łączy kształcenie zawodowe (technik logistyk) z dodatkowymi zajęciami taktycznymi, poligonami, strzelectwem i przygotowaniem do służb mundurowych.
+          </p>
+          <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+            Klasy funkcjonują pod patronatem Policji, co otwiera dodatkowe możliwości rozwoju zawodowego. Absolwenci otrzymują dodatkowe punkty przy rekrutacji do służby w Policji.
+          </p>
+          <a href="/klasy-mundurowe" class="mt-6 inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+            Więcej o klasach mundurowych
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="p-8 rounded-3xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.06)]">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Współpraca z partnerami</h2>
+          <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+            Szkoła współpracuje z wiodącymi firmami branżowymi:
+          </p>
+          <ul class="mt-4 space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-2 h-2 rounded-full bg-primary-500 flex-shrink-0"></span>
+              <div>
+                <strong class="text-slate-900 dark:text-white">TAURON SERWIS / TAURON WYTWARZANIE</strong>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Klasy patronackie i stypendia dla kierunku technik energetyk; doposażenie laboratoriów.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-2 h-2 rounded-full bg-primary-500 flex-shrink-0"></span>
+              <div>
+                <strong class="text-slate-900 dark:text-white">bekuplast S.A.</strong>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Współpraca w zakresie kierunku magazynier-logistyk, praktyki w warunkach rzeczywistych.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-2 h-2 rounded-full bg-primary-500 flex-shrink-0"></span>
+              <div>
+                <strong class="text-slate-900 dark:text-white">Polska Grupa Górnicza</strong>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Gwarancja zatrudnienia i stypendia dla uczniów kierunków górniczych.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
+
+    <!-- Infrastruktura i pracownie -->
+    <section id="infrastruktura" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8" style="font-family: 'EB Garamond', serif;">Infrastruktura i pracownie</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Laboratorium TAURON</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Inteligentne domy i automatyka przemysłowa &mdash; doposażone w ramach konkursu TAURONA.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Pracownia OZE</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Nowoczesne laboratorium energetyki odnawialnej z projektu &bdquo;Efektywne Funkcjonalne Szkoły&rdquo;.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Pracownie informatyczne</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">W pełni wyposażone sale komputerowe, partner GitHub Campus Program.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 10c0 5-9 11-9 11s-9-6-9-11a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Pracownie logistyczne</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Sale magazynowe i logistyczne we współpracy z lokalnymi firmami.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Wirtualna strzelnica</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Nowoczesna strzelnica wirtualna dostępna dla uczniów i szkół powiatowych.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Biblioteka szkolna</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Wypożyczalnia i czytelnia &middot; ~13 779 woluminów &middot; Narodowy Program Rozwoju Czytelnictwa.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Zielona Pracownia</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Projekt proekologiczny z dofinansowaniem WFOŚ.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm hover:shadow-md transition-all">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="mt-3 font-semibold text-slate-900 dark:text-white text-sm">Warsztaty szkolne</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Maszyny, urządzenia, stoły ślusarskie i pracownia rysunku technicznego.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projekty i mobilności -->
+    <section id="projekty" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <div class="p-8 lg:p-10 rounded-3xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.06)]">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center" style="font-family: 'EB Garamond', serif;">Projekty i mobilności międzynarodowe</h2>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="font-semibold text-slate-900 dark:text-white">Erasmus+</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Akcja KA121 &mdash; akredytacja i dofinansowanie mobilności uczniów i nauczycieli (2024&ndash;2027).
+            </p>
+            <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Grecja &bdquo;Pod stokami Olimpu&rdquo; &mdash; praktyki w Nei Pori
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Włochy &bdquo;U podnóża Etny&rdquo; &mdash; praktyki na Sycylii / w Katanii
+              </li>
+            </ul>
+            <a href="/erasmus" class="mt-4 inline-flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 font-medium hover:underline">
+              Więcej o Erasmus+
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <h3 class="font-semibold text-slate-900 dark:text-white">Projekty EFS i regionalne</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                &bdquo;Efektywne Funkcjonalne Szkoły&rdquo;
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                &bdquo;Profesjonalny Mikołowski&rdquo; i &bdquo;Zawodowy Mikołowski&rdquo;
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+                Narodowy Program Rozwoju Czytelnictwa (dofinansowanie biblioteki)
+              </li>
+            </ul>
+            <a href="/projekty" class="mt-4 inline-flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 font-medium hover:underline">
+              Więcej o projektach
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Praktyki i kursy -->
+        <div class="mt-8 pt-8 border-t border-gray-200 dark:border-navy-700">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-semibold text-slate-900 dark:text-white">Praktyki zawodowe i staże</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Szkoła organizuje praktyki zawodowe i staże lokalne oraz zagraniczne. Dokumenty (porozumienia, dzienniczki, programy) dostępne do pobrania.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-slate-900 dark:text-white">Kursy i uprawnienia</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Uczniowie mogą zdobyć dodatkowe kwalifikacje: kurs operatora wózka jezdniowego, kurs spawania, prawo jazdy kat. B, certyfikaty SEP (dla energetyków).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dokumenty i polityki -->
+    <section id="dokumenty" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm">
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Dokumenty i polityki</h2>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="/dokumenty-szkolne" class="text-primary-600 dark:text-primary-400 hover:underline">Statuty szkół (Technikum, BS1S, LO dla Dorosłych)</a></li>
+            <li><a href="/dokumenty" class="text-primary-600 dark:text-primary-400 hover:underline">Polityka RODO i ochrona danych osobowych</a></li>
+            <li><a href="/dostepnosc" class="text-primary-600 dark:text-primary-400 hover:underline">Deklaracja dostępności</a></li>
+            <li><a href="/dokumenty" class="text-primary-600 dark:text-primary-400 hover:underline">Standardy ochrony małoletnich</a></li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-xl bg-white dark:bg-navy-800/60 border border-gray-200 dark:border-navy-700 shadow-sm">
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Rekrutacja</h2>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Regulaminy rekrutacji dla Technikum, Branżowej Szkoły I i II stopnia oraz LO dla Dorosłych dostępne są w formacie PDF.
+          </p>
+          <a href="/rekrutacja" class="mt-3 inline-flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 font-medium hover:underline">
+            Zasady rekrutacji
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
+      <div class="p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-primary-50 to-primary-100 dark:from-navy-800 dark:to-navy-800/60 border-2 border-primary-200 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Kontakt i sekretariat</h2>
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div>
+            <p class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Adres</p>
+            <p class="mt-1 text-slate-900 dark:text-white font-medium">ul. Chopina 11b<br>43-170 Łaziska Górne</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">Telefon</p>
+            <p class="mt-1 text-slate-900 dark:text-white font-medium">32 224 24 15</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-primary-700 dark:text-primary-300 uppercase tracking-wider">E-mail</p>
+            <p class="mt-1"><a href="mailto:sekretariat@zseiulaziska.pl" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">sekretariat@zseiulaziska.pl</a></p>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600 dark:text-slate-400">Godziny pracy sekretariatu: <strong class="text-slate-900 dark:text-white font-semibold">7:30&ndash;15:00</strong></p>
+        <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Wejście od ul. Chopina &middot; duży parking przy szkole &middot; dojazd komunikacją miejską</p>
+        <div class="mt-8 flex flex-wrap gap-4 justify-center">
+          <a href="/kontakt" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+            Strona kontaktowa
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/dokumenty" class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-navy-700 text-slate-900 dark:text-white rounded-xl font-semibold border-2 border-slate-200 dark:border-navy-500 hover:bg-slate-50 dark:hover:bg-navy-600 transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+            Dokumenty i polityki
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="max-w-3xl mx-auto mt-12 p-8 lg:p-10 rounded-3xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.06)]">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">
+        Dołącz do ZSEiU
+      </h2>
+      <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+        Wybierz szkołę z tradycjami, nowoczesnym zapleczem i perspektywami &mdash; 
+        Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a href="/rekrutacja" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+          Rekrutacja
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/kierunki" class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-navy-700 text-slate-900 dark:text-white rounded-xl font-semibold border-2 border-slate-200 dark:border-navy-500 hover:bg-slate-50 dark:hover:bg-navy-600 transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+          Oferta edukacyjna
+        </a>
+        <a href="/historia" class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-navy-700 text-slate-900 dark:text-white rounded-xl font-semibold border-2 border-slate-200 dark:border-navy-500 hover:bg-slate-50 dark:hover:bg-navy-600 transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+          Historia szkoły
+        </a>
+      </div>
+    </div>
   </article>
 </Layout>
