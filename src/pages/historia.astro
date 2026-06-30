@@ -1,47 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TimelineEvent from '../components/TimelineEvent.astro';
+import HistoriaSection from '../components/HistoriaSection.astro';
 ---
 
 <Layout>
   <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
   <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link slot="head" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <article>
-    <!-- Hero -->
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-700 text-white mb-16 shadow-[inset_-2px_-2px_12px_rgba(0,0,0,0.2),8px_8px_24px_rgba(0,0,0,0.15)]">
-      <div class="absolute inset-0 bg-slate-950/30"></div>
-      <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 25% 25%, white 0%, transparent 50%), radial-gradient(circle at 75% 75%, white 0%, transparent 50%);"></div>
-      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, white 40px, white 41px);"></div>
-      <div class="relative px-8 py-16 lg:px-20 lg:py-28 text-center">
-        <p class="text-primary-200 uppercase tracking-[0.2em] text-sm font-semibold">1945 &mdash; dziś</p>
-        <h1 class="text-4xl lg:text-6xl font-bold mt-4" style="font-family: 'EB Garamond', serif;">Historia ZSEiU</h1>
-        <p class="mt-4 text-lg lg:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-          Rys historyczny Zespołu Szkół Energetycznych i Usługowych<br />
-          w Łaziskach Górnych
-        </p>
 
-        <!-- Stats -->
-        <!-- <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
-          <div class="text-center">
-            <p class="text-3xl lg:text-4xl font-bold text-white">1945</p>
-            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">rok założenia</p>
-          </div>
-          <div class="text-center">
-            <p class="text-3xl lg:text-4xl font-bold text-white">80+</p>
-            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">lat tradycji</p>
-          </div>
-          <div class="text-center">
-            <p class="text-3xl lg:text-4xl font-bold text-white">5</p>
-            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">kierunki technikum</p>
-          </div>
-          <div class="text-center">
-            <p class="text-3xl lg:text-4xl font-bold text-white">4</p>
-            <p class="text-xs text-white/60 mt-1 uppercase tracking-wider">szkoły w zespole</p>
-          </div>
-        </div> -->
-      </div>
-    </div>
+  <HistoriaSection slot="hero" />
+
+  <article>
 
     <!-- Introduction -->
     <div class="max-w-3xl mx-auto mb-16">

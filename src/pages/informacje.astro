@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import InformacjeSection from '../components/InformacjeSection.astro';
 ---
 
 <Layout>
@@ -7,20 +8,9 @@ import Layout from '../layouts/Layout.astro';
   <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link slot="head" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
+  <InformacjeSection slot="hero" />
+
   <article>
-    <!-- Hero -->
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-700 text-white mb-16 shadow-[inset_-2px_-2px_12px_rgba(0,0,0,0.2),8px_8px_24px_rgba(0,0,0,0.15)]">
-      <div class="absolute inset-0 bg-slate-950/30"></div>
-      <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 25% 25%, white 0%, transparent 50%), radial-gradient(circle at 75% 75%, white 0%, transparent 50%);"></div>
-      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, white 40px, white 41px);"></div>
-      <div class="relative px-8 py-16 lg:px-20 lg:py-28 text-center">
-        <p class="text-primary-200 uppercase tracking-[0.2em] text-sm font-semibold">Zespół Szkół Energetycznych i Usługowych</p>
-        <h1 class="text-4xl lg:text-6xl font-bold mt-4" style="font-family: 'EB Garamond', serif;">Informacje o szkole</h1>
-        <p class="mt-4 text-lg lg:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-          Łaziska Górne &middot; od 1945 roku kształcimy profesjonalistów
-        </p>
-      </div>
-    </div>
 
     <!-- Navigation -->
     <nav aria-label="Spis treści" class="max-w-4xl mx-auto mb-12">
@@ -76,33 +66,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
-    <!-- Misja i charakterystyka -->
-    <section id="misja" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-        <div class="lg:col-span-3">
-          <h2 class="text-2xl font-bold text-slate-900 dark:text-white" style="font-family: 'EB Garamond', serif;">Misja i charakterystyka</h2>
-          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-            ZSEiU kształci w systemie zawodowym i ogólnokształcącym, łącząc teorię z praktyką. Szkoła dysponuje nowoczesnymi pracowniami i laboratoriami oraz współpracuje z firmami branżowymi. Realizuje projekty krajowe i międzynarodowe, w tym Erasmus+.
-          </p>
-          <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
-            Jesteśmy dumni z naszej szkoły, która od lat kształci najlepszych fachowców i specjalistów. Naszym priorytetem jest dostarczenie uczniom wiedzy i umiejętności, które pozwolą im realizować swoje marzenia i osiągnąć sukces w wybranej przez siebie dziedzinie.
-          </p>
-        </div>
-        <div class="lg:col-span-2">
-          <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <h3 class="font-semibold text-slate-900 dark:text-white">Edukacja zawodowa</h3>
-            </div>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Kształcimy w Technikum, Branżowej Szkole I i II stopnia oraz Liceum Ogólnokształcącym dla Dorosłych.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- Struktura organizacyjna -->
     <section id="struktura" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
@@ -143,7 +107,7 @@ import Layout from '../layouts/Layout.astro';
     <section id="kierunki" class="max-w-4xl mx-auto mb-16 scroll-mt-20">
       <div class="p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-primary-50 to-primary-100 dark:from-navy-800 dark:to-navy-800/60 border-2 border-primary-200 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center" style="font-family: 'EB Garamond', serif;">Kierunki kształcenia</h2>
-        <p class="mt-2 text-center text-slate-600 dark:text-slate-400">Oferta edukacyjna na rok szkolny 2025/2026</p>
+        <p class="mt-2 text-center text-slate-600 dark:text-slate-400">Oferta edukacyjna:</p>
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 class="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
@@ -173,18 +137,6 @@ import Layout from '../layouts/Layout.astro';
               </li>
               <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
                 <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik chłodnictwa i klimatyzacji
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik spedytor
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik górnictwa podziemnego
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
                 Technik stylista
               </li>
             </ul>
@@ -203,17 +155,10 @@ import Layout from '../layouts/Layout.astro';
                 <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
                 Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych
               </li>
+
               <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
                 <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Ślusarz
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Magazynier-logistyk
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Sprzedawca (klasa wielozawodowa)
+                klasa wielozawodowa
               </li>
             </ul>
             <h3 class="mt-6 font-semibold text-slate-900 dark:text-white flex items-center gap-2">
