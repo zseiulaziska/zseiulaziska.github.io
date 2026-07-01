@@ -9,11 +9,19 @@ import keystatic from '@keystatic/astro';
 import node from '@astrojs/node';
 import { defineConfig, fontProviders } from 'astro/config';
 
+const keystaticEnabled = !process.env.SKIP_KEYSTATIC;
+
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://zseiulaziska.github.io',
-	adapter: node({ mode: 'standalone' }),
-	integrations: [mdx(), sitemap(), react(), markdoc(), keystatic()],
+	adapter: keystaticEnabled ? node({ mode: 'standalone' }) : undefined,
+	integrations: [
+		mdx(),
+		sitemap(),
+		react(),
+		markdoc(),
+		...(keystaticEnabled ? [keystatic()] : []),
+	],
 	vite: {
 		plugins: [tailwindcss()],
 	},
