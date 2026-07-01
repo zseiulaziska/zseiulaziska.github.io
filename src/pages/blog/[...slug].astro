@@ -13,8 +13,14 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
+
+let firstImageInBody = post.body?.match(/!\[.*?\]\((.+?)\)/)?.[1];
+if (firstImageInBody && !firstImageInBody.startsWith('/') && !firstImageInBody.startsWith('http')) {
+	firstImageInBody = '/images/blog/' + firstImageInBody;
+}
+const heroImage = post.data.heroImage || firstImageInBody;
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} heroImage={heroImage}>
 	<Content />
 </BlogPost>

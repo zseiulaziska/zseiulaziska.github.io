@@ -1,15 +1,21 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
-const livePosts = posts.filter(p => !p.data.draft).sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const livePosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0));
 
 function getExcerpt(body: string | undefined): string {
   if (!body) return '';
   const sentences = body.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0);
   return sentences.slice(0, 3).join(' ');
+}
+
+function getFirstImage(body: string | undefined): string | undefined {
+  const raw = body?.match(/!\[.*?\]\((.+?)\)/)?.[1];
+  if (!raw) return;
+  if (raw.startsWith('/') || raw.startsWith('http')) return raw;
+  return '/images/blog/' + raw;
 }
 ---
 
@@ -22,17 +28,19 @@ function getExcerpt(body: string | undefined): string {
       {livePosts.map(post => (
         <li key={post.id} class="flex gap-4 items-start py-4 border-b border-gray-200 dark:border-navy-600">
           <a href={`/blog/${post.id}`} class="shrink-0">
-            {post.data.heroImage ? (
-              <Image src={post.data.heroImage} alt="" class="w-24 h-16 object-cover rounded-lg" />
-            ) : (
+            {(() => {
+              const thumb = post.data.heroImage || getFirstImage(post.body);
+              return thumb ? (
+                <img src={thumb} alt="" class="w-24 h-16 object-cover rounded-lg" />
+              ) : (
               <div class="w-24 h-16 bg-gray-200 dark:bg-navy-700 rounded-lg flex items-center justify-center text-slate-400">
                 <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
               </div>
-            )}
+            )})()}
           </a>
           <div>
             <a href={`/blog/${post.id}`} class="text-primary-700 dark:text-primary-300 hover:underline font-semibold text-lg">{post.data.title}</a>
-            <div class="text-sm text-slate-600 dark:text-slate-400 mt-1">{post.data.pubDate.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })} {post.data.author}</div>
+            <div class="text-sm text-slate-600 dark:text-slate-400 mt-1">{post.data.pubDate?.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) ?? ''} {post.data.author}</div>
             <p class="text-sm text-slate-700 dark:text-slate-300 mt-2 leading-relaxed">{getExcerpt(post.body)}</p>
             <a href={`/blog/${post.id}`} class="inline-block mt-2 text-sm font-semibold text-primary-700 dark:text-primary-300 hover:underline">Czytaj dalej &rarr;</a>
           </div>

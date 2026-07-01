@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import '../styles/global.css';
 import SkipLink from '../components/SkipLink.astro';
@@ -95,12 +94,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<main id="content" class="flex-1" tabindex="-1">
 			<article>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					{heroImage && <img src={heroImage} alt="" width={1020} height={510} />}
 				</div>
 				<div class="prose">
 					<div class="title">
 						<div class="date">
-							<FormattedDate date={pubDate} />
+							{pubDate && <FormattedDate date={pubDate} />}
 							{
 								updatedDate && (
 									<div class="last-updated-on">

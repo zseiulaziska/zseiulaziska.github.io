@@ -3,12 +3,17 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@astrojs/react';
+import markdoc from '@astrojs/markdoc';
+import keystatic from '@keystatic/astro';
+import node from '@astrojs/node';
 import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://zseiulaziska.github.io',
-	integrations: [mdx(), sitemap()],
+	adapter: node({ mode: 'standalone' }),
+	integrations: [mdx(), sitemap(), react(), markdoc(), keystatic()],
 	vite: {
 		plugins: [tailwindcss()],
 	},
