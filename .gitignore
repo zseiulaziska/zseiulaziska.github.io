@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# żeby ne nadpisywało planu LO pobranego z sieci
+public/plan.json

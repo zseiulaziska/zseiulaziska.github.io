@@ -299,7 +299,8 @@ main {
 
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbzYPxvMsGeyF2EJifCNa3quATvk3rnsaqcf04mlgMrCnCZ1iSI_k3YI9W3LFEcUJ9S4/exec';
+//const API_URL = 'https://script.google.com/macros/s/AKfycbzYPxvMsGeyF2EJifCNa3quATvk3rnsaqcf04mlgMrCnCZ1iSI_k3YI9W3LFEcUJ9S4/exec';
+const API_URL = '/plan.json';
 
 const DAY_NAMES = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
 const MONTH_NAMES = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
@@ -431,13 +432,33 @@ function render() {
       const displayName = SUBJECT_MAP[key] || raw;
       const color = SUBJECT_COLORS[key] || null;
 
-      const isNow = isToday(d) && (() => {
-        const s = new Date(lesson.start);
-        const e = new Date(lesson.stop);
-        const sn = s.getHours() * 60 + s.getMinutes();
-        const en = e.getHours() * 60 + e.getMinutes();
-        return nowMin >= sn && nowMin < en;
-      })();
+      // const isNow = isToday(d) && (() => {
+      //   const s = new Date(lesson.start);
+      //   const e = new Date(lesson.stop);
+      //   const sn = s.getHours() * 60 + s.getMinutes();
+      //   const en = e.getHours() * 60 + e.getMinutes();
+      //   return nowMin >= sn && nowMin < en;
+      // })();
+
+      // NA TEN CZYSTY I SZYBKI KOD:
+    const isNow = isToday(d) && (() => {
+      // Ponieważ start/stop to teraz tekst np. "08:00", dzielimy go dwukropkiem
+      const startParts = start.split(':');
+      const stopParts = stop.split(':');
+      
+      if (startParts.length < 2 || stopParts.length < 2) return false;
+      
+      // Przeliczamy godziny i minuty na łączną liczbę minut od początku dnia
+      const sn = parseInt(startParts[0], 10) * 60 + parseInt(startParts[1], 10);
+      const en = parseInt(stopParts[0], 10) * 60 + parseInt(stopParts[1], 10);
+      
+      return nowMin >= sn && nowMin < en;
+    })();
+
+
+
+
+
 
       const accent = color ? ` style="border-left:4px solid ${color}"` : '';
       h += `<div class="lesson${isEmpty ? ' empty' : ''}"${accent}>`;
