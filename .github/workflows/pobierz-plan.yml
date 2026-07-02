@@ -5,6 +5,9 @@ on:
     - cron: '0 * * * *' # Co godzinę
   workflow_dispatch: # Przycisk "uruchom ręcznie" w panelu GitHub Actions
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
