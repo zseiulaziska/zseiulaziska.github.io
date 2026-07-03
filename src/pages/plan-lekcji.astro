@@ -297,10 +297,10 @@ main {
   </div>
 </main>
 
-
 <script>
-//const API_URL = 'https://script.google.com/macros/s/AKfycbzYPxvMsGeyF2EJifCNa3quATvk3rnsaqcf04mlgMrCnCZ1iSI_k3YI9W3LFEcUJ9S4/exec';
-const API_URL = '/plan.json';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzYPxvMsGeyF2EJifCNa3quATvk3rnsaqcf04mlgMrCnCZ1iSI_k3YI9W3LFEcUJ9S4/exec';
+const CACHE_KEY = 'planLekcji:v2';
+const SELECTED_CLASS_KEY = 'planLekcji:selectedClass';
 
 const DAY_NAMES = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
 const MONTH_NAMES = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
@@ -333,6 +333,8 @@ const SUBJECT_COLORS = {
 
 let allData = null;
 let selectedDayIdx = -1;
+let latestUpdatedAt = null;
+let classSelectReady = false;
 
 function parseTime(t) {
   return t;
@@ -368,10 +370,66 @@ function getNowLesson() {
   return h * 60 + m;
 }
 
+function normalizePlanPayload(payload) {
+  return {
+    data: payload && payload.data ? payload.data : payload,
+    updatedAt: payload && payload.updatedAt ? payload.updatedAt : null
+  };
+}
+
+function readCachedPlan() {
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    return cached ? normalizePlanPayload(JSON.parse(cached)) : null;
+  } catch {
+    localStorage.removeItem(CACHE_KEY);
+    return null;
+  }
+}
+
+function writeCachedPlan(payload) {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+  } catch {}
+}
+
+function readSelectedClass() {
+  try {
+    return localStorage.getItem(SELECTED_CLASS_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function writeSelectedClass(className) {
+  try {
+    localStorage.setItem(SELECTED_CLASS_KEY, className);
+  } catch {}
+}
+
+function getApiUrl() {
+  const separator = API_URL.includes('?') ? '&' : '?';
+  return `${API_URL}${separator}_=${Date.now()}`;
+}
+
 async function fetchData() {
-  const res = await fetch(API_URL);
+  const res = await fetch(getApiUrl(), { cache: 'no-store' });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return await res.json();
+  const payload = await res.json();
+  writeCachedPlan(payload);
+  return normalizePlanPayload(payload);
+}
+
+function applyPlanPayload(payload) {
+  if (!payload || !payload.data || payload.data.error) {
+    throw new Error(payload?.data?.error || 'Brak danych planu lekcji');
+  }
+
+  allData = payload.data;
+  latestUpdatedAt = payload.updatedAt;
+  populateClasses(allData);
+  document.getElementById('app').innerHTML = '';
+  render();
 }
 
 function render() {
@@ -543,9 +601,23 @@ function scrollToDate(idx) {
 
 function populateClasses(data) {
   const select = document.getElementById('classSelect');
+  const previous = select.value;
+  const saved = readSelectedClass();
   const names = Object.keys(data).sort();
   select.innerHTML = names.map(n => `<option value="${n}">Klasa ${n}</option>`).join('');
-  select.addEventListener('change', () => { selectedDayIdx = -1; render(); });
+  if (previous && names.includes(previous)) {
+    select.value = previous;
+  } else if (saved && names.includes(saved)) {
+    select.value = saved;
+  }
+  if (!classSelectReady) {
+    select.addEventListener('change', () => {
+      selectedDayIdx = -1;
+      writeSelectedClass(select.value);
+      render();
+    });
+    classSelectReady = true;
+  }
 }
 
 document.getElementById('dayTabs').addEventListener('click', (e) => {
@@ -565,18 +637,25 @@ document.getElementById('dayTabs').addEventListener('click', (e) => {
 });
 
 async function init() {
+  const cached = readCachedPlan();
+  if (cached) {
+    try {
+      applyPlanPayload(cached);
+    } catch {}
+  }
+
   try {
-    allData = await fetchData();
-    populateClasses(allData);
-    document.getElementById('app').innerHTML = '';
-    render();
+    const fresh = await fetchData();
+    applyPlanPayload(fresh);
   } catch (err) {
-    document.getElementById('app').innerHTML = `
+    if (!allData) {
+      document.getElementById('app').innerHTML = `
       <div class="error">
         <p>Nie udało się załadować planu lekcji.</p>
         <p style="font-size:12px;color:var(--text2)">${err.message}</p>
         <button onclick="init()">Spróbuj ponownie</button>
       </div>`;
+    }
   }
 }
 
@@ -605,7 +684,14 @@ document.addEventListener('keydown', (e) => {
 });
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(() => {});
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+  if (isLocal) {
+    navigator.serviceWorker.getRegistrations()
+      .then(registrations => registrations.forEach(registration => registration.unregister()))
+      .catch(() => {});
+  } else {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
 }
 </script>
 </body>
