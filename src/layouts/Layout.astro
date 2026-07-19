@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import type { AstroComponentFactory } from 'astro';
 import SkipLink from '../components/SkipLink.astro';
-import Nav from '../components/Nav.astro';
+import MegaNav from '../components/MegaNav.astro';
 import Footer from '../components/Footer.astro';
 ---
 <!doctype html>
@@ -29,7 +29,7 @@ import Footer from '../components/Footer.astro';
   </head>
   <body class="min-h-screen flex flex-col">
     <SkipLink />
-    <Nav />
+    <MegaNav />
     <slot name="hero" />
     <main id="content" class="flex-1 max-w-6xl mx-auto px-4 py-8" tabindex="-1">
       <slot />

@@ -1,0 +1,442 @@
+---
+const sections = [
+  {
+    title: 'O szkole',
+    desc: 'Informacje, zespół i życie szkolnej społeczności.',
+    groups: [
+      {
+        title: 'Szkoła',
+        links: [
+          ['Informacje o szkole', '/informacje', 'Dane szkoły i podstawowe informacje'],
+          ['Historia', '/historia', 'Dzieje ZSEiU w Łaziskach Górnych'],
+          ['Nasza społeczność', '/nasza-spolecznosc', 'Uczniowie, absolwenci i wydarzenia'],
+          ['Dostępność', '/dostepnosc', 'Deklaracja dostępności'],
+        ],
+      },
+      {
+        title: 'Ludzie',
+        links: [
+          ['Dyrekcja i kierownictwo', '/dyrekcja', 'Osoby zarządzające szkołą'],
+          ['Grono pedagogiczne', '/grono-pedagogiczne', 'Nauczyciele i specjaliści'],
+          ['Klienci i partnerzy', '/klienci-i-partnerzy', 'Współpraca z otoczeniem'],
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Oferta',
+    desc: 'Kierunki, klasy i informacje dla kandydatów.',
+    highlight: ['Rekrutacja', '/rekrutacja', 'Terminy, zasady naboru i najważniejsze dokumenty'],
+    groups: [
+      {
+        title: 'Kierunki',
+        links: [
+          ['Kierunki kształcenia', '/kierunki', 'Przegląd zawodów i profili'],
+          ['Oferta 2025/2026', '/kierunki-ksztalcenia', 'Aktualna oferta edukacyjna'],
+          ['LO dla Dorosłych', '/lo-dla-doroslych', 'Nauka w systemie zaocznym'],
+        ],
+      },
+      {
+        title: 'Profile',
+        links: [
+          ['Klasy mundurowe', '/klasy-mundurowe', 'Programy o profilu mundurowym'],
+          ['Klasa policyjna', '/klasa-policyjna', 'Profil policyjny i praktyka'],
+          ['Egzaminy zawodowe', '/egzaminy-zawodowe', 'Kwalifikacje i informacje egzaminacyjne'],
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Uczniowie i rodzice',
+    desc: 'Codzienne sprawy, terminy, plany i dokumenty.',
+    groups: [
+      {
+        title: 'Na co dzień',
+        links: [
+          ['Dla uczniów', '/dla-uczniow', 'Informacje i zasoby dla uczniów'],
+          ['Dla rodziców', '/dla-rodzicow', 'Komunikaty dla opiekunów'],
+          ['Plan lekcji', '/plan-lekcji', 'Aktualny plan zajęć'],
+          ['Kalendarz', '/kalendarz', 'Rok szkolny i ważne terminy'],
+        ],
+      },
+      {
+        title: 'Dokumenty',
+        links: [
+          ['Podręczniki', '/podreczniki', 'Wykazy podręczników'],
+          ['Dokumenty szkolne', '/dokumenty-szkolne', 'Statuty, regulaminy i formularze'],
+          ['Dokumenty i polityki', '/dokumenty', 'Procedury i informacje formalne'],
+          ['RODO', '/rodo', 'Ochrona danych osobowych'],
+        ],
+      },
+      {
+        title: 'Liceum dla Dorosłych',
+        links: [
+          ['LO dla Dorosłych', '/lo-dla-doroslych', 'Nauka w systemie zaocznym'],
+          ['Plan lekcji', '/plan-lekcji', 'Aktualny plan zajęć'],
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Projekty',
+    desc: 'Programy, Erasmus+ i aktualności z życia szkoły.',
+    groups: [
+      {
+        title: 'Aktywności',
+        links: [
+          ['Projekty', '/projekty', 'Inicjatywy edukacyjne i społeczne'],
+          ['Erasmus+', '/erasmus', 'Międzynarodowe projekty i mobilności'],
+          ['Aktualności', '/blog', 'Wiadomości z życia szkoły'],
+          ['Dostępność', '/dostepnosc', 'Deklaracja dostępności'],
+        ],
+      },
+    ],
+  },
+];
+
+const quickLinks = [
+  ['Plan lekcji', '/plan-lekcji'],
+  ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'],
+  ['Rekrutacja', '/rekrutacja'],
+];
+
+const mobileSections = [
+  { title: 'Najważniejsze', links: [['Strona główna', '/'], ...quickLinks, ['Kontakt', '/kontakt']] },
+  ...sections.map((section) => ({
+    title: section.title,
+    links: section.groups.flatMap((group) => group.links.map(([label, href]) => [label, href])),
+  })),
+  {
+    title: 'Linki zewnętrzne',
+    links: [
+      ['BIP', 'https://zseiu.ssdip.bip.gov.pl/'],
+      ['Facebook', 'https://www.facebook.com/zseiu'],
+      ['Instagram', 'https://www.instagram.com/zseiu_laziska/'],
+    ],
+  },
+];
+
+const isExternal = (href: string) => href.startsWith('http');
+
+const linkIcons = {
+  '/informacje': 'info',
+  '/historia': 'clock',
+  '/nasza-spolecznosc': 'users',
+  '/dyrekcja': 'people',
+  '/grono-pedagogiczne': 'graduation',
+  '/klienci-i-partnerzy': 'briefcase',
+  '/rekrutacja': 'check',
+  '/kierunki': 'graduation',
+  '/kierunki-ksztalcenia': 'book-open',
+  '/lo-dla-doroslych': 'book',
+  '/klasy-mundurowe': 'shield',
+  '/klasa-policyjna': 'badge',
+  '/egzaminy-zawodowe': 'award',
+  '/dla-uczniow': 'graduation',
+  '/dla-rodzicow': 'people',
+  '/plan-lekcji': 'calendar',
+  '/kalendarz': 'calendar-days',
+  '/podreczniki': 'book',
+  '/dokumenty-szkolne': 'file',
+  '/dokumenty': 'clipboard',
+  '/rodo': 'shield',
+  '/projekty': 'spark',
+  '/erasmus': 'globe',
+  '/blog': 'news',
+  '/dostepnosc': 'access',
+};
+
+const iconPaths = {
+  access: '<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="7" r="1"></circle><path d="M7 11h10"></path><path d="M12 11v7"></path><path d="M9 18l3-7 3 7"></path>',
+  award: '<circle cx="12" cy="8" r="6"></circle><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"></path>',
+  badge: '<path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"></path><path d="M9 12l2 2 4-4"></path>',
+  book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>',
+  'book-open': '<path d="M2 4h7a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 4h-7a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h8z"></path>',
+  briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M2 13h20"></path>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path>',
+  'calendar-days': '<rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"></path>',
+  check: '<path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>',
+  clipboard: '<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect x="9" y="3" width="6" height="4" rx="1"></rect><path d="M9 14l2 2 4-4"></path>',
+  clock: '<circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>',
+  file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h8"></path>',
+  globe: '<circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15 15 0 0 1 0 20"></path><path d="M12 2a15 15 0 0 0 0 20"></path>',
+  graduation: '<path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path>',
+  info: '<circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path>',
+  news: '<path d="M4 22h16a2 2 0 0 0 2-2V4H6v16a2 2 0 0 1-2 2z"></path><path d="M4 22a2 2 0 0 1-2-2v-9h4"></path><path d="M10 8h8M10 12h8M10 16h5"></path>',
+  people: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>',
+  spark: '<path d="M13 2 3 14h8l-1 8 10-12h-8l1-8z"></path>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path>',
+};
+
+const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
+---
+
+<header class="site-header">
+  <div class="site-header__top">
+    <a href="/" class="site-brand" aria-label="ZSEiU - strona główna">
+      <img src="/images/logo-szkoly-light.png" alt="" class="h-12 w-auto dark:hidden" />
+      <img src="/images/logo-szkoly-dark.png" alt="" class="hidden h-12 w-auto dark:block" />
+      <span class="min-w-0">
+        <span class="block truncate text-lg font-bold tracking-tight sm:text-xl">ZSEiU</span>
+        <span class="hidden truncate text-xs text-gray-500 dark:text-slate-400 sm:block">Łaziska Górne</span>
+      </span>
+    </a>
+
+    <div class="site-emblems" aria-label="Symbole państwowe i powiatowe">
+      <img src="/images/Herb_Polski.svg" alt="Godło Polski" />
+      <img src="/images/Herb_powiatu.svg" alt="Herb powiatu mikołowskiego" />
+    </div>
+
+    <div class="site-quick-links" aria-label="Szybkie linki">
+      {quickLinks.map(([label, href]) => (
+        <a href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>
+          {label}
+        </a>
+      ))}
+    </div>
+
+    <div class="site-search">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"></circle>
+        <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+      <input id="search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
+      <div id="search-results" class="search-popover hidden"></div>
+    </div>
+
+    <button id="theme-toggle" class="site-icon-button" aria-label="Przełącz tryb ciemny lub jasny">
+      <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"></circle>
+        <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <div class="site-social" aria-label="Linki społecznościowe i BIP">
+      <a href="https://zseiu.ssdip.bip.gov.pl/" target="_blank" rel="noopener noreferrer" aria-label="BIP">
+        <img src="/images/bip_simple.svg" alt="" />
+      </a>
+      <a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1c0 6 4.4 11 10.1 11.9v-8.4h-3v-3.5h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.3l-.5 3.5h-2.8V24c5.8-.9 10.2-5.9 10.2-11.9z"></path>
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7.1 2h9.8A5.1 5.1 0 0 1 22 7.1v9.8a5.1 5.1 0 0 1-5.1 5.1H7.1A5.1 5.1 0 0 1 2 16.9V7.1A5.1 5.1 0 0 1 7.1 2zm0 2A3.1 3.1 0 0 0 4 7.1v9.8A3.1 3.1 0 0 0 7.1 20h9.8a3.1 3.1 0 0 0 3.1-3.1V7.1A3.1 3.1 0 0 0 16.9 4H7.1zm10.4 1.7a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>
+        </svg>
+      </a>
+    </div>
+
+    <details id="mobile-nav" class="mobile-nav">
+      <summary class="site-icon-button" aria-label="Otwórz menu">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+      </summary>
+      <div class="mobile-nav__panel">
+        <div class="mobile-search">
+          <input id="mobile-search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
+          <div id="mobile-search-results" class="mt-2 hidden overflow-hidden rounded-md border border-gray-100 dark:border-navy-700"></div>
+        </div>
+        <div class="mobile-nav__grid">
+          {mobileSections.map((section) => (
+            <section>
+              <h2>{section.title}</h2>
+              <ul>
+                {section.links.map(([label, href]) => (
+                  <li>
+                    <a class="nav-link" href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <nav class="mega-nav" aria-label="Główna nawigacja">
+    <div class="mega-nav__inner">
+      <a href="/" class="mega-nav-link">Strona główna</a>
+      {sections.map((section, index) => (
+        <div class="mega-menu">
+          <button class="mega-nav-link mega-trigger" type="button" aria-expanded="false" aria-controls={`mega-panel-${index}`} data-mega-trigger>
+            {section.title}
+            <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div id={`mega-panel-${index}`} class={`mega-panel ${index > 1 ? 'mega-panel--right' : ''}`}>
+            <div class="mega-panel__content">
+              <aside>
+                <p>{section.title}</p>
+                <span>{section.desc}</span>
+                {section.highlight && (
+                  <a class="mega-highlight" href={section.highlight[1]}>
+                    <strong>{section.highlight[0]}</strong>
+                    <small>{section.highlight[2]}</small>
+                  </a>
+                )}
+              </aside>
+              <div class={`mega-panel__links ${section.groups.length === 1 ? 'is-single' : ''}`}>
+                {section.groups.map((group) => (
+                  <section>
+                    <h2>{group.title}</h2>
+                    <ul>
+                      {group.links.map(([label, href, desc]) => (
+                        <li>
+                          <a class="mega-item" href={href}>
+                            <span aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconForHref(href)} />
+                            </span>
+                            <span>
+                              <strong>{label}</strong>
+                              <small>{desc}</small>
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+      <a href="/blog" class="mega-nav-link">Aktualności</a>
+      <a href="/kontakt" class="mega-nav-link ml-auto">Kontakt</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  (function () {
+    function setupSearch(input, results) {
+      if (!input || !results) return;
+      if (!window.__zseiuSearchPromise) {
+        window.__zseiuSearchPromise = fetch('/api/search.json')
+          .then(function (r) { return r.json(); })
+          .catch(function () { return []; });
+      }
+
+      function escapeRegExp(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+
+      function mark(text, query) {
+        var regex = new RegExp('(' + escapeRegExp(query) + ')', 'gi');
+        return String(text || '').replace(regex, '<mark>$1</mark>');
+      }
+
+      input.addEventListener('input', function () {
+        var query = input.value.trim().toLowerCase();
+        if (query.length < 2) {
+          results.classList.add('hidden');
+          return;
+        }
+
+        window.__zseiuSearchPromise.then(function (data) {
+          var matches = data.filter(function (item) {
+            return item.title.toLowerCase().includes(query) ||
+              (item.description && item.description.toLowerCase().includes(query)) ||
+              (item.body && item.body.toLowerCase().includes(query));
+          }).slice(0, 8);
+
+          results.innerHTML = matches.length
+            ? matches.map(function (item) {
+              return '<a href="' + item.url + '" class="search-result-item"><span class="text-sm font-semibold">' +
+                mark(item.title, query) + '</span><span class="mt-1 block text-xs text-gray-500 dark:text-slate-400">' +
+                mark(item.description || '', query) + '</span></a>';
+            }).join('')
+            : '<div class="px-4 py-3 text-sm text-gray-500 dark:text-slate-400">Brak wyników</div>';
+          results.classList.remove('hidden');
+        });
+      });
+
+      input.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          results.classList.add('hidden');
+          input.blur();
+        }
+      });
+    }
+
+    setupSearch(document.getElementById('search-input'), document.getElementById('search-results'));
+    setupSearch(document.getElementById('mobile-search-input'), document.getElementById('mobile-search-results'));
+
+    var themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        document.documentElement.classList.toggle('dark');
+      });
+    }
+
+    var mobileNav = document.getElementById('mobile-nav');
+    if (mobileNav) {
+      mobileNav.querySelectorAll('a[href^="/"]').forEach(function (link) {
+        link.addEventListener('click', function () { mobileNav.open = false; });
+      });
+    }
+
+    var menus = Array.from(document.querySelectorAll('.mega-menu'));
+    function closeMenus(except) {
+      menus.forEach(function (menu) {
+        if (menu === except) return;
+        menu.classList.remove('is-open');
+        var trigger = menu.querySelector('[data-mega-trigger]');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    menus.forEach(function (menu) {
+      var trigger = menu.querySelector('[data-mega-trigger]');
+      trigger.addEventListener('click', function () {
+        var open = !menu.classList.contains('is-open');
+        closeMenus(menu);
+        menu.classList.toggle('is-open', open);
+        trigger.setAttribute('aria-expanded', String(open));
+      });
+      menu.addEventListener('mouseenter', function () {
+        closeMenus(menu);
+        menu.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      });
+      menu.addEventListener('mouseleave', function () {
+        menu.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('.mega-menu') && !event.target.closest('.site-search')) {
+        closeMenus();
+        document.querySelectorAll('.search-popover').forEach(function (el) { el.classList.add('hidden'); });
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeMenus();
+    });
+
+    var path = location.pathname.replace(/\/+$/, '') || '/';
+    document.querySelectorAll('.mega-nav-link, .nav-link, .mega-item').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href) return;
+      try {
+        var linkPath = new URL(href, location.origin).pathname.replace(/\/+$/, '') || '/';
+        if (linkPath === path) {
+          link.setAttribute('aria-current', 'page');
+          link.classList.add('active');
+        }
+      } catch (error) {}
+    });
+  })();
+</script>
