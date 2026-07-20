@@ -4,6 +4,13 @@ import type { AstroComponentFactory } from 'astro';
 import SkipLink from '../components/SkipLink.astro';
 import MegaNav from '../components/MegaNav.astro';
 import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+
+interface Props {
+  title?: string;
+}
+
+const { title = SITE_TITLE } = Astro.props;
 ---
 <!doctype html>
 <html lang="pl" class="antialiased">
@@ -14,6 +21,8 @@ import Footer from '../components/Footer.astro';
     <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <title>{title}</title>
+    <meta name="description" content={title} />
     <slot name="head" />
     <script is:inline>
       (function() {
