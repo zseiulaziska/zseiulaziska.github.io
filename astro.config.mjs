@@ -27,26 +27,22 @@ export default defineConfig({
 	},
 	fonts: [
 		{
-			provider: fontProviders.local(),
-			name: 'Atkinson',
-			cssVariable: '--font-atkinson',
-			fallbacks: ['sans-serif'],
-			options: {
-				variants: [
-					{
-						src: ['./src/assets/fonts/atkinson-regular.woff'],
-						weight: 400,
-						style: 'normal',
-						display: 'swap',
-					},
-					{
-						src: ['./src/assets/fonts/atkinson-bold.woff'],
-						weight: 700,
-						style: 'normal',
-						display: 'swap',
-					},
-				],
-			},
+			provider: fontProviders.google(),
+			name: 'Inter',
+			cssVariable: '--font-body',
+			fallbacks: ['system-ui', 'sans-serif'],
+			weights: [300, 400, 600, 700],
+			subsets: ['latin', 'latin-ext'],
+			display: 'swap',
+		},
+		{
+			provider: fontProviders.google(),
+			name: 'Montserrat',
+			cssVariable: '--font-display',
+			fallbacks: ['system-ui', 'sans-serif'],
+			weights: [600, 700],
+			subsets: ['latin', 'latin-ext'],
+			display: 'swap',
 		},
 	],
 });
