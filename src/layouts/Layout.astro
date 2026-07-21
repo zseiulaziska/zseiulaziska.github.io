@@ -4,34 +4,39 @@ import type { AstroComponentFactory } from 'astro';
 import SkipLink from '../components/SkipLink.astro';
 import MegaNav from '../components/MegaNav.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE } from '../consts';
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = SITE_TITLE } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 ---
 <!doctype html>
 <html lang="pl" class="antialiased">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <BaseHead title={title} description={description} />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <title>{title}</title>
-    <meta name="description" content={title} />
     <slot name="head" />
     <script is:inline>
       (function() {
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-        if (prefersDark.matches) {
+        var storage = 'theme';
+        var stored = localStorage.getItem(storage);
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
           document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
         }
-        prefersDark.addEventListener('change', function(e) {
-          document.documentElement.classList.toggle('dark', e.matches);
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          if (!localStorage.getItem(storage)) {
+            document.documentElement.classList.toggle('dark', e.matches);
+          }
         });
       })();
     </script>

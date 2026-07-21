@@ -376,7 +376,8 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
     var themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
       themeToggle.addEventListener('click', function () {
-        document.documentElement.classList.toggle('dark');
+        var isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
     }
 

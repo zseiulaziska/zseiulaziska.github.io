@@ -4,14 +4,32 @@ import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
-}
-type Props = CollectionEntry<'blog'>;
+	const sortedPosts = posts
+		.filter((p) => !p.data.draft)
+		.sort((a, b) => new Date(a.data.pubDate).valueOf() - new Date(b.data.pubDate).valueOf());
 
-const post = Astro.props;
+	return sortedPosts.map((post, index) => {
+		const prevPost = index > 0 ? sortedPosts[index - 1] : null;
+		const nextPost = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null;
+
+		return {
+			params: { slug: post.id },
+			props: {
+				post,
+				prevPost: prevPost ? { id: prevPost.id, title: prevPost.data.title } : null,
+				nextPost: nextPost ? { id: nextPost.id, title: nextPost.data.title } : null,
+			},
+		};
+	});
+}
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+	prevPost: { id: string; title: string } | null;
+	nextPost: { id: string; title: string } | null;
+}
+
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 
 let firstImageInBody = post.body?.match(/!\[.*?\]\((.+?)\)/)?.[1];
@@ -21,6 +39,6 @@ if (firstImageInBody && !firstImageInBody.startsWith('/') && !firstImageInBody.s
 const heroImage = post.data.heroImage || firstImageInBody;
 ---
 
-<BlogPost {...post.data} heroImage={heroImage}>
+<BlogPost {...post.data} heroImage={heroImage} prevPost={prevPost} nextPost={nextPost}>
 	<Content />
 </BlogPost>
