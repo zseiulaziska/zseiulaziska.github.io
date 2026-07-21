@@ -3,7 +3,10 @@
 
 <section class="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-navy-950">
   <div class="absolute inset-0">
-    <img src="/images/333_mundurowi.jpg" alt="Uczniowie ZSEiU" class="w-full h-full object-cover" fetchpriority="high" />
+    <picture>
+      <source srcset="/images/333_mundurowi-480w.webp 480w, /images/333_mundurowi-768w.webp 768w, /images/333_mundurowi-1200w.webp 1200w" sizes="100vw" type="image/webp" />
+      <img src="/images/333_mundurowi.jpg" alt="Uczniowie ZSEiU" class="w-full h-full object-cover" fetchpriority="high" />
+    </picture>
     <div class="absolute inset-0 bg-gradient-to-r from-navy-950/50 via-navy-950/80 to-navy-950/50"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-navy-950/40 via-transparent to-transparent"></div>
   </div>
