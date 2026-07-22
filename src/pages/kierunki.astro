@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SchoolFields from '../components/SchoolFields.astro';
 ---
 
 <Layout title="Kierunki kształcenia - ZSEiU Łaziska Górne" description="Oferta edukacyjna ZSEiU Łaziska Górne. Sprawdź dostępne kierunki w technikum i szkole branżowej.">
@@ -7,15 +8,7 @@ import Layout from '../layouts/Layout.astro';
     <h1>Kierunki kształcenia</h1>
     <p class="text-slate-600 dark:text-slate-300">Wybrane kierunki oferowane przez ZSEiU.</p>
 
-    <ul>
-      <li><strong>Technik elektryk</strong></li>
-      <li><strong>Technik informatyk</strong></li>
-      <li><strong>Technik logistyk</strong> (w tym klasy mundurowe)</li>
-      <li><strong>Technik urządzeń i systemów energetyki odnawialnej (technik OZE)</strong></li>
-      <li><strong>Technik chłodnictwa i klimatyzacji</strong></li>
-      <li><strong>Technik mechanik</strong> (BS II)</li>
-      <li>Branżowe zawody I stopnia: mechanik-monter maszyn i urządzeń; operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych; ślusarz; magazynier-logistyk; operator tworzyw sztucznych; sprzedawca</li>
-    </ul>
+    <SchoolFields variant="compact" />
 
     <p>Wiele kierunków ma partnerów branżowych zapewniających praktyki i wsparcie merytoryczne.</p>
   </article>

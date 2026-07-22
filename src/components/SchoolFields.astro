@@ -1,0 +1,51 @@
+---
+import schoolGroups from '../content/field/school-groups.json';
+
+interface SchoolGroup {
+  name: string;
+  years?: string;
+  fields: { name: string; note?: string; slug: string }[];
+}
+
+export type Variant = 'detailed' | 'compact';
+
+const { groups = schoolGroups, variant = 'detailed' }: { groups?: SchoolGroup[]; variant?: Variant } = Astro.props;
+---
+
+{variant === 'detailed' && (
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+    {groups.map((group) => (
+      <div>
+        <h3 class="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-primary-500 shrink-0"></span>
+          {group.name}{group.years ? ` — ${group.years}` : ''}
+        </h3>
+        <ul class="mt-3 space-y-2">
+          {group.fields.map((f) => (
+            <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
+              <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+              {f.note ? `${f.name} (${f.note})` : f.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+)}
+
+{variant === 'compact' && (
+  <ul>
+    {groups.map((group) => (
+      <>
+        <li class="mt-4 first:mt-0 font-semibold text-slate-900 dark:text-white text-sm">
+          {group.name}{group.years ? ` — ${group.years}` : ''}
+        </li>
+        {group.fields.map((f) => (
+          <li class="ml-4 text-slate-700 dark:text-slate-300">
+            <strong>{f.name}</strong>{f.note ? ` (${f.note})` : ''}
+          </li>
+        ))}
+      </>
+    ))}
+  </ul>
+)}

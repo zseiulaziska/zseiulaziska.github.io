@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import InformacjeSection from '../components/InformacjeSection.astro';
 import InfoStructure from '../components/InfoStructure.astro';
 import InfoInfrastructure from '../components/InfoInfrastructure.astro';
+import SchoolFields from '../components/SchoolFields.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 
 const tocSections = [
@@ -88,81 +89,7 @@ const tocSections = [
       <div class="p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-primary-50 to-primary-100 dark:from-navy-800 dark:to-navy-800/60 border-2 border-primary-200 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center" >Kierunki kształcenia</h2>
         <p class="mt-2 text-center text-slate-600 dark:text-slate-400">Oferta edukacyjna:</p>
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h3 class="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
-              Technikum Nr 1
-            </h3>
-            <ul class="mt-3 space-y-2">
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik elektryk
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik informatyk
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik logistyk (w tym klasa policyjna / mundurowa)
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik urządzeń i systemów energetyki odnawialnej (OZE)
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik organizacji turystyki
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik stylista
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
-              Branżowa Szkoła I stopnia
-            </h3>
-            <ul class="mt-3 space-y-2">
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Mechanik-monter maszyn i urządzeń
-              </li>
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych
-              </li>
-
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                klasa wielozawodowa
-              </li>
-            </ul>
-            <h3 class="mt-6 font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
-              Branżowa Szkoła II stopnia
-            </h3>
-            <ul class="mt-3 space-y-2">
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Technik mechanik
-              </li>
-            </ul>
-            <h3 class="mt-6 font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
-              Liceum Ogólnokształcące dla Dorosłych
-            </h3>
-            <ul class="mt-3 space-y-2">
-              <li class="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
-                Profil ogólny &mdash; nauka bezpłatna, zaoczna
-              </li>
-            </ul>
-          </div>
-        </div>
+        <SchoolFields />
         <div class="mt-8 text-center">
           <a href="/kierunki" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
             Szczegółowe kierunki

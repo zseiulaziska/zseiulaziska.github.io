@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Technikum Nr 1",
+    "years": "5 lat",
+    "fields": [
+      { "name": "Technik elektryk", "note": "311303", "slug": "technik-elektryk" },
+      { "name": "Technik informatyk", "note": "351203", "slug": "technik-informatyk" },
+      { "name": "Technik logistyk", "note": "333107", "slug": "technik-logistyk" },
+      { "name": "Technik logistyk", "note": "Oddziały Przygotowania Wojskowego · 333107", "slug": "technik-logistyk" },
+      { "name": "Technik logistyk", "note": "Oddziały Przygotowania Mundurowego | Policja i Straż Graniczna | · 333107", "slug": "technik-logistyk" },
+      { "name": "Technik urządzeń i systemów energetyki odnawialnej", "note": "OZE · 311930", "slug": "technik-oze" },
+      { "name": "Technik organizacji turystyki", "note": "422104", "slug": "technik-organizacji-turystyki" },
+      { "name": "Technik stylista", "note": "311946", "slug": "technik-stylista" }
+    ]
+  },
+  {
+    "name": "Branżowa Szkoła I stopnia",
+    "years": "3 lata",
+    "fields": [
+      { "name": "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych", "note": "814209", "slug": "operator-maszyn-tworzyw" },
+      { "name": "Mechanik-monter maszyn i urządzeń", "note": "723310", "slug": "mechanik-monter-maszyn" }
+    ]
+  },
+  {
+    "name": "Branżowa Szkoła I stopnia - klasa wielozawodowa",
+    "years": "3 lata",
+    "fields": [
+      { "name": "Blacharz samochodowy", "note": "721306", "slug": "blacharz-samochodowy" },
+      { "name": "Cukiernik", "note": "751201", "slug": "cukiernik" },
+      { "name": "Elektromechanik", "note": "741201", "slug": "elektromechanik" },
+      { "name": "Elektromechanik pojazdów samochodowych", "note": "741203", "slug": "elektromechanik-pojazdow" },
+      { "name": "Elektryk", "note": "741103", "slug": "elektryk" },
+      { "name": "Fryzjer", "note": "514101", "slug": "fryzjer" },
+      { "name": "Kelner", "note": "513101", "slug": "kelner" },
+      { "name": "Krawiec", "note": "753105", "slug": "krawiec" },
+      { "name": "Kucharz", "note": "512001", "slug": "kucharz" },
+      { "name": "Lakiernik samochodowy", "note": "713203", "slug": "lakiernik-samochodowy" },
+      { "name": "Magazynier-logistyk", "note": "432106", "slug": "magazynier-logistyk" },
+      { "name": "Mechanik pojazdów samochodowych", "note": "723103", "slug": "mechanik-pojazdow" },
+      { "name": "Monter sieci i instalacji sanitarnych", "note": "712618", "slug": "monter-sieci-sanitarnych" },
+      { "name": "Monter zabudowy i robót wykończeniowych w budownictwie", "note": "712905", "slug": "monter-zabudowy" },
+      { "name": "Murarz-tynkarz", "note": "711204", "slug": "murarz-tynkarz" },
+      { "name": "Operator obrabiarek skrawających", "note": "722307", "slug": "operator-obrabiarek" },
+      { "name": "Piekarz", "note": "751204", "slug": "piekarz" },
+      { "name": "Pracownik pomocniczy gastronomii", "note": "941203", "slug": "pracownik-pomocniczy-gastronomii" },
+      { "name": "Przetwórca mięsa", "note": "751108", "slug": "przetworca-miesa" },
+      { "name": "Sprzedawca", "note": "522301", "slug": "sprzedawca" },
+      { "name": "Stolarz", "note": "752205", "slug": "stolarz" },
+      { "name": "Ślusarz", "note": "722204", "slug": "slusarz" }
+    ]
+  },
+  {
+    "name": "Branżowa Szkoła II stopnia",
+    "years": "2 lata",
+    "fields": [
+      { "name": "Technik mechanik", "note": "311504", "slug": "technik-mechanik" }
+    ]
+  },
+  {
+    "name": "LO dla Dorosłych",
+    "years": "3 lata",
+    "fields": [
+      { "name": "Profil ogólny", "note": "nauka bezpłatna, zaoczna", "slug": "lo-profil-ogolny" }
+    ]
+  }
+]
