@@ -1,0 +1,168 @@
+---
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const { title } = Astro.props as { title?: string };
+
+const LABELS: Record<string, string> = {
+  '/': 'Strona główna',
+  '/informacje': 'Informacje o szkole',
+  '/historia': 'Historia',
+  '/nasza-spolecznosc': 'Nasza społeczność',
+  '/dostepnosc': 'Dostępność',
+  '/dyrekcja': 'Dyrekcja i kierownictwo',
+  '/grono-pedagogiczne': 'Grono pedagogiczne',
+  '/klienci-i-partnerzy': 'Klienci i partnerzy',
+  '/rekrutacja': 'Rekrutacja',
+  '/kierunki': 'Kierunki kształcenia',
+  '/kierunki-ksztalcenia': 'Oferta 2025/2026',
+  '/lo-dla-doroslych': 'LO dla Dorosłych',
+  '/klasy-mundurowe': 'Klasy mundurowe',
+  '/klasa-policyjna': 'Klasa policyjna',
+  '/egzaminy-zawodowe': 'Egzaminy zawodowe',
+  '/dla-uczniow': 'Dla uczniów',
+  '/dla-rodzicow': 'Dla rodziców',
+  '/plan-lekcji': 'Plan lekcji',
+  '/kalendarz': 'Kalendarz',
+  '/podreczniki': 'Podręczniki',
+  '/dokumenty-szkolne': 'Dokumenty szkolne',
+  '/dokumenty': 'Dokumenty i polityki',
+  '/rodo': 'RODO',
+  '/projekty': 'Projekty',
+  '/erasmus': 'Erasmus+',
+  '/blog': 'Aktualności',
+  '/kontakt': 'Kontakt',
+  '/about': 'About',
+};
+
+const SECTIONS: Record<string, string> = {
+  '/informacje': 'O szkole',
+  '/historia': 'O szkole',
+  '/nasza-spolecznosc': 'O szkole',
+  '/dostepnosc': 'O szkole',
+  '/dyrekcja': 'O szkole',
+  '/grono-pedagogiczne': 'O szkole',
+  '/klienci-i-partnerzy': 'O szkole',
+  '/rekrutacja': 'Oferta',
+  '/kierunki': 'Oferta',
+  '/kierunki-ksztalcenia': 'Oferta',
+  '/lo-dla-doroslych': 'Oferta',
+  '/klasy-mundurowe': 'Oferta',
+  '/klasa-policyjna': 'Oferta',
+  '/egzaminy-zawodowe': 'Oferta',
+  '/dla-uczniow': 'Uczniowie i rodzice',
+  '/dla-rodzicow': 'Uczniowie i rodzice',
+  '/plan-lekcji': 'Uczniowie i rodzice',
+  '/kalendarz': 'Uczniowie i rodzice',
+  '/podreczniki': 'Uczniowie i rodzice',
+  '/dokumenty-szkolne': 'Uczniowie i rodzice',
+  '/dokumenty': 'Uczniowie i rodzice',
+  '/rodo': 'Uczniowie i rodzice',
+  '/projekty': 'Projekty',
+  '/erasmus': 'Projekty',
+  '/blog': 'Projekty',
+};
+
+type Crumb = { href?: string; label: string };
+
+function buildCrumbs(): Crumb[] {
+  if (pathname === '/') return [];
+
+  const crumbs: Crumb[] = [{ href: '/', label: 'Strona główna' }];
+
+  if (pathname.startsWith('/blog/')) {
+    crumbs.push({ href: '/blog', label: 'Aktualności' });
+    if (title) {
+      crumbs.push({ label: title });
+    }
+    return crumbs;
+  }
+
+  const section = SECTIONS[pathname];
+  if (section) {
+    crumbs.push({ label: section });
+  }
+
+  const pageLabel = LABELS[pathname];
+  if (pageLabel && pathname !== '/') {
+    crumbs.push({ label: pageLabel });
+  }
+
+  return crumbs;
+}
+
+const crumbs = buildCrumbs();
+if (crumbs.length === 0) return;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((crumb, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: crumb.label,
+    ...(crumb.href ? { item: new URL(crumb.href, Astro.url.origin).href } : {}),
+  })),
+};
+---
+
+<script set:html={JSON.stringify(jsonLd)} type="application/ld+json"></script>
+
+<nav aria-label="Ścieżka nawigacyjna" class="breadcrumbs">
+  <ol>
+    {crumbs.map((crumb, i) => (
+      <li>
+        {crumb.href ? (
+          <a href={crumb.href}>{crumb.label}</a>
+        ) : (
+          <span aria-current={i === crumbs.length - 1 ? 'page' : undefined}>{crumb.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #6b7280;
+  }
+  :global(.dark) .breadcrumbs {
+    color: #94a3b8;
+  }
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .breadcrumbs li + li::before {
+    content: '/';
+    color: #d1d5db;
+  }
+  :global(.dark) .breadcrumbs li + li::before {
+    color: #1e3a5f;
+  }
+  .breadcrumbs a {
+    transition: color 0.15s ease;
+  }
+  .breadcrumbs a:hover {
+    color: #0070b0;
+    text-decoration: underline;
+  }
+  :global(.dark) .breadcrumbs a:hover {
+    color: #7ed0ff;
+  }
+  .breadcrumbs span[aria-current='page'] {
+    font-weight: 500;
+    color: #111827;
+  }
+  :global(.dark) .breadcrumbs span[aria-current='page'] {
+    color: #f1f5f9;
+  }
+</style>

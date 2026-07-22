@@ -3,6 +3,7 @@ import '../styles/global.css';
 import type { AstroComponentFactory } from 'astro';
 import SkipLink from '../components/SkipLink.astro';
 import MegaNav from '../components/MegaNav.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Footer from '../components/Footer.astro';
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
@@ -44,8 +45,35 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <MegaNav />
     <slot name="hero" />
     <main id="content" class="flex-1 max-w-6xl mx-auto px-4 py-8" tabindex="-1">
+      <Breadcrumbs title={title} />
       <slot />
     </main>
     <Footer />
+    <script>
+      (function() {
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15 });
+
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.reveal').forEach(function (el) {
+              observer.observe(el);
+            });
+          });
+        } else {
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.reveal').forEach(function (el) {
+              el.classList.add('visible');
+            });
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
