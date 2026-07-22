@@ -198,6 +198,7 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
     </div>
 
     <div class="site-search">
+      <label for="search-input" class="sr-only">Szukaj</label>
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"></circle>
         <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -241,6 +242,7 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
       <div class="mobile-nav__backdrop" aria-hidden="true"></div>
       <div id="mobile-nav__panel" class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Nawigacja">
         <div class="mobile-search">
+          <label for="mobile-search-input" class="sr-only">Szukaj</label>
           <input id="mobile-search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
           <div id="mobile-search-results" class="mt-2 hidden overflow-hidden rounded-md border border-gray-100 dark:border-navy-700"></div>
         </div>
@@ -268,7 +270,7 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
     <div class="mega-nav__inner">
       <a href="/" class="mega-nav-link">Strona główna</a>
       {sections.map((section, index) => (
-        <div class="mega-menu">
+        <div class="mega-menu" role="menu">
           <button class="mega-nav-link mega-trigger" type="button" aria-expanded="false" aria-controls={`mega-panel-${index}`} data-mega-trigger>
             {section.title}
             <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -294,7 +296,7 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
                     <ul>
                       {group.links.map(([label, href, desc]) => (
                         <li>
-                          <a class="mega-item" href={href}>
+                          <a class="mega-item" href={href} role="menuitem">
                             <span aria-hidden="true">
                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconForHref(href)} />
                             </span>

@@ -329,10 +329,25 @@ html.dark {
   color-scheme: dark;
 }
 
-html,
-html *,
-html *::before,
-html *::after {
+html {
+  transition: background-color 0.3s ease, color 0.15s ease;
+}
+
+.site-header,
+.card-base,
+.mega-panel__content,
+.mega-item,
+.nav-link,
+.site-icon-button,
+.site-social a,
+.site-quick-links a,
+.btn-primary,
+.btn-secondary,
+.skip-link,
+footer,
+aside,
+section > div,
+article {
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.15s ease;
 }
 
