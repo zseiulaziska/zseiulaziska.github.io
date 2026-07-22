@@ -124,8 +124,31 @@
   @apply relative lg:hidden;
 }
 
+.mobile-nav__backdrop {
+  @apply fixed inset-0 z-40;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.mobile-nav.is-open .mobile-nav__backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .mobile-nav__panel {
-  @apply fixed inset-x-3 top-[4.5rem] max-h-[calc(100vh-5.25rem)] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-2xl dark:border-navy-600 dark:bg-navy-850 sm:inset-x-6;
+  @apply fixed inset-x-3 top-[4.5rem] z-50 max-h-[calc(100vh-5.25rem)] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-2xl dark:border-navy-600 dark:bg-navy-850 sm:inset-x-6;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-nav.is-open .mobile-nav__panel {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .mobile-search {
