@@ -28,7 +28,7 @@ const { sections } = Astro.props;
 <style>
   .toc {
     position: sticky;
-    top: 6rem;
+    top: 8rem;
   }
 
   .toc-toggle {
@@ -134,8 +134,8 @@ const { sections } = Astro.props;
 
   @media (min-width: 1024px) {
     .toc-list {
-      position: sticky;
-      top: 6rem;
+      max-height: calc(100vh - 9rem);
+      overflow-y: auto;
     }
   }
 </style>

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 import { getCollection } from 'astro:content';
+import InfoStructure from '../components/InfoStructure.astro';
 import IconMission from '../components/icons/IconMission.astro';
 import IconStats from '../components/icons/IconStats.astro';
 import IconContact from '../components/icons/IconContact.astro';
@@ -178,38 +179,9 @@ const latestThree = sortedPosts.slice(0, 3);
   </section>
 
 <!-- Struktura organizacyjna -->
-    <section id="struktura" class="reveal max-w-4xl mx-auto mb-16 scroll-mt-20 py-12" >
+    <section id="struktura" class="reveal max-w-4xl mx-auto mb-16 scroll-mt-20 py-12">
       <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Struktura organizacyjna</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="reveal p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
-          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
-            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">Technikum Nr 1</h3>
-          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">5 lat &middot; matura + zawód</p>
-        </div>
-        <div class="reveal p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]" style="transition-delay: 0.1s">
-          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
-            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">Branżowa Szkoła I stopnia</h3>
-          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">3 lata &middot; praktyka zawodowa</p>
-        </div>
-        <div class="reveal p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]" style="transition-delay: 0.2s">
-          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
-            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c3 3 9 3 12 0v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">Branżowa Szkoła II stopnia</h3>
-          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">2 lata &middot; uzupełnienie wykształcenia</p>
-        </div>
-        <div class="reveal p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]" style="transition-delay: 0.3s">
-          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
-            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2"/><path d="M8 7h8M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">LO dla Dorosłych</h3>
-          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">3 lata &middot; zaocznie, bezpłatnie</p>
-        </div>
-      </div>
+      <InfoStructure />
     </section>
 
 

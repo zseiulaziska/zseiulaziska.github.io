@@ -24,8 +24,11 @@ const schools = [
 ---
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-  {schools.map((s) => (
-    <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
+  {schools.map((s, i) => (
+    <div
+      class="reveal p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]"
+      style={i > 0 ? `transition-delay: ${i * 0.1}s` : undefined}
+    >
       <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
         <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true" set:html={s.svg} />
       </div>
