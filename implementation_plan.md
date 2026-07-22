@@ -502,13 +502,6 @@ Dodać `role="menu"` i `role="menuitem"` na elementach mega-menu.
 
 ### Problemy
 
-#### Ogromny obraz w public/
-
-[222_mundurowi.jpg](file:///c:/Users/piotr/Documents/GitHub/zseiulaziska.github.io/public/images/222_mundurowi.jpg) waży **7MB**. Nawet jeśli nie jest aktualnie serwowany, to:
-
-- Zwiększa rozmiar repozytorium
-- Może być przypadkowo podlinkowany
-
 #### Brak Astro `<Image>` optimization
 
 Wszystkie obrazy na stronie używają surowego `<img>` zamiast Astro `<Image>`:
@@ -543,7 +536,6 @@ To dodaje transition do **każdego elementu na stronie** — potencjalne problem
 
 #### P12.1 — Optymalizacja obrazów (Priorytet: 🔴 Wysoki)
 
-- Usunąć lub skompresować `222_mundurowi.jpg` (7MB → ~200KB)
 - Przenieść obrazy z `public/images/` do `src/assets/` i użyć `<Image>` komponentu Astro
 - Dodać `loading="lazy"` na obrazach poniżej fold
 

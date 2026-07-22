@@ -30,7 +30,24 @@ const { title, description, image = FallbackImage } = Astro.props;
 	title={SITE_TITLE}
 	href={new URL('rss.xml', Astro.site)}
 />
-<meta name="generator" content={Astro.generator} />
+	<meta name="generator" content={Astro.generator} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "EducationalOrganization",
+	"name": "Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych",
+	"alternateName": "ZSEiU Łaziska Górne",
+	"url": "https://zseiulaziska.github.io",
+	"address": {
+		"@type": "PostalAddress",
+		"streetAddress": "ul. Chopina 11b",
+		"postalCode": "43-170",
+		"addressLocality": "Łaziska Górne",
+		"addressCountry": "PL"
+	},
+	"telephone": "+48 32 224 24 15",
+	"email": "sekretariat@zseiulaziska.pl"
+})} />
 
 <Font cssVariable="--font-body" preload />
 <Font cssVariable="--font-display" preload />
