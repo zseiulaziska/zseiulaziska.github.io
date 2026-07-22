@@ -1,427 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import staff from '../content/teacher/staff.json';
 
 interface Teacher {
   name: string;
-  role?: string;
   subjects: string[];
 }
 
-const management: Teacher[] = [
-  {
-    name: "Anna Jadasz",
-    role: "Dyrektor",
-    subjects: ["Podstawy turystyki", "Biznes i zarządzanie"],
-  },
-  {
-    name: "Dorota Brudny",
-    role: "Wicedyrektor",
-    subjects: [
-      "Język angielski",
-      "Język angielski rozszerzony",
-      "Zajęcia z wychowawcą",
-      "Godziny do dyspozycji dyrektora - zawodowe kompetencje językowe",
-      "Język angielski w branży logistycznej",
-      "Język angielski w branży turystycznej",
-    ],
-  },
-  {
-    name: "Piotr Dębowski",
-    role: "Kierownik szkolenia praktycznego",
-    subjects: ["Informatyka", "Pracownia stron internetowych", "Pracownia aplikacji internetowych"],
-  },
-];
+const { management, teachers } = staff;
 
-const teachers: Teacher[] = [
-  {
-    name: "Jacek Antoniuk",
-    subjects: ["Informatyka", "Informatyka rozszerzona", "Zajęcia praktyczne"],
-  },
-  {
-    name: "Marian Augustyniak",
-    subjects: [
-      "Pracownia wykonywania połączeń elementów z tworzyw sztucznych",
-      "Pracownia wytwarzania wyrobów z tworzyw sztucznych",
-    ],
-  },
-  {
-    name: "Maciej Bąk",
-    subjects: ["Edukacja dla bezpieczeństwa"],
-  },
-  {
-    name: "Wojciech Błażyca",
-    subjects: [
-      "Historia",
-      "Wiedza o społeczeństwie",
-      "Wiedza o społeczeństwie rozszerzona",
-      "Geografia",
-      "Bezpieczeństwo i higiena pracy",
-    ],
-  },
-  {
-    name: "Ewa Brągiel",
-    subjects: ["Język polski", "Zajęcia z wychowawcą"],
-  },
-  {
-    name: "Danuta Brych",
-    subjects: ["Wychowanie fizyczne", "Zajęcia z wychowawcą"],
-  },
-  {
-    name: "Norbert Burek",
-    subjects: [
-      "Informatyka",
-      "Eksploatacja urządzeń peryferyjnych",
-      "Pracownia eksploatacji urządzeń peryferyjnych",
-      "Pracownia montażu i eksploatacji lokalnej sieci komputerowej",
-      "Montaż, konfiguracja i naprawa lokalnych sieci komputerowych",
-    ],
-  },
-  {
-    name: "Dorota Charzewska",
-    subjects: [
-      "Matematyka",
-      "Matematyka rozszerzona",
-      "Zajęcia z wychowawcą",
-      "Zajęcia dydaktyczno-wyrównawcze",
-    ],
-  },
-  {
-    name: "Katarzyna Chrapiec",
-    subjects: ["Język niemiecki"],
-  },
-  {
-    name: "Renata Ciesielska-Prasoł",
-    subjects: ["Geografia", "Geografia rozszerzona", "Geografia turystyczna"],
-  },
-  {
-    name: "Agnieszka Danisz",
-    subjects: ["Chemia", "Biologia"],
-  },
-  {
-    name: "Agata Drobik",
-    subjects: [
-      "Język angielski",
-      "Język angielski rozszerzony",
-      "Zajęcia z wychowawcą",
-      "Język angielski w branży elektrycznej",
-      "Język angielski w branży turystycznej",
-    ],
-  },
-  {
-    name: "Iwona Dziduch",
-    subjects: ["Geografia", "Geografia rozszerzona"],
-  },
-  {
-    name: "Barbara Erkier",
-    subjects: ["Historia"],
-  },
-  {
-    name: "Marek Fenisz",
-    subjects: ["Religia"],
-  },
-  {
-    name: "Paulina Gaik",
-    subjects: [
-      "Pracownia obsługi turystycznej",
-      "Obsługa turystyczna",
-      "Pracownia rozliczania imprez i usług turystycznych",
-      "Pracownia informacji i promocji turystycznej",
-      "Pracownia organizacji imprez turystycznych",
-    ],
-  },
-  {
-    name: "Zenon Gałązka",
-    subjects: ["Zajęcia praktyczne"],
-  },
-  {
-    name: "Dariusz Grajner",
-    subjects: [
-      "Podstawy logistyki",
-      "Usługi transportowo-spedycyjne",
-      "Dystrybucja",
-      "Procesy transportowe w logistyce",
-      "Pracownia montażu systemów energetyki odnawialnej",
-      "Systemy energetyki odnawialnej",
-      "Pracownia eksploatacji systemów energetyki odnawialnej",
-    ],
-  },
-  {
-    name: "Paulina Gwóźdź",
-    subjects: [
-      "Logistyka zaopatrzenia i produkcji",
-      "Zapasy i magazynowanie",
-      "Procesy transportowe w logistyce",
-      "Dokumentacja logistyczna",
-    ],
-  },
-  {
-    name: "Zofia Haluch",
-    subjects: ["Język polski", "Zajęcia z wychowawcą"],
-  },
-  {
-    name: "Małgorzata Herman",
-    subjects: ["Dystrybucja", "Organizacja pracy magazynów"],
-  },
-  {
-    name: "Oliwia Hupka-Holecka",
-    subjects: [
-      "Podstawy turystyki",
-      "Pracownia organizacji imprez i usług turystycznych",
-      "Pracownia obsługi turystycznej",
-      "Zajęcia z wychowawcą",
-      "Organizacja imprez i usług turystycznych",
-      "Obsługa turystyczna",
-      "Marketing usług turystycznych",
-      "Pracownia rozliczania imprez i usług turystycznych",
-      "Pracownia informacji i promocji turystycznej",
-      "Działalność gospodarcza w turystyce",
-      "Usługi turystyczne",
-    ],
-  },
-  {
-    name: "Bernadeta Ignacy",
-    subjects: [
-      "Rysunek techniczny",
-      "Podstawy konstrukcji maszyn",
-      "Technologia przetwórstwa tworzyw sztucznych",
-      "Eksploatacja maszyn i urządzeń",
-      "Technologia konstrukcji mechanicznych",
-      "Podstawy budowy maszyn i urządzeń",
-      "Procesy wytwarzania wyrobów z tworzyw sztucznych",
-    ],
-  },
-  {
-    name: "Agata Kalita-Bojdoł",
-    subjects: [
-      "Matematyka",
-      "Matematyka rozszerzona",
-      "Zajęcia z wychowawcą",
-      "Zajęcia dydaktyczno-wyrównawcze",
-    ],
-  },
-  {
-    name: "Ilona Karwot",
-    subjects: ["Język polski", "Zajęcia z wychowawcą", "Obowiązki bibliotekarza"],
-  },
-  {
-    name: "Jan Kaźmierczak",
-    subjects: [
-      "Język angielski",
-      "Język angielski rozszerzony",
-      "Zajęcia z wychowawcą",
-      "Język angielski zawodowy",
-      "Język angielski w branży informatycznej",
-      "Język angielski w branży elektrycznej",
-      "Język angielski w branży logistycznej",
-      "Język angielski w branży turystycznej",
-    ],
-  },
-  {
-    name: "Bartosz Kiszewski",
-    subjects: [
-      "Informatyka",
-      "Informatyka rozszerzona",
-      "Urządzenia techniki komputerowej",
-      "Montaż i eksploatacja urządzeń techniki komputerowej",
-      "Naprawa urządzeń techniki komputerowej",
-      "Pracownia naprawy urządzeń techniki komputerowej",
-    ],
-  },
-  {
-    name: "Alina Kozdoń-Majdzik",
-    subjects: ["Instalacje elektryczne", "Maszyny i urządzenia elektryczne"],
-  },
-  {
-    name: "Anna Krzemień",
-    subjects: ["Wychowanie do życia w rodzinie", "Religia"],
-  },
-  {
-    name: "Agnieszka Leszczyńska",
-    subjects: [
-      "Zajęcia z wychowawcą",
-      "Logistyka zaopatrzenia i produkcji",
-      "Zapasy i magazynowanie",
-      "Usługi transportowo-spedycyjne",
-      "Planowanie produkcji i dystrybucji",
-      "Procesy transportowe w logistyce",
-      "Procesy magazynowe",
-      "Dokumentacja logistyczna",
-      "Pracownia magazynowa",
-    ],
-  },
-  {
-    name: "Piotr Majdzik",
-    subjects: [
-      "Montaż uruchamianie i konserwacja maszyn i urządzeń elektrycznych",
-      "Montaż uruchamianie i konserwacja instalacji elektrycznych",
-    ],
-  },
-  {
-    name: "Michał Małyska",
-    subjects: ["Wychowanie fizyczne", "Zajęcia z wychowawcą"],
-  },
-  {
-    name: "Krzysztof Marekwia",
-    subjects: [
-      "Administrowanie systemami operacyjnymi",
-      "Informatyka",
-      "Informatyka rozszerzona",
-      "Lokalne sieci komputerowe",
-      "Systemy operacyjne",
-      "Programowanie aplikacji internetowych",
-      "Eksploatacja urządzeń sieciowych",
-      "Montaż i eksploatacja lokalnej sieci komputerowej",
-      "Administrowanie serwerowymi systemami operacyjnymi",
-      "Projektowanie i tworzenie stron internetowych",
-      "Pracownia eksploatacji urządzeń sieciowych",
-      "Pracownia administrowania serwerowymi systemami operacyjnymi",
-    ],
-  },
-  {
-    name: "Dariusz Mildner",
-    subjects: [
-      "Podstawy turystyki",
-      "Wychowanie fizyczne",
-      "Organizacja imprez i usług turystycznych",
-      "Obsługa turystyczna",
-      "Marketing usług turystycznych",
-    ],
-  },
-  {
-    name: "Katarzyna Nitkowska",
-    subjects: ["Język niemiecki", "Zajęcia z wychowawcą"],
-  },
-  {
-    name: "Mariola Ostafińska",
-    subjects: ["Język angielski", "Język angielski rozszerzony", "Język angielski w branży turystycznej"],
-  },
-  {
-    name: "Mariola Paduch",
-    subjects: ["Chemia"],
-  },
-  {
-    name: "Maria Pawełczyk",
-    subjects: ["Usługi transportowo-spedycyjne", "Procesy transportowe"],
-  },
-  {
-    name: "Ireneusz Pietrasz",
-    subjects: [
-      "Historia",
-      "Wiedza o społeczeństwie",
-      "Zajęcia z wychowawcą",
-      "Filozofia",
-      "Historia i teraźniejszość",
-    ],
-  },
-  {
-    name: "Agnieszka Pilarska",
-    subjects: ["Obowiązki pedagoga", "Obowiązki pedagoga specjalnego"],
-  },
-  {
-    name: "Alicja Popenda",
-    subjects: ["Język polski"],
-  },
-  {
-    name: "Irena Radomska",
-    subjects: ["Język polski", "Podstawy przedsiębiorczości", "Doradztwo zawodowe", "Biznes i zarządzanie"],
-  },
-  {
-    name: "Elżbieta Rataj",
-    subjects: ["Zapasy i magazynowanie", "Planowanie produkcji i dystrybucji", "Pracownia magazynowa"],
-  },
-  {
-    name: "Jolanta Rejnisz",
-    subjects: [
-      "Fizyka",
-      "Geografia",
-      "Bezpieczeństwo i higiena pracy",
-      "Pracownia organizacji eksploatacji złóż",
-      "Eksploatacja maszyn i urządzeń",
-      "Technologia konstrukcji mechanicznych",
-    ],
-  },
-  {
-    name: "Dominika Romanek",
-    subjects: ["Język niemiecki", "Zajęcia z wychowawcą"],
-  },
-  {
-    name: "Honorata Skrzypiec",
-    subjects: [
-      "Język angielski",
-      "Język angielski rozszerzony",
-      "Zajęcia z wychowawcą",
-      "Język angielski w branży logistycznej",
-    ],
-  },
-  {
-    name: "Krystian Skubij",
-    subjects: ["Historia"],
-  },
-  {
-    name: "Andrzej Stępień",
-    subjects: [
-      "Pracownia instalacji i urządzeń do wytwarzania energii elektrycznej",
-      "Pracownia instalacji i urządzeń do wytwarzania energii cieplnej",
-    ],
-  },
-  {
-    name: "Marcelina Suchanek",
-    subjects: [
-      "Zajęcia z wychowawcą",
-      "Instalacje elektryczne",
-      "Maszyny i urządzenia elektryczne",
-      "Elektrotechnika i elektronika",
-      "Eksploatacja maszyn, urządzeń i instalacji elektrycznych",
-      "Pomiary w elektrotechnice i elektronice",
-      "Montaż uruchamianie i konserwacja instalacji elektrycznych",
-      "Wytwarzanie energii elektrycznej",
-      "Wytwarzanie energii cieplnej",
-      "Elektrotechnika i mechatronika",
-    ],
-  },
-  {
-    name: "Wioletta Syrek",
-    subjects: ["Matematyka", "Matematyka rozszerzona"],
-  },
-  {
-    name: "Tadeusz Szczypka",
-    subjects: ["Fizyka", "Maszyny i urządzenia górnicze"],
-  },
-  {
-    name: "Beata Szlejter",
-    subjects: ["Obowiązki bibliotekarza", "Zajęcia korekcyjno-kompensacyjne", "Obowiązki pedagoga specjalnego"],
-  },
-  {
-    name: "Andrzej Szymczyk",
-    subjects: ["Wychowanie fizyczne", "Zajęcia z wychowawcą"],
-  },
-  {
-    name: "Agnieszka Tkacz",
-    subjects: ["Obowiązki psychologa"],
-  },
-  {
-    name: "Sławomir Tokarz",
-    subjects: ["Taktyka i techniki interwencji w służbach mundurowych"],
-  },
-  {
-    name: "Teresa Truś",
-    subjects: [
-      "Podstawy logistyki",
-      "Usługi transportowo-spedycyjne",
-      "Planowanie produkcji i dystrybucji",
-      "Procesy transportowe w logistyce",
-      "Procesy magazynowe",
-      "Dokumentacja logistyczna",
-    ],
-  },
-  {
-    name: "Mirosław Wojtynek",
-    subjects: ["Zajęcia praktyczne"],
-  },
-];
-
-const sorted = [...teachers].sort((a, b) => a.name.localeCompare(b.name, "pl"));
+const lastName = (name: string) => name.split(' ').pop() ?? name;
+const sorted: Teacher[] = [...teachers].sort((a, b) => lastName(a.name).localeCompare(lastName(b.name), "pl"));
 const total = management.length + sorted.length;
+
+const colors = [
+  'from-primary-400 to-primary-600',
+  'from-emerald-400 to-emerald-600',
+  'from-violet-400 to-violet-600',
+  'from-amber-400 to-amber-600',
+  'from-rose-400 to-rose-600',
+  'from-cyan-400 to-cyan-600',
+  'from-fuchsia-400 to-fuchsia-600',
+  'from-lime-400 to-lime-600',
+  'from-orange-400 to-orange-600',
+  'from-teal-400 to-teal-600',
+];
+function avatarColor(name: string): string {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return colors[Math.abs(hash) % colors.length];
+}
+function initials(name: string): string {
+  const parts = name.split(' ');
+  return parts.length >= 2 ? parts[0][0] + parts[parts.length - 1][0] : name[0];
+}
 ---
 
 <Layout>
@@ -458,7 +70,7 @@ const total = management.length + sorted.length;
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {
-          management.map((person) => (
+          management.map((person: any) => (
             <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.03),4px_4px_12px_rgba(0,0,0,0.06)] hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.03),6px_6px_20px_rgba(0,0,0,0.1)] transition-all duration-300 text-center">
               <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-primary-100 to-primary-200 dark:from-navy-700 dark:to-navy-600 flex items-center justify-center mb-4 shadow-md">
                 <span class="text-2xl font-bold text-primary-700 dark:text-primary-300" >
@@ -470,7 +82,7 @@ const total = management.length + sorted.length;
                 {person.role}
               </span>
               <ul class="mt-4 space-y-1">
-                {person.subjects.map((s) => (
+                {person.subjects.map((s: string) => (
                   <li class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{s}</li>
                 ))}
               </ul>
@@ -485,13 +97,34 @@ const total = management.length + sorted.length;
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center" >
         Nauczyciele
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+
+      <!-- Filter -->
+      <div class="max-w-md mx-auto mb-8">
+        <div class="relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input
+            type="search"
+            id="teacher-search"
+            placeholder="Szukaj nauczyciela lub przedmiotu..."
+            class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-navy-600 bg-white dark:bg-navy-800/90 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
+          />
+        </div>
+      </div>
+
+      <div id="teacher-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
         {
-          sorted.map((person) => (
-            <div class="p-5 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),6px_6px_20px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-300">
-              <p class="font-semibold text-slate-900 dark:text-white">{person.name}</p>
+          sorted.map((person: Teacher) => (
+            <div class="teacher-card p-5 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),6px_6px_20px_rgba(0,0,0,0.08)] hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-300">
+              <div class="flex items-center gap-3 mb-3">
+                <div class={`w-10 h-10 rounded-full bg-gradient-to-br ${avatarColor(person.name)} flex items-center justify-center shadow-sm flex-shrink-0`}>
+                  <span class="text-sm font-bold text-white">{initials(person.name)}</span>
+                </div>
+                <p class="font-semibold text-slate-900 dark:text-white">{person.name}</p>
+              </div>
               <div class="mt-3 flex flex-wrap gap-1.5">
-                {person.subjects.map((s) => (
+                {person.subjects.map((s: string) => (
                   <span class="inline-block px-2.5 py-0.5 rounded-lg bg-slate-50 dark:bg-navy-700/60 text-xs text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-navy-500 leading-relaxed">
                     {s}
                   </span>
@@ -501,6 +134,7 @@ const total = management.length + sorted.length;
           ))
         }
       </div>
+      <p id="no-results" class="hidden text-center text-slate-500 dark:text-slate-400 mt-8">Brak wyników</p>
     </section>
 
     <!-- Footer note -->
@@ -509,3 +143,27 @@ const total = management.length + sorted.length;
     </p>
   </article>
 </Layout>
+
+<script>
+  const search = document.getElementById('teacher-search') as HTMLInputElement | null;
+  const grid = document.getElementById('teacher-grid');
+  const noResults = document.getElementById('no-results');
+
+  if (search && grid && noResults) {
+    const cards = grid.querySelectorAll<HTMLDivElement>('.teacher-card');
+
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase().trim();
+      let count = 0;
+
+      for (const card of cards) {
+        const text = card.textContent?.toLowerCase() || '';
+        const match = !q || text.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) count++;
+      }
+
+      noResults.classList.toggle('hidden', count > 0);
+    });
+  }
+</script>

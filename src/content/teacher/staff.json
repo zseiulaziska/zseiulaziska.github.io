@@ -1,0 +1,428 @@
+{
+  "management": [
+    {
+      "name": "Anna Jadasz",
+      "role": "Dyrektor",
+      "subjects": ["Podstawy turystyki", "Biznes i zarządzanie"]
+    },
+    {
+      "name": "Dorota Brudny",
+      "role": "Wicedyrektor",
+      "subjects": [
+        "Język angielski",
+        "Język angielski rozszerzony",
+        "Zajęcia z wychowawcą",
+        "Godziny do dyspozycji dyrektora - zawodowe kompetencje językowe",
+        "Język angielski w branży logistycznej",
+        "Język angielski w branży turystycznej"
+      ]
+    },
+    {
+      "name": "Piotr Dębowski",
+      "role": "Kierownik szkolenia praktycznego",
+      "subjects": [
+        "Informatyka",
+        "Pracownia stron internetowych",
+        "Pracownia aplikacji internetowych"
+      ]
+    }
+  ],
+  "teachers": [
+    {
+      "name": "Anna Jadasz",
+      "role": "Dyrektor",
+      "subjects": ["Podstawy turystyki", "Biznes i zarządzanie"]
+    },
+    {
+      "name": "Dorota Brudny",
+      "role": "Wicedyrektor",
+      "subjects": [
+        "Język angielski",
+        "Język angielski rozszerzony",
+        "Zajęcia z wychowawcą",
+        "Godziny do dyspozycji dyrektora - zawodowe kompetencje językowe",
+        "Język angielski w branży logistycznej",
+        "Język angielski w branży turystycznej"
+      ]
+    },
+    {
+      "name": "Piotr Dębowski",
+      "role": "Kierownik szkolenia praktycznego",
+      "subjects": [
+        "Informatyka",
+        "Pracownia stron internetowych",
+        "Pracownia aplikacji internetowych"
+      ]
+    },
+    {
+      "name": "Jacek Antoniuk",
+      "subjects": [
+        "Informatyka",
+        "Informatyka rozszerzona",
+        "Zajęcia praktyczne"
+      ]
+    },
+    {
+      "name": "Marian Augustyniak",
+      "subjects": [
+        "Pracownia wykonywania połączeń elementów z tworzyw sztucznych",
+        "Pracownia wytwarzania wyrobów z tworzyw sztucznych"
+      ]
+    },
+    { "name": "Maciej Bąk", "subjects": ["Edukacja dla bezpieczeństwa"] },
+    {
+      "name": "Wojciech Błażyca",
+      "subjects": [
+        "Historia",
+        "Wiedza o społeczeństwie",
+        "Wiedza o społeczeństwie rozszerzona",
+        "Geografia",
+        "Bezpieczeństwo i higiena pracy"
+      ]
+    },
+    {
+      "name": "Ewa Brągiel",
+      "subjects": ["Język polski", "Zajęcia z wychowawcą"]
+    },
+    {
+      "name": "Danuta Brych",
+      "subjects": ["Wychowanie fizyczne", "Zajęcia z wychowawcą"]
+    },
+    {
+      "name": "Norbert Burek",
+      "subjects": [
+        "Informatyka",
+        "Eksploatacja urządzeń peryferyjnych",
+        "Pracownia eksploatacji urządzeń peryferyjnych",
+        "Pracownia montażu i eksploatacji lokalnej sieci komputerowej",
+        "Montaż, konfiguracja i naprawa lokalnych sieci komputerowych"
+      ]
+    },
+    {
+      "name": "Dorota Charzewska",
+      "subjects": [
+        "Matematyka",
+        "Matematyka rozszerzona",
+        "Zajęcia z wychowawcą",
+        "Zajęcia dydaktyczno-wyrównawcze"
+      ]
+    },
+    { "name": "Katarzyna Chrapiec", "subjects": ["Język niemiecki"] },
+    {
+      "name": "Renata Ciesielska-Prasoł",
+      "subjects": [
+        "Geografia",
+        "Geografia rozszerzona",
+        "Geografia turystyczna"
+      ]
+    },
+    { "name": "Agnieszka Danisz", "subjects": ["Chemia", "Biologia"] },
+    {
+      "name": "Agata Drobik",
+      "subjects": [
+        "Język angielski",
+        "Język angielski rozszerzony",
+        "Zajęcia z wychowawcą",
+        "Język angielski w branży elektrycznej",
+        "Język angielski w branży turystycznej"
+      ]
+    },
+    {
+      "name": "Iwona Dziduch",
+      "subjects": ["Geografia", "Geografia rozszerzona"]
+    },
+    { "name": "Barbara Erkier", "subjects": ["Historia"] },
+    { "name": "Marek Fenisz", "subjects": ["Religia"] },
+    {
+      "name": "Paulina Gaik",
+      "subjects": [
+        "Pracownia obsługi turystycznej",
+        "Obsługa turystyczna",
+        "Pracownia rozliczania imprez i usług turystycznych",
+        "Pracownia informacji i promocji turystycznej",
+        "Pracownia organizacji imprez turystycznych"
+      ]
+    },
+    { "name": "Zenon Gałązka", "subjects": ["Zajęcia praktyczne"] },
+    {
+      "name": "Dariusz Grajner",
+      "subjects": [
+        "Podstawy logistyki",
+        "Usługi transportowo-spedycyjne",
+        "Dystrybucja",
+        "Procesy transportowe w logistyce",
+        "Pracownia montażu systemów energetyki odnawialnej",
+        "Systemy energetyki odnawialnej",
+        "Pracownia eksploatacji systemów energetyki odnawialnej"
+      ]
+    },
+    {
+      "name": "Paulina Gwóźdź",
+      "subjects": [
+        "Logistyka zaopatrzenia i produkcji",
+        "Zapasy i magazynowanie",
+        "Procesy transportowe w logistyce",
+        "Dokumentacja logistyczna"
+      ]
+    },
+    {
+      "name": "Zofia Haluch",
+      "subjects": ["Język polski", "Zajęcia z wychowawcą"]
+    },
+    {
+      "name": "Małgorzata Herman",
+      "subjects": ["Dystrybucja", "Organizacja pracy magazynów"]
+    },
+    {
+      "name": "Oliwia Hupka-Holecka",
+      "subjects": [
+        "Podstawy turystyki",
+        "Pracownia organizacji imprez i usług turystycznych",
+        "Pracownia obsługi turystycznej",
+        "Zajęcia z wychowawcą",
+        "Organizacja imprez i usług turystycznych",
+        "Obsługa turystyczna",
+        "Marketing usług turystycznych",
+        "Pracownia rozliczania imprez i usług turystycznych",
+        "Pracownia informacji i promocji turystycznej",
+        "Działalność gospodarcza w turystyce",
+        "Usługi turystyczne"
+      ]
+    },
+    {
+      "name": "Bernadeta Ignacy",
+      "subjects": [
+        "Rysunek techniczny",
+        "Podstawy konstrukcji maszyn",
+        "Technologia przetwórstwa tworzyw sztucznych",
+        "Eksploatacja maszyn i urządzeń",
+        "Technologia konstrukcji mechanicznych",
+        "Podstawy budowy maszyn i urządzeń",
+        "Procesy wytwarzania wyrobów z tworzyw sztucznych"
+      ]
+    },
+    {
+      "name": "Agata Kalita-Bojdoł",
+      "subjects": [
+        "Matematyka",
+        "Matematyka rozszerzona",
+        "Zajęcia z wychowawcą",
+        "Zajęcia dydaktyczno-wyrównawcze"
+      ]
+    },
+    {
+      "name": "Ilona Karwot",
+      "subjects": [
+        "Język polski",
+        "Zajęcia z wychowawcą",
+        "Obowiązki bibliotekarza"
+      ]
+    },
+    {
+      "name": "Jan Kaźmierczak",
+      "subjects": [
+        "Język angielski",
+        "Język angielski rozszerzony",
+        "Zajęcia z wychowawcą",
+        "Język angielski zawodowy",
+        "Język angielski w branży informatycznej",
+        "Język angielski w branży elektrycznej",
+        "Język angielski w branży logistycznej",
+        "Język angielski w branży turystycznej"
+      ]
+    },
+    {
+      "name": "Alina Kozdoń-Majdzik",
+      "subjects": ["Instalacje elektryczne", "Maszyny i urządzenia elektryczne"]
+    },
+    {
+      "name": "Anna Krzemień",
+      "subjects": ["Wychowanie do życia w rodzinie", "Religia"]
+    },
+    {
+      "name": "Agnieszka Leszczyńska",
+      "subjects": [
+        "Zajęcia z wychowawcą",
+        "Logistyka zaopatrzenia i produkcji",
+        "Zapasy i magazynowanie",
+        "Usługi transportowo-spedycyjne",
+        "Planowanie produkcji i dystrybucji",
+        "Procesy transportowe w logistyce",
+        "Procesy magazynowe",
+        "Dokumentacja logistyczna",
+        "Pracownia magazynowa"
+      ]
+    },
+    {
+      "name": "Piotr Majdzik",
+      "subjects": [
+        "Montaż uruchamianie i konserwacja maszyn i urządzeń elektrycznych",
+        "Montaż uruchamianie i konserwacja instalacji elektrycznych"
+      ]
+    },
+    {
+      "name": "Michał Małyska",
+      "subjects": ["Wychowanie fizyczne", "Zajęcia z wychowawcą"]
+    },
+    {
+      "name": "Krzysztof Marekwia",
+      "subjects": [
+        "Administrowanie systemami operacyjnymi",
+        "Informatyka",
+        "Informatyka rozszerzona",
+        "Lokalne sieci komputerowe",
+        "Systemy operacyjne",
+        "Programowanie aplikacji internetowych",
+        "Eksploatacja urządzeń sieciowych",
+        "Montaż i eksploatacja lokalnej sieci komputerowej",
+        "Administrowanie serwerowymi systemami operacyjnymi",
+        "Projektowanie i tworzenie stron internetowych",
+        "Pracownia eksploatacji urządzeń sieciowych",
+        "Pracownia administrowania serwerowymi systemami operacyjnymi"
+      ]
+    },
+    {
+      "name": "Dariusz Mildner",
+      "subjects": [
+        "Podstawy turystyki",
+        "Wychowanie fizyczne",
+        "Organizacja imprez i usług turystycznych",
+        "Obsługa turystyczna",
+        "Marketing usług turystycznych"
+      ]
+    },
+    {
+      "name": "Katarzyna Nitkowska",
+      "subjects": ["Język niemiecki", "Zajęcia z wychowawcą"]
+    },
+    {
+      "name": "Mariola Ostafińska",
+      "subjects": [
+        "Język angielski",
+        "Język angielski rozszerzony",
+        "Język angielski w branży turystycznej"
+      ]
+    },
+    { "name": "Mariola Paduch", "subjects": ["Chemia"] },
+    {
+      "name": "Maria Pawełczyk",
+      "subjects": ["Usługi transportowo-spedycyjne", "Procesy transportowe"]
+    },
+    {
+      "name": "Ireneusz Pietrasz",
+      "subjects": [
+        "Historia",
+        "Wiedza o społeczeństwie",
+        "Zajęcia z wychowawcą",
+        "Filozofia",
+        "Historia i teraźniejszość"
+      ]
+    },
+    {
+      "name": "Agnieszka Pilarska",
+      "subjects": ["Obowiązki pedagoga", "Obowiązki pedagoga specjalnego"]
+    },
+    { "name": "Alicja Popenda", "subjects": ["Język polski"] },
+    {
+      "name": "Irena Radomska",
+      "subjects": [
+        "Język polski",
+        "Podstawy przedsiębiorczości",
+        "Doradztwo zawodowe",
+        "Biznes i zarządzanie"
+      ]
+    },
+    {
+      "name": "Elżbieta Rataj",
+      "subjects": [
+        "Zapasy i magazynowanie",
+        "Planowanie produkcji i dystrybucji",
+        "Pracownia magazynowa"
+      ]
+    },
+    {
+      "name": "Jolanta Rejnisz",
+      "subjects": [
+        "Fizyka",
+        "Geografia",
+        "Bezpieczeństwo i higiena pracy",
+        "Pracownia organizacji eksploatacji złóż",
+        "Eksploatacja maszyn i urządzeń",
+        "Technologia konstrukcji mechanicznych"
+      ]
+    },
+    {
+      "name": "Dominika Romanek",
+      "subjects": ["Język niemiecki", "Zajęcia z wychowawcą"]
+    },
+    {
+      "name": "Honorata Skrzypiec",
+      "subjects": [
+        "Język angielski",
+        "Język angielski rozszerzony",
+        "Zajęcia z wychowawcą",
+        "Język angielski w branży logistycznej"
+      ]
+    },
+    { "name": "Krystian Skubij", "subjects": ["Historia"] },
+    {
+      "name": "Andrzej Stępień",
+      "subjects": [
+        "Pracownia instalacji i urządzeń do wytwarzania energii elektrycznej",
+        "Pracownia instalacji i urządzeń do wytwarzania energii cieplnej"
+      ]
+    },
+    {
+      "name": "Marcelina Suchanek",
+      "subjects": [
+        "Zajęcia z wychowawcą",
+        "Instalacje elektryczne",
+        "Maszyny i urządzenia elektryczne",
+        "Elektrotechnika i elektronika",
+        "Eksploatacja maszyn, urządzeń i instalacji elektrycznych",
+        "Pomiary w elektrotechnice i elektronice",
+        "Montaż uruchamianie i konserwacja instalacji elektrycznych",
+        "Wytwarzanie energii elektrycznej",
+        "Wytwarzanie energii cieplnej",
+        "Elektrotechnika i mechatronika"
+      ]
+    },
+    {
+      "name": "Wioletta Syrek",
+      "subjects": ["Matematyka", "Matematyka rozszerzona"]
+    },
+    {
+      "name": "Tadeusz Szczypka",
+      "subjects": ["Fizyka", "Maszyny i urządzenia górnicze"]
+    },
+    {
+      "name": "Beata Szlejter",
+      "subjects": [
+        "Obowiązki bibliotekarza",
+        "Zajęcia korekcyjno-kompensacyjne",
+        "Obowiązki pedagoga specjalnego"
+      ]
+    },
+    {
+      "name": "Andrzej Szymczyk",
+      "subjects": ["Wychowanie fizyczne", "Zajęcia z wychowawcą"]
+    },
+    { "name": "Agnieszka Tkacz", "subjects": ["Obowiązki psychologa"] },
+    {
+      "name": "Sławomir Tokarz",
+      "subjects": ["Taktyka i techniki interwencji w służbach mundurowych"]
+    },
+    {
+      "name": "Teresa Truś",
+      "subjects": [
+        "Podstawy logistyki",
+        "Usługi transportowo-spedycyjne",
+        "Planowanie produkcji i dystrybucji",
+        "Procesy transportowe w logistyce",
+        "Procesy magazynowe",
+        "Dokumentacja logistyczna"
+      ]
+    },
+    { "name": "Mirosław Wojtynek", "subjects": ["Zajęcia praktyczne"] }
+  ]
+}

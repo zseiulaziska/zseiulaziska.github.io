@@ -1,0 +1,36 @@
+---
+const schools = [
+  {
+    name: 'Technikum Nr 1',
+    desc: '5 lat &middot; matura + zawód',
+    svg: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+  },
+  {
+    name: 'Branżowa Szkoła I stopnia',
+    desc: '3 lata &middot; praktyka zawodowa',
+    svg: '<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>',
+  },
+  {
+    name: 'Branżowa Szkoła II stopnia',
+    desc: '2 lata &middot; uzupełnienie wykształcenia',
+    svg: '<path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c3 3 9 3 12 0v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  },
+  {
+    name: 'LO dla Dorosłych',
+    desc: '3 lata &middot; zaocznie, bezpłatnie',
+    svg: '<path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2"/><path d="M8 7h8M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  },
+];
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  {schools.map((s) => (
+    <div class="p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]">
+      <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mx-auto">
+        <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" aria-hidden="true" set:html={s.svg} />
+      </div>
+      <h3 class="mt-4 font-semibold text-slate-900 dark:text-white">{s.name}</h3>
+      <p class="mt-1 text-sm text-slate-500 dark:text-slate-400"><Fragment set:html={s.desc} /></p>
+    </div>
+  ))}
+</div>
