@@ -24,19 +24,51 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <slot name="head" />
     <script is:inline>
       (function() {
-        var storage = 'theme';
-        var stored = localStorage.getItem(storage);
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var doc = document.documentElement;
+        var themeStorage = 'theme';
+        var contrastStorage = 'contrast';
+        var stored = null;
+        var contrast = null;
+        var media = null;
+
+        try {
+          stored = localStorage.getItem(themeStorage);
+          contrast = localStorage.getItem(contrastStorage);
+        } catch (e) {}
+
+        try {
+          media = window.matchMedia('(prefers-color-scheme: dark)');
+        } catch (e) {}
+
+        var prefersDark = media ? media.matches : false;
         if (stored === 'dark' || (!stored && prefersDark)) {
-          document.documentElement.classList.add('dark');
+          doc.classList.add('dark');
         } else {
-          document.documentElement.classList.remove('dark');
+          doc.classList.remove('dark');
         }
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-          if (!localStorage.getItem(storage)) {
-            document.documentElement.classList.toggle('dark', e.matches);
+
+        if (contrast === 'high') {
+          doc.classList.add('high-contrast');
+          doc.classList.add('dark');
+        }
+
+        function syncSystemTheme(e) {
+          try {
+            if (!localStorage.getItem(themeStorage)) {
+              doc.classList.toggle('dark', e.matches);
+            }
+          } catch (err) {
+            doc.classList.toggle('dark', e.matches);
           }
-        });
+        }
+
+        if (media) {
+          if (typeof media.addEventListener === 'function') {
+            media.addEventListener('change', syncSystemTheme);
+          } else if (typeof media.addListener === 'function') {
+            media.addListener(syncSystemTheme);
+          }
+        }
       })();
     </script>
   </head>
@@ -44,7 +76,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <SkipLink />
     <MegaNav />
     <slot name="hero" />
-    <main id="content" class="flex-1 w-full min-w-0 max-w-6xl mx-auto px-4 py-8" tabindex="-1">
+    <main id="content" class="flex-1 w-full min-w-0 max-w-6xl mx-auto px-4 py-8" tabindex="-1" data-pagefind-body>
       <Breadcrumbs title={title} />
       <slot />
     </main>

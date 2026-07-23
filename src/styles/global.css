@@ -334,6 +334,10 @@ html.dark {
   color-scheme: dark;
 }
 
+html.high-contrast {
+  color-scheme: dark;
+}
+
 html {
   transition: background-color 0.3s ease, color 0.15s ease;
 }
@@ -384,6 +388,127 @@ body {
 
 html.dark body {
   @apply bg-navy-900 text-slate-200;
+}
+
+html.high-contrast body {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+html.high-contrast .site-header,
+html.high-contrast .mega-nav,
+html.high-contrast .mega-panel__content,
+html.high-contrast .mobile-nav__panel,
+html.high-contrast .mobile-search,
+html.high-contrast .search-popover,
+html.high-contrast .search-result-item,
+html.high-contrast .card-base,
+html.high-contrast .teacher-card,
+html.high-contrast .stat-card,
+html.high-contrast .skill-card,
+html.high-contrast .tech-chip,
+html.high-contrast .filter-btn,
+html.high-contrast .mega-item,
+html.high-contrast .mega-highlight,
+html.high-contrast .site-quick-links,
+html.high-contrast footer,
+html.high-contrast article,
+html.high-contrast aside,
+html.high-contrast section > div,
+html.high-contrast pre,
+html.high-contrast table,
+html.high-contrast th,
+html.high-contrast td {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+html.high-contrast a,
+html.high-contrast .mega-nav-link,
+html.high-contrast .nav-link,
+html.high-contrast .mega-item strong,
+html.high-contrast .mega-highlight strong,
+html.high-contrast .site-quick-links a,
+html.high-contrast .site-social a {
+  color: #ffff00 !important;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+html.high-contrast p,
+html.high-contrast span,
+html.high-contrast small,
+html.high-contrast li,
+html.high-contrast h1,
+html.high-contrast h2,
+html.high-contrast h3,
+html.high-contrast h4,
+html.high-contrast strong,
+html.high-contrast label,
+html.high-contrast time {
+  color: #fff !important;
+}
+
+html.high-contrast input,
+html.high-contrast textarea,
+html.high-contrast select {
+  background: #000 !important;
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+html.high-contrast input::placeholder,
+html.high-contrast textarea::placeholder {
+  color: #d4d4d4 !important;
+}
+
+html.high-contrast .site-icon-button,
+html.high-contrast button,
+html.high-contrast .btn-secondary {
+  background: #000 !important;
+  border: 2px solid #fff !important;
+  color: #fff !important;
+}
+
+html.high-contrast .site-icon-button:hover,
+html.high-contrast .site-icon-button:focus-visible,
+html.high-contrast .site-icon-button[aria-pressed="true"],
+html.high-contrast button:hover,
+html.high-contrast button:focus-visible,
+html.high-contrast .btn-primary,
+html.high-contrast .btn-secondary:hover {
+  background: #ffff00 !important;
+  border-color: #ffff00 !important;
+  color: #000 !important;
+}
+
+html.high-contrast .site-icon-button[aria-pressed="true"] svg,
+html.high-contrast button:hover svg,
+html.high-contrast button:focus-visible svg {
+  color: #000 !important;
+}
+
+html.high-contrast .mega-nav-link:focus-visible,
+html.high-contrast .mega-item:focus-visible,
+html.high-contrast .mega-highlight:focus-visible,
+html.high-contrast .nav-link:focus-visible,
+html.high-contrast .search-result-item:focus-visible,
+html.high-contrast .skip-link:focus-visible {
+  outline: 3px solid #ffff00 !important;
+  outline-offset: 2px !important;
+}
+
+html.high-contrast mark {
+  background: #ffff00 !important;
+  color: #000 !important;
+}
+
+html.high-contrast ::selection {
+  background: #ffff00 !important;
+  color: #000 !important;
 }
 
 ::selection {
