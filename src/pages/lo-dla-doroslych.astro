@@ -2,51 +2,232 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="LO dla Dorosłych - ZSEiU Łaziska Górne" description="Liceum Ogólnokształcące dla Dorosłych w ZSEiU Łaziska Górne. Nauka w systemie zaocznym.">
+<Layout title="LO dla Dorosłych – ZSEiU Łaziska Górne" description="Liceum Ogólnokształcące dla Dorosłych w ZSEiU Łaziska Górne. Nauka w systemie zaocznym, zajęcia w weekendy, bezpłatna edukacja dla dorosłych.">
 
-  <article class="max-w-3xl mx-auto px-4 sm:px-0">
+  <article class="w-full max-w-5xl mx-auto min-w-0">
 
-    <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 sm:mb-6 pb-3 sm:pb-4 border-b-2 border-primary-200 dark:border-primary-800 leading-tight" >Liceum Ogólnokształcące dla Dorosłych</h1>
+    <!-- HERO -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-slate-900 via-navy-950 to-slate-900 dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 border border-slate-700/50 dark:border-navy-700/50 p-5 sm:p-10 mb-10 w-full">
+      <div class="cyber-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -top-20 -right-20 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/20 text-primary-300 border border-primary-500/30 mb-4">Kształcenie dla dorosłych w ZSEiU</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">Liceum Ogólnokształcące <span class="text-transparent bg-clip-text bg-linear-to-r from-primary-300 via-primary-400 to-blue-400">dla Dorosłych</span></h1>
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed wrap-break-word">Uzupełnij wykształcenie średnie i uzyskaj świadectwo dojrzałości w systemie zaocznym – bezpłatnie, w weekendy, w przyjaznej atmosferze.</p>
+      </div>
+    </div>
 
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-8 sm:mt-10 mb-3 sm:mb-4 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug" >O szkole</h2>
+    <!-- STATYSTYKI -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 my-10 w-full">
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="3">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">lata nauki</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="100">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span>%</span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">bezpłatna nauka</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="2">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">dni w tygodniu<br />(piątki i&nbsp;soboty)</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="4">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">przedmioty maturalne</span>
+      </div>
+    </div>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
+    <!-- O SZKOLE -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">O szkole</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
       Liceum Ogólnokształcące dla Dorosłych w Zespole Szkół Energetycznych i Usługowych w Łaziskach Górnych to szkoła zaoczna przeznaczona dla osób dorosłych, które chcą uzupełnić wykształcenie średnie i uzyskać świadectwo dojrzałości umożliwiające przystąpienie do egzaminu maturalnego.
     </p>
 
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-8 sm:mt-10 mb-3 sm:mb-4 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug" >Forma nauczania</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center text-primary-600 dark:text-primary-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Dla kogo?</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Dla absolwentów szkół branżowych i zasadniczych szkół zawodowych, którzy pragną zdobyć wykształcenie średnie i przystąpić do matury.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center text-primary-600 dark:text-primary-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Cel kształcenia</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Przygotowanie do egzaminu maturalnego oraz uzyskanie świadectwa ukończenia liceum ogólnokształcącego dla dorosłych.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
+    <!-- FORMA NAUCZANIA -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Forma nauczania</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
       Nauka odbywa się w systemie zaocznym – zajęcia prowadzone są w weekendy (piątki i soboty) zgodnie z obowiązującym planem. Cykl kształcenia trwa 3 lata (dla absolwentów szkół branżowych i zasadniczych szkół zawodowych).
     </p>
 
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-8 sm:mt-10 mb-3 sm:mb-4 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug" >Koszty</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">System zaoczny</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Zajęcia w piątki i soboty – dostosowane do osób pracujących</p>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Czas trwania</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">3 lata – od absolwentów szkół branżowych</p>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Plan zajęć</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Aktualny plan dostępny w zakładce <a href="/plan-zajec-lo" class="text-primary-600 dark:text-primary-400 hover:underline">Plan zajęć LO</a></p>
+      </div>
+    </div>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
-      Nauka w Liceum Ogólnokształcącym dla Dorosłych jest bezpłatna.
+    <!-- KOSZTY I REKRUTACJA -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 sm:p-6 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="shrink-0 w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Koszty</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          Nauka w Liceum Ogólnokształcącym dla Dorosłych jest <strong class="text-slate-900 dark:text-white">bezpłatna</strong>. Nie pobiera się opłat za czesne ani wpisowe.
+        </p>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 sm:p-6 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="shrink-0 w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Rekrutacja</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          Rekrutacja odbywa się zgodnie z harmonogramem publikowanym na stronie szkoły. Szczegółowe informacje dotyczące zasad i terminów dostępne są w zakładce <a href="/rekrutacja" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">Rekrutacja</a> oraz w sekretariacie szkoły.
+        </p>
+      </div>
+    </div>
+
+    <!-- PRZEDMIOTY MATURALNE -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Przedmioty maturalne</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      W trakcie nauki w LO dla Dorosłych słuchacze przygotowują się do egzaminu maturalnego z przedmiotów obowiązkowych oraz wybranych przedmiotów dodatkowych.
     </p>
 
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-8 sm:mt-10 mb-3 sm:mb-4 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug" >Rekrutacja</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 min-w-0">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-primary-500 shrink-0"></span>
+          Obowiązkowe (poziom podstawowy)
+        </h3>
+        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 shrink-0"></span>Język polski</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 shrink-0"></span>Matematyka</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 shrink-0"></span>Język obcy nowożytny</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 min-w-0">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span>
+          Dodatkowe (do wyboru)
+        </h3>
+        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-300 dark:bg-blue-600 shrink-0"></span>Biologia</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-300 dark:bg-blue-600 shrink-0"></span>Geografia</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-300 dark:bg-blue-600 shrink-0"></span>Historia</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-300 dark:bg-blue-600 shrink-0"></span>Wiedza o społeczeństwie</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-300 dark:bg-blue-600 shrink-0"></span>Informatyka</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-300 dark:bg-blue-600 shrink-0"></span>Język angielski (poziom rozszerzony)</li>
+        </ul>
+      </div>
+    </div>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
-      Rekrutacja do Liceum Ogólnokształcącego dla Dorosłych odbywa się zgodnie z harmonogramem publikowanym na stronie szkoły. Szczegółowe informacje dotyczące zasad i terminów rekrutacji dostępne są w zakładce <a href="/rekrutacja" class="text-primary-600 dark:text-primary-400 hover:underline">Rekrutacja</a> oraz w sekretariacie szkoły.
+    <!-- DOKUMENTY -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Dokumenty</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Statut Liceum Ogólnokształcącego dla Dorosłych oraz inne niezbędne dokumenty dostępne są w zakładce <a href="/dokumenty" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">Dokumenty szkolne</a>.
     </p>
 
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-8 sm:mt-10 mb-3 sm:mb-4 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug" >Dokumenty</h2>
+    <!-- KONTAKT -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Kontakt</h2>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
-      Statut Liceum Ogólnokształcącego dla Dorosłych oraz inne niezbędne dokumenty dostępne są w zakładce <a href="/dokumenty-szkolne" class="text-primary-600 dark:text-primary-400 hover:underline">Dokumenty szkolne</a>.
-    </p>
-
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-8 sm:mt-10 mb-3 sm:mb-4 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug" >Kontakt</h2>
-
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
-      W sprawach związanych z funkcjonowaniem Liceum Ogólnokształcącego dla Dorosłych zapraszamy do kontaktu z sekretariatem szkoły:<br />
-      <strong class="text-slate-900 dark:text-white">Zespół Szkół Energetycznych i Usługowych</strong><br />
-      ul. Chopina 11b, 43-170 Łaziska Górne<br />
-      tel. 32 224 24 15<br />
-      e-mail: <a href="mailto:sekretariat@zseiulaziska.pl" class="text-primary-600 dark:text-primary-400 hover:underline">sekretariat@zseiulaziska.pl</a>
-    </p>
+    <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 sm:p-6 mb-16 hover:shadow-md transition-all duration-300">
+      <div class="flex items-start gap-3 sm:gap-4">
+        <div class="shrink-0 w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center text-primary-600 dark:text-primary-400 mt-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div class="min-w-0 flex-1">
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            W sprawach związanych z funkcjonowaniem Liceum Ogólnokształcącego dla Dorosłych zapraszamy do kontaktu z sekretariatem szkoły:
+          </p>
+          <div class="mt-3 space-y-1 text-sm sm:text-base">
+            <p><strong class="text-slate-900 dark:text-white">Zespół Szkół Energetycznych i Usługowych</strong></p>
+            <p class="text-slate-600 dark:text-slate-400">ul. Chopina 11b, 43-170 Łaziska Górne</p>
+            <p class="text-slate-600 dark:text-slate-400">tel. 32 224 24 15</p>
+            <p class="text-slate-600 dark:text-slate-400">e-mail: <a href="mailto:sekretariat@zseiulaziska.pl" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">sekretariat@zseiulaziska.pl</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </article>
+
 </Layout>
+
+<script>
+  (function () {
+    const cards = document.querySelectorAll('.stat-card');
+    if ('IntersectionObserver' in window) {
+      const animateValue = (el: Element, target: number) => {
+        let current = 0;
+        const step = Math.ceil(target / 30);
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current.toString();
+        }, 30);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const card = entry.target as HTMLElement;
+            const valueEl = card.querySelector('.stat-value');
+            const targetCount = parseInt(card.getAttribute('data-count-to') || '0', 10);
+            if (valueEl && targetCount) {
+              animateValue(valueEl, targetCount);
+            }
+            observer.unobserve(card);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      cards.forEach((card) => { observer.observe(card); });
+    }
+  })();
+</script>

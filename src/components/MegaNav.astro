@@ -61,7 +61,7 @@ const sections = [
         links: [
           ['Dla uczniów', '/dla-uczniow', 'Informacje i zasoby dla uczniów'],
           ['Dla rodziców', '/dla-rodzicow', 'Komunikaty dla opiekunów'],
-          ['Plan lekcji', '/plan-lekcji-vulcan', 'Aktualny plan zajęć'],
+          ['Plan lekcji', '/plan-lekcji', 'Aktualny plan zajęć'],
           ['Kalendarz', '/kalendarz', 'Rok szkolny i ważne terminy'],
         ],
       },
@@ -69,8 +69,7 @@ const sections = [
         title: 'Dokumenty',
         links: [
           ['Podręczniki', '/podreczniki', 'Wykazy podręczników'],
-          ['Dokumenty szkolne', '/dokumenty-szkolne', 'Statuty, regulaminy i formularze'],
-          ['Dokumenty i polityki', '/dokumenty', 'Procedury i informacje formalne'],
+          ['Dokumenty szkolne', '/dokumenty', 'Statuty, regulaminy, procedury i formularze'],
           ['RODO', '/rodo', 'Ochrona danych osobowych'],
         ],
       },
@@ -78,7 +77,7 @@ const sections = [
         title: 'Liceum dla Dorosłych',
         links: [
           ['LO dla Dorosłych', '/lo-dla-doroslych', 'Nauka w systemie zaocznym'],
-          ['Plan lekcji', '/plan-lekcji', 'Aktualny plan zajęć'],
+          ['Plan lekcji', '/plan-zajec-lo', 'Aktualny plan zajęć'],
         ],
       },
     ],
@@ -101,8 +100,8 @@ const sections = [
 ];
 
 const quickLinks = [
-  ['Plan lekcji', 'https://zseiulaziska.github.io/plan-lekcji-vulcan'],  
-  ['Plan LO dla dorosłych', '/plan-lekcji'],
+  ['Plan lekcji', '/plan-lekcji'],  
+  ['Plan LO dla dorosłych', '/plan-zajec-lo'],
   ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'],
   ['Rekrutacja', '/rekrutacja'],
 ];
@@ -142,10 +141,10 @@ const linkIcons = {
   '/informatyk': 'terminal',
   '/dla-uczniow': 'graduation',
   '/dla-rodzicow': 'people',
-  '/plan-lekcji': 'calendar',
+  '/plan-zajec-lo': 'calendar',
   '/kalendarz': 'calendar-days',
   '/podreczniki': 'book',
-  '/dokumenty-szkolne': 'file',
+  '/dokumenty': 'file',
   '/dokumenty': 'clipboard',
   '/rodo': 'shield',
   '/projekty': 'spark',
@@ -197,7 +196,10 @@ const iconForHref = (href: string) => {
 
     <div class="site-emblems" aria-label="Symbole państwowe i powiatowe">
       <img src="/images/Herb_Polski.svg" alt="Godło Polski" />
+      <img src="/images/Coat_of_arms_of_Upper_Silesia.svg" alt="Herb Śląska" />
       <img src="/images/Herb_powiatu.svg" alt="Herb powiatu mikołowskiego" />
+
+    
     </div>
 
     <div class="site-quick-links" aria-label="Szybkie linki">

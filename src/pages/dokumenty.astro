@@ -3,14 +3,80 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Dokumenty - ZSEiU Łaziska Górne" description="Dokumenty szkolne ZSEiU Łaziska Górne. Statuty, regulaminy, procedury i formularze do pobrania.">
-  <article class="prose max-w-4xl mx-auto dark:prose-invert">
-    <h1>Dokumenty i polityki</h1>
-    <p>W tej sekcji znajdują się odnośniki do najważniejszych dokumentów szkoły.</p>
 
-    <ul>
-      <li><a href="/dokumenty/Statut-Technikum-Nr-1-01-09-2023.pdf" target="_blank">Statut Technikum Nr 1 w Łaziskach Górnych</a></li>
-      <li><a href="/dokumenty/Statut-BSISv1.3-01.09.2023.pdf" target="_blank">Statut Branżowej Szkoły I Stopnia w Łaziskach Górnych</a></li>
-      <li><a href="/dokumenty/StatutLOdlaDorosych01.09.2023.pdf" target="_blank">Statut Liceum Ogólnokształcącego dla Dorosłych w Łaziskach Górnych</a></li>
-    </ul>
+  <article class="w-full max-w-5xl mx-auto min-w-0">
+
+    <!-- HERO -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-slate-900 via-navy-950 to-slate-900 dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 border border-slate-700/50 dark:border-navy-700/50 p-5 sm:p-10 mb-10 w-full">
+      <div class="cyber-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -top-20 -right-20 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/20 text-primary-300 border border-primary-500/30 mb-4">Dokumentacja szkolna</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">Dokumenty <span class="text-transparent bg-clip-text bg-linear-to-r from-primary-300 via-primary-400 to-blue-400">i polityki</span></h1>
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed wrap-break-word">Statuty, regulaminy, procedury i formularze – wszystkie najważniejsze dokumenty ZSEiU w jednym miejscu.</p>
+      </div>
+    </div>
+
+    <!-- STATUTY -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Statuty szkół</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Statuty poszczególnych jednostek organizacyjnych ZSEiU określają prawa i obowiązki uczniów, organizację pracy szkoły oraz zasady funkcjonowania placówki.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 w-full">
+      <a href="/dokumenty/Statut-Technikum-Nr-1-01-09-2023.pdf" target="_blank" class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300 block min-w-0">
+        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors wrap-break-word">Statut Technikum Nr 1</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">PDF &middot; aktualizacja 01.09.2023</p>
+      </a>
+      <a href="/dokumenty/Statut-BSISv1.3-01.09.2023.pdf" target="_blank" class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300 block min-w-0">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors wrap-break-word">Statut Branżowej Szkoły I Stopnia</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">PDF &middot; aktualizacja 01.09.2023</p>
+      </a>
+      <a href="/dokumenty/StatutLOdlaDorosych01.09.2023.pdf" target="_blank" class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300 block min-w-0">
+        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors wrap-break-word">Statut LO dla Dorosłych</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">PDF &middot; aktualizacja 01.09.2023</p>
+      </a>
+    </div>
+
+    <!-- REGULAMINY I POLITYKI -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Regulaminy i polityki</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Dokumenty regulujące funkcjonowanie szkoły oraz procedury ochronne i organizacyjne.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 min-w-0">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </span>
+          <h3 class="font-bold text-slate-900 dark:text-white">Standardy ochrony małoletnich</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Procedury i polityki ochrony dzieci i młodzieży przed krzywdzeniem obowiązujące w ZSEiU.</p>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 min-w-0">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center text-red-600 dark:text-red-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+          </span>
+          <h3 class="font-bold text-slate-900 dark:text-white">RODO / Ochrona danych osobowych</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Informacje dotyczące przetwarzania danych osobowych uczniów i rodziców w ZSEiU.</p>
+      </div>
+    </div>
+
   </article>
+
 </Layout>

@@ -1,0 +1,46 @@
+---
+import dniWolne from '../content/kalendarz/dni-wolne.json';
+
+interface DniWolneRow {
+  date: string;
+  dayOfWeek: string;
+  reason: string;
+  status: string;
+  statusVariant: string;
+}
+
+const statusStyles: Record<string, string> = {
+  default: 'bg-slate-100 dark:bg-navy-700 text-slate-700 dark:text-slate-300',
+  exam: 'bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300',
+  vocational: 'bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300',
+};
+
+const rows = dniWolne.rows as DniWolneRow[];
+---
+
+<div class="overflow-x-auto rounded-2xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 shadow-xs mb-12">
+  <table class="w-full text-left border-collapse min-w-[600px]">
+    <thead>
+      <tr class="bg-slate-50 dark:bg-navy-800 border-b border-slate-200 dark:border-navy-700 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+        <th class="py-4 px-5">Data / Okres</th>
+        <th class="py-4 px-5">Dzień tygodnia</th>
+        <th class="py-4 px-5">Przyczyna / Okazja</th>
+        <th class="py-4 px-5">Status zajęć</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 dark:divide-navy-700 text-sm text-slate-700 dark:text-slate-300">
+      {rows.map((row) => (
+        <tr class="hover:bg-slate-50/50 dark:hover:bg-navy-800/40 transition-colors">
+          <td class="py-4 px-5 text-lg font-bold text-primary-600 dark:text-primary-400">{row.date}</td>
+          <td class="py-4 px-5">{row.dayOfWeek}</td>
+          <td class="py-4 px-5">{row.reason}</td>
+          <td class="py-4 px-5">
+            <span class={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${statusStyles[row.statusVariant] || statusStyles.default}`}>
+              {row.status}
+            </span>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

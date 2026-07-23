@@ -1,0 +1,44 @@
+{
+  "meetings": [
+    {
+      "date": "15 września",
+      "time": "Godz. 17:00",
+      "timeVariant": "blue",
+      "title": "Zebranie organizacyjne",
+      "description": "Pierwsze zebranie z rodzicami, wybór Trójek Klasowych oraz przedstawienie wymagań edukacyjnych.",
+      "colSpan": false
+    },
+    {
+      "date": "17 listopada",
+      "time": "Godz. 17:00",
+      "timeVariant": "blue",
+      "title": "Wywiadówka i konsultacje",
+      "description": "Informacja o ocenach cząstkowych i frekwencji oraz konsultacje indywidualne z nauczycielami.",
+      "colSpan": false
+    },
+    {
+      "date": "19 stycznia",
+      "time": "Godz. 17:00",
+      "timeVariant": "blue",
+      "title": "Wywiadówka półroczna",
+      "description": "Podsumowanie wyników klasyfikacji za I półrocze oraz omówienie sukcesów i frekwencji uczniów.",
+      "colSpan": false
+    },
+    {
+      "date": "13 kwietnia",
+      "time": "Godz. 17:00",
+      "timeVariant": "purple",
+      "title": "Zebranie klas maturalnych",
+      "description": "Przekazanie informacji o ocenach przewidywanych dla absolwentów oraz procedurach maturalnych.",
+      "colSpan": false
+    },
+    {
+      "date": "18 maja",
+      "time": "Godz. 17:00",
+      "timeVariant": "blue",
+      "title": "Konsultacje końcoworoczne (Klasy I–IV)",
+      "description": "Informacja o przewidywanych ocenach rocznych i ocenach z zachowania przed końcową klasyfikacją.",
+      "colSpan": false
+    }
+  ]
+}

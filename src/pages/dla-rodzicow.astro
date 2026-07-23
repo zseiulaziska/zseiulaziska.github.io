@@ -1,17 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DlaRodzicowSection from '../components/DlaRodzicowSection.astro';
+import KalendarzSpotkania from '../components/KalendarzSpotkania.astro';
 ---
 
-<Layout title="Dla rodziców - ZSEiU Łaziska Górne" description="Informacje dla rodziców uczniów ZSEiU Łaziska Górne. Komunikaty, dokumenty i kontakty.">
-  <article class="prose max-w-4xl mx-auto dark:prose-invert">
-    <h1>Dla rodziców</h1>
-    <p>Informacje i komunikaty dla rodziców, w tym wzór wniosku o dofinansowanie podręczników oraz terminarz spotkań w roku szkolnym 2025/2026.</p>
-    <h2>Terminy spotkań z rodzicami 2025/2026</h2>
-    <ul>
-      <li>10.09.2025 — Zebranie informacyjne dla rodziców klas pierwszych</li>
-      <li>10.09.2025 — Zebranie informacyjne dla rodziców klas starszych</li>
-      <li>05.11.2025 — Wywiadówka dla wszystkich klas</li>
-      <li>03.06.2026 — Zebranie rodziców wszystkich klas</li>
-    </ul>
+<Layout title="Dla Rodziców - ZSEiU Łaziska Górne" description="Informacje dla rodziców i opiekunów uczniów ZSEiU w Łaziskach Górnych: terminy zebrań, wywiadówki, konsultacje i dokumenty.">
+
+  <DlaRodzicowSection slot="hero" />
+
+  <article class="w-full max-w-5xl mx-auto min-w-0 px-6 md:px-12">
+
+    <!-- SEKCJA: TERMINY SPOTKAŃ Z RODZICAMI -->
+    <div class="mt-16 mb-6 border-l-4 border-primary-500 pl-3 sm:pl-4">
+      <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Terminy spotkań z rodzicami i wywiadówek</h2>
+    </div>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-8 wrap-break-word">
+      Harmonogram ogólnych zebrań z rodzicami, wywiadówek półrocznych oraz indywidualnych konsultacji z nauczycielami i wychowawcami w roku szkolnym.
+    </p>
+
+    <KalendarzSpotkania />
+
+    <!-- SEKCJA: DODATKOWE INFORMACJE -->
+    <div class="mt-12 mb-6 border-l-4 border-primary-500 pl-3 sm:pl-4">
+      <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Przydatne informacje</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-6 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Dokumenty do pobrania</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Wnioski, deklaracje i inne dokumenty dostępne dla rodziców w sekcji Dokumenty szkoły.</p>
+        <a href="/informacje#dokumenty" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+          Przejdź do dokumentów
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+        </a>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-6 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Kontakt ze szkołą</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Sekretariat czynny od poniedziałku do piątku w godz. 7:00–15:00. Telefon: 32 224 11 22.</p>
+        <a href="/informacje#kontakt" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+          Zobacz dane kontaktowe
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+
   </article>
+
 </Layout>

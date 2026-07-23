@@ -1,10 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DlaUczniowSection from '../components/DlaUczniowSection.astro';
+import KalendarzDniWolne from '../components/KalendarzDniWolne.astro';
 ---
 
-<Layout title="Dla uczniów - ZSEiU Łaziska Górne" description="Informacje dla uczniów ZSEiU Łaziska Górne. Plan lekcji, kalendarz, dokumenty i ważne komunikaty.">
-  <article class="prose max-w-4xl mx-auto dark:prose-invert">
-    <h1>Technikum / BS1S</h1>
-    <p>Informacje dla uczniów i słuchaczy, plan lekcji, dziennik elektroniczny i zasoby.</p>
+<Layout title="Dla Uczniów - ZSEiU Łaziska Górne" description="Informacje dla uczniów ZSEiU w Łaziskach Górnych: dodatkowe dni wolne, plan lekcji, egzaminy i przydatne linki.">
+
+  <DlaUczniowSection slot="hero" />
+
+  <article class="w-full max-w-5xl mx-auto min-w-0 px-6 md:px-12">
+
+    <!-- SEKCJA: DODATKOWE DNI WOLNE -->
+    <div class="mt-16 mb-6 border-l-4 border-primary-500 pl-3 sm:pl-4">
+      <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Dodatkowe dni wolne od zajęć dydaktyczno-wychowawczych</h2>
+    </div>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-8 wrap-break-word">
+      Dni ustalone przez Dyrektora ZSEiU, w których nie odbywają się zajęcia dydaktyczne. W tych dniach szkoła organizuje zajęcia opiekuńczo-wychowawcze.
+    </p>
+
+    <KalendarzDniWolne />
+
+    <!-- SEKCJA: PRZYDATNE INFORMACJE -->
+    <div class="mt-12 mb-6 border-l-4 border-primary-500 pl-3 sm:pl-4">
+      <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Przydatne informacje</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-6 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Plan lekcji</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Aktualny plan zajęć dla wszystkich klas technikum i szkoły branżowej na bieżący rok szkolny.</p>
+        <a href="/plan-zajec-lo" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+          Zobacz plan lekcji
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+        </a>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-6 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-800/40 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Egzaminy zawodowe i maturalne</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Harmonogram egzaminów potwierdzających kwalifikacje w zawodzie oraz sesji maturalnych.</p>
+        <a href="/kalendarz" class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+          Zobacz kalendarz
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+
   </article>
+
 </Layout>

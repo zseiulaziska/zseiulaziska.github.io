@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Plan lekcji - ZSEiU Łaziska Górne</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style is:global>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #16213e;
+  --primary: #e94560;
+  --primary-dark: #c73e54;
+  --accent: #0f3460;
+  --text: #eaeaea;
+  --text2: #a0a0b0;
+  --card-bg: #1e1e36;
+  --border: #2a2a45;
+  --okno: #2d4a22;
+  --okno-bg: #1e3a1a;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+header {
+  background: var(--surface);
+  padding: 12px 16px;
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+select {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 16px;
+  font-weight: 600;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.header-info {
+  font-size: 12px;
+  color: var(--text2);
+  text-align: center;
+  margin-top: 4px;
+}
+main {
+  padding: 8px 12px;
+  padding-bottom: calc(16px + var(--safe-bottom));
+  max-width: 600px;
+  margin: 0 auto;
+}
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+}
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader p { color: var(--text2); font-size: 14px; }
+.error {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--primary);
+}
+.error p { margin-bottom: 12px; }
+.error button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text2);
+  font-size: 14px;
+}
+.date-group {
+  margin-bottom: 12px;
+}
+.date-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.date-header.today {
+  color: var(--primary);
+}
+.date-header .date-badge {
+  background: var(--surface2);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+.lesson {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  transition: opacity 0.2s;
+}
+.lesson.empty {
+  opacity: 0.35;
+}
+.lesson-nr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  min-width: 36px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text2);
+  background: var(--surface2);
+}
+.lesson-body {
+  flex: 1;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lesson-subject {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+.lesson.empty .lesson-subject {
+  color: var(--text2);
+  font-weight: 400;
+  font-size: 13px;
+}
+.lesson-time {
+  font-size: 11px;
+  color: var(--text2);
+}
+.now-indicator {
+  background: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 20px;
+  margin-left: 8px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.day-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.day-tabs::-webkit-scrollbar { display: none; }
+.day-tab {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.day-tab.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.day-tab.today {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.day-tab.active.today {
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  main { max-width: 1200px; padding: 16px 24px; }
+  .lesson-subject { font-size: 18px; }
+  .schedule-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .schedule-row .date-group {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+  }
+  .schedule-row .date-group.prev-day,
+  .schedule-row .date-group.next-day {
+    opacity: 0.45;
+    transform: scale(0.95);
+  }
+  .schedule-row .date-group.prev-day .date-header,
+  .schedule-row .date-group.next-day .date-header {
+    color: var(--text2);
+    font-weight: 400;
+  }
+  .schedule-row .date-group.prev-day .lesson,
+  .schedule-row .date-group.next-day .lesson {
+    opacity: 0.7;
+  }
+  .schedule-row .date-group.prev-day .lesson.empty,
+  .schedule-row .date-group.next-day .lesson.empty {
+    opacity: 0.25;
+  }
+  .schedule-row .date-group.current-day {
+    flex: 1.3;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-top">
+    <h1>ZSEiU - LO</h1>
+    <select id="classSelect"></select>
+  </div>
+  <div class="day-tabs" id="dayTabs"></div>
+</header>
+
+<main id="app">
+  <div class="loader">
+    <div class="spinner"></div>
+    <p>Ładowanie planu lekcji...</p>
+  </div>
+</main>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbzYPxvMsGeyF2EJifCNa3quATvk3rnsaqcf04mlgMrCnCZ1iSI_k3YI9W3LFEcUJ9S4/exec';
+const CACHE_KEY = 'planLekcji:v2';
+const SELECTED_CLASS_KEY = 'planLekcji:selectedClass';
+
+const DAY_NAMES = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
+const MONTH_NAMES = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+
+const SUBJECT_MAP = {
+  'm': 'Matematyka',
+  'jp': 'Język polski',
+  'ja': 'Język angielski',
+  'w': 'Wiedza o społeczeństwie',
+  'i': 'Informatyka',
+  'g': 'Geografia',
+  'b': 'Biologia',
+  'ch': 'Chemia',
+  'f': 'Fizyka',
+  'h': 'Historia',
+};
+
+const SUBJECT_COLORS = {
+  'm': '#4fc3f7',
+  'jp': '#e94560',
+  'ja': '#ffb74d',
+  'w': '#81c784',
+  'i': '#ce93d8',
+  'g': '#a1887f',
+  'b': '#66bb6a',
+  'ch': '#ef5350',
+  'f': '#42a5f5',
+  'h': '#ff8a65',
+};
+
+interface Lesson {
+  nr: string | number;
+  subject: string;
+  start: string;
+  stop: string;
+}
+
+type ClassSchedule = Record<string, Lesson[]>;
+type PlanData = Record<string, ClassSchedule>;
+
+interface PlanPayload {
+  data: PlanData;
+  updatedAt?: string | null;
+}
+
+let allData: PlanData | null = null;
+let selectedDayIdx = -1;
+let latestUpdatedAt: string | null = null;
+let classSelectReady = false;
+
+function parseTime(t: string): string {
+  return t;
+}
+
+function parseDateKey(key: string): Date {
+  const d = new Date(key);
+  return d;
+}
+
+function formatDateHeader(d: Date): string {
+  const day = DAY_NAMES[d.getDay()];
+  const date = d.getDate();
+  const month = MONTH_NAMES[d.getMonth()];
+  const year = d.getFullYear();
+  return `${day}, ${date} ${month} ${year}`;
+}
+
+function formatDateShort(d: Date): string {
+  return `${d.getDate()}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
+}
+
+function isToday(d: Date): boolean {
+  const t = new Date();
+  return d.getFullYear() === t.getFullYear() && d.getMonth() === t.getMonth() && d.getDate() === t.getDate();
+}
+
+function getNowLesson(): number {
+  const now = new Date();
+  const h = now.getHours();
+  const m = now.getMinutes();
+  return h * 60 + m;
+}
+
+function normalizePlanPayload(payload: any): PlanPayload {
+  return {
+    data: payload && payload.data ? payload.data : payload,
+    updatedAt: payload && payload.updatedAt ? payload.updatedAt : null
+  };
+}
+
+function readCachedPlan(): PlanPayload | null {
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    return cached ? normalizePlanPayload(JSON.parse(cached)) : null;
+  } catch {
+    localStorage.removeItem(CACHE_KEY);
+    return null;
+  }
+}
+
+function writeCachedPlan(payload: any) {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+  } catch {}
+}
+
+function readSelectedClass(): string | null {
+  try {
+    return localStorage.getItem(SELECTED_CLASS_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function writeSelectedClass(className: string) {
+  try {
+    localStorage.setItem(SELECTED_CLASS_KEY, className);
+  } catch {}
+}
+
+function getApiUrl(): string {
+  const separator = API_URL.includes('?') ? '&' : '?';
+  return `${API_URL}${separator}_=${Date.now()}`;
+}
+
+async function fetchData(): Promise<PlanPayload> {
+  const res = await fetch(getApiUrl(), { cache: 'no-store' });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const payload = await res.json();
+  writeCachedPlan(payload);
+  return normalizePlanPayload(payload);
+}
+
+function applyPlanPayload(payload: PlanPayload | null) {
+  if (!payload || !payload.data || (payload.data as any).error) {
+    throw new Error((payload?.data as any)?.error || 'Brak danych planu lekcji');
+  }
+
+  allData = payload.data;
+  latestUpdatedAt = payload.updatedAt ?? null;
+  populateClasses(allData);
+  const app = document.getElementById('app');
+  if (app) app.innerHTML = '';
+  render();
+}
+
+function render() {
+  const app = document.getElementById('app');
+  const select = document.getElementById('classSelect') as HTMLSelectElement | null;
+  const dayTabs = document.getElementById('dayTabs');
+  if (!app || !select || !dayTabs) return;
+
+  const selected = select.value;
+
+  if (!allData || !allData[selected]) {
+    app.innerHTML = `<div class="empty-state"><p>Brak danych dla klasy ${selected}</p></div>`;
+    dayTabs.innerHTML = '';
+    return;
+  }
+
+  const classData = allData[selected];
+  const dateKeys = Object.keys(classData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+  const nowMin = getNowLesson();
+  let html = '';
+
+  const todayTabIdx = selectedDayIdx >= 0 ? selectedDayIdx : (() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let best = -1;
+    for (let i = 0; i < dateKeys.length; i++) {
+      const d = parseDateKey(dateKeys[i]);
+      d.setHours(0, 0, 0, 0);
+      if (d.getTime() === today.getTime()) return i;
+      if (d > today && best === -1) best = i;
+    }
+    return best >= 0 ? best : 0;
+  })();
+
+  dayTabs.innerHTML = `<div class="day-tab" data-idx="-1" style="display:none"></div>`;
+  dateKeys.forEach((key, idx) => {
+    const d = parseDateKey(key);
+    const active = idx === todayTabIdx;
+    const todayClass = isToday(d) ? ' today' : '';
+    dayTabs.innerHTML += `<div class="day-tab${todayClass}${active ? ' active' : ''}" data-idx="${idx}">${formatDateShort(d)}</div>`;
+  });
+
+  function renderDay(key: string, idx: number, extraClass: string) {
+    const d = parseDateKey(key);
+    const lessons: Lesson[] = classData[key] || [];
+    const todayClass = isToday(d) ? ' today' : '';
+    let h = `<div class="date-group${extraClass}" data-date-idx="${idx}">`;
+    h += `<div class="date-header${todayClass}">`;
+    h += `<span>${formatDateHeader(d)}</span>`;
+    if (isToday(d)) h += `<span class="date-badge">Dzisiaj</span>`;
+    h += `</div>`;
+
+    lessons.forEach((lesson: Lesson) => {
+      const raw = lesson.subject.trim();
+      const isEmpty = !raw;
+      const nr = lesson.nr;
+      const start = parseTime(lesson.start);
+      const stop = parseTime(lesson.stop);
+      const subjectKey = raw.toLowerCase();
+      const displayName = (SUBJECT_MAP as Record<string, string>)[subjectKey] || raw;
+      const color = (SUBJECT_COLORS as Record<string, string>)[subjectKey] || null;
+
+      const isNow = isToday(d) && (() => {
+        const startParts = start.split(':');
+        const stopParts = stop.split(':');
+        
+        if (startParts.length < 2 || stopParts.length < 2) return false;
+        
+        const sn = parseInt(startParts[0], 10) * 60 + parseInt(startParts[1], 10);
+        const en = parseInt(stopParts[0], 10) * 60 + parseInt(stopParts[1], 10);
+        
+        return nowMin >= sn && nowMin < en;
+      })();
+
+      const accent = color ? ` style="border-left:4px solid ${color}"` : '';
+      h += `<div class="lesson${isEmpty ? ' empty' : ''}"${accent}>`;
+      h += `<div class="lesson-nr">${nr}</div>`;
+      h += `<div class="lesson-body">`;
+      if (isEmpty) {
+        h += `<div class="lesson-subject">---</div>`;
+      } else {
+        h += `<div class="lesson-subject"${color ? ` style="color:${color}"` : ''}>${displayName}${isNow ? '<span class="now-indicator">TERAZ</span>' : ''}</div>`;
+      }
+      h += `<div class="lesson-time">${start} - ${stop}</div>`;
+      h += `</div></div>`;
+    });
+
+    h += `</div>`;
+    return h;
+  }
+
+  const desktop = window.innerWidth >= 768;
+  if (desktop) {
+    const prevIdx = todayTabIdx > 0 ? todayTabIdx - 1 : -1;
+    const nextIdx = todayTabIdx < dateKeys.length - 1 ? todayTabIdx + 1 : -1;
+    html = `<div class="schedule-row">`;
+    if (prevIdx >= 0) html += renderDay(dateKeys[prevIdx], prevIdx, ' prev-day');
+    html += renderDay(dateKeys[todayTabIdx], todayTabIdx, ' current-day');
+    if (nextIdx >= 0) html += renderDay(dateKeys[nextIdx], nextIdx, ' next-day');
+    html += `</div>`;
+    if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    dateKeys.forEach((key, idx) => {
+      html += renderDay(key, idx, '');
+    });
+  }
+
+  app.innerHTML = html;
+
+  setupScrollSpy();
+
+  if (todayTabIdx >= 0) {
+    setTimeout(() => scrollToDate(todayTabIdx), 100);
+  }
+}
+
+let scrollObserver: IntersectionObserver | null = null;
+
+function setupScrollSpy() {
+  if (scrollObserver) scrollObserver.disconnect();
+  if (window.innerWidth >= 768) return;
+  const groups = document.querySelectorAll('.date-group');
+  if (!groups.length) return;
+
+  scrollObserver = new IntersectionObserver((entries) => {
+    let best: Element | null = null;
+    let bestRatio = 0;
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > bestRatio) {
+        bestRatio = entry.intersectionRatio;
+        best = entry.target;
+      }
+    });
+    if (!best) return;
+    const idx = (best as HTMLElement).dataset.dateIdx;
+    document.querySelectorAll('.day-tab').forEach(t => {
+      const tabEl = t as HTMLElement;
+      tabEl.classList.toggle('active', tabEl.dataset.idx === idx);
+    });
+    const activeTab = document.querySelector('.day-tab.active');
+    if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
+
+  groups.forEach(g => scrollObserver?.observe(g));
+}
+
+function scrollToDate(idx: number) {
+  const el = document.querySelector(`[data-date-idx="${idx}"]`);
+  if (el) {
+    const header = document.querySelector('header');
+    const offset = header ? header.offsetHeight : 0;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset - 8;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+function populateClasses(data: PlanData) {
+  const select = document.getElementById('classSelect') as HTMLSelectElement | null;
+  if (!select) return;
+  const previous = select.value;
+  const saved = readSelectedClass();
+  const names = Object.keys(data).sort();
+  select.innerHTML = names.map(n => `<option value="${n}">Klasa ${n}</option>`).join('');
+  if (previous && names.includes(previous)) {
+    select.value = previous;
+  } else if (saved && names.includes(saved)) {
+    select.value = saved;
+  }
+  if (!classSelectReady) {
+    select.addEventListener('change', () => {
+      selectedDayIdx = -1;
+      writeSelectedClass(select.value);
+      render();
+    });
+    classSelectReady = true;
+  }
+}
+
+const dayTabsContainer = document.getElementById('dayTabs');
+if (dayTabsContainer) {
+  dayTabsContainer.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as Element | null;
+    const tab = target?.closest('.day-tab') as HTMLElement | null;
+    if (!tab) return;
+    const idx = parseInt(tab.dataset.idx || '');
+    if (isNaN(idx)) return;
+    selectedDayIdx = idx;
+    document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    if (window.innerWidth >= 768) {
+      render();
+    } else {
+      scrollToDate(idx);
+    }
+  });
+}
+
+async function init() {
+  const cached = readCachedPlan();
+  if (cached) {
+    try {
+      applyPlanPayload(cached);
+    } catch {}
+  }
+
+  try {
+    const fresh = await fetchData();
+    applyPlanPayload(fresh);
+  } catch (err: unknown) {
+    if (!allData) {
+      const app = document.getElementById('app');
+      if (app) {
+        const errMsg = err instanceof Error ? err.message : String(err);
+        app.innerHTML = `
+        <div class="error">
+          <p>Nie udało się załadować planu lekcji.</p>
+          <p style="font-size:12px;color:var(--text2)">${errMsg}</p>
+          <button onclick="init()">Spróbuj ponownie</button>
+        </div>`;
+      }
+    }
+  }
+}
+
+init();
+
+let lastWidth = window.innerWidth;
+window.addEventListener('resize', () => {
+  const w = window.innerWidth;
+  if ((w >= 768) !== (lastWidth >= 768)) {
+    lastWidth = w;
+    render();
+  }
+});
+
+document.addEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+  if (window.innerWidth < 768) return;
+  e.preventDefault();
+  const tabs = document.querySelectorAll('.day-tab');
+  const active = document.querySelector('.day-tab.active');
+  if (!active) return;
+  const cur = parseInt((active as HTMLElement).dataset.idx || '');
+  const next = e.key === 'ArrowRight' ? cur + 1 : cur - 1;
+  const tab = Array.from(tabs).find(t => parseInt((t as HTMLElement).dataset.idx || '') === next) as HTMLElement | undefined;
+  if (tab) tab.click();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{
+  "events": [
+    {
+      "date": "1 września",
+      "category": "event",
+      "badgeLabel": "Uroczystość",
+      "badgeIcon": "calendar",
+      "badgeVariant": "emerald",
+      "title": "Rozpoczęcie roku szkolnego",
+      "description": "Uroczysta inauguracja nowego roku szkolnego dla wszystkich klas technikum i szkoły branżowej."
+    },
+    {
+      "date": "14 października",
+      "category": "event",
+      "badgeLabel": "Uroczystość",
+      "badgeIcon": "clock",
+      "badgeVariant": "blue",
+      "title": "Dzień Edukacji Narodowej",
+      "description": "Święto polskiej szkoły, nauczycieli oraz pracowników oświaty. Dzień wolny od zajęć dydaktycznych."
+    },
+    {
+      "date": "23 – 31 grudnia",
+      "category": "holiday",
+      "badgeLabel": "Przerwa świąteczna",
+      "badgeIcon": "arrow-right",
+      "badgeVariant": "amber",
+      "title": "Zimowa przerwa świąteczna",
+      "description": "Przerwa z okazji Świąt Bożego Narodzenia oraz Nowego Roku."
+    },
+    {
+      "date": "Styczeń",
+      "category": "exam",
+      "badgeLabel": "Egzaminy",
+      "badgeIcon": "diamond",
+      "badgeVariant": "purple",
+      "title": "Sesja zimowa egzaminów zawodowych",
+      "description": "Część pisemna i praktyczna egzaminów potwierdzających kwalifikacje w zawodzie."
+    },
+    {
+      "date": "18 – 31 stycznia",
+      "category": "holiday",
+      "badgeLabel": "Ferie zimowe",
+      "badgeIcon": "crosshair",
+      "badgeVariant": "cyan",
+      "title": "Ferie zimowe (woj. śląskie)",
+      "description": "Dwutygodniowy wypoczynek zimowy wyznaczony dla województwa śląskiego."
+    },
+    {
+      "date": "25 – 30 marca",
+      "category": "holiday",
+      "badgeLabel": "Przerwa świąteczna",
+      "badgeIcon": "circle",
+      "badgeVariant": "amber",
+      "title": "Wiosenna przerwa świąteczna",
+      "description": "Wiosenna przerwa z okazji Świąt Wielkanocnych."
+    },
+    {
+      "date": "23 kwietnia",
+      "category": "event",
+      "badgeLabel": "Uroczystość",
+      "badgeIcon": "diamond",
+      "badgeVariant": "indigo",
+      "title": "Zakończenie roku dla klas maturalnych",
+      "description": "Uroczyste pożegnanie absolwentów klas ostatnich technikum i liceum."
+    },
+    {
+      "date": "Maj",
+      "category": "exam",
+      "badgeLabel": "Egzaminy",
+      "badgeIcon": "clipboard",
+      "badgeVariant": "purple",
+      "title": "Egzamin maturalny (Sesja główna)",
+      "description": "Pisemne i ustne egzaminy maturalne z przedmiotów obowiązkowych oraz dodatkowych."
+    },
+    {
+      "date": "Czerwiec",
+      "category": "exam",
+      "badgeLabel": "Egzaminy",
+      "badgeIcon": "diamond",
+      "badgeVariant": "purple",
+      "title": "Sesja letnia egzaminów zawodowych",
+      "description": "Egzaminy państwowe potwierdzające kwalifikacje w zawodach technicznych i usługowych."
+    },
+    {
+      "date": "25 czerwca",
+      "category": "event",
+      "badgeLabel": "Uroczystość",
+      "badgeIcon": "check",
+      "badgeVariant": "emerald",
+      "title": "Zakończenie roku szkolnego",
+      "description": "Uroczyste podsumowanie wyników w nauce i wręczenie świadectw dla pozostałych roczników."
+    }
+  ]
+}
