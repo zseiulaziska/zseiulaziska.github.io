@@ -1,0 +1,642 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Technik Logistyk - ZSEiU Łaziska Górne" description="Technik logistyk w ZSEiU Łaziska Górne – zarządzanie transportem, organizacja magazynów (SPL.01, SPL.04), systemy WMS/ERP, współpraca z bekuplast S.A. i Erasmus+.">
+
+  <article class="w-full max-w-5xl mx-auto min-w-0">
+
+    <!-- HERO -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 dark:from-navy-950 dark:via-blue-950/70 dark:to-navy-950 border border-slate-700/50 dark:border-blue-900/30 p-5 sm:p-10 mb-10 w-full">
+      <div class="logistics-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="logistics-glow absolute -top-20 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="logistics-glow absolute -bottom-20 -left-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-4">Technikum w ZSEiU</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">Technik <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-300 via-sky-400 to-cyan-400">Logistyk</span></h1>
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed wrap-break-word">Zarządzaj przepływem świata – planowanie dostaw, nowoczesne magazyny, transport i spedycja międzynarodowa.</p>
+      </div>
+    </div>
+
+    <!-- STATYSTYKI -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 my-10 w-full">
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="5">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-blue-600 dark:text-blue-400"><span class="stat-value">0</span> lat</span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">nauki w technikum</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="2">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-blue-600 dark:text-blue-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">kwalifikacje zawodowe (SPL.01, SPL.04)</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="100">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-blue-600 dark:text-blue-400"><span class="stat-value">0</span>%</span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">pewności zatrudnienia w branży TSL</span>
+      </div>
+    </div>
+
+    <!-- TECHNOLOGIE -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Obszary i technologie w logistyce</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Współczesna logistyka opiera się na zaawansowanych systemach bazodanowych, automatycznej identyfikacji i zintegrowanym zarządzaniu.
+    </p>
+
+    <div class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-8 w-full">
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18M15 3v18M3 9h18M3 15h18"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Magazyny WMS</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Systemy ERP</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="1" y="3" width="15" height="13" rx="2"></rect><path d="M16 8h4l3 5v3h-7V8z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Spedycja</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Incoterms</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M20 7l-8 4-8-4"></path><path d="M12 21V11"></path><path d="M4 7v10l8 4 8-4V7"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">E-commerce</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M3 18h18M3 6h18M3 12h18"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Kody kreskowe</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M12 2v9M7 5l5-3 5 3"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">RFID & Barcodes</span>
+      </div>
+    </div>
+
+    <!-- CZEGO SIĘ NAUCZYSZ -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Czego nauczysz się podczas nauki?</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18M15 3v18M3 9h18M3 15h18"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Obsługa i organizacja magazynów</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>przyjmowanie, przechowywanie i wydawanie towarów</li>
+              <li>prowadzenie dokumentacji magazynowej (systemy ERP / WMS)</li>
+              <li>kontrola stanów magazynowych i inwentaryzacja</li>
+              <li>projektowanie optymalnego rozmieszczenia towarów</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect x="1" y="3" width="15" height="13" rx="2"></rect><path d="M16 8h4l3 5v3h-7V8z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Planowanie transportu i spedycja</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>dobór optymalnych środków transportu (drogowy, kolejowy, lotniczy, morski)</li>
+              <li>planowanie tras i harmonogramów dostaw w systemach GIS</li>
+              <li>opracowywanie dokumentacji spedycyjnej krajowej i międzynarodowej</li>
+              <li>rozliczanie kosztów transportu</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Logistyka zaopatrzenia i produkcji</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>zarządzanie zapasami i planowanie zapotrzebowania na materiały</li>
+              <li>optymalizacja łańcucha dostaw w przedsiębiorstwie</li>
+              <li>współpraca z dostawcami i koordynacja przepływu surowców</li>
+              <li>zasada Lean Management i technika Just in Time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Systemy IT w logistyce</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>obsługa zintegrowanych systemów klasy ERP (np. SAP, Comarch)</li>
+              <li>praca w systemach WMS i TMS</li>
+              <li>wykorzystanie arkuszy kalkulacyjnych w analizach logistycznych</li>
+              <li>konfigurowanie automatycznej identyfikacji (kody kreskowe, RFID)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Logistyka międzynarodowa i procedury celne</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>znajomość reguł handlowych Incoterms</li>
+              <li>obsługa dokumentów celnych i przewozowych w transporcie transgranicznym</li>
+              <li>organizacja spedycji morskiej i lotniczej</li>
+              <li>zarządzanie logistyką w e-commerce międzynarodowym</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Zarządzanie i negocjacje</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>prowadzenie negocjacji z przewoźnikami i dostawcami</li>
+              <li>zarządzanie relacjami z klientem (CRM)</li>
+              <li>zarządzanie zespołem pracowników magazynowych</li>
+              <li>rachunkowość i planowanie budżetu logistycznego</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE 5 LAT -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Jak wygląda nauka przez 5 lat?</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Kształcenie trwa 5 lat i łączy przedmioty ogólne, zawodowe oraz praktyczną naukę w firmach partnerskich.
+    </p>
+
+    <div class="relative mb-8 w-full">
+      <div class="hidden sm:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-navy-700 -translate-x-1/2"></div>
+      <div class="space-y-6">
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">I</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Podstawy logistyki i magazynowania</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Pojęcia logistyczne, typy magazynów, podstawy BHP</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-blue-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">1</span>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">1</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa I – Podstawy logistyki</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Pojęcia logistyczne, typy magazynów, podstawy BHP</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Uczysz się podstawowych procesów logistycznych, poznajesz rodzaje budowli magazynowych oraz narzędzia do składowania.</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row-reverse items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2">
+            <div>
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">II</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Procesy magazynowe i systemy IT</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Dokumentacja magazynowa, kody kreskowe, systemy WMS</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-blue-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">2</span>
+          </div>
+          <div class="w-full sm:w-1/2 sm:text-right">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">2</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa II – Magazyny i systemy IT</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Dokumentacja magazynowa, kody kreskowe, systemy WMS</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Wdrażasz się w praktyczną ewidencję zapasów, uczysz się wypełniać dokumenty magazynowe oraz pracujesz z czytnikami kodów i oprogramowaniem WMS.</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">III</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">SPL.01 – egzamin i logistyka produkcji</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Pierwsza kwalifikacja, planowanie zapasów, praktyka zawodowa</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-blue-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">3</span>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">3</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa III – Kwalifikacja SPL.01 i praktyki</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Pierwsza kwalifikacja, planowanie zapasów, praktyka zawodowa</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Przystępujesz do egzaminu z kwalifikacji SPL.01 (Obsługa magazynów). Odbędziesz pierwsze praktyki zawodowe w wybranym przedsiębiorstwie produkcyjnym lub handlowym.</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row-reverse items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2">
+            <div>
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">IV</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Organizacja transportu i spedycja</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Krajowy i międzynarodowy przewóz, planowanie tras, praktyki</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-blue-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">4</span>
+          </div>
+          <div class="w-full sm:w-1/2 sm:text-right">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">4</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa IV – Transport i spedycja</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Krajowy i międzynarodowy przewóz, planowanie tras, praktyki</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Uczysz się planować przewozy drogowe, kolejowe i lotnicze, poznajesz dokumenty CMR oraz reguły Incoterms. Realizujesz drugie praktyki zawodowe (lub wyjazd Erasmus+).</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">V</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">SPL.04, logistyka miejska i matura</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Druga kwalifikacja, odprawa celna, gospodarka odpadami, matura</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-blue-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">5</span>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">5</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa V – Kwalifikacja SPL.04 i matura</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Druga kwalifikacja, odprawa celna, gospodarka odpadami, matura</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Zdajesz egzamin państwowy z drugiej kwalifikacji (SPL.04 - Organizacja transportu). Przechodzisz powtórzenie materiału i przystępujesz do matury.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center items-stretch sm:items-center max-w-full mb-8">
+      <span class="min-w-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 leading-snug"><span class="w-2 h-2 shrink-0 rounded-full bg-blue-500"></span> <span class="wrap-break-word min-w-0">SPL.01 – obsługa magazynów (kl. 1&ndash;3)</span></span>
+      <span class="min-w-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 leading-snug"><span class="w-2 h-2 shrink-0 rounded-full bg-sky-500"></span> <span class="wrap-break-word min-w-0">SPL.04 – organizacja transportu (kl. 3&ndash;5)</span></span>
+    </div>
+
+    <!-- PARTNERZY I KOPERACJA -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Współpraca i programy partnerskie</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Szkoła ściśle współpracuje z otoczeniem gospodarczym i przemysłowym, zapewniając uczniom naukę w rzeczywistych warunkach pracy.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Kooperacja z bekuplast S.A.</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Praktyczna nauka zawodu oraz zajęcia na nowoczesnych stanowiskach w prawdziwym środowisku produkcyjno-magazynowym.</p>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Wymiana Erasmus+</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Darmowe, certyfikowane praktyki zagraniczne w uznanych centrach dystrybucyjnych (Grecja, Sycylia).</p>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Pracownia Systemów ERP</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Nauka obsługi systemów magazynowo-zarządczych w specjalistycznym oprogramowaniu branżowym.</p>
+      </div>
+    </div>
+
+    <!-- SLIDER PRACOWNI -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Nasze pracownie</h2>
+
+    <div class="relative overflow-hidden rounded-xl mb-8 w-full" id="gallery-slider">
+      <div class="flex transition-transform duration-500 ease-out w-full" id="gallery-track">
+        <div class="gallery-slide w-full shrink-0 flex items-center justify-center p-6 sm:p-12 bg-linear-to-br from-slate-800 to-slate-900 dark:from-navy-900 dark:to-navy-950 border border-slate-700 dark:border-navy-700 min-h-64" data-index="0">
+          <div class="text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 sm:w-16 sm:h-16 text-blue-400 mx-auto mb-4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18M15 3v18M3 9h18M3 15h18"></path></svg>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Pracownia logistyczno-spedycyjna</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">24 stanowiska komputerowe z oprogramowaniem planistycznym i systemami ERP</span>
+          </div>
+        </div>
+        <div class="gallery-slide w-full shrink-0 flex items-center justify-center p-6 sm:p-12 bg-linear-to-br from-slate-800 to-slate-900 dark:from-navy-900 dark:to-navy-950 border border-slate-700 dark:border-navy-700 min-h-64" data-index="1">
+          <div class="text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 sm:w-16 sm:h-16 text-blue-400 mx-auto mb-4"><path d="M3 18h18M3 6h18M3 12h18"></path></svg>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Pracownia identyfikacji towarów</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">Czytniki kodów kreskowych, RFID, drukarki etykiet i symulatory WMS</span>
+          </div>
+        </div>
+        <div class="gallery-slide w-full shrink-0 flex items-center justify-center p-6 sm:p-12 bg-linear-to-br from-slate-800 to-slate-900 dark:from-navy-900 dark:to-navy-950 border border-slate-700 dark:border-navy-700 min-h-64" data-index="2">
+          <div class="text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 sm:w-16 sm:h-16 text-blue-400 mx-auto mb-4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Pracownia geograficzno-planistyczna</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">Moduły GIS i cyfrowe mapy do optymalizacji tras przewozu</span>
+          </div>
+        </div>
+      </div>
+      <button class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 dark:bg-navy-750/80 text-slate-800 dark:text-white flex items-center justify-center hover:bg-white dark:hover:bg-navy-700 transition-colors shadow-lg z-10" id="slider-prev" aria-label="Poprzednie zdjęcie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 dark:bg-navy-750/80 text-slate-800 dark:text-white flex items-center justify-center hover:bg-white dark:hover:bg-navy-700 transition-colors shadow-lg z-10" id="slider-next" aria-label="Następne zdjęcie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="slider-dots"></div>
+    </div>
+
+
+    <!-- KWALIFIKACJE SZCZEGÓŁOWO -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug">Kwalifikacje zawodowe</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6">
+      W ramach kształcenia zdajesz dwa egzaminy państwowe, które po ukończeniu szkoły dają Ci dyplom zawodowy technik logistyk honorowany w całej Unii Europejskiej.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 font-extrabold text-sm shrink-0">SPL.01</span>
+          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 wrap-break-word">Obsługa magazynów</h3>
+        </div>
+        <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+          <li>przyjmowanie, wydawanie i składowanie zapasów</li>
+          <li>obsługa technicznych środków magazynowych</li>
+          <li>korzystanie z systemów informatycznych ewidencji WMS</li>
+          <li>inwentaryzacja i monitorowanie stanów magazynowych</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-500 font-extrabold text-sm shrink-0">SPL.04</span>
+          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 wrap-break-word">Organizacja transportu</h3>
+        </div>
+        <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+          <li>planowanie i organizacja procesów transportowych i spedycyjnych</li>
+          <li>dobieranie środków transportu do parametrów ładunków</li>
+          <li>opracowywanie dokumentacji przewozowej (CMR, listy przewozowe)</li>
+          <li>monitorowanie realizacji zleceń transportowych</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROJEKTY UCZNIÓW -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Projekty uczniów</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Uczniowie realizują projekty z zakresu logistyki miejskiej, zaopatrzenia i e-commerce, rozwiązując realne problemy biznesowe.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
+      <div class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300 block min-w-0">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18M15 3v18M3 9h18M3 15h18"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Projekt layoutu i logistyki magazynu</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 wrap-break-word">Zaprojektowanie stref funkcjonalnych magazynu dla wybranego asortymentu w programie CAD.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">WMS Layout</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">CAD Design</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Składowanie</span>
+        </div>
+      </div>
+      <div class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300 block min-w-0">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><rect x="1" y="3" width="15" height="13" rx="2"></rect><path d="M16 8h4l3 5v3h-7V8z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Symulacja łańcucha dostaw firmy</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 wrap-break-word">Zaprojektowanie dystrybucji i optymalizacja tras transportu z redukcją kosztów o 15%.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Spedycja</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Route Optim.</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Excel Analisys</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSPEKTYWY ZATRUDNIENIA -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Perspektywy zatrudnienia</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4 wrap-break-word">
+      Branża logistyczno-transportowa (TSL) rozwija się niezwykle dynamicznie. Absolwent może podjąć pracę jako:
+    </p>
+
+    <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4 space-y-1">
+      <li>specjalista ds. logistyki / planowania zakupów</li>
+      <li>dyspozytor transportowy / spedytor krajowy i międzynarodowy</li>
+      <li>koordynator gospodarki magazynowej</li>
+      <li>specjalista ds. handlu elektronicznego (e-commerce)</li>
+      <li>operator zintegrowanych systemów ERP (SAP, Comarch)</li>
+      <li>specjalista ds. dystrybucji i gospodarki odpadami</li>
+      <li>agent celny lub specjalista ds. logistyki miejskiej</li>
+    </ul>
+
+    <!-- KARIERA -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug wrap-break-word">Kariera po technikum</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Logistycy są poszukiwani w przemyśle, handlu, usługach i administracji publicznej.
+    </p>
+
+    <div class="relative mb-8 w-full">
+      <div class="hidden sm:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-navy-700 -translate-x-1/2"></div>
+      <div class="space-y-6">
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <h3 class="font-bold text-slate-900 dark:text-white text-lg">Technik logistyk</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Dyplom zawodowy (PRK 5) + matura</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-blue-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-4 h-4"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-2">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Technik logistyk</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Dyplom zawodowy + matura</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Sektor TSL</span>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Współpraca Partnerska</span>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">Spedycja krajowa</span>
+            </div>
+          </div>
+        </div>
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="w-full sm:w-1/2 sm:text-right">
+            <div class="sm:hidden flex items-center gap-3 mb-2">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-cyan-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Studia wyższe</h3>
+            </div>
+            <h3 class="hidden sm:block font-bold text-slate-900 dark:text-white text-lg">Studia wyższe</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Logistyka, transport, spedycja, ekonomia, zarządzanie</p>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-cyan-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-4 h-4"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="mt-2 flex flex-wrap gap-2">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300">Inżynier / Licencjat</span>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300">Spedycja międzynarodowa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DLACZEGO WARTO -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-blue-500 leading-snug">Dlaczego warto wybrać ten kierunek?</h2>
+
+    <ul class="space-y-2 text-base sm:text-lg text-slate-700 dark:text-slate-300 mb-6">
+      <li class="flex items-start gap-2"><span class="text-blue-500 font-bold shrink-0 mt-0.5">&#10004;</span> Praktyczna nauka i staże w kooperacji z bekuplast S.A.</li>
+      <li class="flex items-start gap-2"><span class="text-blue-500 font-bold shrink-0 mt-0.5">&#10004;</span> Bezpłatne praktyki zagraniczne w programie Erasmus+ (Włochy, Grecja).</li>
+      <li class="flex items-start gap-2"><span class="text-blue-500 font-bold shrink-0 mt-0.5">&#10004;</span> Nauka obsługi informatycznych systemów planistycznych WMS/ERP wykorzystywanych w biznesie.</li>
+      <li class="flex items-start gap-2"><span class="text-blue-500 font-bold shrink-0 mt-0.5">&#10004;</span> Branża TSL to jeden z najbardziej dynamicznych i najlepiej płatnych rynków w Polsce.</li>
+    </ul>
+
+    <!-- CTA -->
+    <div class="relative overflow-hidden rounded-xl bg-linear-to-br from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 p-6 sm:p-8 mt-8 mb-12 text-white">
+      <div class="logistics-grid absolute inset-0 opacity-10" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <p class="text-lg sm:text-xl font-bold mb-2">Pokieruj procesami globalnego świata!</p>
+        <p class="text-base sm:text-lg text-blue-100 max-w-2xl mb-4">
+          Jeżeli lubisz planować, analizować, masz umiejętności organizacyjne i chcesz zdobyć zawód o gwarantowanej stabilności i wysokich zarobkach, kierunek Technik Logistyk będzie idealnym wyborem. Zapisz się do nas już dzisiaj!
+        </p>
+        <a href="/rekrutacja" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-blue-700 font-semibold hover:bg-blue-50 transition-colors">
+          Przejdź do rekrutacji
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+
+  </article>
+</Layout>
+
+<style>
+  .logistics-grid {
+    background-image:
+      linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+  .logistics-glow {
+    animation: glow-pulse 4s ease-in-out infinite alternate;
+  }
+  @keyframes glow-pulse {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+  }
+  .tech-chip:hover .w-10\ h-10 {
+    background-color: rgb(219 234 254 / var(--tw-bg-opacity, 1));
+  }
+  .dark .tech-chip:hover .w-10\ h-10 {
+    background-color: rgb(30 58 138 / var(--tw-bg-opacity, 1));
+  }
+</style>
+
+<script>
+  (function () {
+    // Animated counters
+    var cards = document.querySelectorAll('.stat-card');
+    if ('IntersectionObserver' in window) {
+      function animateValue(el, target) {
+        var current = 0;
+        var step = Math.ceil(target / 30);
+        var timer = setInterval(function () {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 40);
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var card = entry.target;
+            var valueEl = card.querySelector('.stat-value');
+            var target = parseInt(card.getAttribute('data-count-to'), 10);
+            if (valueEl && target) { animateValue(valueEl, target); }
+            observer.unobserve(card);
+          }
+        });
+      }, { threshold: 0.3 });
+      cards.forEach(function (card) { observer.observe(card); });
+    }
+
+    // Gallery slider
+    var track = document.getElementById('gallery-track');
+    var prevBtn = document.getElementById('slider-prev');
+    var nextBtn = document.getElementById('slider-next');
+    var dotsContainer = document.getElementById('slider-dots');
+    if (track && prevBtn && nextBtn && dotsContainer) {
+      var slides = track.querySelectorAll('.gallery-slide');
+      var current = 0;
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-colors';
+        dot.setAttribute('aria-label', 'Przejdź do slajdu ' + (i + 1));
+        if (i === 0) dot.classList.add('bg-white');
+        dot.addEventListener('click', function () { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+      function goTo(index) {
+        current = index;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dotsContainer.querySelectorAll('button').forEach(function (d, i) {
+          d.className = 'w-2 h-2 rounded-full ' + (i === current ? 'bg-white' : 'bg-white/40 hover:bg-white/70') + ' transition-colors';
+        });
+      }
+      prevBtn.addEventListener('click', function () { goTo(current > 0 ? current - 1 : slides.length - 1); });
+      nextBtn.addEventListener('click', function () { goTo(current < slides.length - 1 ? current + 1 : 0); });
+      var autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000);
+      var sliderEl = document.getElementById('gallery-slider');
+      if (sliderEl) {
+        sliderEl.addEventListener('mouseenter', function () { clearInterval(autoSlide); });
+        sliderEl.addEventListener('mouseleave', function () { autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000); });
+      }
+    }
+  })();
+</script>

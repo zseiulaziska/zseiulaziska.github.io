@@ -1,0 +1,681 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Technik Elektryk - ZSEiU Łaziska Górne" description="Technik elektryk w ZSEiU Łaziska Górne – programowanie sterowników PLC, instalacje elektryczne, systemy Smart Home, odnawialne źródła energii (OZE) i uprawnienia SEP.">
+
+  <article class="w-full max-w-5xl mx-auto min-w-0">
+
+    <!-- HERO -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-slate-900 via-amber-950 to-slate-900 dark:from-navy-950 dark:via-amber-950/70 dark:to-navy-950 border border-slate-700/50 dark:border-amber-900/30 p-5 sm:p-10 mb-10 w-full">
+      <div class="electric-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="electric-glow absolute -top-20 -right-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="electric-glow absolute -bottom-20 -left-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-4">Technikum w ZSEiU</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">Technik <span class="text-transparent bg-clip-text bg-linear-to-r from-amber-300 via-yellow-400 to-orange-400">Elektryk</span></h1>
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed wrap-break-word">Zasilamy przyszłość – nowoczesne instalacje elektryczne, automatyka Smart Home, sterowanie PLC i odnawialne źródła energii.</p>
+      </div>
+    </div>
+
+    <!-- STATYSTYKI -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 my-10 w-full">
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="5">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-amber-600 dark:text-amber-400"><span class="stat-value">0</span> lat</span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">nauki w technikum</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="2">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-amber-600 dark:text-amber-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">kwalifikacje zawodowe</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="70">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-amber-600 dark:text-amber-400"><span class="stat-value">0</span>+ lat</span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">tradycji szkoły</span>
+      </div>
+    </div>
+
+    <!-- TECHNOLOGIE -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Technologie i obszary kształcenia</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Kształcimy fachowców w oparciu o standardy nowoczesnej gospodarki sieciowej i elektroenergetycznej, z naciskiem na automatyzację i zieloną energię.
+    </p>
+
+    <div class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-8 w-full">
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Smart Home</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M6 10h12M6 14h12"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Sterowniki PLC</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path><circle cx="12" cy="12" r="4"></circle></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">OZE / Solar</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Uprawnienia SEP</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Utrzymanie ruchu</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Ochrona p-poraż.</span>
+      </div>
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-4 text-center min-w-0 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all duration-300">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-slate-100 dark:bg-navy-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Systemy CAD</span>
+      </div>
+    </div>
+
+    <!-- CZEGO SIĘ NAUCZYSZ -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Czego nauczysz się podczas nauki?</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Projektowanie i montaż instalacji</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>instalacje mieszkaniowe, przemysłowe i oświetleniowe</li>
+              <li>wykonywanie instalacji alarmowych i domofonowych</li>
+              <li>czytanie i tworzenie profesjonalnych schematów elektrycznych (CAD)</li>
+              <li>dobieranie zabezpieczeń, przewodów i aparatury</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Maszyny i urządzenia elektryczne</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>budowa i diagnostyka silników oraz prądnic</li>
+              <li>podłączanie układów rozruchowych i regulacyjnych</li>
+              <li>konserwacja, naprawa i przeglądy maszyn elektrycznych</li>
+              <li>praca z transformatorami i rozdzielnicami</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M6 10h12M6 14h12"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Automatyka i sterowniki PLC</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>nauka programowania przemysłowych sterowników logicznych (PLC)</li>
+              <li>tworzenie algorytmów sterowania procesami</li>
+              <li>projektowanie i montaż szaf sterowniczych</li>
+              <li>obsługa układów pneumatyki i sensoryki</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path><circle cx="12" cy="12" r="4"></circle></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Odnawialne Źródła Energii (OZE)</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>montaż i uruchamianie instalacji fotowoltaicznych</li>
+              <li>konfigurowanie falowników i magazynów energii</li>
+              <li>zasada działania pomp ciepła i kolektorów</li>
+              <li>optymalizacja zużycia energii w budynkach</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Pomiary i diagnostyka</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>posługiwanie się miernikami wielofunkcyjnymi i oscyloskopem</li>
+              <li>badanie stanu izolacji i rezystancji uziemień</li>
+              <li>lokalizowanie i usuwanie uszkodzeń w obwodach elektrycznych</li>
+              <li>tworzenie protokołów z pomiarów instalacji</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-4 sm:p-5 hover:shadow-md hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-300 min-w-0">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Bezpieczeństwo i pierwsza pomoc</h3>
+            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+              <li>dobieranie i sprawdzanie ochrony przeciwporażeniowej</li>
+              <li>bezpieczne wykonywanie prac pod napięciem (BHP)</li>
+              <li>postępowanie w stanach zagrożenia życia i porażenia prądem</li>
+              <li>pierwsza pomoc przedmedyczna</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE 5 LAT -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Jak wygląda nauka przez 5 lat?</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Program technikum łączy przedmioty ogólne, zawodowe oraz praktyczną naukę w laboratoriach szkolnych i zakładach pracy. Uczniowie przygotowują się do dwóch kluczowych egzaminów zawodowych.
+    </p>
+
+    <div class="relative mb-8 w-full">
+      <div class="hidden sm:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-navy-700 -translate-x-1/2"></div>
+      <div class="space-y-6">
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">I</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Podstawy elektrotechniki i BHP</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Rysunek techniczny, prawa prądu, pomiary podstawowe</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-amber-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">1</span>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">1</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa I – Podstawy elektrotechniki i BHP</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Rysunek techniczny, prawa prądu, pomiary podstawowe</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Poznajesz podstawowe pojęcia, schematy i zasady bezpieczeństwa pracy z energią elektryczną. Uczysz się badać proste obwody w laboratoriach.</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row-reverse items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2">
+            <div>
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">II</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Montaż maszyn i instalacji</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Budowa silników, montaż okablowania, trasowanie</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-amber-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">2</span>
+          </div>
+          <div class="w-full sm:w-1/2 sm:text-right">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">2</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa II – Montaż maszyn i instalacji</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Budowa silników, montaż okablowania, trasowanie</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Przechodzisz do zajęć manualnych. Uczysz się montować aparaturę rozdzielczą, instalacje domowe i przemysłowe oraz poznajesz budowę maszyn.</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">III</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">ELE.02 – egzamin i konserwacja</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Pierwsza kwalifikacja, alarmy, sygnalizacja, pomiary odbiorcze</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-amber-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">3</span>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">3</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa III – Kwalifikacja ELE.02 i konserwacja</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Pierwsza kwalifikacja, alarmy, sygnalizacja, pomiary odbiorcze</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Przygotowujesz się i zdajesz egzamin państwowy z pierwszej kwalifikacji (ELE.02). Uczysz się diagnozować usterki w instalacjach i maszynach.</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row-reverse items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2">
+            <div>
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">IV</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Automatyka, PLC i praktyki</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Programowanie PLC, inteligentny dom, praktyka zawodowa</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-amber-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">4</span>
+          </div>
+          <div class="w-full sm:w-1/2 sm:text-right">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">4</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa IV – Automatyka, PLC i praktyka</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Programowanie PLC, inteligentny dom, praktyka zawodowa</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Rozpoczynasz programowanie sterowników PLC i tworzenie systemów automatyki budynkowej. Odbędziesz też 4-tygodniowe praktyki zawodowe w firmie partnerskiej (lub wyjazd Erasmus+).</p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-navy-700 text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">V</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">ELE.05, eksploatacja i matura</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Druga kwalifikacja, sieci, egzaminy SEP, przygotowanie maturalne</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-amber-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <span class="text-white font-bold text-xs">5</span>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-1">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><span class="text-white font-bold text-xs">5</span></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa V – Kwalifikacja ELE.05 i matura</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Druga kwalifikacja, sieci, egzaminy SEP, przygotowanie maturalne</p>
+            <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Zdajesz egzamin z drugiej kwalifikacji (ELE.05). Przechodzisz szkolenie na uprawnienia elektryczne SEP eksploatacyjne (E) do 1 kV. Przygotowujesz się i zdajesz maturę.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center items-stretch sm:items-center max-w-full mb-8">
+      <span class="min-w-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 leading-snug"><span class="w-2 h-2 shrink-0 rounded-full bg-amber-500"></span> <span class="wrap-break-word min-w-0">ELE.02 – montaż, instalacje i maszyny (kl. 1&ndash;3)</span></span>
+      <span class="min-w-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 leading-snug"><span class="w-2 h-2 shrink-0 rounded-full bg-yellow-500"></span> <span class="wrap-break-word min-w-0">ELE.05 – eksploatacja i automatyka (kl. 3&ndash;5)</span></span>
+    </div>
+
+    <!-- PARTNERZY I UPRAWNIENIA -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Certyfikaty i współpraca partnerska</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Program nauczania wspierany jest przez partnerów branżowych, a uczniowie kończą szkołę z dodatkowymi uprawnieniami poszukiwanymi na rynku pracy.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Uprawnienia SEP do 1 kV</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Szkolenie i egzamin państwowy nadający uprawnienia eksploatacyjne (E1) niezbędne w zawodzie.</p>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Praktyki w Przemyśle</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Zajęcia i praktyki realizowane w nowoczesnych zakładach w regionie (w tym we współpracy z firmami branży energetycznej).</p>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 hover:shadow-md transition-all duration-300">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Praktyki Erasmus+</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Darmowe zagraniczne praktyki zawodowe finansowane przez UE (Grecja, Sycylia).</p>
+      </div>
+    </div>
+
+    <!-- SLIDER PRACOWNI -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Nasze pracownie</h2>
+
+    <div class="relative overflow-hidden rounded-xl mb-8 w-full" id="gallery-slider">
+      <div class="flex transition-transform duration-500 ease-out w-full" id="gallery-track">
+        <div class="gallery-slide w-full shrink-0 flex items-center justify-center p-6 sm:p-12 bg-linear-to-br from-slate-800 to-slate-900 dark:from-navy-900 dark:to-navy-950 border border-slate-700 dark:border-navy-700 min-h-64" data-index="0">
+          <div class="text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 sm:w-16 sm:h-16 text-amber-400 mx-auto mb-4"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Laboratorium elektroenergetyczne</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">Stanowiska badawczo-pomiarowe z aparatami modułowymi i sterowaniem</span>
+          </div>
+        </div>
+        <div class="gallery-slide w-full shrink-0 flex items-center justify-center p-6 sm:p-12 bg-linear-to-br from-slate-800 to-slate-900 dark:from-navy-900 dark:to-navy-950 border border-slate-700 dark:border-navy-700 min-h-64" data-index="1">
+          <div class="text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 sm:w-16 sm:h-16 text-amber-400 mx-auto mb-4"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Pracownia montażowa</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">Kabiny montażowe do układania okablowania i uzbrajania rozdzielnic</span>
+          </div>
+        </div>
+        <div class="gallery-slide w-full shrink-0 flex items-center justify-center p-6 sm:p-12 bg-linear-to-br from-slate-800 to-slate-900 dark:from-navy-900 dark:to-navy-950 border border-slate-700 dark:border-navy-700 min-h-64" data-index="2">
+          <div class="text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 sm:w-16 sm:h-16 text-amber-400 mx-auto mb-4"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M6 10h12M6 14h12"></path></svg>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Pracownia automatyki i PLC</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">Panele ze sterownikami PLC i środowiskiem programistycznym</span>
+          </div>
+        </div>
+        <div class="gallery-slide w-full shrink-0 flex items-center justify-center p-6 sm:p-12 bg-linear-to-br from-slate-800 to-slate-900 dark:from-navy-900 dark:to-navy-950 border border-slate-700 dark:border-navy-700 min-h-64" data-index="3">
+          <div class="text-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-12 h-12 sm:w-16 sm:h-16 text-amber-400 mx-auto mb-4"><ellipse cx="12" cy="12" r="10"></ellipse><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10zM2 12h20"></path></svg>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Pracownia maszyn elektrycznych</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">Stanowiska do badania parametrów silników i generatorów</span>
+          </div>
+        </div>
+      </div>
+      <button class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 dark:bg-navy-750/80 text-slate-800 dark:text-white flex items-center justify-center hover:bg-white dark:hover:bg-navy-700 transition-colors shadow-lg z-10" id="slider-prev" aria-label="Poprzednie zdjęcie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 dark:bg-navy-750/80 text-slate-800 dark:text-white flex items-center justify-center hover:bg-white dark:hover:bg-navy-700 transition-colors shadow-lg z-10" id="slider-next" aria-label="Następne zdjęcie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="slider-dots"></div>
+    </div>
+
+
+    <!-- KWALIFIKACJE SZCZEGÓŁOWO -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug">Kwalifikacje zawodowe</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6">
+      Uzyskujesz dwie oficjalne kwalifikacje potwierdzane egzaminami państwowymi pod nadzorem OKE. Po ich zdaniu i ukończeniu szkoły otrzymujesz dyplom technika uznawany w całej Unii Europejskiej.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 font-extrabold text-sm shrink-0">ELE.02</span>
+          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 wrap-break-word">Montaż, uruchamianie i konserwacja instalacji, maszyn i urządzeń elektrycznych</h3>
+        </div>
+        <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+          <li>montaż przewodów i osprzętu w instalacjach</li>
+          <li>podłączanie maszyn elektrycznych (silników, prądnic)</li>
+          <li>konserwacja i drobne naprawy aparatów elektrycznych</li>
+          <li>lokalizowanie uszkodzeń i diagnostyka usterek</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 dark:bg-yellow-900/40 text-yellow-600 dark:text-yellow-500 font-extrabold text-sm shrink-0">ELE.05</span>
+          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 wrap-break-word">Eksploatacja maszyn, urządzeń i instalacji elektrycznych</h3>
+        </div>
+        <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
+          <li>prowadzenie pomiarów eksploatacyjnych w instalacjach</li>
+          <li>ocena stanu technicznego uziemień i aparatury</li>
+          <li>konfigurowanie i sterowanie maszyn w ruchu</li>
+          <li>zarządzanie pracą sieci i transformatorów</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROJEKTY UCZNIÓW -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Projekty uczniów</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Uczniowie w ramach zajęć i kół zainteresowań budują własne projekty i makiety, zdobywając cenne doświadczenie projektowe.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
+      <div class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300 block min-w-0">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Makieta sterowania Smart Home</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 wrap-break-word">Projekt systemu inteligentnego domu opartego na przekaźnikach i mikrokontrolerach.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Smart Home</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Arduino</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Wi-Fi Control</span>
+        </div>
+      </div>
+      <div class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300 block min-w-0">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Układ rozruchu silnika z PLC</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 wrap-break-word">Zaprojektowanie i oprogramowanie szafy sterowniczej z łagodnym rozruchem silnika.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">PLC</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Softstart</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">LAD Program</span>
+        </div>
+      </div>
+      <div class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300 block min-w-0">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path><circle cx="12" cy="12" r="4"></circle></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Trenażer fotowoltaiczny</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 wrap-break-word">Mobilne stanowisko z panelem PV i miernikami do badania sprawności ogniw.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">OZE</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Fotowoltaika</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Pomiary</span>
+        </div>
+      </div>
+      <div class="group rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 hover:shadow-md transition-all duration-300 block min-w-0">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="shrink-0 w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </span>
+          <div class="min-w-0 flex-1">
+            <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Autonomiczny tester bezpieczników</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 wrap-break-word">Urządzenie mikrokontrolerowe do szybkiego testowania ciągłości i parametrów.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Arduino</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Tester</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">DIY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSPEKTYWY ZATRUDNIENIA -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Perspektywy zatrudnienia</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4 wrap-break-word">
+      Elektryk to zawód o bardzo stabilnej pozycji na rynku pracy. Absolwenci mogą znaleźć zatrudnienie jako:
+    </p>
+
+    <ul class="list-disc list-inside text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4 space-y-1">
+      <li>instalator systemów elektrycznych i Smart Home</li>
+      <li>elektryk utrzymania ruchu w zakładach produkcyjnych</li>
+      <li>serwisant urządzeń AGD i elektronarzędzi</li>
+      <li>technik w elektrowniach, sieciach dystrybucyjnych i transformatorach</li>
+      <li>specjalista ds. montażu paneli fotowoltaicznych i OZE</li>
+      <li>projektant instalacji (biura projektowe CAD)</li>
+      <li>doradca techniczny lub przedstawiciel handlowy firm elektrotechnicznych</li>
+    </ul>
+
+    <!-- KARIERA -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug wrap-break-word">Kariera po technikum</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Dyplom technika elektryka w połączeniu z uprawnieniami SEP stwarza elastyczne warunki dalszego rozwoju.
+    </p>
+
+    <div class="relative mb-8 w-full">
+      <div class="hidden sm:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-navy-700 -translate-x-1/2"></div>
+      <div class="space-y-6">
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="hidden sm:flex sm:w-1/2 justify-end">
+            <div class="text-right">
+              <h3 class="font-bold text-slate-900 dark:text-white text-lg">Technik elektryk</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Dyplom zawodowy (PRK 5) + matura</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-amber-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-4 h-4"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="sm:hidden flex items-center gap-3 mb-2">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Technik elektryk</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">Dyplom zawodowy + matura</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Praca w Przemyśle</span>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Uprawnienia SEP</span>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Własna Firma</span>
+            </div>
+          </div>
+        </div>
+        <div class="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+          <div class="w-full sm:w-1/2 sm:text-right">
+            <div class="sm:hidden flex items-center gap-3 mb-2">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center ring-2 ring-white dark:ring-navy-900"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></span>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Studia wyższe</h3>
+            </div>
+            <h3 class="hidden sm:block font-bold text-slate-900 dark:text-white text-lg">Studia wyższe</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Elektrotechnika, automatyka i robotyka, mechatronika, OZE</p>
+          </div>
+          <div class="hidden sm:flex shrink-0 w-8 h-8 rounded-full bg-yellow-500 items-center justify-center ring-4 ring-white dark:ring-navy-900 z-10">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-4 h-4"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <div class="mt-2 flex flex-wrap gap-2">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300">Politechnika (Inż.)</span>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300">Specjalizacja PLC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DLACZEGO WARTO -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500 leading-snug">Dlaczego warto wybrać ten kierunek?</h2>
+
+    <ul class="space-y-2 text-base sm:text-lg text-slate-700 dark:text-slate-300 mb-6">
+      <li class="flex items-start gap-2"><span class="text-amber-500 font-bold shrink-0 mt-0.5">&#10004;</span> Uzyskujesz kluczowe na rynku uprawnienia SEP do 1 kV.</li>
+      <li class="flex items-start gap-2"><span class="text-amber-500 font-bold shrink-0 mt-0.5">&#10004;</span> Praktyki zawodowe w nowoczesnych zakładach w regionie oraz za granicą (Erasmus+).</li>
+      <li class="flex items-start gap-2"><span class="text-amber-500 font-bold shrink-0 mt-0.5">&#10004;</span> Zdobywasz wiedzę z obszarów przyszłości: Smart Home, OZE i automatyzacja PLC.</li>
+      <li class="flex items-start gap-2"><span class="text-amber-500 font-bold shrink-0 mt-0.5">&#10004;</span> Możliwość natychmiastowego podjęcia pracy po ukończeniu technikum lub kontynuowania nauki na politechnikach.</li>
+    </ul>
+
+    <!-- CTA -->
+    <div class="relative overflow-hidden rounded-xl bg-linear-to-br from-amber-600 to-amber-800 dark:from-amber-700 dark:to-amber-900 p-6 sm:p-8 mt-8 mb-12 text-white">
+      <div class="electric-grid absolute inset-0 opacity-10" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <p class="text-lg sm:text-xl font-bold mb-2">Zasil swoją przyszłość stabilnym zawodem!</p>
+        <p class="text-base sm:text-lg text-amber-100 max-w-2xl mb-4">
+          Jeżeli interesuje Cię działanie maszyn, budowa instalacji elektrycznych, nowoczesne technologie automatyki budynkowej oraz odnawialne źródła energii, kierunek Technik Elektryk to doskonały start w dorosłość. Zapisz się już dziś i zdobądź zawód z gwarancją zatrudnienia.
+        </p>
+        <a href="/rekrutacja" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-amber-700 font-semibold hover:bg-amber-50 transition-colors">
+          Przejdź do rekrutacji
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+
+  </article>
+</Layout>
+
+<style>
+  .electric-grid {
+    background-image:
+      linear-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245, 158, 11, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+  .electric-glow {
+    animation: glow-pulse 4s ease-in-out infinite alternate;
+  }
+  @keyframes glow-pulse {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+  }
+  .tech-chip:hover .w-10\ h-10 {
+    background-color: rgb(254 243 199 / var(--tw-bg-opacity, 1));
+  }
+  .dark .tech-chip:hover .w-10\ h-10 {
+    background-color: rgb(120 53 4 / var(--tw-bg-opacity, 1));
+  }
+</style>
+
+<script>
+  (function () {
+    // Animated counters
+    var cards = document.querySelectorAll('.stat-card');
+    if ('IntersectionObserver' in window) {
+      function animateValue(el, target) {
+        var current = 0;
+        var step = Math.ceil(target / 30);
+        var timer = setInterval(function () {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 40);
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var card = entry.target;
+            var valueEl = card.querySelector('.stat-value');
+            var target = parseInt(card.getAttribute('data-count-to'), 10);
+            if (valueEl && target) { animateValue(valueEl, target); }
+            observer.unobserve(card);
+          }
+        });
+      }, { threshold: 0.3 });
+      cards.forEach(function (card) { observer.observe(card); });
+    }
+
+    // Gallery slider
+    var track = document.getElementById('gallery-track');
+    var prevBtn = document.getElementById('slider-prev');
+    var nextBtn = document.getElementById('slider-next');
+    var dotsContainer = document.getElementById('slider-dots');
+    if (track && prevBtn && nextBtn && dotsContainer) {
+      var slides = track.querySelectorAll('.gallery-slide');
+      var current = 0;
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-colors';
+        dot.setAttribute('aria-label', 'Przejdź do slajdu ' + (i + 1));
+        if (i === 0) dot.classList.add('bg-white');
+        dot.addEventListener('click', function () { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+      function goTo(index) {
+        current = index;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dotsContainer.querySelectorAll('button').forEach(function (d, i) {
+          d.className = 'w-2 h-2 rounded-full ' + (i === current ? 'bg-white' : 'bg-white/40 hover:bg-white/70') + ' transition-colors';
+        });
+      }
+      prevBtn.addEventListener('click', function () { goTo(current > 0 ? current - 1 : slides.length - 1); });
+      nextBtn.addEventListener('click', function () { goTo(current < slides.length - 1 ? current + 1 : 0); });
+      var autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000);
+      var sliderEl = document.getElementById('gallery-slider');
+      if (sliderEl) {
+        sliderEl.addEventListener('mouseenter', function () { clearInterval(autoSlide); });
+        sliderEl.addEventListener('mouseleave', function () { autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000); });
+      }
+    }
+  })();
+</script>
