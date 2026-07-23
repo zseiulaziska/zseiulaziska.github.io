@@ -318,6 +318,10 @@
   @apply absolute right-0 top-full z-50 mt-2 max-h-96 w-96 overflow-y-auto rounded-lg border border-gray-100 bg-white shadow-xl dark:border-navy-600 dark:bg-navy-800;
 }
 
+#mobile-search-results {
+  @apply static !mt-2 !w-full !max-h-none !right-auto !top-auto rounded-lg border;
+}
+
 /* Keep existing submenu behavior for backward compatibility */
 details[open] > .submenu, details.group:hover > .submenu {
   display: block;
