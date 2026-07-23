@@ -44,7 +44,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <SkipLink />
     <MegaNav />
     <slot name="hero" />
-    <main id="content" class="flex-1 max-w-6xl mx-auto px-4 py-8" tabindex="-1">
+    <main id="content" class="flex-1 w-full min-w-0 max-w-6xl mx-auto px-4 py-8" tabindex="-1">
       <Breadcrumbs title={title} />
       <slot />
     </main>
