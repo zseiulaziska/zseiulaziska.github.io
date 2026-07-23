@@ -2,15 +2,381 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Kalendarz - ZSEiU Łaziska Górne" description="Kalendarz roku szkolnego ZSEiU Łaziska Górne. Terminy wydarzeń i ważne daty.">
-  <article class="prose max-w-4xl dark:prose-invert">
-    <h1>Kalendarz roku szkolnego 2025/2026</h1>
-    <ul>
-      <li>Rozpoczęcie zajęć: 1 września 2025</li>
-      <li>Ferie zimowe: 16 lutego – 1 marca 2026</li>
-      <li>Egzaminy zawodowe: sesja zimowa od 8 stycznia 2026; sesja letnia od 1 czerwca 2026</li>
-      <li>Egzaminy maturalne: 4–30 maja 2026</li>
-      <li>Zakończenie roku szkolnego: 26 czerwca 2026</li>
-    </ul>
+<Layout title="Kalendarz Roku Szkolnego – ZSEiU Łaziska Górne" description="Kalendarz roku szkolnego w ZSEiU Łaziska Górne: najważniejsze daty, przerwy świąteczne, ferie zimowe, egzaminy zawodowe i matury oraz dodatkowe dni wolne od zajęć (dni dyrektorskie).">
+
+  <article class="w-full max-w-5xl mx-auto min-w-0">
+
+    <!-- HERO -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-slate-900 via-navy-950 to-slate-900 dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 border border-slate-700/50 dark:border-navy-700/50 p-5 sm:p-10 mb-10 w-full">
+      <div class="cyber-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -top-20 -right-20 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/20 text-primary-300 border border-primary-500/30 mb-4">Organizacja Roku Szkolnego</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">Kalendarz <span class="text-transparent bg-clip-text bg-linear-to-r from-primary-300 via-primary-400 to-blue-400">Roku Szkolnego</span></h1>
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed wrap-break-word">Wszystkie kluczowe terminy, przerwy świąteczne, ferie zimowe, egzaminy zawodowe oraz dodatkowe dni wolne od zajęć w jednym miejscu.</p>
+      </div>
+    </div>
+
+    <!-- STATYSTYKI / LICZNIKI -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 my-10 w-full">
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="188">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">dni nauki w roku</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="10">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">dni wolnych dyrektorskich</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="4">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">okresy przerw i ferii</span>
+      </div>
+      <div class="stat-card rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-3 sm:p-5 text-center min-w-0" data-count-to="2">
+        <span class="block text-2xl sm:text-4xl font-extrabold text-primary-600 dark:text-primary-400"><span class="stat-value">0</span></span>
+        <span class="block mt-1 text-xs sm:text-base text-slate-600 dark:text-slate-400 leading-snug">półrocza nauki</span>
+      </div>
+    </div>
+
+    <!-- SEKCJA 1: NAJWAŻNIEJSZE DATY W ROKU SZKOLNYM -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-12 mb-6 border-l-4 border-primary-500 pl-3 sm:pl-4">
+      <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Najważniejsze daty w roku szkolnym</h2>
+      
+      <!-- FILTRY DAT -->
+      <div class="inline-flex p-1 bg-slate-100 dark:bg-navy-800 rounded-xl border border-slate-200 dark:border-navy-700 self-start sm:self-auto" id="date-filters">
+        <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-white dark:bg-navy-700 text-slate-900 dark:text-white shadow-xs">Wszystkie</button>
+        <button data-filter="holiday" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Ferie i przerwy</button>
+        <button data-filter="exam" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Egzaminy</button>
+        <button data-filter="event" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Uroczystości</button>
+      </div>
+    </div>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-8 wrap-break-word">
+      Harmonogram najważniejszych wydarzeń dydaktycznych, sprawdzianów kwalifikacyjnych, egzaminów państwowych oraz przerw w nauce.
+    </p>
+
+    <!-- LISTA DAT / KARTY CHRONOLOGICZNE -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12" id="dates-grid">
+      
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="event">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">1 września</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            Uroczystość
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Rozpoczęcie roku szkolnego</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Uroczysta inauguracja nowego roku szkolnego dla wszystkich klas technikum i szkoły branżowej.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="event">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">14 października</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Uroczystość
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Dzień Edukacji Narodowej</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Święto polskiej szkoły, nauczycieli oraz pracowników oświaty. Dzień wolny od zajęć dydaktycznych.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="holiday">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">23 – 31 grudnia</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            Przerwa świąteczna
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Zimowa przerwa świąteczna</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Przerwa z okazji Świąt Bożego Narodzenia oraz Nowego Roku.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="exam">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">Styczeń</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"></path></svg>
+            Egzaminy
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Sesja zimowa egzaminów zawodowych</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Część pisemna i praktyczna egzaminów potwierdzających kwalifikacje w zawodzie.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="holiday">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">18 – 31 stycznia</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-cyan-100 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"></path></svg>
+            Ferie zimowe
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Ferie zimowe (woj. śląskie)</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Dwutygodniowy wypoczynek zimowy wyznaczony dla województwa śląskiego.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="holiday">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">25 – 30 marca</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>
+            Przerwa świąteczna
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Wiosenna przerwa świąteczna</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Wiosenna przerwa z okazji Świąt Wielkanocnych.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="event">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">23 kwietnia</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"></path></svg>
+            Uroczystość
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Zakończenie roku dla klas maturalnych</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Uroczyste pożegnanie absolwentów klas ostatnich technikum i liceum.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="exam">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">Maj</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+            Egzaminy
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Egzamin maturalny (Sesja główna)</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Pisemne i ustne egzaminy maturalne z przedmiotów obowiązkowych oraz dodatkowych.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="exam">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">Czerwiec</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"></path></svg>
+            Egzaminy
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Sesja letnia egzaminów zawodowych</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Egzaminy państwowe potwierdzające kwalifikacje w zawodach technicznych i usługowych.</p>
+      </div>
+
+      <div class="event-card date-item rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600" data-category="event">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <span class="text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400 tracking-tight">25 czerwca</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Uroczystość
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Zakończenie roku szkolnego</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Uroczyste podsumowanie wyników w nauce i wręczenie świadectw dla pozostałych roczników.</p>
+      </div>
+
+    </div>
+
+    <!-- SEKCJA 2: DODATKOWE DNI WOLNE OD ZAJĘĆ (DNI DYREKTORSKIE) -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-12 mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Dodatkowe dni wolne od zajęć dydaktyczno-wychowawczych</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Dni ustalone przez Dyrektora ZSEiU w porozumieniu z Radą Pedagogiczną, Radą Rodziców i Samorządem Uczniowskim na podstawie rozporządzenia MEiN. W tych dniach szkoła organizuje zajęcia opiekuńczo-wychowawcze.
+    </p>
+
+    <div class="overflow-x-auto rounded-2xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 shadow-xs mb-12">
+      <table class="w-full text-left border-collapse min-w-[600px]">
+        <thead>
+          <tr class="bg-slate-50 dark:bg-navy-800 border-b border-slate-200 dark:border-navy-700 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+            <th class="py-4 px-5">Data / Okres</th>
+            <th class="py-4 px-5">Dzień tygodnia</th>
+            <th class="py-4 px-5">Przyczyna / Okazja</th>
+            <th class="py-4 px-5">Status zajęć</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-navy-700 text-sm text-slate-700 dark:text-slate-300">
+          <tr class="hover:bg-slate-50/50 dark:hover:bg-navy-800/40 transition-colors">
+            <td class="py-4 px-5 text-lg font-bold text-primary-600 dark:text-primary-400">31 października</td>
+            <td class="py-4 px-5">Piątek</td>
+            <td class="py-4 px-5">Dzień przed Wszystkich Świętych</td>
+            <td class="py-4 px-5"><span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-navy-700 text-slate-700 dark:text-slate-300">Dzień dyrektorski</span></td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 dark:hover:bg-navy-800/40 transition-colors">
+            <td class="py-4 px-5 text-lg font-bold text-primary-600 dark:text-primary-400">2 stycznia</td>
+            <td class="py-4 px-5">Piątek</td>
+            <td class="py-4 px-5">Dzień po Nowym Roku</td>
+            <td class="py-4 px-5"><span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-navy-700 text-slate-700 dark:text-slate-300">Dzień dyrektorski</span></td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 dark:hover:bg-navy-800/40 transition-colors">
+            <td class="py-4 px-5 text-lg font-bold text-primary-600 dark:text-primary-400">Maj (3 dni)</td>
+            <td class="py-4 px-5">Wtorek – Czwartek</td>
+            <td class="py-4 px-5">Pisemne egzaminy maturalne (język polski, matematyka, język angielski)</td>
+            <td class="py-4 px-5"><span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300">Egzamin maturalny</span></td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 dark:hover:bg-navy-800/40 transition-colors">
+            <td class="py-4 px-5 text-lg font-bold text-primary-600 dark:text-primary-400">Maj (1 dzień)</td>
+            <td class="py-4 px-5">Piątek</td>
+            <td class="py-4 px-5">Piątek po Bożym Ciele</td>
+            <td class="py-4 px-5"><span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-navy-700 text-slate-700 dark:text-slate-300">Dzień dyrektorski</span></td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 dark:hover:bg-navy-800/40 transition-colors">
+            <td class="py-4 px-5 text-lg font-bold text-primary-600 dark:text-primary-400">Czerwiec (2 dni)</td>
+            <td class="py-4 px-5">Poniedziałek – Wtorek</td>
+            <td class="py-4 px-5">Egzaminy zawodowe (część praktyczna)</td>
+            <td class="py-4 px-5"><span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300">Egzamin zawodowy</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEKCJA: TERMINY SPOTKAŃ Z RODZICAMI -->
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-12 mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word">Terminy spotkań z rodzicami i wywiadówek</h2>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
+      Harmonogram ogólnych zebrań z rodzicami, wywiadówek półrocznych oraz indywidualnych konsultacji z nauczycielami i wychowawcami w roku szkolnym.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span class="text-xl sm:text-2xl font-extrabold text-primary-600 dark:text-primary-400">15 września</span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300">Godz. 17:00</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Zebranie organizacyjne</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Pierwsze zebranie z rodzicami, wybór Trójek Klasowych oraz przedstawienie wymagań edukacyjnych.</p>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span class="text-xl sm:text-2xl font-extrabold text-primary-600 dark:text-primary-400">17 listopada</span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300">Godz. 17:00</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Wywiadówka i konsultacje</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Informacja o ocenach cząstkowych i frekwencji oraz konsultacje indywidualne z nauczycielami.</p>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span class="text-xl sm:text-2xl font-extrabold text-primary-600 dark:text-primary-400">19 stycznia</span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300">Godz. 17:00</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Wywiadówka półroczna</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Podsumowanie wyników klasyfikacji za I półrocze oraz omówienie sukcesów i frekwencji uczniów.</p>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span class="text-xl sm:text-2xl font-extrabold text-primary-600 dark:text-primary-400">13 kwietnia</span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300">Godz. 17:00</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Zebranie klas maturalnych</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Przekazanie informacji o ocenach przewidywanych dla absolwentów oraz procedurach maturalnych.</p>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 transition-all duration-300 hover:shadow-md hover:border-primary-400 dark:hover:border-primary-600 md:col-span-2 lg:col-span-2">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span class="text-xl sm:text-2xl font-extrabold text-primary-600 dark:text-primary-400">18 maja</span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300">Godz. 17:00</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">Konsultacje końcoworoczne (Klasy I–IV)</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Informacja o przewidywanych ocenach rocznych i ocenach z zachowania przed końcową klasyfikacją.</p>
+      </div>
+    </div>
+
+    <!-- SEKCJA 3: ODNOŚNIK DO MEN / OFICJALNE ŹRÓDŁO -->
+    <div class="rounded-2xl bg-linear-to-br from-primary-900 via-navy-900 to-slate-900 border border-primary-500/30 p-6 sm:p-8 text-white mb-12 shadow-lg">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/20 text-primary-300 border border-primary-500/30">
+            <svg class="w-4 h-4 text-primary-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            Oficjalny Portal Rządowy
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold">Kalendarz Roku Szkolnego MEN</h3>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            Oficjalne terminy i komunikaty dotyczące organizacji roku szkolnego publikowane są na stronach Ministerstwa Edukacji Narodowej. Sprawdź terminy ferii dla wszystkich województw.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <a
+            href="https://www.gov.pl/web/edukacja/kalendarz-roku-szkolnego"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-bold text-sm transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+          >
+            Strona Ministerstwa (gov.pl)
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </article>
+
 </Layout>
+
+<script>
+  (function () {
+    // Animowane liczniki statystyk
+    const cards = document.querySelectorAll('.stat-card');
+    if ('IntersectionObserver' in window) {
+      const animateValue = (el: Element, target: number) => {
+        let current = 0;
+        const step = Math.ceil(target / 30);
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current.toString();
+        }, 30);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const card = entry.target as HTMLElement;
+            const valueEl = card.querySelector('.stat-value');
+            const targetCount = parseInt(card.getAttribute('data-count-to') || '0', 10);
+            if (valueEl && targetCount) {
+              animateValue(valueEl, targetCount);
+            }
+            observer.unobserve(card);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      cards.forEach((card) => { observer.observe(card); });
+    }
+
+    // Filtrowanie dat
+    const filterButtons = document.querySelectorAll('#date-filters .filter-btn');
+    const dateItems = document.querySelectorAll('#dates-grid .date-item');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter') || 'all';
+
+        filterButtons.forEach((b) => {
+          b.classList.remove('active', 'bg-white', 'dark:bg-navy-700', 'text-slate-900', 'dark:text-white', 'shadow-xs');
+          b.classList.add('text-slate-600', 'dark:text-slate-400');
+        });
+
+        btn.classList.add('active', 'bg-white', 'dark:bg-navy-700', 'text-slate-900', 'dark:text-white', 'shadow-xs');
+        btn.classList.remove('text-slate-600', 'dark:text-slate-400');
+
+        dateItems.forEach((item) => {
+          const category = item.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            (item as HTMLElement).style.display = 'block';
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>
