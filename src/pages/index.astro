@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 import { getCollection } from 'astro:content';
 import InfoStructure from '../components/InfoStructure.astro';
+import SchoolFields from '../components/SchoolFields.astro';
 import IconMission from '../components/icons/IconMission.astro';
 import IconStats from '../components/icons/IconStats.astro';
 import IconContact from '../components/icons/IconContact.astro';
@@ -186,7 +187,19 @@ const latestThree = sortedPosts.slice(0, 3);
 
 
 
-  <Features />
+<!-- Kierunki kształcenia -->
+    <section id="struktura" class="reveal max-w-4xl mx-auto mb-16 scroll-mt-20 py-12">
+      <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Nasze kierunki kształcenia</h2>
+          <SchoolFields variant="compact" />
+      
+    </section>
+
+
+
+
+
+
+  <!-- <Features /> -->
 
 <!-- 
   <section class="py-12">
