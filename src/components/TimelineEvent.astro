@@ -18,12 +18,12 @@ const { year, side = 'right', highlight = false } = Astro.props;
 >
   <!-- Mobile dot + line -->
   <div class="md:hidden absolute left-0 top-0 bottom-0 w-0.5 bg-primary-200 dark:bg-primary-700/50"></div>
-  <div class="md:hidden absolute left-[-5px] top-1.5 w-3 h-3 rounded-full bg-primary-500 ring-4 ring-white dark:ring-navy-900 z-10"></div>
+  <div class="md:hidden absolute -left-1.25 top-1.5 w-3 h-3 rounded-full bg-primary-500 ring-4 ring-white dark:ring-navy-900 z-10"></div>
 
   <div class="md:flex md:items-start md:gap-8 lg:gap-12">
     <!-- Year badge -->
     <div
-      class="flex-shrink-0 md:w-40 lg:w-48 text-left mb-3 md:mb-0 md:text-right"
+      class="shrink-0 md:w-40 lg:w-48 text-left mb-3 md:mb-0 md:text-right"
       class:list={{
         'md:order-1': side === 'right',
         'md:order-1 md:text-left': side === 'left',
@@ -42,7 +42,7 @@ const { year, side = 'right', highlight = false } = Astro.props;
     </div>
 
     <!-- Desktop dot on the center line -->
-    <div class="hidden md:block relative flex-shrink-0 w-10 flex items-start justify-center">
+    <div class="hidden md:flex relative shrink-0 w-10 items-start justify-center">
       <div class="w-4 h-4 rounded-full border-2 z-10 mt-1.5 transition-colors duration-300" class:list={{
         'border-primary-500 bg-primary-100 dark:bg-primary-700/30 shadow-md': highlight,
         'border-slate-300 bg-white dark:border-navy-500 dark:bg-navy-800': !highlight,

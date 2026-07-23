@@ -31,6 +31,10 @@
   --color-navy-50: #eaf4fc;
 }
 
+@utility wrap-break-word {
+  overflow-wrap: break-word;
+}
+
 @utility focus-ring-custom {
   @apply outline-none ring-4 ring-primary-500 ring-offset-2;
 }

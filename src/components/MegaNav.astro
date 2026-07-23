@@ -178,7 +178,10 @@ const iconPaths = {
   users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path>',
 };
 
-const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
+const iconForHref = (href: string) => {
+  const key = (linkIcons as Record<string, keyof typeof iconPaths>)[href] ?? 'info';
+  return iconPaths[key] ?? iconPaths.info;
+};
 ---
 
 <header class="site-header">
@@ -330,40 +333,54 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
 </header>
 
 <script>
+  interface SearchItem {
+    title: string;
+    description?: string;
+    body?: string;
+    url: string;
+  }
+
+  declare global {
+    interface Window {
+      __zseiuSearchPromise?: Promise<SearchItem[]>;
+    }
+  }
+
   (function () {
-    function setupSearch(input, results) {
+    function setupSearch(input: HTMLElement | null, results: HTMLElement | null) {
       if (!input || !results) return;
       if (!window.__zseiuSearchPromise) {
         window.__zseiuSearchPromise = fetch('/api/search.json')
-          .then(function (r) { return r.json(); })
-          .catch(function () { return []; });
+          .then((r) => r.json() as Promise<SearchItem[]>)
+          .catch(() => [] as SearchItem[]);
       }
 
-      function escapeRegExp(str) {
+      function escapeRegExp(str: string) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       }
 
-      function mark(text, query) {
-        var regex = new RegExp('(' + escapeRegExp(query) + ')', 'gi');
+      function mark(text: string, query: string) {
+        const regex = new RegExp('(' + escapeRegExp(query) + ')', 'gi');
         return String(text || '').replace(regex, '<mark>$1</mark>');
       }
 
-      input.addEventListener('input', function () {
-        var query = input.value.trim().toLowerCase();
+      input.addEventListener('input', () => {
+        const inputEl = input as HTMLInputElement;
+        const query = inputEl.value.trim().toLowerCase();
         if (query.length < 2) {
           results.classList.add('hidden');
           return;
         }
 
-        window.__zseiuSearchPromise.then(function (data) {
-          var matches = data.filter(function (item) {
+        window.__zseiuSearchPromise?.then((data: SearchItem[]) => {
+          const matches = data.filter((item) => {
             return item.title.toLowerCase().includes(query) ||
               (item.description && item.description.toLowerCase().includes(query)) ||
               (item.body && item.body.toLowerCase().includes(query));
           }).slice(0, 8);
 
           results.innerHTML = matches.length
-            ? matches.map(function (item) {
+            ? matches.map((item) => {
               return '<a href="' + item.url + '" class="search-result-item"><span class="text-sm font-semibold">' +
                 mark(item.title, query) + '</span><span class="mt-1 block text-xs text-gray-500 dark:text-slate-400">' +
                 mark(item.description || '', query) + '</span></a>';
@@ -373,7 +390,7 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
         });
       });
 
-      input.addEventListener('keydown', function (event) {
+      input.addEventListener('keydown', (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
           results.classList.add('hidden');
           input.blur();
@@ -384,33 +401,33 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
     setupSearch(document.getElementById('search-input'), document.getElementById('search-results'));
     setupSearch(document.getElementById('mobile-search-input'), document.getElementById('mobile-search-results'));
 
-    var themeToggle = document.getElementById('theme-toggle');
+    const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
-      themeToggle.addEventListener('click', function () {
-        var isDark = document.documentElement.classList.toggle('dark');
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
     }
 
-    var mobileNav = document.getElementById('mobile-nav');
-    var mobileToggle = mobileNav && mobileNav.querySelector('button');
-    var mobilePanel = document.getElementById('mobile-nav__panel');
-    var mobileBackdrop = mobileNav && mobileNav.querySelector('.mobile-nav__backdrop');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileToggle = mobileNav ? mobileNav.querySelector('button') : null;
+    const mobilePanel = document.getElementById('mobile-nav__panel');
+    const mobileBackdrop = mobileNav ? mobileNav.querySelector('.mobile-nav__backdrop') : null;
 
-    function getFocusable(el) {
+    function getFocusable(el: Element | null): HTMLElement[] {
       if (!el) return [];
-      return Array.from(el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+      return Array.from(el.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'));
     }
 
-    function toggleMobileNav(forceOpen) {
+    function toggleMobileNav(forceOpen?: boolean) {
       if (!mobileNav) return;
-      var isOpen = forceOpen !== undefined ? forceOpen : !mobileNav.classList.contains('is-open');
+      const isOpen = forceOpen !== undefined ? forceOpen : !mobileNav.classList.contains('is-open');
       mobileNav.classList.toggle('is-open', isOpen);
       if (mobileToggle) mobileToggle.setAttribute('aria-expanded', String(isOpen));
       document.body.style.overflow = isOpen ? 'hidden' : '';
 
       if (isOpen) {
-        var focusable = getFocusable(mobilePanel);
+        const focusable = getFocusable(mobilePanel);
         if (focusable.length) focusable[0].focus();
       } else {
         if (mobileToggle) mobileToggle.focus();
@@ -418,19 +435,19 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
     }
 
     if (mobileToggle && mobilePanel) {
-      mobileToggle.addEventListener('click', function () { toggleMobileNav(); });
+      mobileToggle.addEventListener('click', () => { toggleMobileNav(); });
 
-      mobilePanel.addEventListener('keydown', function (e) {
+      mobilePanel.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
           e.preventDefault();
           toggleMobileNav(false);
           return;
         }
         if (e.key === 'Tab') {
-          var focusable = getFocusable(mobilePanel);
+          const focusable = getFocusable(mobilePanel);
           if (!focusable.length) return;
-          var first = focusable[0];
-          var last = focusable[focusable.length - 1];
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
           if (e.shiftKey && document.activeElement === first) {
             e.preventDefault();
             last.focus();
@@ -441,67 +458,69 @@ const iconForHref = (href: string) => iconPaths[linkIcons[href] ?? 'info'];
         }
       });
 
-      mobilePanel.querySelectorAll('a[href^="/"]').forEach(function (link) {
-        link.addEventListener('click', function () { toggleMobileNav(false); });
+      mobilePanel.querySelectorAll('a[href^="/"]').forEach((link) => {
+        link.addEventListener('click', () => { toggleMobileNav(false); });
       });
     }
 
     if (mobileBackdrop) {
-      mobileBackdrop.addEventListener('click', function () { toggleMobileNav(false); });
+      mobileBackdrop.addEventListener('click', () => { toggleMobileNav(false); });
     }
 
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) {
         toggleMobileNav(false);
       }
     });
 
-    var menus = Array.from(document.querySelectorAll('.mega-menu'));
-    function closeMenus(except) {
-      menus.forEach(function (menu) {
+    const menus = Array.from(document.querySelectorAll('.mega-menu'));
+    function closeMenus(except?: Element | null) {
+      menus.forEach((menu) => {
         if (menu === except) return;
         menu.classList.remove('is-open');
-        var trigger = menu.querySelector('[data-mega-trigger]');
+        const trigger = menu.querySelector('[data-mega-trigger]');
         if (trigger) trigger.setAttribute('aria-expanded', 'false');
       });
     }
 
-    menus.forEach(function (menu) {
-      var trigger = menu.querySelector('[data-mega-trigger]');
-      trigger.addEventListener('click', function () {
-        var open = !menu.classList.contains('is-open');
+    menus.forEach((menu) => {
+      const trigger = menu.querySelector('[data-mega-trigger]');
+      if (!trigger) return;
+      trigger.addEventListener('click', () => {
+        const open = !menu.classList.contains('is-open');
         closeMenus(menu);
         menu.classList.toggle('is-open', open);
         trigger.setAttribute('aria-expanded', String(open));
       });
-      menu.addEventListener('mouseenter', function () {
+      menu.addEventListener('mouseenter', () => {
         closeMenus(menu);
         menu.classList.add('is-open');
         trigger.setAttribute('aria-expanded', 'true');
       });
-      menu.addEventListener('mouseleave', function () {
+      menu.addEventListener('mouseleave', () => {
         menu.classList.remove('is-open');
         trigger.setAttribute('aria-expanded', 'false');
       });
     });
 
-    document.addEventListener('click', function (event) {
-      if (!event.target.closest('.mega-menu') && !event.target.closest('.site-search')) {
+    document.addEventListener('click', (event: MouseEvent) => {
+      const target = event.target as Element | null;
+      if (target && !target.closest('.mega-menu') && !target.closest('.site-search')) {
         closeMenus();
-        document.querySelectorAll('.search-popover').forEach(function (el) { el.classList.add('hidden'); });
+        document.querySelectorAll('.search-popover').forEach((el) => { el.classList.add('hidden'); });
       }
     });
 
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeMenus();
     });
 
-    var path = location.pathname.replace(/\/+$/, '') || '/';
-    document.querySelectorAll('.mega-nav-link, .nav-link, .mega-item').forEach(function (link) {
-      var href = link.getAttribute('href');
+    const path = location.pathname.replace(/\/+$/, '') || '/';
+    document.querySelectorAll('.mega-nav-link, .nav-link, .mega-item').forEach((link) => {
+      const href = link.getAttribute('href');
       if (!href) return;
       try {
-        var linkPath = new URL(href, location.origin).pathname.replace(/\/+$/, '') || '/';
+        const linkPath = new URL(href, location.origin).pathname.replace(/\/+$/, '') || '/';
         if (linkPath === path) {
           link.setAttribute('aria-current', 'page');
           link.classList.add('active');

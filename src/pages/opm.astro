@@ -33,13 +33,13 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- nagłówek -->
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 leading-tight break-words drop-shadow-lg">
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 leading-tight wrap-break-word drop-shadow-lg">
           Oddział<br>
           <span style="background: linear-gradient(90deg, #6eb0ff 0%, #4a8fd4 35%, #c9a227 65%, #f0d060 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Przygotowania Mundurowego</span>
         </h1>
 
         <!-- lead -->
-        <p class="text-base sm:text-lg text-slate-200 max-w-2xl leading-relaxed break-words mb-6">
+        <p class="text-base sm:text-lg text-slate-200 max-w-2xl leading-relaxed wrap-break-word mb-6">
           Twoja droga do służby w <strong class="text-[#aaccff] font-bold">Policji</strong> i <strong class="text-[#f0d060] font-bold">Straży Granicznej</strong> – połącz mundurową pasję z zawodem <strong class="text-white">Technik Logistyk</strong>. Profesjonalne przygotowanie fizyczne, prawne i taktyczne już od pierwszej klasy.
         </p>
 
@@ -100,7 +100,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- ═══ FORMACJE – DWIE KARTY ═══ -->
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug break-words" style="border-color: #1a56b0;">Formacje mundurowe</h2>
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug wrap-break-word" style="border-color: #1a56b0;">Formacje mundurowe</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
 
@@ -217,22 +217,22 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- ═══ PROGRAM PRZYGOTOWANIA ═══ -->
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug break-words" style="border-color: #1a56b0;">Program przygotowania mundurowego</h2>
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug wrap-break-word" style="border-color: #1a56b0;">Program przygotowania mundurowego</h2>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 break-words">
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
       Zajęcia mundurowe prowadzone są przez czynnych funkcjonariuszy Policji i Straży Granicznej oraz specjalistów bezpieczeństwa publicznego.
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full">
       <!-- Prawo i procedury – niebieski -->
-      <div class="skill-card rounded-xl bg-white dark:bg-[#0a1628]/70 border border-slate-200 dark:border-[#1a56b0]/25 p-4 sm:p-5 hover:shadow-lg hover:border-[#1a56b0]/60 dark:hover:border-[#1a56b0]/60 transition-all duration-300 min-w-0">
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-900/70 border border-slate-200 dark:border-[#1a56b0]/25 p-4 sm:p-5 hover:shadow-lg hover:border-[#1a56b0]/60 dark:hover:border-[#1a56b0]/60 transition-all duration-300 min-w-0">
         <div class="flex items-start gap-3">
           <span class="shrink-0 w-10 h-10 rounded-lg bg-[#1a56b0]/10 dark:bg-[#1a56b0]/20 flex items-center justify-center text-[#1a56b0] dark:text-[#7eb3f5]">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
           </span>
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-bold text-slate-900 dark:text-white break-words">Prawo i procedury</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Prawo i procedury</h3>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#1a56b0]/10 text-[#1a56b0] dark:bg-[#1a56b0]/20 dark:text-[#7eb3f5] font-semibold shrink-0">POLICJA</span>
             </div>
             <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
@@ -253,7 +253,7 @@ import Layout from '../layouts/Layout.astro';
           </span>
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-bold text-slate-900 dark:text-white break-words">Kontrola graniczna</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Kontrola graniczna</h3>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#2d6627]/10 text-[#2d6627] dark:bg-[#2d6627]/20 dark:text-[#7ec87e] font-semibold shrink-0">STR. GR.</span>
             </div>
             <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
@@ -267,14 +267,14 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Szkolenie strzeleckie – niebieski -->
-      <div class="skill-card rounded-xl bg-white dark:bg-[#0a1628]/70 border border-slate-200 dark:border-[#1a56b0]/25 p-4 sm:p-5 hover:shadow-lg hover:border-[#1a56b0]/60 dark:hover:border-[#1a56b0]/60 transition-all duration-300 min-w-0">
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-900/70 border border-slate-200 dark:border-[#1a56b0]/25 p-4 sm:p-5 hover:shadow-lg hover:border-[#1a56b0]/60 dark:hover:border-[#1a56b0]/60 transition-all duration-300 min-w-0">
         <div class="flex items-start gap-3">
           <span class="shrink-0 w-10 h-10 rounded-lg bg-[#1a56b0]/10 dark:bg-[#1a56b0]/20 flex items-center justify-center text-[#1a56b0] dark:text-[#7eb3f5]">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
           </span>
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-bold text-slate-900 dark:text-white break-words">Szkolenie strzeleckie</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Szkolenie strzeleckie</h3>
               <span class="text-[10px] px-1.5 py-0.5 rounded font-semibold shrink-0 dark:text-[#7eb3f5]" style="background: linear-gradient(90deg,#1a56b010,#2d662710); color:#1a56b0;">OBU FORM.</span>
             </div>
             <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
@@ -295,7 +295,7 @@ import Layout from '../layouts/Layout.astro';
           </span>
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-bold text-slate-900 dark:text-white break-words">Samoobrona i interwencje</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Samoobrona i interwencje</h3>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#c9a227]/15 text-[#9a7a1a] dark:text-[#c9a227] font-semibold shrink-0">STR. GR.</span>
             </div>
             <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
@@ -309,14 +309,14 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Pierwsza pomoc – niebieski -->
-      <div class="skill-card rounded-xl bg-white dark:bg-[#0a1628]/70 border border-slate-200 dark:border-[#1a56b0]/25 p-4 sm:p-5 hover:shadow-lg hover:border-[#1a56b0]/60 dark:hover:border-[#1a56b0]/60 transition-all duration-300 min-w-0">
+      <div class="skill-card rounded-xl bg-white dark:bg-navy-900/70 border border-slate-200 dark:border-[#1a56b0]/25 p-4 sm:p-5 hover:shadow-lg hover:border-[#1a56b0]/60 dark:hover:border-[#1a56b0]/60 transition-all duration-300 min-w-0">
         <div class="flex items-start gap-3">
           <span class="shrink-0 w-10 h-10 rounded-lg bg-[#1a56b0]/10 dark:bg-[#1a56b0]/20 flex items-center justify-center text-[#1a56b0] dark:text-[#7eb3f5]">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </span>
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-bold text-slate-900 dark:text-white break-words">Pierwsza pomoc</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Pierwsza pomoc</h3>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#1a56b0]/10 text-[#1a56b0] dark:bg-[#1a56b0]/20 dark:text-[#7eb3f5] font-semibold shrink-0">POLICJA</span>
             </div>
             <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
@@ -337,7 +337,7 @@ import Layout from '../layouts/Layout.astro';
           </span>
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-bold text-slate-900 dark:text-white break-words">Sprawność fizyczna</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Sprawność fizyczna</h3>
               <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#2d6627]/10 text-[#2d6627] dark:bg-[#2d6627]/20 dark:text-[#7ec87e] font-semibold shrink-0">STR. GR.</span>
             </div>
             <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
@@ -352,17 +352,17 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- ═══ KWALIFIKACJE ZAWODOWE ═══ -->
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug break-words" style="border-color: #2d6627;">Zawód: Technik Logistyk</h2>
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug wrap-break-word" style="border-color: #2d6627;">Zawód: Technik Logistyk</h2>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 break-words">
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
       Technik logistyk zarządza przepływem towarów, informacji i zasobów – umiejętności niezbędne zarówno w firmach prywatnych, jak i w jednostkach Policji oraz Straży Granicznej.
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-      <div class="rounded-xl bg-white dark:bg-[#0a1628]/70 border border-slate-200 dark:border-[#1a56b0]/25 p-5 hover:shadow-md transition-all duration-300">
+      <div class="rounded-xl bg-white dark:bg-navy-900/70 border border-slate-200 dark:border-[#1a56b0]/25 p-5 hover:shadow-md transition-all duration-300">
         <div class="flex items-center gap-3 mb-3">
           <span class="inline-flex items-center justify-center w-auto px-3 h-9 rounded-full bg-[#1a56b0] text-white font-extrabold text-xs shrink-0">SPL.01</span>
-          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 break-words">Obsługa magazynów</h3>
+          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 wrap-break-word">Obsługa magazynów</h3>
         </div>
         <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
           <li>przyjmowanie i wydawanie towarów</li>
@@ -375,7 +375,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="rounded-xl bg-white dark:bg-[#0a1507]/70 border border-slate-200 dark:border-[#2d6627]/25 p-5 hover:shadow-md transition-all duration-300">
         <div class="flex items-center gap-3 mb-3">
           <span class="inline-flex items-center justify-center w-auto px-3 h-9 rounded-full text-white font-extrabold text-xs shrink-0" style="background: linear-gradient(135deg,#2d6627,#4a8f3f);">SPL.02</span>
-          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 break-words">Organizacja transportu</h3>
+          <h3 class="font-bold text-slate-900 dark:text-white min-w-0 wrap-break-word">Organizacja transportu</h3>
         </div>
         <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
           <li>planowanie tras i harmonogramów dostaw</li>
@@ -388,51 +388,51 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- ═══ CZEGO SIĘ NAUCZYSZ – CHIPY ═══ -->
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug break-words" style="border-color: #1a56b0;">Czego nauczysz się podczas nauki?</h2>
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug wrap-break-word" style="border-color: #1a56b0;">Czego nauczysz się podczas nauki?</h2>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8 w-full">
-      <div class="tech-chip rounded-xl bg-white dark:bg-[#0a1628]/70 border border-slate-200 dark:border-[#1a56b0]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#1a56b0]/60 hover:shadow-md transition-all duration-300">
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-900/70 border border-slate-200 dark:border-[#1a56b0]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#1a56b0]/60 hover:shadow-md transition-all duration-300">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-[#1a56b0]/10 dark:bg-[#1a56b0]/20 flex items-center justify-center text-[#1a56b0] dark:text-[#7eb3f5]">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white break-words">Prawo karne</span>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Prawo karne</span>
       </div>
       <div class="tech-chip rounded-xl bg-white dark:bg-[#0a1507]/70 border border-slate-200 dark:border-[#2d6627]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#c9a227]/40 hover:shadow-md transition-all duration-300">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-[#2d6627]/10 dark:bg-[#2d6627]/20 flex items-center justify-center text-[#2d6627] dark:text-[#7ec87e]">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         </div>
-        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white break-words">Transport</span>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Transport</span>
       </div>
-      <div class="tech-chip rounded-xl bg-white dark:bg-[#0a1628]/70 border border-slate-200 dark:border-[#1a56b0]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#1a56b0]/60 hover:shadow-md transition-all duration-300">
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-900/70 border border-slate-200 dark:border-[#1a56b0]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#1a56b0]/60 hover:shadow-md transition-all duration-300">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-[#1a56b0]/10 dark:bg-[#1a56b0]/20 flex items-center justify-center text-[#1a56b0] dark:text-[#7eb3f5]">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
         </div>
-        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white break-words">Strzelanie</span>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Strzelanie</span>
       </div>
       <div class="tech-chip rounded-xl bg-white dark:bg-[#0a1507]/70 border border-slate-200 dark:border-[#2d6627]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#c9a227]/40 hover:shadow-md transition-all duration-300">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-[#c9a227]/10 dark:bg-[#c9a227]/15 flex items-center justify-center text-[#c9a227]">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
         </div>
-        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white break-words">Magazynowanie</span>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Magazynowanie</span>
       </div>
-      <div class="tech-chip rounded-xl bg-white dark:bg-[#0a1628]/70 border border-slate-200 dark:border-[#1a56b0]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#1a56b0]/60 hover:shadow-md transition-all duration-300">
+      <div class="tech-chip rounded-xl bg-white dark:bg-navy-900/70 border border-slate-200 dark:border-[#1a56b0]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#1a56b0]/60 hover:shadow-md transition-all duration-300">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-[#1a56b0]/10 dark:bg-[#1a56b0]/20 flex items-center justify-center text-[#1a56b0] dark:text-[#7eb3f5]">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
-        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white break-words">Pierwsza pomoc</span>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Pierwsza pomoc</span>
       </div>
       <div class="tech-chip rounded-xl bg-white dark:bg-[#0a1507]/70 border border-slate-200 dark:border-[#2d6627]/20 p-3 sm:p-4 text-center min-w-0 hover:border-[#c9a227]/40 hover:shadow-md transition-all duration-300">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-[#2d6627]/10 dark:bg-[#2d6627]/20 flex items-center justify-center text-[#2d6627] dark:text-[#7ec87e]">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white break-words">Kryminalistyka</span>
+        <span class="block text-xs sm:text-sm font-semibold text-slate-900 dark:text-white wrap-break-word">Kryminalistyka</span>
       </div>
     </div>
 
     <!-- ═══ TIMELINE 5 LAT ═══ -->
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug break-words" style="border-color: #2d6627;">Jak wygląda nauka przez 5 lat?</h2>
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug wrap-break-word" style="border-color: #2d6627;">Jak wygląda nauka przez 5 lat?</h2>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 break-words">
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 wrap-break-word">
       Pięcioletni program łączy wiedzę ogólnokształcącą, profesjonalne kwalifikacje technika logistyka oraz systematyczne zajęcia mundurowe prowadzone przez funkcjonariuszy.
     </p>
 
@@ -455,7 +455,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="w-full sm:w-1/2">
             <div class="sm:hidden flex items-center gap-3 mb-1">
               <span class="shrink-0 w-7 h-7 rounded-full bg-[#1a56b0] flex items-center justify-center ring-2 ring-white dark:ring-slate-900"><span class="text-white font-bold text-xs">1</span></span>
-              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 break-words">Klasa I – Podstawy logistyki i prawa</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa I – Podstawy logistyki i prawa</h3>
             </div>
             <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">łańcuch dostaw, prawo, musztra, sprawność</p>
             <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Poznajesz podstawy logistyki i łańcuch dostaw. Rozpoczynasz zajęcia z prawa i musztry. Rozszerzony WF kształtuje kondycję niezbędną w służbie.</p>
@@ -477,7 +477,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="w-full sm:w-1/2 sm:text-right">
             <div class="sm:hidden flex items-center gap-3 mb-1">
               <span class="shrink-0 w-7 h-7 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-slate-900" style="background: linear-gradient(135deg,#2d6627,#4a8f3f);"><span class="text-white font-bold text-xs">2</span></span>
-              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 break-words">Klasa II – Magazynowanie i egzamin SPL.01</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa II – Magazynowanie i egzamin SPL.01</h3>
             </div>
             <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">WMS, dokumentacja, strzelanie, SG</p>
             <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Specjalizujesz się w obsłudze magazynów i zdajesz egzamin SPL.01. Zajęcia mundurowe obejmują szkolenie strzeleckie i wizyty w jednostkach Straży Granicznej.</p>
@@ -499,7 +499,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="w-full sm:w-1/2">
             <div class="sm:hidden flex items-center gap-3 mb-1">
               <span class="shrink-0 w-7 h-7 rounded-full bg-[#1a56b0] flex items-center justify-center ring-2 ring-white dark:ring-slate-900"><span class="text-white font-bold text-xs">3</span></span>
-              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 break-words">Klasa III – Transport i kryminalistyka</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa III – Transport i kryminalistyka</h3>
             </div>
             <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">spedycja, prawo karne, Policja</p>
             <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Zgłębiasz zasady organizacji transportu i spedycji. Zajęcia mundurowe obejmują kryminalistykę, podstawy prawa karnego i symulacje z Policją.</p>
@@ -521,7 +521,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="w-full sm:w-1/2 sm:text-right">
             <div class="sm:hidden flex items-center gap-3 mb-1">
               <span class="shrink-0 w-7 h-7 rounded-full bg-[#c9a227] flex items-center justify-center ring-2 ring-white dark:ring-slate-900"><span class="text-white font-bold text-xs">4</span></span>
-              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 break-words">Klasa IV – Egzamin SPL.02 i służba patrolowa</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa IV – Egzamin SPL.02 i służba patrolowa</h3>
             </div>
             <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">transport, praktyki, SG patrol</p>
             <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Zdajesz egzamin SPL.02. Zajęcia koncentrują się na taktyce służby patrolowej i kontroli granicznej. Uczestniczysz w praktykach obserwacyjnych w jednostkach.</p>
@@ -543,7 +543,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="w-full sm:w-1/2">
             <div class="sm:hidden flex items-center gap-3 mb-1">
               <span class="shrink-0 w-7 h-7 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-slate-900" style="background: linear-gradient(135deg, #1a56b0, #2d6627);"><span class="text-white font-bold text-xs">5</span></span>
-              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 break-words">Klasa V – Projekt dyplomowy i matura</h3>
+              <h3 class="font-bold text-slate-900 dark:text-white min-w-0 flex-1 wrap-break-word">Klasa V – Projekt dyplomowy i matura</h3>
             </div>
             <p class="text-sm text-slate-600 dark:text-slate-400 sm:hidden">dyplom technika logistyka, nabór</p>
             <p class="hidden sm:block text-sm text-slate-600 dark:text-slate-400 mt-1">Realizujesz projekt dyplomowy i przystępujesz do matury. Uzyskujesz tytuł technika logistyka. Absolwenci klas OPM korzystają z ułatwionego naboru do Policji i Straży Granicznej.</p>
@@ -554,21 +554,21 @@ import Layout from '../layouts/Layout.astro';
       <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center items-stretch sm:items-center max-w-full">
         <span class="min-w-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-[#1a56b0]/10 text-[#1a56b0] dark:bg-[#1a56b0]/20 dark:text-[#7eb3f5] leading-snug">
           <span class="w-2 h-2 shrink-0 rounded-full bg-[#1a56b0]"></span>
-          <span class="break-words min-w-0">SPL.01 – Obsługa magazynów (kl. 1–2)</span>
+          <span class="wrap-break-word min-w-0">SPL.01 – Obsługa magazynów (kl. 1–2)</span>
         </span>
         <span class="min-w-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-[#2d6627]/10 text-[#2d6627] dark:bg-[#2d6627]/20 dark:text-[#7ec87e] leading-snug">
           <span class="w-2 h-2 shrink-0 rounded-full bg-[#2d6627]"></span>
-          <span class="break-words min-w-0">SPL.02 – Transport (kl. 3–4)</span>
+          <span class="wrap-break-word min-w-0">SPL.02 – Transport (kl. 3–4)</span>
         </span>
         <span class="min-w-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-[#c9a227]/10 text-[#9a7a1a] dark:bg-[#c9a227]/15 dark:text-[#c9a227] leading-snug">
           <span class="w-2 h-2 shrink-0 rounded-full bg-[#c9a227]"></span>
-          <span class="break-words min-w-0">Policja + Straż Graniczna</span>
+          <span class="wrap-break-word min-w-0">Policja + Straż Graniczna</span>
         </span>
       </div>
     </div>
 
     <!-- ═══ SLIDER AKTYWNOŚCI ═══ -->
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug break-words" style="border-color: #1a56b0;">Aktywności i wizyty studyjne</h2>
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug wrap-break-word" style="border-color: #1a56b0;">Aktywności i wizyty studyjne</h2>
 
     <div class="relative overflow-hidden rounded-xl mb-8 w-full" id="gallery-slider">
       <div class="flex transition-transform duration-500 ease-out w-full" id="gallery-track">
@@ -578,8 +578,8 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-[#1a56b0] flex items-center justify-center shadow-xl shadow-[#1a56b0]/40">
               <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" class="w-9 h-9 sm:w-11 sm:h-11"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
             </div>
-            <span class="block text-lg sm:text-xl font-bold text-white break-words">Wizyty w jednostkach Policji</span>
-            <span class="text-[#7eb3f5] mt-1 text-sm sm:text-base block break-words">Komenda Miejska, jednostki specjalne – praktyczne zapoznanie ze specyfiką służby</span>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Wizyty w jednostkach Policji</span>
+            <span class="text-[#7eb3f5] mt-1 text-sm sm:text-base block wrap-break-word">Komenda Miejska, jednostki specjalne – praktyczne zapoznanie ze specyfiką służby</span>
           </div>
         </div>
         <!-- slajd 2 – SG (zieleń + złoto) -->
@@ -588,8 +588,8 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full flex items-center justify-center shadow-xl shadow-[#c9a227]/30" style="background: linear-gradient(135deg,#2d6627,#4a8f3f);">
               <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" class="w-9 h-9 sm:w-11 sm:h-11"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <span class="block text-lg sm:text-xl font-bold text-white break-words">Straż Graniczna – placówki i przejścia</span>
-            <span class="text-[#c9a227] mt-1 text-sm sm:text-base block break-words">Wizyty na przejściach granicznych i w jednostkach Straży Granicznej</span>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Straż Graniczna – placówki i przejścia</span>
+            <span class="text-[#c9a227] mt-1 text-sm sm:text-base block wrap-break-word">Wizyty na przejściach granicznych i w jednostkach Straży Granicznej</span>
           </div>
         </div>
         <!-- slajd 3 – strzelnica (granat/zieleń split) -->
@@ -598,8 +598,8 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full flex items-center justify-center shadow-xl" style="background: linear-gradient(135deg,#1a56b0,#2d6627);">
               <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" class="w-9 h-9 sm:w-11 sm:h-11"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
             </div>
-            <span class="block text-lg sm:text-xl font-bold text-white break-words">Strzelnica i obozy kondycyjne</span>
-            <span class="text-slate-400 mt-1 text-sm sm:text-base block break-words">Szkolenia strzeleckie, tory przeszkód i obozy sprawnościowe</span>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Strzelnica i obozy kondycyjne</span>
+            <span class="text-slate-400 mt-1 text-sm sm:text-base block wrap-break-word">Szkolenia strzeleckie, tory przeszkód i obozy sprawnościowe</span>
           </div>
         </div>
         <!-- slajd 4 – zawody -->
@@ -608,8 +608,8 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-[#c9a227] flex items-center justify-center shadow-xl shadow-[#c9a227]/40">
               <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" class="w-9 h-9 sm:w-11 sm:h-11"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
-            <span class="block text-lg sm:text-xl font-bold text-white break-words">Zawody klas mundurowych</span>
-            <span class="text-[#c9a227] mt-1 text-sm sm:text-base block break-words">Turnieje sprawnościowe, biegi patrolowe i olimpiady tematyczne</span>
+            <span class="block text-lg sm:text-xl font-bold text-white wrap-break-word">Zawody klas mundurowych</span>
+            <span class="text-[#c9a227] mt-1 text-sm sm:text-base block wrap-break-word">Turnieje sprawnościowe, biegi patrolowe i olimpiady tematyczne</span>
           </div>
         </div>
       </div>
@@ -623,9 +623,9 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- ═══ PERSPEKTYWY ZATRUDNIENIA ═══ -->
-    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug break-words" style="border-color: #2d6627;">Perspektywy zatrudnienia</h2>
+    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-10 mb-6 pl-3 sm:pl-4 border-l-4 leading-snug wrap-break-word" style="border-color: #2d6627;">Perspektywy zatrudnienia</h2>
 
-    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4 break-words">Absolwent kierunku może pracować jako:</p>
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4 wrap-break-word">Absolwent kierunku może pracować jako:</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
       <div class="flex items-start gap-3 p-3 rounded-xl bg-[#1a56b0]/5 dark:bg-[#1a56b0]/10 border border-[#1a56b0]/15">
@@ -777,60 +777,61 @@ import Layout from '../layouts/Layout.astro';
 <script>
   (function () {
     // ── Animowane liczniki ──
-    var cards = document.querySelectorAll('.stat-card');
+    const cards = document.querySelectorAll('.stat-card');
     if ('IntersectionObserver' in window) {
-      function animateValue(el, target) {
-        var current = 0;
-        var step = Math.ceil(target / 30);
-        var timer = setInterval(function () {
+      const animateValue = (el: Element, target: number) => {
+        let current = 0;
+        const step = Math.ceil(target / 30);
+        const timer = setInterval(() => {
           current += step;
           if (current >= target) { current = target; clearInterval(timer); }
-          el.textContent = current;
+          el.textContent = String(current);
         }, 40);
-      }
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            var card = entry.target;
-            var valueEl = card.querySelector('.stat-value');
-            var target = parseInt(card.getAttribute('data-count-to'), 10);
-            if (valueEl && target) { animateValue(valueEl, target); }
+            const card = entry.target as HTMLElement;
+            const valueEl = card.querySelector('.stat-value');
+            const countTo = card.getAttribute('data-count-to');
+            const target = countTo ? parseInt(countTo, 10) : 0;
+            if (valueEl && target) { animateValue(valueEl as HTMLElement, target); }
             observer.unobserve(card);
           }
         });
       }, { threshold: 0.3 });
-      cards.forEach(function (card) { observer.observe(card); });
+      cards.forEach((card) => { observer.observe(card); });
     }
 
     // ── Slider galerii ──
-    var track = document.getElementById('gallery-track');
-    var prevBtn = document.getElementById('slider-prev');
-    var nextBtn = document.getElementById('slider-next');
-    var dotsContainer = document.getElementById('slider-dots');
-    if (track && prevBtn && nextBtn && dotsContainer) {
-      var slides = track.querySelectorAll('.gallery-slide');
-      var current = 0;
-      slides.forEach(function (_, i) {
-        var dot = document.createElement('button');
+    const track = document.getElementById('gallery-track');
+    const prevBtn = document.getElementById('slider-prev');
+    const nextBtn = document.getElementById('slider-next');
+    const dotsContainer = document.getElementById('slider-dots');
+    const sliderEl = document.getElementById('gallery-slider');
+    if (track && prevBtn && nextBtn && dotsContainer && sliderEl) {
+      const slides = track.querySelectorAll('.gallery-slide');
+      let current = 0;
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
         dot.className = 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-colors';
         dot.setAttribute('aria-label', 'Przejdź do slajdu ' + (i + 1));
         if (i === 0) dot.classList.add('!bg-white');
-        dot.addEventListener('click', function () { goTo(i); });
+        dot.addEventListener('click', () => { goTo(i); });
         dotsContainer.appendChild(dot);
       });
-      function goTo(index) {
+      const goTo = (index: number) => {
         current = index;
         track.style.transform = 'translateX(-' + (current * 100) + '%)';
-        dotsContainer.querySelectorAll('button').forEach(function (d, i) {
+        dotsContainer.querySelectorAll('button').forEach((d, i) => {
           d.className = 'w-2 h-2 rounded-full ' + (i === current ? 'bg-white' : 'bg-white/40 hover:bg-white/70') + ' transition-colors';
         });
-      }
-      prevBtn.addEventListener('click', function () { goTo(current > 0 ? current - 1 : slides.length - 1); });
-      nextBtn.addEventListener('click', function () { goTo(current < slides.length - 1 ? current + 1 : 0); });
-      var autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000);
-      var sliderEl = document.getElementById('gallery-slider');
-      sliderEl.addEventListener('mouseenter', function () { clearInterval(autoSlide); });
-      sliderEl.addEventListener('mouseleave', function () { autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000); });
+      };
+      prevBtn.addEventListener('click', () => { goTo(current > 0 ? current - 1 : slides.length - 1); });
+      nextBtn.addEventListener('click', () => { goTo(current < slides.length - 1 ? current + 1 : 0); });
+      let autoSlide = setInterval(() => { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000);
+      sliderEl.addEventListener('mouseenter', () => { clearInterval(autoSlide); });
+      sliderEl.addEventListener('mouseleave', () => { autoSlide = setInterval(() => { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000); });
     }
   })();
 </script>
