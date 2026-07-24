@@ -5,6 +5,7 @@ interface FieldItem {
   name: string;
   note?: string;
   slug: string;
+  colSpan?: boolean;
 }
 
 interface SchoolGroup {
@@ -156,7 +157,7 @@ const visibleNoteParts = (note: string) => note.split('|').flatMap((part) => par
                   return (
                     <TagComponent
                       {...linkProps}
-                      class={`p-3.5 rounded-xl border border-slate-100 dark:border-navy-700/60 bg-slate-50/70 dark:bg-navy-900/40 hover:bg-white dark:hover:bg-navy-750 transition-all duration-200 flex flex-col justify-between min-w-0 ${targetPage ? 'hover:border-primary-400 dark:hover:border-primary-500 hover:shadow-sm cursor-pointer group/field' : ''}`}
+                      class={`p-3.5 rounded-xl border border-slate-100 dark:border-navy-700/60 bg-slate-50/70 dark:bg-navy-900/40 hover:bg-white dark:hover:bg-navy-750 transition-all duration-200 flex flex-col justify-between min-w-0${field.colSpan ? ' md:col-span-2 lg:col-span-2' : ''} ${targetPage ? 'hover:border-primary-400 dark:hover:border-primary-500 hover:shadow-sm cursor-pointer group/field' : ''}`}
                     >
                       <div class="flex items-start gap-2.5">
                         <span class={`mt-0.5 p-1.5 rounded-md ${theme.iconBg} shrink-0`}>

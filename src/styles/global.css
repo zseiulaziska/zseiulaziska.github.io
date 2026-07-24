@@ -143,7 +143,7 @@
 }
 
 .mobile-nav__panel {
-  @apply fixed inset-x-3 top-[4.5rem] z-50 max-h-[calc(100vh-5.25rem)] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-2xl dark:border-navy-600 dark:bg-navy-850 sm:inset-x-6;
+  @apply fixed inset-x-3 top-18 z-50 max-h-[calc(100vh-5.25rem)] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-2xl dark:border-navy-600 dark:bg-navy-850 sm:inset-x-6;
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
@@ -319,7 +319,7 @@
 }
 
 #mobile-search-results {
-  @apply static !mt-2 !w-full !max-h-none !right-auto !top-auto rounded-lg border;
+  @apply static mt-2! w-full! max-h-none! right-auto! top-auto! rounded-lg border;
 }
 
 /* Keep existing submenu behavior for backward compatibility */

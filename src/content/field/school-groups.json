@@ -19,21 +19,21 @@
     "fields": [
       { "name": "Mechanik-monter maszyn i urządzeń", "note": "723310", "slug": "mechanik-monter-maszyn" },
       { "name": "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych", "note": "814209", "slug": "operator-maszyn-tworzyw" },
-      { "name": "Klasa wielozawodowa", "note": "nauka z wynagrodzeniem, elastyczny wybór zawodu", "slug": "wielozawodowa" }
+      { "name": "Klasa wielozawodowa", "note": "nauka z wynagrodzeniem, elastyczny wybór zawodu", "slug": "wielozawodowa", "colSpan": true }
     ]
   },
   {
     "name": "Branżowa Szkoła II stopnia",
     "years": "2 lata",
     "fields": [
-      { "name": "Technik mechanik", "note": "311504", "slug": "technik-mechanik" }
+      { "name": "Technik mechanik", "note": "311504", "slug": "technik-mechanik", "colSpan": true }
     ]
   },
   {
     "name": "LO dla Dorosłych",
     "years": "3 lata",
     "fields": [
-      { "name": "Profil ogólny", "note": "nauka bezpłatna, zaoczna", "slug": "lo-profil-ogolny" }
+      { "name": "Profil ogólny", "note": "nauka bezpłatna, zaoczna", "slug": "lo-profil-ogolny", "colSpan": true }
     ]
   }
 ]
