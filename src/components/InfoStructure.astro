@@ -23,7 +23,7 @@ const schools = [
 ];
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="info-structure grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
   {schools.map((s, i) => (
     <div
       class="reveal p-6 rounded-2xl bg-white dark:bg-navy-800/90 border-2 border-primary-100 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(6,166,255,0.08)]"
@@ -37,3 +37,18 @@ const schools = [
     </div>
   ))}
 </div>
+
+<style is:global>
+  html.high-contrast .info-structure,
+  html.high-contrast .info-structure * {
+    background: #000 !important;
+    border-color: #fff !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    text-shadow: none !important;
+  }
+
+  html.high-contrast .info-structure svg {
+    color: #ffff00 !important;
+  }
+</style>

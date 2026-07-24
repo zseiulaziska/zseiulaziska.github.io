@@ -6,6 +6,9 @@
 <title>Plan lekcji - ZSEiU Łaziska Górne</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#1a1a2e">
+<script is:inline>
+(function(){try{if(localStorage.getItem('contrast')==='high'){document.documentElement.classList.add('high-contrast')}}catch(e){}})();
+</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style is:global>
@@ -278,6 +281,44 @@ main {
   .schedule-row .date-group.current-day {
     flex: 1.3;
   }
+}
+
+html.high-contrast {
+  --bg: #000 !important;
+  --surface: #000 !important;
+  --surface2: #000 !important;
+  --card-bg: #000 !important;
+  --border: #fff !important;
+  --text: #fff !important;
+  --text2: #fff !important;
+  --primary: #ffff00 !important;
+  --primary-dark: #ffff00 !important;
+  --okno: #fff !important;
+  --okno-bg: #000 !important;
+}
+
+html.high-contrast header {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html.high-contrast .lesson-subject {
+  color: #fff !important;
+}
+
+html.high-contrast .lesson-time {
+  color: #fff !important;
+}
+
+html.high-contrast .now-indicator {
+  background: #ffff00 !important;
+  color: #000 !important;
+}
+
+html.high-contrast .day-tab.active {
+  background: #ffff00 !important;
+  color: #000 !important;
+  border-color: #ffff00 !important;
 }
 </style>
 </head>

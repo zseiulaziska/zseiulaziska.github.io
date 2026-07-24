@@ -82,10 +82,12 @@ const knownPages: Record<string, string> = {
   "opm": "/opm",
   "lo-profil-ogolny": "/lo-dla-doroslych"
 };
+
+const visibleNoteParts = (note: string) => note.split('|').flatMap((part) => part.split('·')).map((part) => part.trim()).filter((part) => part && !/^\d+$/.test(part));
 ---
 
 {variant === 'detailed' && (
-  <div class="space-y-10 my-8 w-full min-w-0">
+  <div class="school-fields not-prose space-y-10 my-8 w-full min-w-0 text-slate-900 dark:text-white">
     <!-- INFOGRAPHIC SUMMARY STATS BAR -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-6 rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm text-center">
       <div class="p-3 rounded-xl bg-slate-50 dark:bg-navy-700/50">
@@ -164,9 +166,9 @@ const knownPages: Record<string, string> = {
                           <span class="font-semibold text-slate-900 dark:text-white text-sm sm:text-base leading-snug block wrap-break-word">
                             {field.name}
                           </span>
-                          {field.note && (
+                          {field.note && visibleNoteParts(field.note).length > 0 && (
                             <div class="mt-1.5 flex flex-wrap gap-1">
-                              {field.note.split('|').map(n => n.split('·')).flat().map(part => part.trim()).filter(Boolean).map(part => (
+                              {visibleNoteParts(field.note).map(part => (
                                 <span class={`inline-block px-2 py-0.5 rounded text-[11px] font-mono font-medium ${part.toLowerCase().includes('opw') || part.toLowerCase().includes('woj') || part.toLowerCase().includes('policja') ? 'bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-300' : part.toLowerCase().includes('oze') ? 'bg-green-100 text-green-700 dark:bg-green-950/60 dark:text-green-300' : theme.badgeBg + ' ' + theme.badgeText}`}>
                                   {part}
                                 </span>
@@ -195,7 +197,7 @@ const knownPages: Record<string, string> = {
 )}
 
 {variant === 'compact' && (
-  <div class="my-6 space-y-4 not-prose w-full min-w-0">
+  <div class="my-6 space-y-4 not-prose w-full min-w-0 text-slate-900 dark:text-white">
     {groups.map((group) => {
       const theme = groupThemes[group.name] || {
         category: group.name,
@@ -233,7 +235,7 @@ const knownPages: Record<string, string> = {
                       ) : (
                         <strong class="font-semibold text-slate-900 dark:text-white">{f.name}</strong>
                       )}
-                      {f.note && <span class="text-xs text-slate-500 dark:text-slate-400 ml-1">({f.note})</span>}
+                      {f.note && visibleNoteParts(f.note).length > 0 && <span class="text-xs text-slate-500 dark:text-slate-400 ml-1">({visibleNoteParts(f.note).join(' · ')})</span>}
                     </div>
                   </li>
                 );
@@ -245,3 +247,20 @@ const knownPages: Record<string, string> = {
     })}
   </div>
 )}
+
+<style is:global>
+  html.high-contrast .school-fields,
+  html.high-contrast .school-fields * {
+    background: #000 !important;
+    border-color: #fff !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    text-shadow: none !important;
+  }
+
+  html.high-contrast .school-fields a {
+    color: #ffff00 !important;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+</style>

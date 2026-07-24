@@ -454,9 +454,6 @@ const iconForHref = (href: string) => {
     if (contrastToggle) {
       contrastToggle.addEventListener('click', function () {
         var isHighContrast = document.documentElement.classList.toggle('high-contrast');
-        if (isHighContrast) {
-          document.documentElement.classList.add('dark');
-        }
         writePreference('contrast', isHighContrast ? 'high' : 'standard');
         updatePreferenceButtons();
       });

@@ -51,6 +51,8 @@ const latestThree = sortedPosts.slice(0, 3);
     <Hero />
   </div>
 
+<div class="page-index">
+
     <section class="reveal py-20 lg:py-28 bg-white dark:bg-navy-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
@@ -290,4 +292,37 @@ const latestThree = sortedPosts.slice(0, 3);
       </div>
     </div>
   </section>
+</div>
+
+<style is:global>
+  html.high-contrast .page-index,
+  html.high-contrast .page-index * {
+    background: #000 !important;
+    border-color: #fff !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    text-shadow: none !important;
+  }
+
+  html.high-contrast .page-index a {
+    color: #ffff00 !important;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  html.high-contrast .page-index a svg {
+    color: #ffff00 !important;
+  }
+
+  html.high-contrast .page-index img {
+    filter: brightness(0.8) contrast(1.4);
+  }
+
+  html.high-contrast .page-index button,
+  html.high-contrast .page-index .bg-primary-600 {
+    background: #000 !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+  }
+</style>
 </Layout>

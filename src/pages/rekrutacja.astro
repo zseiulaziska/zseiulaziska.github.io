@@ -1,20 +1,111 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SchoolFields from '../components/SchoolFields.astro';
 ---
 
-<Layout title="Rekrutacja - ZSEiU Łaziska Górne" description="Zasady rekrutacji do ZSEiU Łaziska Górne. Terminy, dokumenty i kierunki kształcenia na rok szkolny.">
-  <article class="prose max-w-4xl dark:prose-invert">
-    <h1>Rekrutacja</h1>
-    <p>Informacje o rekrutacji (formularze, terminy i zasady) można znaleźć poniżej.</p>
+<Layout title="Rekrutacja 2026/2027 - ZSEiU Łaziska Górne" description="Rekrutacja do ZSEiU Łaziska Górne. Sprawdź kierunki, kolejne kroki, dokumenty, zasady punktacji i odpowiedzi na najczęstsze pytania.">
+  <article class="recruitment-page w-full max-w-5xl mx-auto min-w-0">
+    <section class="recruitment-hero relative overflow-hidden rounded-3xl bg-linear-to-br from-navy-950 via-[#102b4a] to-[#075985] px-5 py-8 text-white shadow-xl sm:px-10 sm:py-12" aria-labelledby="recruitment-title">
+      <div class="hero-pattern absolute inset-0 opacity-30" aria-hidden="true"></div>
+      <div class="relative z-10 grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-cyan-200/30 bg-cyan-100/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-cyan-100">
+            Rekrutacja 2026/2027
+          </span>
+          <h1 id="recruitment-title" class="mt-5 max-w-3xl text-3xl font-black leading-tight tracking-tight sm:text-5xl">Wybierz zawód z przyszłością. Dołącz do ZSEiU.</h1>
+          <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg">Praktyczna nauka, bezpieczna atmosfera i kierunki, które otwierają drogę do pracy, matury albo służby. Zobacz, co zrobić krok po kroku.</p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="#kroki" class="inline-flex items-center gap-2 rounded-lg bg-amber-400 px-5 py-3 font-bold text-slate-950 shadow-lg shadow-amber-950/20 transition hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/70">Zacznij od kroków <span aria-hidden="true">→</span></a>
+            <a href="#oferta" class="inline-flex items-center gap-2 rounded-lg border border-white/30 px-5 py-3 font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/40">Poznaj kierunki</a>
+          </div>
+        </div>
+        <aside class="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm" aria-label="Status rekrutacji">
+          <p class="text-xs font-bold uppercase tracking-[0.12em] text-cyan-100">Status</p>
+          <p class="mt-2 text-2xl font-black">Sprawdź harmonogram</p>
+          <p class="mt-2 text-sm leading-relaxed text-slate-200">Dokładne daty naboru opublikujemy po ogłoszeniu oficjalnego harmonogramu. Sekretariat pomoże Ci przejść przez formalności.</p>
+          <a href="/kontakt" class="mt-4 inline-flex items-center gap-2 font-semibold text-amber-300 hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300">Skontaktuj się ze szkołą <span aria-hidden="true">↗</span></a>
+        </aside>
+      </div>
+    </section>
 
-    <h2>Terminy (wybrane)</h2>
-    <ul>
-      <li>Rozpoczęcie roku: 1 września 2025</li>
-      <li>Egzaminy zawodowe: sesja zimowa od 8 stycznia 2026; sesja letnia od 1 czerwca 2026</li>
-      <li>Egzaminy maturalne: 4–30 maja 2026</li>
-    </ul>
+    <section class="mt-8 grid gap-4 sm:grid-cols-3" aria-label="Najważniejsze informacje">
+      <div class="rounded-xl border border-slate-200 bg-white p-5 dark:border-navy-700 dark:bg-navy-800"><p class="text-3xl font-black text-primary-600 dark:text-primary-300">5</p><p class="mt-1 font-semibold text-slate-900 dark:text-white">lat w technikum</p><p class="mt-1 text-sm text-slate-600 dark:text-slate-400">matura i kwalifikacje zawodowe</p></div>
+      <div class="rounded-xl border border-slate-200 bg-white p-5 dark:border-navy-700 dark:bg-navy-800"><p class="text-3xl font-black text-emerald-600 dark:text-emerald-300">praktyka</p><p class="mt-1 font-semibold text-slate-900 dark:text-white">uczysz się przez działanie</p><p class="mt-1 text-sm text-slate-600 dark:text-slate-400">zajęcia zawodowe i współpraca z pracodawcami</p></div>
+      <div class="rounded-xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-900/60 dark:bg-amber-950/30"><p class="text-3xl font-black text-amber-700 dark:text-amber-300">OPW</p><p class="mt-1 font-semibold text-slate-900 dark:text-white">wyjątkowa ścieżka mundurowa</p><p class="mt-1 text-sm text-slate-600 dark:text-slate-400">przygotowanie wojskowe w technikum</p></div>
+    </section>
 
-    <h2>Formularze</h2>
-    <p>Formularze rekrutacyjne i regulaminy dostępne są na stronie szkoły. Możemy podłączyć bezpośrednie pliki PDF/DOCX jeśli chcesz.</p>
+    <section id="oferta" class="mt-14 scroll-mt-24" aria-labelledby="offer-title">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-4"><div><p class="section-kicker">Znajdź swoją drogę</p><h2 id="offer-title" class="section-title">Wybierz typ szkoły</h2></div><a href="/kierunki" class="text-sm font-bold text-primary-700 hover:underline dark:text-primary-300">Zobacz pełną ofertę →</a></div>
+      <SchoolFields variant="detailed" />
+    </section>
+
+    <section id="kroki" class="mt-14 scroll-mt-24" aria-labelledby="steps-title">
+      <div class="mb-6"><p class="section-kicker">Bez stresu, krok po kroku</p><h2 id="steps-title" class="section-title">Jak wygląda rekrutacja?</h2><p class="section-lead">Zapisz tę listę. Gdy pojawi się oficjalny harmonogram, uzupełnimy przy niej dokładne daty.</p></div>
+      <ol class="steps-list">
+        <li><span class="step-badge">1</span><div><h3>Wybierz szkołę i kierunek</h3><p>Porównaj ofertę technikum, szkół branżowych i liceum. Przy klasach mundurowych sprawdź dodatkowe wymagania.</p></div><span class="step-date">termin zostanie podany</span></li>
+        <li><span class="step-badge">2</span><div><h3>Złóż wniosek</h3><p>Wypełnij wniosek w elektronicznym systemie rekrutacji lub skorzystaj ze wsparcia sekretariatu.</p></div><span class="step-date">termin zostanie podany</span></li>
+        <li><span class="step-badge">3</span><div><h3>Uzupełnij dokumenty</h3><p>W odpowiednim terminie dostarcz świadectwo, wyniki egzaminu ósmoklasisty i wymagane zaświadczenia.</p></div><span class="step-date">termin zostanie podany</span></li>
+        <li><span class="step-badge">4</span><div><h3>Sprawdź listy</h3><p>Po ogłoszeniu wyników zobacz, czy jesteś zakwalifikowany do wybranego oddziału.</p></div><span class="step-date">termin zostanie podany</span></li>
+        <li><span class="step-badge">5</span><div><h3>Potwierdź wolę nauki</h3><p>Dostarcz oryginały dokumentów i dołącz do społeczności ZSEiU.</p></div><span class="step-date">termin zostanie podany</span></li>
+      </ol>
+      <div class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-relaxed text-amber-950 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-100"><strong>Ważne dla kandydatów do klas mundurowych:</strong> testy sprawnościowe oraz dokumenty zdrowotne mogą mieć osobne terminy. Sprawdź wymagania na stronie <a href="/opw" class="font-bold underline">OPW</a> przed złożeniem wniosku.</div>
+    </section>
+
+    <section class="mt-14 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]" aria-labelledby="documents-title">
+      <div id="dokumenty" class="scroll-mt-24"><p class="section-kicker">Przygotuj się wcześniej</p><h2 id="documents-title" class="section-title">Dokumenty i formalności</h2><p class="section-lead">Komplet dokumentów rekrutacyjnych i regulaminów udostępniamy w jednym miejscu. Przed wysłaniem wniosku sprawdź, czy wymagany jest dodatkowy dokument dla wybranego kierunku.</p><div class="mt-5 grid gap-3 sm:grid-cols-2"><a href="/dokumenty" class="download-row"><span class="file-icon">PDF</span><span><strong>Regulaminy i statuty</strong><small>Dokumenty szkoły i zasady organizacji</small></span><span aria-hidden="true">↗</span></a><a href="/kontakt" class="download-row"><span class="file-icon">?</span><span><strong>Wniosek i formularze</strong><small>Zapytaj sekretariat o aktualne wzory</small></span><span aria-hidden="true">→</span></a><a href="/opw" class="download-row"><span class="file-icon">OPW</span><span><strong>Wymagania mundurowe</strong><small>Zdrowie, sprawność i dodatkowe etapy</small></span><span aria-hidden="true">↗</span></a><a href="/dokumenty" class="download-row"><span class="file-icon">INFO</span><span><strong>Ochrona danych</strong><small>Informacje dla kandydatów i rodziców</small></span><span aria-hidden="true">↗</span></a></div></div>
+      <div class="rounded-2xl bg-slate-900 p-6 text-white dark:bg-navy-800 sm:p-7"><p class="section-kicker section-kicker--light">Dla rodziców i kandydatów</p><h2 class="mt-2 text-2xl font-black">Nie wiesz, od czego zacząć?</h2><p class="mt-3 leading-relaxed text-slate-300">Napisz lub zadzwoń. Pomożemy wybrać kierunek, wyjaśnimy formalności i wskażemy dokumenty potrzebne w Twojej sytuacji.</p><a href="mailto:sekretariat@zseiulaziska.pl" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 font-bold text-slate-900 transition hover:bg-cyan-50">Napisz do sekretariatu <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section class="mt-14" aria-labelledby="points-title"><div class="mb-6"><p class="section-kicker">Zasady w prostych słowach</p><h2 id="points-title" class="section-title">Jak zdobywa się punkty?</h2></div><div class="grid gap-4 sm:grid-cols-3"><div class="info-tile"><strong>Egzamin ósmoklasisty</strong><p>Wyniki z języka polskiego, matematyki i języka obcego wpływają na wynik rekrutacji.</p></div><div class="info-tile"><strong>Oceny na świadectwie</strong><p>Liczą się oceny z przedmiotów wskazanych dla danego kierunku oraz świadectwo z wyróżnieniem.</p></div><div class="info-tile"><strong>Osiągnięcia</strong><p>Dodatkowe punkty mogą wynikać z konkursów, zawodów, wolontariatu i aktywności społecznej.</p></div></div><p class="mt-4 text-sm text-slate-600 dark:text-slate-400">Szczegółowa tabela punktowa i przedmioty brane pod uwagę zależą od aktualnego regulaminu rekrutacji. Skontaktuj się z komisją, jeśli chcesz sprawdzić konkretny kierunek.</p></section>
+
+    <section class="mt-14" aria-labelledby="faq-title"><div class="mb-6"><p class="section-kicker">Masz pytanie?</p><h2 id="faq-title" class="section-title">Najczęstsze pytania</h2></div><div class="faq-list"><details><summary>Czy do OPW lub OPM są dodatkowe testy?</summary><p>Klasy mundurowe mogą mieć dodatkowe wymagania, w tym test sprawnościowy i dokumenty zdrowotne. Aktualne zasady sprawdź na stronie wybranego oddziału oraz w sekretariacie.</p></details><details><summary>Kiedy trzeba zrobić badania medycyny pracy?</summary><p>Termin i zakres badań zależy od kierunku oraz aktualnych wymagań. Nie wykonuj badań na własną rękę przed sprawdzeniem informacji w szkole.</p></details><details><summary>Gdzie odbywają się zajęcia praktyczne?</summary><p>Zajęcia zawodowe mogą odbywać się w pracowniach szkolnych oraz u pracodawców współpracujących ze szkołą. Szczegóły poznasz przy wyborze konkretnego zawodu.</p></details><details><summary>Czy szkoła pomaga w sprawie dojazdu?</summary><p>Tak. Sekretariat podpowie, jak dotrzeć do szkoły z okolicznych miejscowości. Szkoła znajduje się przy ul. Chopina 11b w Łaziskach Górnych i ma parking przy budynku.</p></details></div></section>
+
+    <section id="kontakt-rekrutacja" class="mt-14 scroll-mt-24 rounded-3xl border border-primary-200 bg-primary-50 p-6 dark:border-primary-800/60 dark:bg-navy-800 sm:p-9" aria-labelledby="contact-title"><div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><div><p class="section-kicker">Jesteśmy po Twojej stronie</p><h2 id="contact-title" class="section-title">Kontakt z komisją rekrutacyjną</h2><p class="mt-3 max-w-2xl text-slate-700 dark:text-slate-300">Sekretariat pracuje od poniedziałku do piątku w godzinach 7:30–15:00.</p><div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold"><a href="tel:322242415" class="text-primary-700 hover:underline dark:text-primary-300">32 224 24 15</a><a href="mailto:sekretariat@zseiulaziska.pl" class="text-primary-700 hover:underline dark:text-primary-300">sekretariat@zseiulaziska.pl</a></div></div><a href="/kontakt" class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-5 py-3 font-bold text-white shadow-md transition hover:bg-primary-700">Pełne dane kontaktowe <span aria-hidden="true">→</span></a></div></section>
   </article>
 </Layout>
+
+<style>
+  .recruitment-page { color: #172033; }
+  :global(.dark) .recruitment-page { color: #e2e8f0; }
+  .hero-pattern { background-image: linear-gradient(120deg, transparent 0 45%, rgba(255,255,255,.12) 45% 46%, transparent 46% 100%), linear-gradient(30deg, transparent 0 70%, rgba(34,211,238,.15) 70% 71%, transparent 71% 100%); background-size: 32px 32px, 46px 46px; }
+  .section-kicker { color: #0070b0; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .section-kicker--light { color: #67e8f9; }
+  .section-title { margin-top: .35rem; color: #0f172a; font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: 900; line-height: 1.1; }
+  :global(.dark) .section-title { color: #fff; }
+  .section-lead { margin-top: .65rem; max-width: 48rem; color: #475569; line-height: 1.65; }
+  :global(.dark) .section-lead { color: #94a3b8; }
+  .steps-list { display: grid; gap: .8rem; }
+  .steps-list li { display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; border-left: 2px solid #bae6fd; padding: .75rem 0 .75rem 1rem; }
+  .step-badge { display: grid; height: 2rem; width: 2rem; place-items: center; border-radius: 999px; background: #0369a1; color: #fff; font-weight: 900; }
+  .steps-list h3 { color: #0f172a; font-size: 1.05rem; font-weight: 800; }
+  :global(.dark) .steps-list h3 { color: #fff; }
+  .steps-list p { margin-top: .25rem; color: #64748b; font-size: .92rem; line-height: 1.5; }
+  :global(.dark) .steps-list p { color: #94a3b8; }
+  .step-date { grid-column: 2; color: #0369a1; font-size: .75rem; font-weight: 800; text-transform: uppercase; }
+  :global(.dark) .step-date { color: #7dd3fc; }
+  .download-row { display: flex; align-items: center; gap: .75rem; border: 1px solid #dbe3ec; border-radius: .75rem; background: #fff; padding: .8rem; color: #0f172a; transition: border-color .2s, box-shadow .2s; }
+  .download-row:hover { border-color: #38bdf8; box-shadow: 0 6px 16px rgba(15, 61, 100, .08); }
+  :global(.dark) .download-row { border-color: #263c59; background: #0f1d35; color: #fff; }
+  .download-row strong, .download-row small { display: block; }
+  .download-row small { margin-top: .15rem; color: #64748b; font-size: .75rem; line-height: 1.35; }
+  :global(.dark) .download-row small { color: #94a3b8; }
+  .file-icon { display: grid; min-width: 2.6rem; height: 2.6rem; place-items: center; border-radius: .55rem; background: #e0f2fe; color: #0369a1; font-size: .63rem; font-weight: 900; }
+  :global(.dark) .file-icon { background: #164e63; color: #a5f3fc; }
+  .info-tile { border-top: 3px solid #0ea5e9; border-radius: .75rem; background: #f8fafc; padding: 1.1rem; }
+  :global(.dark) .info-tile { background: #0f1d35; }
+  .info-tile strong { color: #0f172a; font-weight: 800; }
+  :global(.dark) .info-tile strong { color: #fff; }
+  .info-tile p { margin-top: .45rem; color: #64748b; font-size: .9rem; line-height: 1.5; }
+  :global(.dark) .info-tile p { color: #94a3b8; }
+  .faq-list { display: grid; gap: .65rem; }
+  .faq-list details { border-bottom: 1px solid #dbe3ec; padding: .25rem 0 .8rem; }
+  :global(.dark) .faq-list details { border-color: #263c59; }
+  .faq-list summary { cursor: pointer; list-style: none; color: #0f172a; font-weight: 800; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: '+'; float: right; color: #0284c7; font-size: 1.25rem; }
+  .faq-list details[open] summary::after { content: '−'; }
+  :global(.dark) .faq-list summary { color: #fff; }
+  .faq-list details p { max-width: 48rem; padding-top: .6rem; color: #64748b; line-height: 1.6; }
+  :global(.dark) .faq-list details p { color: #94a3b8; }
+  @media (max-width: 640px) { .step-date { font-size: .68rem; } }
+</style>
