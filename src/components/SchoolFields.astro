@@ -68,7 +68,8 @@ const groupThemes: Record<string, {
   }
 };
 
-const totalFieldsCount = groups.reduce((acc, g) => acc + g.fields.length, 0);
+const renderedGroups = groups.filter(g => g.name !== "Branżowa Szkoła I stopnia - klasa wielozawodowa");
+const totalFieldsCount = renderedGroups.reduce((acc, g) => acc + g.fields.length, 0);
 
 // Known pages mapping
 const knownPages: Record<string, string> = {
@@ -81,24 +82,7 @@ const knownPages: Record<string, string> = {
   "opw": "/opw",
   "opm": "/opm",
   "lo-profil-ogolny": "/lo-dla-doroslych",
-  "blacharz-samochodowy": "/wielozawodowa",
-  "cukiernik": "/wielozawodowa",
-  "elektryk": "/wielozawodowa",
-  "fryzjer": "/wielozawodowa",
-  "kelner": "/wielozawodowa",
-  "krawiec": "/wielozawodowa",
-  "kucharz": "/wielozawodowa",
-  "lakiernik-samochodowy": "/wielozawodowa",
-  "magazynier-logistyk": "/wielozawodowa",
-  "monter-sieci-sanitarnych": "/wielozawodowa",
-  "monter-zabudowy": "/wielozawodowa",
-  "murarz-tynkarz": "/wielozawodowa",
-  "operator-obrabiarek": "/wielozawodowa",
-  "piekarz": "/wielozawodowa",
-  "przetworca-miesa": "/wielozawodowa",
-  "sprzedawca": "/wielozawodowa",
-  "stolarz": "/wielozawodowa",
-  "slusarz": "/wielozawodowa"
+  "wielozawodowa": "/wielozawodowa"
 };
 
 const visibleNoteParts = (note: string) => note.split('|').flatMap((part) => part.split('·')).map((part) => part.trim()).filter((part) => part && !/^\d+$/.test(part));
@@ -117,18 +101,18 @@ const visibleNoteParts = (note: string) => note.split('|').flatMap((part) => par
         <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Kierunków & Zawodów</span>
       </div>
       <div class="p-3 rounded-xl bg-slate-50 dark:bg-navy-700/50">
-        <span class="block text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">2–5</span>
-        <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Lata Kształcenia</span>
+        <span class="block text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">580+</span>
+        <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Uczniów i słuchaczy</span>
       </div>
       <div class="p-3 rounded-xl bg-slate-50 dark:bg-navy-700/50">
         <span class="block text-2xl sm:text-3xl font-extrabold text-purple-600 dark:text-purple-400">100%</span>
-        <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Praktycznej Nauki</span>
+        <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Skutecznej nauki</span>
       </div>
     </div>
 
     <!-- INFOGRAPHIC GROUPS -->
     <div class="space-y-8">
-      {groups.map((group) => {
+      {renderedGroups.map((group) => {
         const theme = groupThemes[group.name] || {
           category: group.name,
           gradient: "from-slate-700 to-slate-900",
@@ -216,7 +200,7 @@ const visibleNoteParts = (note: string) => note.split('|').flatMap((part) => par
 
 {variant === 'compact' && (
   <div class="my-6 space-y-4 not-prose w-full min-w-0 text-slate-900 dark:text-white">
-    {groups.map((group) => {
+    {renderedGroups.map((group) => {
       const theme = groupThemes[group.name] || {
         category: group.name,
         badgeBg: "bg-slate-100 dark:bg-slate-800",

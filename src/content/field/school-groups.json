@@ -18,31 +18,8 @@
     "years": "3 lata",
     "fields": [
       { "name": "Mechanik-monter maszyn i urządzeń", "note": "723310", "slug": "mechanik-monter-maszyn" },
-      { "name": "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych", "note": "814209", "slug": "operator-maszyn-tworzyw" }
-    ]
-  },
-  {
-    "name": "Branżowa Szkoła I stopnia - klasa wielozawodowa",
-    "years": "3 lata",
-    "fields": [
-      { "name": "Blacharz samochodowy", "note": "721306", "slug": "blacharz-samochodowy" },
-      { "name": "Cukiernik", "note": "751201", "slug": "cukiernik" },
-      { "name": "Elektryk", "note": "741103", "slug": "elektryk" },
-      { "name": "Fryzjer", "note": "514101", "slug": "fryzjer" },
-      { "name": "Kelner", "note": "513101", "slug": "kelner" },
-      { "name": "Krawiec", "note": "753105", "slug": "krawiec" },
-      { "name": "Kucharz", "note": "512001", "slug": "kucharz" },
-      { "name": "Lakiernik samochodowy", "note": "713203", "slug": "lakiernik-samochodowy" },
-      { "name": "Magazynier-logistyk", "note": "432106", "slug": "magazynier-logistyk" },
-      { "name": "Monter sieci i instalacji sanitarnych", "note": "712618", "slug": "monter-sieci-sanitarnych" },
-      { "name": "Monter zabudowy i robót wykończeniowych w budownictwie", "note": "712905", "slug": "monter-zabudowy" },
-      { "name": "Murarz-tynkarz", "note": "711204", "slug": "murarz-tynkarz" },
-      { "name": "Operator obrabiarek skrawających", "note": "722307", "slug": "operator-obrabiarek" },
-      { "name": "Piekarz", "note": "751204", "slug": "piekarz" },
-      { "name": "Przetwórca mięsa", "note": "751108", "slug": "przetworca-miesa" },
-      { "name": "Sprzedawca", "note": "522301", "slug": "sprzedawca" },
-      { "name": "Stolarz", "note": "752205", "slug": "stolarz" },
-      { "name": "Ślusarz", "note": "722204", "slug": "slusarz" }
+      { "name": "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych", "note": "814209", "slug": "operator-maszyn-tworzyw" },
+      { "name": "Klasa wielozawodowa", "note": "nauka z wynagrodzeniem, elastyczny wybór zawodu", "slug": "wielozawodowa" }
     ]
   },
   {
