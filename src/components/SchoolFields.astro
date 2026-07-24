@@ -80,7 +80,25 @@ const knownPages: Record<string, string> = {
   "technik-oze": "/technik-urzadzen-i-systemow-energetyki-odnawialnej",
   "opw": "/opw",
   "opm": "/opm",
-  "lo-profil-ogolny": "/lo-dla-doroslych"
+  "lo-profil-ogolny": "/lo-dla-doroslych",
+  "blacharz-samochodowy": "/wielozawodowa",
+  "cukiernik": "/wielozawodowa",
+  "elektryk": "/wielozawodowa",
+  "fryzjer": "/wielozawodowa",
+  "kelner": "/wielozawodowa",
+  "krawiec": "/wielozawodowa",
+  "kucharz": "/wielozawodowa",
+  "lakiernik-samochodowy": "/wielozawodowa",
+  "magazynier-logistyk": "/wielozawodowa",
+  "monter-sieci-sanitarnych": "/wielozawodowa",
+  "monter-zabudowy": "/wielozawodowa",
+  "murarz-tynkarz": "/wielozawodowa",
+  "operator-obrabiarek": "/wielozawodowa",
+  "piekarz": "/wielozawodowa",
+  "przetworca-miesa": "/wielozawodowa",
+  "sprzedawca": "/wielozawodowa",
+  "stolarz": "/wielozawodowa",
+  "slusarz": "/wielozawodowa"
 };
 
 const visibleNoteParts = (note: string) => note.split('|').flatMap((part) => part.split('·')).map((part) => part.trim()).filter((part) => part && !/^\d+$/.test(part));
