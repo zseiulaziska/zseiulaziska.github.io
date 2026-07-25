@@ -13,7 +13,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	nextPost?: NavPost | null;
 };
 
-const { title, description, pubDate, updatedDate, heroImage, prevPost, nextPost } = Astro.props;
+const { title, description, pubDate, heroImage, prevPost, nextPost } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
@@ -36,13 +36,7 @@ const { title, description, pubDate, updatedDate, heroImage, prevPost, nextPost 
 			<div class="title">
 				<div class="date">
 					{pubDate && <FormattedDate date={pubDate} />}
-					{
-						updatedDate && (
-							<div class="last-updated-on">
-								Ostatnia aktualizacja: <FormattedDate date={updatedDate} />
-							</div>
-						)
-					}
+
 				</div>
 				<h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight">{title}</h1>
 				<hr class="my-4" />

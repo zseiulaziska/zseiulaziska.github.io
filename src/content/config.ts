@@ -4,10 +4,9 @@ const blogSchema = z.object({
   title: z.string(),
   description: z.string().max(160),
   pubDate: z.coerce.date(),
-  author: z.string(),
-  image: z.string(),
-  imageAlt: z.string(),
-  tags: z.array(z.string()),
+  heroImage: z.string().optional(),
+  imageAlt: z.string().optional(),
+  tags: z.array(z.string()).optional(),
   draft: z.boolean().optional(),
 });
 
