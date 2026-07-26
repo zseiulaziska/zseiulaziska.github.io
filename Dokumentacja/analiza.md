@@ -78,21 +78,24 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
  ┌─────────────────────────┬───────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────┐ 
  │ Problem                 │ Lokalizacja                               │ Szczegóły                                                                          │ 
  ├─────────────────────────┼───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┤ 
- │ Niezgodność schematu    │ src/content/config.ts vs                  │ Keystatic zapisuje heroImage, schema wymaga image/imageAlt/author/tags, a          │ 
- │ bloga                   │ keystatic.config.ts vs [...slug].astro    │ [...slug].astro czyta post.data.heroImage — pole nie istnieje w schemacie. Posty   │ 
- │                         │                                           │ mogą się nie renderować lub rzucać błędem.                                         │ 
+
+
+ │ plan-zajec-lo.astro bez │ src/pages/plan-zajec-lo.astro             │ ✅ NAPRAWIONE — owinięty w Layout.astro, dodane widoki dzień/miesiąc/semestr/rok,   │ 
+ │ Layoutu                 │                                           │ nawigacja, druk, obsługa klawiatury, dane z Google Apps Script.                     │ 
  ├─────────────────────────┼───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┤ 
- │ about.astro jest        │ src/pages/about.astro                     │ Importuje Layout z BlogPost.astro (zamiast Layout.astro) — najprawdopodobniej      │ 
- │ niespójny               │                                           │ niepełna/page error                                                                │ 
+ │ Błąd Tailwind `@apply`  │ src/pages/plan-zajec-lo.astro             │ ✅ NAPRAWIONE — zastąpiono @apply czystym CSS ze zmiennymi projektu (tailwind v4)   │ 
  ├─────────────────────────┼───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┤ 
- │ plan-zajec-lo.astro bez │ src/pages/plan-zajec-lo.astro             │ Zaczyna się od <!doctype html> — pomija całkowicie Layout.astro, brak nav,         │ 
- │ Layoutu                 │                                           │ breadcrumbs, dostępności                                                           │ 
+ │ Podgląd sąsiednich dni  │ src/pages/plan-zajec-lo.astro             │ ✅ ZROBIONE — w widoku Dzień na desktopie pokazywane 3 karty: poprzedni/bieżący/    │ 
+                         │                                           │ następny dzień (boczne przyciemnione). Na mobile tylko bieżący.                     │ 
  ├─────────────────────────┼───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┤ 
- │ Duplikacja stron        │ kierunki.astro vs                         │ Różnią się tylko tytułem i opisem — ta sama treść, dwa URL-e. Szkodzi SEO          │ 
- │                         │ kierunki-ksztalcenia.astro                │ (duplicate content)                                                                │ 
+ │ Nawigacja dni w widokach│ src/pages/plan-zajec-lo.astro             │ ✅ ZROBIONE — na mobile (<768px) strzałki przechodzą między dniami także w          │ 
+ │ miesięcznych/semestral. │                                           │ widokach Miesiąc, Semestr, Rok.                                                    │ 
+ ├─────────────────────────┼───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┤ 
+ │ Rok szkolny w widoku   │ src/pages/plan-zajec-lo.astro             │ ✅ ZROBIONE — widok Rok grupuje daty według roku szkolnego (IX–VI) z etykietą      │ 
+ │ Rok                     │                                           │ np. „Rok szkolny 2024/2025”.                                                       │ 
  └─────────────────────────┴───────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────┘ 
-                                                                                                                                                              
- ### 🟡 Średnie                                                                                                                                               
+                                                                                              
+ ### 🟡 Średnie
                                                                                                                                                               
  ┌──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
  │ Problem                  │ Szczegóły                                                                                                                     │ 
@@ -103,7 +106,6 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
  │ Dead code —              │ W index.astro ~80 linii komentarza (Features, sekcje infrastruktury, projektów). Zaśmieca kod                                 │ 
  │ zakomentowane sekcje     │                                                                                                                               │ 
  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ 
- │ SkipLink zakomentowany   │ SkipLink.astro renderuje <!-- komentarz --> — link pomijania nie działa                                                       │ 
  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ 
  │ Niepotrzebne komponenty  │ Header.astro, HeaderLink.astro — nie są używane (zastąpione przez MegaNav). Features.astro — nie importowany.                 │ 
  │                          │ TableOfContents.astro — nie używany.                                                                                          │ 
@@ -132,47 +134,13 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
  ├─────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ 
  │ Brak Pagefind w dev                 │ Pagefind działa tylko w postbuild.cjs — nie ma indeksu podczas astro dev                                           │ 
  ├─────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ 
- │ BlogPost.astro używa                │ updatedDate i heroImage są destructured z Astro.props jako CollectionEntry['blog']['data'] — ale te pola nie       │ 
- │ nieistniejących pól                 │ istnieją w schemacie                                                                                               │ 
  └─────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
                                                                                                                                                               
  ────────────────────────────────────────────────────────────────────────────────                                                                             
                                                                                                                                                               
  💡 CO I JAK POPRAWIĆ                                                                                                                                         
                                                                                                                                                               
- ### 1. 🔧 Naprawa schematu bloga (krytyczne)                                                                                                                 
-                                                                                                                                                              
- Dostosuj schemat w src/content/config.ts do tego, co faktycznie produkuje Keystatic:                                                                         
-                                                                                                                                                              
- ```ts                                                                                                                                                        
-   // src/content/config.ts                                                                                                                                   
-   const blogSchema = z.object({                                                                                                                              
-     title: z.string(),                                                                                                                                       
-     description: z.string().max(160),                                                                                                                        
-     pubDate: z.coerce.date(),                                                                                                                                
-     heroImage: z.string().optional(),                                                                                                                        
-     imageAlt: z.string().optional(),                                                                                                                         
-     tags: z.array(z.string()).optional(),                                                                                                                    
-     draft: z.boolean().optional(),                                                                                                                           
-   });                                                                                                                                                        
- ```                                                                                                                                                          
-                                                                                                                                                              
- Następnie w [...slug].astro usuń odwołania do post.data.heroImage → ustawione jest już na podstawie post.body.                                               
-                                                                                                                                                              
- ### 2. 🔧 Deduplikacja stron kierunków                                                                                                                       
-                                                                                                                                                              
- - Wybierz jedną stronę jako główną (np. /kierunki)                                                                                                           
- - W drugiej zrób redirect w Astro (lub usuń i dodaj regułę w astro.config.mjs → redirects)                                                                   
- - Rozważ użycie _redirects dla GitHub Pages                                                                                                                  
-                                                                                                                                                              
- ```mjs                                                                                                                                                       
-   // astro.config.mjs                                                                                                                                        
-   redirects: {                                                                                                                                               
-     '/kierunki-ksztalcenia': '/kierunki',                                                                                                                    
-   }                                                                                                                                                          
- ```                                                                                                                                                          
-                                                                                                                                                              
- ### 3. 🔧 Adapter dla GitHub Pages                                                                                                                           
+ ### 1. 🔧 Adapter dla GitHub Pages
                                                                                                                                                               
  W CI używasz SKIP_KEYSTATIC=true → adapter: undefined → domyślny tryb static. To działa, ale jest kruche. Lepsze rozwiązania:                                
                                                                                                                                                               
@@ -194,17 +162,7 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
    # to już masz ✅                                                                                                                                           
  ```                                                                                                                                                          
                                                                                                                                                               
- ### 4. 🔧 Odkomentuj SkipLink                                                                                                                                
-                                                                                                                                                              
- W SkipLink.astro usuń znaczniki komentarza HTML:                                                                                                             
-                                                                                                                                                              
- ```astro                                                                                                                                                     
-   <a href="#content" class="skip-link" data-skip>                                                                                                            
-     Pomiń i przejdź do treści                                                                                                                                
-   </a>                                                                                                                                                       
- ```                                                                                                                                                          
-                                                                                                                                                              
- ### 5. 🔧 Ujednolić plan-zajec-lo.astro                                                                                                                      
+ ### 2. 🔧 Ujednolić plan-zajec-lo.astro
                                                                                                                                                               
  Owiń w Layout:                                                                                                                                               
                                                                                                                                                               
@@ -217,13 +175,13 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
    </Layout>                                                                                                                                                  
  ```                                                                                                                                                          
                                                                                                                                                               
- ### 6. 🧹 Cleanup dead code                                                                                                                                  
+ ### 3. 🧹 Cleanup dead code
                                                                                                                                                               
  - Usuń zakomentowane sekcje z index.astro (lub przenieś do osobnych komponentów)                                                                             
  - Usuń Header.astro, HeaderLink.astro, Features.astro, TableOfContents.astro — jeśli nie są używane                                                          
  - Usuń @astrojs/markdoc z dependencies jeśli nie jest używany                                                                                                
                                                                                                                                                               
- ### 7. 🧹 Konsolidacja high-contrast                                                                                                                         
+ ### 4. 🧹 Konsolidacja high-contrast
                                                                                                                                                               
  Przenieś wszystkie reguły high-contrast do jednego pliku, np. src/styles/high-contrast.css i zaimportuj go warunkowo:                                        
                                                                                                                                                               
@@ -234,7 +192,7 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
    /* ... całość w jednym miejscu ... */                                                                                                                      
  ```                                                                                                                                                          
                                                                                                                                                               
- ### 8. 📦 Content collections dla kalendarza                                                                                                                 
+ ### 5. 📦 Content collections dla kalendarza
                                                                                                                                                               
  Dodaj do src/content/config.ts:                                                                                                                              
                                                                                                                                                               
@@ -252,7 +210,7 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
                                                                                                                                                               
  (Choć obecny import JSON → JSON działa, stracisz walidację typów w dev)                                                                                      
                                                                                                                                                               
- ### 9. 📝 Wyciągnij treść z komponentów do CMS                                                                                                               
+ ### 6. 📝 Wyciągnij treść z komponentów do CMS
                                                                                                                                                               
  Dla DlaUczniowSection, DlaRodzicowSection, HistoriaSection — utwórz content collection pages lub użyj MDX w src/content/pages/:                              
                                                                                                                                                               
@@ -263,7 +221,7 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
      historia.mdx                                                                                                                                             
  ```                                                                                                                                                          
                                                                                                                                                               
- ### 10. ➕ Dodaj stronę 404                                                                                                                                  
+ ### 7. ➕ Dodaj stronę 404
                                                                                                                                                               
  ```astro                                                                                                                                                     
    ---                                                                                                                                                        
@@ -277,7 +235,7 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
    </Layout>                                                                                                                                                  
  ```                                                                                                                                                          
                                                                                                                                                               
- ### 11. 🖼️ Zautomatyzuj obrazki (opcjonalnie)                                                                                                                
+ ### 8. 🖼️ Zautomatyzuj obrazki (opcjonalnie)
                                                                                                                                                               
  Zainstaluj @astrojs/image i użyj <Image /> z komponentu astro:assets zamiast ręcznego srcset:                                                                
                                                                                                                                                               
@@ -287,7 +245,7 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
    <Image src={heroImg} alt="" widths={[480, 768, 1200]} formats={['webp', 'avif']} />                                                                        
  ```                                                                                                                                                          
                                                                                                                                                               
- ### 12. 🎯 Dodaj @tailwindcss/typography                                                                                                                     
+ ### 9. 🎯 Dodaj @tailwindcss/typography
                                                                                                                                                               
  Zamiast ręcznego .prose w BlogPost.astro:                                                                                                                    
                                                                                                                                                               
@@ -314,26 +272,28 @@ Pełna analiza projektu — ZSEiU Łaziska Górne
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
  │ Technologie          │ ⭐⭐⭐⭐⭐ │ —                                                 │                                                                    
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
- │ Dostępność           │ ⭐⭐⭐⭐⭐ │ Odkomentować skip link (mały)                     │                                                                    
+ │ Dostępność           │ ⭐⭐⭐⭐⭐ │ —                                                 │
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
- │ SEO                  │ ⭐⭐⭐⭐⭐ │ Naprawić duplikację /kierunki (średni)            │                                                                    
+ │ SEO                  │ ⭐⭐⭐⭐⭐ │ —                                                 │
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
  │ Wydajność            │ ⭐⭐⭐⭐   │ Dodać automatyczną optymalizację obrazków (niski) │                                                                    
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
  │ Czystość kodu        │ ⭐⭐⭐     │ Dead code, duplikacja styli (średni)              │                                                                    
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
- │ Spójność danych      │ ⭐⭐       │ Schemat bloga do naprawy (wysoki)                 │                                                                    
+ │ Spójność danych      │ ⭐⭐⭐⭐   │ —                                                 │ 
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
  │ Niezawodność deployu │ ⭐⭐⭐     │ Kruchy mechanizm adaptera (średni)                │                                                                    
  ├──────────────────────┼────────────┼───────────────────────────────────────────────────┤                                                                    
  │ UX treści            │ ⭐⭐⭐⭐   │ Brak strony 404 (niski)                           │                                                                    
  └──────────────────────┴────────────┴───────────────────────────────────────────────────┘                                                                    
                                                                                                                                                               
- ### 🎯 Trzy rzeczy do zrobienia w pierwszej kolejności:                                                                                                      
-                                                                                                                                                              
- 1. Naprawić schemat bloga — Keystatic ↔ content config ↔ template (src/content/config.ts, keystatic.config.ts, [...slug].astro, BlogPost.astro) — obecnie    
-    pola heroImage, author, tags, image, imageAlt są niespójne                                                                                                
- 2. Usunąć duplikację kierunków — redirect z /kierunki-ksztalcenia na /kierunki                                                                               
- 3. Odkomentować SkipLink i poprawić plan-zajec-lo.astro (brak Layoutu)                                                                                       
-                                                                                                                                                              
- Chcesz, żebym zaczął wprowadzać którąś z tych poprawek?    
+ ### 🎯 Rzeczy do zrobienia w pierwszej kolejności:
+                                                                                                     
+ 1. **Adapter GitHub Pages** – zastąpić node() na static() lub warunkowo wyłączać adapter gdy SKIP_KEYSTATIC                                                          
+ 2. **Strona 404** – dodać src/pages/404.astro                                                                                                             
+ 3. **Dead code** – usunąć @astrojs/markdoc; usunąć Header.astro, HeaderLink.astro, Features.astro, TableOfContents.astro; wyczyścić index.astro          
+ 4. **High-contrast** – skonsolidować powtarzające się style high-contrast do jednego pliku                                                                
+ 5. **Content collections dla kalendarza** – zdefiniować kolekcję dla events.json, spotkania.json, dni-wolne.json                                         
+ 6. **Wyciągnięcie treści do CMS** – przenieść hardcoded treści z DlaUczniowSection, DlaRodzicowSection, HistoriaSection do Keystatic                      
+ 7. **@astrojs/image** – dodać automatyczną optymalizację obrazków                                                                                         
+ 8. **@tailwindcss/typography** – dodać dla ładnego formatowania treści                                                                                    

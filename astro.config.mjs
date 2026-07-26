@@ -14,6 +14,9 @@ const keystaticEnabled = !process.env.SKIP_KEYSTATIC;
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://zseiulaziska.github.io',
+	redirects: {
+		'/kierunki-ksztalcenia': '/kierunki',
+	},
 	adapter: keystaticEnabled ? node({ mode: 'standalone' }) : undefined,
 	integrations: [
 		mdx(),

@@ -1,740 +1,807 @@
-<!doctype html>
-<html lang="pl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Plan lekcji - ZSEiU Łaziska Górne</title>
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#1a1a2e">
-<script is:inline>
-(function(){try{if(localStorage.getItem('contrast')==='high'){document.documentElement.classList.add('high-contrast')}}catch(e){}})();
-</script>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<style is:global>
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  --bg: #0f0f1a;
-  --surface: #1a1a2e;
-  --surface2: #16213e;
-  --primary: #e94560;
-  --primary-dark: #c73e54;
-  --accent: #0f3460;
-  --text: #eaeaea;
-  --text2: #a0a0b0;
-  --card-bg: #1e1e36;
-  --border: #2a2a45;
-  --okno: #2d4a22;
-  --okno-bg: #1e3a1a;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-}
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  min-height: 100dvh;
-  overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
-}
-header {
-  background: var(--surface);
-  padding: 12px 16px;
-  padding-top: calc(12px + env(safe-area-inset-top, 0px));
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-.header-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-h1 {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--primary);
-  white-space: nowrap;
-}
-select {
-  background: var(--surface2);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 8px 14px;
-  font-size: 16px;
-  font-weight: 600;
-  -webkit-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-.header-info {
-  font-size: 12px;
-  color: var(--text2);
-  text-align: center;
-  margin-top: 4px;
-}
-main {
-  padding: 8px 12px;
-  padding-bottom: calc(16px + var(--safe-bottom));
-  max-width: 600px;
-  margin: 0 auto;
-}
-.loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-  gap: 16px;
-}
-.spinner {
-  width: 36px;
-  height: 36px;
-  border: 3px solid var(--border);
-  border-top-color: var(--primary);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loader p { color: var(--text2); font-size: 14px; }
-.error {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--primary);
-}
-.error p { margin-bottom: 12px; }
-.error button {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text2);
-  font-size: 14px;
-}
-.date-group {
-  margin-bottom: 12px;
-}
-.date-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 4px 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.date-header.today {
-  color: var(--primary);
-}
-.date-header .date-badge {
-  background: var(--surface2);
-  padding: 2px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-}
-.lesson {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 6px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  transition: opacity 0.2s;
-}
-.lesson.empty {
-  opacity: 0.35;
-}
-.lesson-nr {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  min-width: 36px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text2);
-  background: var(--surface2);
-}
-.lesson-body {
-  flex: 1;
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.lesson-subject {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-}
-.lesson.empty .lesson-subject {
-  color: var(--text2);
-  font-weight: 400;
-  font-size: 13px;
-}
-.lesson-time {
-  font-size: 11px;
-  color: var(--text2);
-}
-.now-indicator {
-  background: var(--primary);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 1px 8px;
-  border-radius: 20px;
-  margin-left: 8px;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-.day-tabs {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  padding: 4px 0 0;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.day-tabs::-webkit-scrollbar { display: none; }
-.day-tab {
-  flex-shrink: 0;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--text2);
-  cursor: pointer;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-.day-tab.active {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-}
-.day-tab.today {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-.day-tab.active.today {
-  color: #fff;
-}
+---
+import Layout from '../layouts/Layout.astro';
+---
+<!--
+  Plan zajęć LO dla Dorosłych – ZSEiU Łaziska Górne
+  
+  Dane pobierane z Google Apps Script (arkusz Google).
+  Aplikacja wyświetla plan zjazdów dla wybranej klasy
+  w podziale na dzień, miesiąc, semestr lub cały rok.
+-->
+<Layout
+  title="Plan zajęć LO dla Dorosłych - ZSEiU Łaziska Górne"
+  description="Plan zajęć Liceum dla Dorosłych w ZSEiU Łaziska Górne. Sprawdź daty zjazdów i rozkład lekcji dla wybranej klasy."
+>
+  <div id="plan-app" class="w-full max-w-6xl mx-auto px-4 py-6">
+    <!-- Nagłówek -->
+    <h1 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
+      Plan zajęć LO dla Dorosłych
+    </h1>
 
-@media (min-width: 768px) {
-  main { max-width: 1200px; padding: 16px 24px; }
-  .lesson-subject { font-size: 18px; }
-  .schedule-row {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .schedule-row .date-group {
-    flex: 1;
-    min-width: 0;
-    margin-bottom: 0;
-  }
-  .schedule-row .date-group.prev-day,
-  .schedule-row .date-group.next-day {
-    opacity: 0.45;
-    transform: scale(0.95);
-  }
-  .schedule-row .date-group.prev-day .date-header,
-  .schedule-row .date-group.next-day .date-header {
-    color: var(--text2);
-    font-weight: 400;
-  }
-  .schedule-row .date-group.prev-day .lesson,
-  .schedule-row .date-group.next-day .lesson {
-    opacity: 0.7;
-  }
-  .schedule-row .date-group.prev-day .lesson.empty,
-  .schedule-row .date-group.next-day .lesson.empty {
-    opacity: 0.25;
-  }
-  .schedule-row .date-group.current-day {
-    flex: 1.3;
-  }
-}
+    <!-- Kontrolki -->
+    <div class="flex flex-wrap items-center justify-center gap-4 mb-8">
+      <select
+        id="class-select"
+        class="min-w-[200px] px-4 py-2.5 rounded-xl border border-slate-300 dark:border-navy-600 bg-white dark:bg-navy-800 text-slate-800 dark:text-slate-200 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+        aria-label="Wybierz klasę"
+      >
+        <option value="">Wybierz klasę…</option>
+      </select>
 
-html.high-contrast {
-  --bg: #000 !important;
-  --surface: #000 !important;
-  --surface2: #000 !important;
-  --card-bg: #000 !important;
-  --border: #fff !important;
-  --text: #fff !important;
-  --text2: #fff !important;
-  --primary: #ffff00 !important;
-  --primary-dark: #ffff00 !important;
-  --okno: #fff !important;
-  --okno-bg: #000 !important;
-}
+      <div class="flex gap-2" id="view-tabs" role="tablist" aria-label="Widok">
+        <button class="view-btn active" data-view="day" role="tab" aria-selected="true">Dzień</button>
+        <button class="view-btn" data-view="month" role="tab" aria-selected="false">Miesiąc</button>
+        <button class="view-btn" data-view="semester" role="tab" aria-selected="false">Semestr</button>
+        <button class="view-btn" data-view="year" role="tab" aria-selected="false">Rok</button>
+      </div>
 
-html.high-contrast header {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
+      <button
+        id="print-btn"
+        class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-navy-900"
+        type="button"
+      >
+        <svg class="inline-block w-4 h-4 mr-1.5 -mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Drukuj
+      </button>
+    </div>
 
-html.high-contrast .lesson-subject {
-  color: #fff !important;
-}
+    <!-- Nawigacja dat -->
+    <div id="date-nav" class="flex items-center justify-center gap-4 mb-6 min-h-[2.5rem]">
+      <button id="prev-btn" class="nav-arrow" aria-label="Poprzedni">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <span id="date-label" class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 min-w-[200px] text-center">
+        Wybierz klasę
+      </span>
+      <button id="next-btn" class="nav-arrow" aria-label="Następny">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
 
-html.high-contrast .lesson-time {
-  color: #fff !important;
-}
-
-html.high-contrast .now-indicator {
-  background: #ffff00 !important;
-  color: #000 !important;
-}
-
-html.high-contrast .day-tab.active {
-  background: #ffff00 !important;
-  color: #000 !important;
-  border-color: #ffff00 !important;
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="header-top">
-    <h1>ZSEiU - LO</h1>
-    <select id="classSelect"></select>
+    <!-- Siatka zajęć -->
+    <div id="schedule-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div id="loading-placeholder" class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500">
+        <svg class="inline-block w-12 h-12 mb-4 animate-spin text-primary-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/>
+        </svg>
+        <p class="text-lg font-medium">Ładowanie planu lekcji…</p>
+      </div>
+    </div>
   </div>
-  <div class="day-tabs" id="dayTabs"></div>
-</header>
 
-<main id="app">
-  <div class="loader">
-    <div class="spinner"></div>
-    <p>Ładowanie planu lekcji...</p>
-  </div>
-</main>
-
-<script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbzYPxvMsGeyF2EJifCNa3quATvk3rnsaqcf04mlgMrCnCZ1iSI_k3YI9W3LFEcUJ9S4/exec';
-const CACHE_KEY = 'planLekcji:v2';
-const SELECTED_CLASS_KEY = 'planLekcji:selectedClass';
-
-const DAY_NAMES = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
-const MONTH_NAMES = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
-
-const SUBJECT_MAP = {
-  'm': 'Matematyka',
-  'jp': 'Język polski',
-  'ja': 'Język angielski',
-  'w': 'Wiedza o społeczeństwie',
-  'i': 'Informatyka',
-  'g': 'Geografia',
-  'b': 'Biologia',
-  'ch': 'Chemia',
-  'f': 'Fizyka',
-  'h': 'Historia',
-};
-
-const SUBJECT_COLORS = {
-  'm': '#4fc3f7',
-  'jp': '#e94560',
-  'ja': '#ffb74d',
-  'w': '#81c784',
-  'i': '#ce93d8',
-  'g': '#a1887f',
-  'b': '#66bb6a',
-  'ch': '#ef5350',
-  'f': '#42a5f5',
-  'h': '#ff8a65',
-};
-
-interface Lesson {
-  nr: string | number;
-  subject: string;
-  start: string;
-  stop: string;
-}
-
-type ClassSchedule = Record<string, Lesson[]>;
-type PlanData = Record<string, ClassSchedule>;
-
-interface PlanPayload {
-  data: PlanData;
-  updatedAt?: string | null;
-}
-
-let allData: PlanData | null = null;
-let selectedDayIdx = -1;
-let latestUpdatedAt: string | null = null;
-let classSelectReady = false;
-
-function parseTime(t: string): string {
-  return t;
-}
-
-function parseDateKey(key: string): Date {
-  const d = new Date(key);
-  return d;
-}
-
-function formatDateHeader(d: Date): string {
-  const day = DAY_NAMES[d.getDay()];
-  const date = d.getDate();
-  const month = MONTH_NAMES[d.getMonth()];
-  const year = d.getFullYear();
-  return `${day}, ${date} ${month} ${year}`;
-}
-
-function formatDateShort(d: Date): string {
-  return `${d.getDate()}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
-}
-
-function isToday(d: Date): boolean {
-  const t = new Date();
-  return d.getFullYear() === t.getFullYear() && d.getMonth() === t.getMonth() && d.getDate() === t.getDate();
-}
-
-function getNowLesson(): number {
-  const now = new Date();
-  const h = now.getHours();
-  const m = now.getMinutes();
-  return h * 60 + m;
-}
-
-function normalizePlanPayload(payload: any): PlanPayload {
-  return {
-    data: payload && payload.data ? payload.data : payload,
-    updatedAt: payload && payload.updatedAt ? payload.updatedAt : null
-  };
-}
-
-function readCachedPlan(): PlanPayload | null {
-  try {
-    const cached = localStorage.getItem(CACHE_KEY);
-    return cached ? normalizePlanPayload(JSON.parse(cached)) : null;
-  } catch {
-    localStorage.removeItem(CACHE_KEY);
-    return null;
-  }
-}
-
-function writeCachedPlan(payload: any) {
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
-  } catch {}
-}
-
-function readSelectedClass(): string | null {
-  try {
-    return localStorage.getItem(SELECTED_CLASS_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function writeSelectedClass(className: string) {
-  try {
-    localStorage.setItem(SELECTED_CLASS_KEY, className);
-  } catch {}
-}
-
-function getApiUrl(): string {
-  const separator = API_URL.includes('?') ? '&' : '?';
-  return `${API_URL}${separator}_=${Date.now()}`;
-}
-
-async function fetchData(): Promise<PlanPayload> {
-  const res = await fetch(getApiUrl(), { cache: 'no-store' });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const payload = await res.json();
-  writeCachedPlan(payload);
-  return normalizePlanPayload(payload);
-}
-
-function applyPlanPayload(payload: PlanPayload | null) {
-  if (!payload || !payload.data || (payload.data as any).error) {
-    throw new Error((payload?.data as any)?.error || 'Brak danych planu lekcji');
-  }
-
-  allData = payload.data;
-  latestUpdatedAt = payload.updatedAt ?? null;
-  populateClasses(allData);
-  const app = document.getElementById('app');
-  if (app) app.innerHTML = '';
-  render();
-}
-
-function render() {
-  const app = document.getElementById('app');
-  const select = document.getElementById('classSelect') as HTMLSelectElement | null;
-  const dayTabs = document.getElementById('dayTabs');
-  if (!app || !select || !dayTabs) return;
-
-  const selected = select.value;
-
-  if (!allData || !allData[selected]) {
-    app.innerHTML = `<div class="empty-state"><p>Brak danych dla klasy ${selected}</p></div>`;
-    dayTabs.innerHTML = '';
-    return;
-  }
-
-  const classData = allData[selected];
-  const dateKeys = Object.keys(classData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-
-  const nowMin = getNowLesson();
-  let html = '';
-
-  const todayTabIdx = selectedDayIdx >= 0 ? selectedDayIdx : (() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    let best = -1;
-    for (let i = 0; i < dateKeys.length; i++) {
-      const d = parseDateKey(dateKeys[i]);
-      d.setHours(0, 0, 0, 0);
-      if (d.getTime() === today.getTime()) return i;
-      if (d > today && best === -1) best = i;
+  <style>
+    .view-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 2px solid var(--color-slate-200, #e2e8f0);
+      background: var(--color-white, #fff);
+      color: var(--color-slate-600, #475569);
+      transition: all 0.15s;
+      cursor: pointer;
     }
-    return best >= 0 ? best : 0;
-  })();
+    .view-btn:hover {
+      border-color: var(--color-primary-400, #38bdf8);
+      color: var(--color-primary-600, #0070b0);
+    }
+    .view-btn.active {
+      border-color: var(--color-primary-600, #0070b0);
+      background: var(--color-primary-50, #f5fbff);
+      color: var(--color-primary-700, #0077cc);
+    }
+    :global(.dark) .view-btn {
+      background: var(--color-navy-800, #121f3f);
+      border-color: var(--color-navy-600, #1e3a5f);
+      color: var(--color-slate-300, #cbd5e1);
+    }
+    :global(.dark) .view-btn:hover {
+      border-color: var(--color-primary-500, #06a6ff);
+      color: var(--color-primary-300, #7ed0ff);
+    }
+    :global(.dark) .view-btn.active {
+      border-color: var(--color-primary-400, #38bdf8);
+      background: rgba(6, 166, 255, 0.15);
+      color: var(--color-primary-300, #7ed0ff);
+    }
+    .nav-arrow {
+      padding: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--color-slate-200, #e2e8f0);
+      background: var(--color-white, #fff);
+      color: var(--color-slate-600, #475569);
+      transition: all 0.15s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-arrow:hover {
+      background: var(--color-slate-100, #f1f5f9);
+      color: var(--color-primary-600, #0070b0);
+    }
+    .nav-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    :global(.dark) .nav-arrow {
+      background: var(--color-navy-800, #121f3f);
+      border-color: var(--color-navy-600, #1e3a5f);
+      color: var(--color-slate-300, #cbd5e1);
+    }
+    :global(.dark) .nav-arrow:hover {
+      background: var(--color-navy-700, #162544);
+      color: var(--color-primary-300, #7ed0ff);
+    }
+  </style>
 
-  dayTabs.innerHTML = `<div class="day-tab" data-idx="-1" style="display:none"></div>`;
-  dateKeys.forEach((key, idx) => {
-    const d = parseDateKey(key);
-    const active = idx === todayTabIdx;
-    const todayClass = isToday(d) ? ' today' : '';
-    dayTabs.innerHTML += `<div class="day-tab${todayClass}${active ? ' active' : ''}" data-idx="${idx}">${formatDateShort(d)}</div>`;
-  });
+  <script>
+    (function () {
+      'use strict';
 
-  function renderDay(key: string, idx: number, extraClass: string) {
-    const d = parseDateKey(key);
-    const lessons: Lesson[] = classData[key] || [];
-    const todayClass = isToday(d) ? ' today' : '';
-    let h = `<div class="date-group${extraClass}" data-date-idx="${idx}">`;
-    h += `<div class="date-header${todayClass}">`;
-    h += `<span>${formatDateHeader(d)}</span>`;
-    if (isToday(d)) h += `<span class="date-badge">Dzisiaj</span>`;
-    h += `</div>`;
+      /* ── konfiguracja ── */
+      const DATA_URL = '/api/plan-csv.json';
 
-    lessons.forEach((lesson: Lesson) => {
-      const raw = lesson.subject.trim();
-      const isEmpty = !raw;
-      const nr = lesson.nr;
-      const start = parseTime(lesson.start);
-      const stop = parseTime(lesson.stop);
-      const subjectKey = raw.toLowerCase();
-      const displayName = (SUBJECT_MAP as Record<string, string>)[subjectKey] || raw;
-      const color = (SUBJECT_COLORS as Record<string, string>)[subjectKey] || null;
+      const SUBJECT_MAP = {
+        m: 'Matematyka', jp: 'Język polski', ja: 'Język angielski',
+        w: 'Wiedza o społeczeństwie', i: 'Informatyka', g: 'Geografia',
+        b: 'Biologia', ch: 'Chemia', f: 'Fizyka', h: 'Historia',
+      };
+      const SUBJECT_COLORS = {
+        m: '#4fc3f7', jp: '#e94560', ja: '#ffb74d', w: '#81c784', i: '#ce93d8',
+        g: '#a1887f', b: '#66bb6a', ch: '#ef5350', f: '#42a5f5', h: '#ff8a65',
+      };
+      const DAY_SHORT = ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'];
+      const MONTH_NAMES = ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];
 
-      const isNow = isToday(d) && (() => {
-        const startParts = start.split(':');
-        const stopParts = stop.split(':');
-        
-        if (startParts.length < 2 || stopParts.length < 2) return false;
-        
-        const sn = parseInt(startParts[0], 10) * 60 + parseInt(startParts[1], 10);
-        const en = parseInt(stopParts[0], 10) * 60 + parseInt(stopParts[1], 10);
-        
-        return nowMin >= sn && nowMin < en;
+      /* ── stan ── */
+      let allData = null;
+      let selectedClass = '';
+      let currentView = 'day';       // day | month | semester | year
+      let navigationItems = [];      // lista { label, dateKeys[] }
+      let currentNavIndex = 0;
+
+      const classSelect = document.getElementById('class-select');
+      const scheduleGrid = document.getElementById('schedule-grid');
+      const dateLabelEl = document.getElementById('date-label');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const printBtn = document.getElementById('print-btn');
+      const viewBtns = document.querySelectorAll('.view-btn');
+
+      /* ── helpery ── */
+      function resolveSubject(raw) {
+        const key = (raw || '').trim().toLowerCase();
+        return SUBJECT_MAP[key] || raw.trim() || '—';
+      }
+
+      function formatDateLong(d) {
+        const dw = ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'];
+        return dw[d.getDay()] + ', ' + d.getDate() + ' ' + MONTH_NAMES[d.getMonth()] + ' ' + d.getFullYear();
+      }
+
+      function formatDateShort(d) {
+        return d.getDate() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
+      }
+
+      function parseDate(key) {
+        try {
+          const d = new Date(key);
+          if (isNaN(d.getTime())) {
+            const parts = key.split('-');
+            if (parts.length === 3 && parts.every(function (p) { return !isNaN(Number(p)); })) {
+              return new Date(+parts[0], +parts[1] - 1, +parts[2]);
+            }
+          }
+          if (!isNaN(d.getTime())) return d;
+        } catch (e) { /* fall through */ }
+        return new Date(NaN);
+      }
+
+      function getMonthKey(date) {
+        return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0');
+      }
+
+      function getMonthLabel(date) {
+        const m = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
+        return m[date.getMonth()] + ' ' + date.getFullYear();
+      }
+
+      /* ── pobieranie danych ── */
+      async function fetchData() {
+        const resp = await fetch(DATA_URL + '?_=' + Date.now());
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const data = await resp.json();
+        if (data.error) throw new Error(data.error);
+        return data;
+      }
+
+      /* ── budowanie nawigacji ── */
+      function buildNavigation(dateKeys) {
+        if (!dateKeys.length) return [{ label: 'Brak dat', dateKeys: [] }];
+
+        const dates = dateKeys.map(k => parseDate(k));
+
+        if (currentView === 'day') {
+          return dateKeys.map((k, i) => ({
+            label: formatDateLong(dates[i]),
+            dateKeys: [k],
+          }));
+        }
+
+        if (currentView === 'month') {
+          const map = {};
+          dateKeys.forEach((k, i) => {
+            const d = dates[i];
+            if (!d || isNaN(d.getTime())) return;
+            const mk = getMonthKey(d);
+            if (!map[mk]) map[mk] = { label: getMonthLabel(d), dateKeys: [] };
+            map[mk].dateKeys.push(k);
+          });
+          return Object.values(map);
+        }
+
+        if (currentView === 'semester') {
+          // semestr I: IX–I (miesiące 8,9,10,11,0), semestr II: II–VI (miesiące 1,2,3,4,5)
+          const sem = { 1: { label: 'Semestr I (wrzesień–styczeń)', dateKeys: [] }, 2: { label: 'Semestr II (luty–czerwiec)', dateKeys: [] } };
+          dateKeys.forEach(function (k, i) {
+            const d = dates[i];
+            if (!d || isNaN(d.getTime())) return;
+            const m = d.getMonth();
+            const s = (m >= 8 || m <= 0) ? 1 : 2;
+            sem[s].dateKeys.push(k);
+          });
+          const r = [];
+          if (sem[1].dateKeys.length) r.push(sem[1]);
+          if (sem[2].dateKeys.length) r.push(sem[2]);
+          return r;
+        }
+
+        if (currentView === 'year') {
+          const map = {};
+          dateKeys.forEach((k, i) => {
+            const d = dates[i];
+            const m = d.getMonth() + 1; // 1–12
+            const y = d.getFullYear();
+            // rok szkolny: IX–VI -> np. wrzesień 2024 należy do 2024/2025
+            const schoolYearStart = m >= 9 ? y : y - 1;
+            const label = 'Rok szkolny ' + schoolYearStart + '/' + (schoolYearStart + 1);
+            if (!map[schoolYearStart]) map[schoolYearStart] = { label: label, keys: [] };
+            map[schoolYearStart].keys.push(k);
+          });
+          return Object.values(map).map(g => ({ label: g.label, dateKeys: g.keys }));
+        }
+
+        return [{ label: '', dateKeys }];
+      }
+
+      /* ── renderowanie ── */
+      let currentDayOffset = 0; // index within current navigation item's dateKeys (mobile)
+
+      function isMobile() {
+        return window.innerWidth < 768;
+      }
+
+      function renderSchedule(className, data) {
+        if (!data || !data[className]) {
+          scheduleGrid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><p class="text-lg">Brak danych dla klasy ' + className + '</p></div>';
+          dateLabelEl.textContent = 'Brak danych';
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+          navigationItems = [];
+          currentNavIndex = 0;
+          currentDayOffset = 0;
+          return;
+        }
+
+        const classData = data[className];
+        const dateKeys = Object.keys(classData).sort();
+
+        navigationItems = buildNavigation(dateKeys);
+        currentNavIndex = 0;
+        currentDayOffset = 0;
+        renderCurrentNavigationItem();
+      }
+
+      function renderDayCards(dateKeysToRender, centerIndex) {
+        const classData = allData[selectedClass];
+
+        // Pojedynczy dzień: karta (widok Dzień lub gdy jest tylko jeden dzień)
+        if (dateKeysToRender.length <= 1) {
+          let html = '';
+          dateKeysToRender.forEach(function (key) {
+            const d = parseDate(key);
+            const lessons = classData[key] || [];
+            const dayName = ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'][d.getDay()];
+            html += '<div class="day-card day-card-single">';
+            html += '<div class="day-card-header">';
+            html += '<span class="day-name">' + dayName + '</span>';
+            html += '<span class="day-date">' + formatDateShort(d) + '</span>';
+            html += '</div>';
+            if (!lessons.length) {
+              html += '<div class="day-card-empty">Brak lekcji</div>';
+            } else {
+              html += '<div class="lessons-list">';
+              lessons.forEach(function (lesson) {
+                var raw = lesson.subject || '';
+                var isEmpty = !raw.trim();
+                var display = resolveSubject(raw);
+                var colorKey = raw.trim().toLowerCase();
+                var color = SUBJECT_COLORS[colorKey] || null;
+                var borderStyle = color ? 'border-left-color:' + color + ';border-left-width:4px' : '';
+                var nrStyle = color ? 'color:' + color + ';' : '';
+                html += '<div class="lesson-item' + (isEmpty ? ' empty' : '') + '" style="' + borderStyle + '">';
+                html += '<span class="lesson-nr-big" style="' + nrStyle + '">' + (lesson.nr || '') + '</span>';
+                html += '<div class="lesson-info">';
+                html += '<span class="lesson-time">' + (lesson.start || '') + '–' + (lesson.stop || '') + '</span>';
+                html += '<span class="lesson-subject"' + (color ? ' style="color:' + color + '"' : '') + '>' + display + '</span>';
+                html += '</div>';
+                html += '</div>';
+              });
+              html += '</div>';
+            }
+            html += '</div>';
+          });
+          return html;
+        }
+
+        // Wiele dni (miesiąc/semestr/rok): tabela z kolumnami = dni, wierszami = numery lekcji
+        var allDays = dateKeysToRender.map(function (key) {
+          return {
+            key: key,
+            date: parseDate(key),
+            lessons: classData[key] || []
+          };
+        });
+
+        // Zbierz unikalne numery lekcji we właściwej kolejności
+        var allNrs = [];
+        var seenNr = {};
+        allDays.forEach(function (day) {
+          day.lessons.forEach(function (lesson) {
+            var nr = String(lesson.nr || '').trim();
+            if (nr && !seenNr[nr]) {
+              seenNr[nr] = true;
+              allNrs.push(nr);
+            }
+          });
+        });
+        allNrs.sort(function (a, b) { return parseInt(a, 10) - parseInt(b, 10); });
+
+        var html = '<div class="col-span-full"><div class="schedule-table">';
+
+        // Wiersz nagłówka z datami
+        html += '<div class="table-row table-header">';
+        html += '<div class="table-col table-nr-header"></div>';
+        allDays.forEach(function (day) {
+          var dayName = ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'][day.date.getDay()];
+          html += '<div class="table-col table-header-cell">';
+          html += '<div class="day-name">' + dayName + '</div>';
+          html += '<div class="table-date">' + formatDateShort(day.date) + '</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+
+        // Wiersze lekcyjne
+        allNrs.forEach(function (nr) {
+          html += '<div class="table-row">';
+          html += '<div class="table-col table-nr-cell">' + nr + '</div>';
+          allDays.forEach(function (day) {
+            // Znajdź pierwszą lekcję z tym numerem, która ma niepusty przedmiot
+            var lesson = null;
+            for (var li = 0; li < day.lessons.length; li++) {
+              if (String(day.lessons[li].nr) === nr) {
+                lesson = day.lessons[li];
+                break;
+              }
+            }
+            if (lesson && lesson.subject && lesson.subject.trim()) {
+              var raw = lesson.subject;
+              var display = resolveSubject(raw);
+              var colorKey = raw.trim().toLowerCase();
+              var color = SUBJECT_COLORS[colorKey] || null;
+              var borderStyle = color ? 'border-left-color:' + color : '';
+              html += '<div class="table-col table-cell" style="' + borderStyle + '">';
+              html += '<div class="lesson-time">' + (lesson.start || '') + '–' + (lesson.stop || '') + '</div>';
+              html += '<div class="lesson-subject"' + (color ? ' style="color:' + color + '"' : '') + '>' + display + '</div>';
+              html += '</div>';
+            } else {
+              html += '<div class="table-col table-cell empty"></div>';
+            }
+          });
+          html += '</div>';
+        });
+
+        html += '</div></div>';
+        return html;
+      }
+
+      function renderCurrentNavigationItem() {
+        if (!navigationItems.length) {
+          scheduleGrid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><p class="text-lg">Brak danych</p></div>';
+          dateLabelEl.textContent = '—';
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+          return;
+        }
+
+        const item = navigationItems[currentNavIndex];
+        const dayKeys = item.dateKeys;
+
+        if (!dayKeys.length) {
+          scheduleGrid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><p class="text-lg">Brak zajęć w tym okresie</p></div>';
+          dateLabelEl.textContent = item.label;
+          prevBtn.disabled = currentNavIndex <= 0;
+          nextBtn.disabled = currentNavIndex >= navigationItems.length - 1;
+          return;
+        }
+
+        // Clamp currentDayOffset (used only in 'day' view on mobile)
+        if (currentDayOffset >= dayKeys.length) currentDayOffset = dayKeys.length - 1;
+        if (currentDayOffset < 0) currentDayOffset = 0;
+
+        const allKeys = navigationItems.map(function (navItem) { return navItem.dateKeys; }).flat();
+        const currentKey = dayKeys[currentDayOffset];
+        const flatIdx = allKeys.indexOf(currentKey);
+
+        // Always show the group label (month/semester/year name)
+        dateLabelEl.textContent = item.label;
+
+        // Build keys to render
+        var keysToRender = [];
+        var centerIdx = 0;
+
+        if (currentView === 'day') {
+          // Day view: always show one day at a time
+          keysToRender = [currentKey];
+          centerIdx = 0;
+        } else {
+          // Month/semester/year: show ALL days in the group
+          // (on both mobile and desktop — mobile gets a single-column scrollable list)
+          dayKeys.forEach(function (k) { keysToRender.push(k); });
+          centerIdx = -1; // no adjacent/center styling
+        }
+
+        // Update arrow disabled state: arrows navigate between groups (months/semesters/years)
+        prevBtn.disabled = currentNavIndex <= 0;
+        nextBtn.disabled = currentNavIndex >= navigationItems.length - 1;
+
+        var html = renderDayCards(keysToRender, centerIdx);
+        scheduleGrid.innerHTML = html;
+      }
+
+      /* ── inicjalizacja ── */
+      (async function init() {
+        try {
+          allData = await fetchData();
+          const names = Object.keys(allData).sort();
+          classSelect.innerHTML = '<option value="">Wybierz klasę…</option>' +
+            names.map(function (c) { return '<option value="' + c + '">Klasa ' + c + '</option>'; }).join('');
+          scheduleGrid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><p class="text-lg">Wybierz klasę, aby zobaczyć plan.</p></div>';
+        } catch (e) {
+          classSelect.innerHTML = '<option value="">Błąd wczytywania</option>';
+          scheduleGrid.innerHTML = '<div class="col-span-full text-center py-12 text-red-500 dark:text-red-400"><p class="text-lg font-semibold">Nie udało się załadować planu.</p><p class="text-sm mt-2 opacity-70">' + e.message + '</p></div>';
+        } finally {
+          document.getElementById('loading-placeholder')?.remove();
+        }
       })();
 
-      const accent = color ? ` style="border-left:4px solid ${color}"` : '';
-      h += `<div class="lesson${isEmpty ? ' empty' : ''}"${accent}>`;
-      h += `<div class="lesson-nr">${nr}</div>`;
-      h += `<div class="lesson-body">`;
-      if (isEmpty) {
-        h += `<div class="lesson-subject">---</div>`;
-      } else {
-        h += `<div class="lesson-subject"${color ? ` style="color:${color}"` : ''}>${displayName}${isNow ? '<span class="now-indicator">TERAZ</span>' : ''}</div>`;
+      /* ── zdarzenia ── */
+      classSelect.addEventListener('change', function () {
+        selectedClass = this.value;
+        if (!selectedClass || !allData) {
+          scheduleGrid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><p class="text-lg">Wybierz klasę, aby zobaczyć plan.</p></div>';
+          dateLabelEl.textContent = 'Wybierz klasę';
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+          return;
+        }
+        renderSchedule(selectedClass, allData);
+      });
+
+      function goPrev() {
+        if (currentView === 'day') {
+          // Day view: navigate days
+          const allKeys = navigationItems.map(function (navItem) { return navItem.dateKeys; }).flat();
+          const currentKey = navigationItems[currentNavIndex].dateKeys[currentDayOffset];
+          const flatIdx = allKeys.indexOf(currentKey);
+          if (flatIdx > 0) {
+            // Go to previous day
+            const prevAllKeys = allKeys[flatIdx - 1];
+            for (var ni = 0; ni < navigationItems.length; ni++) {
+              for (var di = 0; di < navigationItems[ni].dateKeys.length; di++) {
+                if (navigationItems[ni].dateKeys[di] === prevAllKeys) {
+                  currentNavIndex = ni;
+                  currentDayOffset = di;
+                  renderCurrentNavigationItem();
+                  return;
+                }
+              }
+            }
+          }
+        } else {
+          // Month/semester/year view: navigate between groups
+          if (currentNavIndex > 0) {
+            currentNavIndex--;
+            currentDayOffset = 0;
+            renderCurrentNavigationItem();
+          }
+        }
       }
-      h += `<div class="lesson-time">${start} - ${stop}</div>`;
-      h += `</div></div>`;
-    });
 
-    h += `</div>`;
-    return h;
-  }
-
-  const desktop = window.innerWidth >= 768;
-  if (desktop) {
-    const prevIdx = todayTabIdx > 0 ? todayTabIdx - 1 : -1;
-    const nextIdx = todayTabIdx < dateKeys.length - 1 ? todayTabIdx + 1 : -1;
-    html = `<div class="schedule-row">`;
-    if (prevIdx >= 0) html += renderDay(dateKeys[prevIdx], prevIdx, ' prev-day');
-    html += renderDay(dateKeys[todayTabIdx], todayTabIdx, ' current-day');
-    if (nextIdx >= 0) html += renderDay(dateKeys[nextIdx], nextIdx, ' next-day');
-    html += `</div>`;
-    if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    dateKeys.forEach((key, idx) => {
-      html += renderDay(key, idx, '');
-    });
-  }
-
-  app.innerHTML = html;
-
-  setupScrollSpy();
-
-  if (todayTabIdx >= 0) {
-    setTimeout(() => scrollToDate(todayTabIdx), 100);
-  }
-}
-
-let scrollObserver: IntersectionObserver | null = null;
-
-function setupScrollSpy() {
-  if (scrollObserver) scrollObserver.disconnect();
-  if (window.innerWidth >= 768) return;
-  const groups = document.querySelectorAll('.date-group');
-  if (!groups.length) return;
-
-  scrollObserver = new IntersectionObserver((entries) => {
-    let best: Element | null = null;
-    let bestRatio = 0;
-    entries.forEach(entry => {
-      if (entry.intersectionRatio > bestRatio) {
-        bestRatio = entry.intersectionRatio;
-        best = entry.target;
+      function goNext() {
+        if (currentView === 'day') {
+          // Day view: navigate days
+          const allKeys = navigationItems.map(function (navItem) { return navItem.dateKeys; }).flat();
+          const currentKey = navigationItems[currentNavIndex].dateKeys[currentDayOffset];
+          const flatIdx = allKeys.indexOf(currentKey);
+          if (flatIdx < allKeys.length - 1) {
+            // Go to next day
+            const nextAllKeys = allKeys[flatIdx + 1];
+            for (var ni = 0; ni < navigationItems.length; ni++) {
+              for (var di = 0; di < navigationItems[ni].dateKeys.length; di++) {
+                if (navigationItems[ni].dateKeys[di] === nextAllKeys) {
+                  currentNavIndex = ni;
+                  currentDayOffset = di;
+                  renderCurrentNavigationItem();
+                  return;
+                }
+              }
+            }
+          }
+        } else {
+          // Month/semester/year view: navigate between groups
+          if (currentNavIndex < navigationItems.length - 1) {
+            currentNavIndex++;
+            currentDayOffset = 0;
+            renderCurrentNavigationItem();
+          }
+        }
       }
-    });
-    if (!best) return;
-    const idx = (best as HTMLElement).dataset.dateIdx;
-    document.querySelectorAll('.day-tab').forEach(t => {
-      const tabEl = t as HTMLElement;
-      tabEl.classList.toggle('active', tabEl.dataset.idx === idx);
-    });
-    const activeTab = document.querySelector('.day-tab.active');
-    if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-  }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
 
-  groups.forEach(g => scrollObserver?.observe(g));
-}
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
 
-function scrollToDate(idx: number) {
-  const el = document.querySelector(`[data-date-idx="${idx}"]`);
-  if (el) {
-    const header = document.querySelector('header');
-    const offset = header ? header.offsetHeight : 0;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset - 8;
-    window.scrollTo({ top, behavior: 'smooth' });
+      // Reset day offset when view changes
+      function onViewChange() {
+        currentDayOffset = 0;
+        if (selectedClass && allData) {
+          renderSchedule(selectedClass, allData);
+        }
+      }
+
+      viewBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          viewBtns.forEach(function (b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          this.classList.add('active');
+          this.setAttribute('aria-selected', 'true');
+          currentView = this.dataset.view;
+          onViewChange();
+        });
+      });
+
+      printBtn.addEventListener('click', function () {
+        window.print();
+      });
+
+      /* ── klawiatura ── */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft' && !prevBtn.disabled) goPrev();
+        if (e.key === 'ArrowRight' && !nextBtn.disabled) goNext();
+      });
+
+      // Re-render on resize for mobile/desktop switch
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          if (selectedClass && allData) renderCurrentNavigationItem();
+        }, 200);
+      });
+
+    })();
+  </script>
+</Layout>
+
+<style is:global>
+  .schedule-table {
+    overflow-x: auto;
+    border: 1px solid var(--color-slate-200, #e2e8f0);
+    border-radius: 0.75rem;
+    background: var(--color-white, #fff);
   }
-}
-
-function populateClasses(data: PlanData) {
-  const select = document.getElementById('classSelect') as HTMLSelectElement | null;
-  if (!select) return;
-  const previous = select.value;
-  const saved = readSelectedClass();
-  const names = Object.keys(data).sort();
-  select.innerHTML = names.map(n => `<option value="${n}">Klasa ${n}</option>`).join('');
-  if (previous && names.includes(previous)) {
-    select.value = previous;
-  } else if (saved && names.includes(saved)) {
-    select.value = saved;
+  :global(.dark) .schedule-table {
+    background: rgba(18, 31, 63, 0.8);
+    border-color: var(--color-navy-700, #182a4f);
   }
-  if (!classSelectReady) {
-    select.addEventListener('change', () => {
-      selectedDayIdx = -1;
-      writeSelectedClass(select.value);
-      render();
-    });
-    classSelectReady = true;
+  .table-row {
+    display: flex;
+    flex-direction: row;
   }
-}
-
-const dayTabsContainer = document.getElementById('dayTabs');
-if (dayTabsContainer) {
-  dayTabsContainer.addEventListener('click', (e: MouseEvent) => {
-    const target = e.target as Element | null;
-    const tab = target?.closest('.day-tab') as HTMLElement | null;
-    if (!tab) return;
-    const idx = parseInt(tab.dataset.idx || '');
-    if (isNaN(idx)) return;
-    selectedDayIdx = idx;
-    document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    if (window.innerWidth >= 768) {
-      render();
-    } else {
-      scrollToDate(idx);
+  .table-row + .table-row {
+    border-top: 1px solid var(--color-slate-100, #f1f5f9);
+  }
+  :global(.dark) .table-row + .table-row {
+    border-top-color: rgba(24, 42, 79, 0.6);
+  }
+  .table-col {
+    flex: 1 1 0;
+    min-width: 8rem;
+    padding: 0.5rem 0.75rem;
+  }
+  .table-nr-header,
+  .table-nr-cell {
+    flex: 0 0 2.5rem;
+    min-width: 2.5rem;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.125rem;
+    color: var(--color-slate-300, #cbd5e1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--color-slate-100, #f1f5f9);
+  }
+  :global(.dark) .table-nr-header,
+  :global(.dark) .table-nr-cell {
+    color: var(--color-navy-400, #334155);
+    border-right-color: rgba(24, 42, 79, 0.6);
+  }
+  .table-header {
+    background: var(--color-slate-50, #f8fafc);
+    font-weight: 600;
+  }
+  :global(.dark) .table-header {
+    background: var(--color-navy-800, #121f3f);
+  }
+  .table-header-cell {
+    text-align: center;
+  }
+  .table-date {
+    font-size: 0.75rem;
+    color: var(--color-slate-400, #94a3b8);
+  }
+  :global(.dark) .table-date {
+    color: var(--color-slate-500, #64748b);
+  }
+  .table-cell {
+    border-left: 4px solid var(--color-primary-500, #06a6ff);
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.5rem 0.75rem;
+  }
+  .table-cell.empty {
+    opacity: 0.3;
+    border-left-color: var(--color-slate-300, #cbd5e1);
+  }
+  :global(.dark) .table-cell.empty {
+    border-left-color: var(--color-navy-500, #475569);
+  }
+  .day-card {
+    background: var(--color-white, #fff);
+    border: 1px solid var(--color-slate-200, #e2e8f0);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    overflow: hidden;
+    break-inside: avoid;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .day-card-adjacent {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  .day-card-center {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+  }
+  @media (max-width: 1023px) {
+    .day-card-adjacent {
+      display: none;
     }
-  });
-}
-
-async function init() {
-  const cached = readCachedPlan();
-  if (cached) {
-    try {
-      applyPlanPayload(cached);
-    } catch {}
   }
-
-  try {
-    const fresh = await fetchData();
-    applyPlanPayload(fresh);
-  } catch (err: unknown) {
-    if (!allData) {
-      const app = document.getElementById('app');
-      if (app) {
-        const errMsg = err instanceof Error ? err.message : String(err);
-        app.innerHTML = `
-        <div class="error">
-          <p>Nie udało się załadować planu lekcji.</p>
-          <p style="font-size:12px;color:var(--text2)">${errMsg}</p>
-          <button onclick="init()">Spróbuj ponownie</button>
-        </div>`;
-      }
-    }
+  :global(.dark) .day-card {
+    background: rgba(18, 31, 63, 0.8);
+    border-color: var(--color-navy-700, #182a4f);
   }
-}
-
-init();
-
-let lastWidth = window.innerWidth;
-window.addEventListener('resize', () => {
-  const w = window.innerWidth;
-  if ((w >= 768) !== (lastWidth >= 768)) {
-    lastWidth = w;
-    render();
+  .day-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-slate-100, #f1f5f9);
+    background: var(--color-slate-50, #f8fafc);
   }
-});
-
-document.addEventListener('keydown', (e: KeyboardEvent) => {
-  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-  if (window.innerWidth < 768) return;
-  e.preventDefault();
-  const tabs = document.querySelectorAll('.day-tab');
-  const active = document.querySelector('.day-tab.active');
-  if (!active) return;
-  const cur = parseInt((active as HTMLElement).dataset.idx || '');
-  const next = e.key === 'ArrowRight' ? cur + 1 : cur - 1;
-  const tab = Array.from(tabs).find(t => parseInt((t as HTMLElement).dataset.idx || '') === next) as HTMLElement | undefined;
-  if (tab) tab.click();
-});
-</script>
-</body>
-</html>
+  :global(.dark) .day-card-header {
+    background: var(--color-navy-800, #121f3f);
+    border-color: var(--color-navy-700, #182a4f);
+  }
+  .day-name {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-slate-800, #1e293b);
+  }
+  :global(.dark) .day-name {
+    color: var(--color-slate-200, #e2e8f0);
+  }
+  .day-date {
+    font-size: 0.75rem;
+    color: var(--color-slate-400, #94a3b8);
+  }
+  :global(.dark) .day-date {
+    color: var(--color-slate-500, #64748b);
+  }
+  .day-card-empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-slate-400, #94a3b8);
+    font-style: italic;
+  }
+  .lessons-list {
+    border-top: none;
+  }
+  .lessons-list > * + * {
+    border-top: 1px solid var(--color-slate-100, #f1f5f9);
+  }
+  :global(.dark) .lessons-list > * + * {
+    border-top-color: rgba(24, 42, 79, 0.6);
+  }
+  .lesson-item {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-left: 4px solid var(--color-primary-500, #06a6ff);
+    background: var(--color-white, #fff);
+  }
+  :global(.dark) .lesson-item {
+    background: transparent;
+  }
+  .lesson-item.empty {
+    opacity: 0.3;
+    border-left-color: var(--color-slate-300, #cbd5e1);
+  }
+  :global(.dark) .lesson-item.empty {
+    border-left-color: var(--color-navy-500, #475569);
+  }
+  .lesson-nr-big {
+    flex-shrink: 0;
+    width: 2rem;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-slate-300, #cbd5e1);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  :global(.dark) .lesson-nr-big {
+    color: var(--color-navy-400, #334155);
+  }
+  .lesson-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+  }
+  .lesson-time {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary-600, #0070b0);
+  }
+  :global(.dark) .lesson-time {
+    color: var(--color-primary-400, #38bdf8);
+  }
+  .lesson-subject {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-slate-800, #1e293b);
+  }
+  :global(.dark) .lesson-subject {
+    color: var(--color-slate-100, #f1f5f9);
+  }
+</style>

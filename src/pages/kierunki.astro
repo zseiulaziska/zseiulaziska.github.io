@@ -3,13 +3,24 @@ import Layout from '../layouts/Layout.astro';
 import SchoolFields from '../components/SchoolFields.astro';
 ---
 
-<Layout title="Kierunki kształcenia - ZSEiU Łaziska Górne" description="Oferta edukacyjna ZSEiU Łaziska Górne. Sprawdź dostępne kierunki w technikum i szkole branżowej.">
+<Layout
+  title="Kierunki kształcenia - ZSEiU Łaziska Górne"
+  description="Aktualna oferta edukacyjna ZSEiU Łaziska Górne na rok szkolny 2026/2027. Sprawdź dostępne kierunki w technikum i szkole branżowej."
+>
   <article class="prose max-w-4xl mx-auto dark:prose-invert">
     <h1>Kierunki kształcenia</h1>
-    <p class="text-slate-600 dark:text-slate-300">Wybrane kierunki oferowane przez ZSEiU.</p>
+    <p class="text-slate-600 dark:text-slate-300">
+      ZSEiU Łaziska Górne oferuje kształcenie w atrakcyjnych zawodach,
+      łącząc teorię z praktyką. Poniżej znajdziesz aktualną ofertę
+      na rok szkolny <strong>2026/2027</strong>.
+    </p>
 
     <SchoolFields variant="detailed" />
 
-    <p>Wiele kierunków ma partnerów branżowych zapewniających praktyki i wsparcie merytoryczne.</p>
+    <p>
+      Wiele kierunków ma partnerów branżowych zapewniających praktyki
+      i wsparcie merytoryczne. Szczegółowe informacje o rekrutacji
+      znajdziesz w dziale <a href="/rekrutacja">Rekrutacja</a>.
+    </p>
   </article>
 </Layout>
