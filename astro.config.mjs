@@ -4,7 +4,6 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
 import node from '@astrojs/node';
 import { defineConfig, fontProviders } from 'astro/config';
@@ -22,7 +21,6 @@ export default defineConfig({
 		mdx(),
 		sitemap(),
 		react(),
-		markdoc(),
 		...(keystaticEnabled ? [keystatic()] : []),
 	],
 	vite: {

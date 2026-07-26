@@ -4,7 +4,6 @@ import InformacjeSection from '../components/InformacjeSection.astro';
 import InfoStructure from '../components/InfoStructure.astro';
 import InfoInfrastructure from '../components/InfoInfrastructure.astro';
 import SchoolFields from '../components/SchoolFields.astro';
-import TableOfContents from '../components/TableOfContents.astro';
 
 const tocSections = [
   { id: 'najwazniejsze', label: 'Najważniejsze' },
@@ -293,7 +292,15 @@ const tocSections = [
       </div>
 
       <aside class="hidden lg:block">
-        <TableOfContents sections={tocSections} />
+        <nav aria-label="Spis treści" class="sticky top-24 space-y-1">
+          <h3 class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">Spis treści</h3>
+          {tocSections.map((s) => (
+            <a
+              href={`#${s.id}`}
+              class="block px-3 py-1.5 text-sm rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+            >{s.label}</a>
+          ))}
+        </nav>
       </aside>
     </div>
 
