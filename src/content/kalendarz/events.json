@@ -28,15 +28,6 @@
       "description": "Przerwa z okazji Świąt Bożego Narodzenia oraz Nowego Roku."
     },
     {
-      "date": "8 stycznia 2027",
-      "category": "event",
-      "badgeLabel": "Zakończenie",
-      "badgeIcon": "check",
-      "badgeVariant": "indigo",
-      "title": "Zakończenie zajęć w LO dla Dorosłych (semestr letni)",
-      "description": "Zakończenie zajęć dydaktyczno-wychowawczych w klasach programowo najwyższych LO dla Dorosłych (rozpoczynających zajęcia w lutym)."
-    },
-    {
       "date": "Styczeń 2027",
       "category": "exam",
       "badgeLabel": "Egzaminy",
@@ -53,24 +44,6 @@
       "badgeVariant": "cyan",
       "title": "Ferie zimowe (woj. śląskie)",
       "description": "Dwutygodniowy wypoczynek zimowy wyznaczony dla województwa śląskiego."
-    },
-    {
-      "date": "29 stycznia 2027",
-      "category": "event",
-      "badgeLabel": "Zakończenie",
-      "badgeIcon": "check",
-      "badgeVariant": "indigo",
-      "title": "Zakończenie zajęć w BS I stopnia i LO dla Dorosłych",
-      "description": "Zakończenie zajęć dydaktyczno-wychowawczych w branżowych szkołach I stopnia, szkołach policealnych i LO dla Dorosłych."
-    },
-    {
-      "date": "1 lutego 2027",
-      "category": "event",
-      "badgeLabel": "Rozpoczęcie",
-      "badgeIcon": "calendar",
-      "badgeVariant": "emerald",
-      "title": "Rozpoczęcie semestru letniego BS i LO dla Dorosłych",
-      "description": "Rozpoczęcie zajęć dydaktyczno-wychowawczych w niektórych branżowych szkołach I stopnia, szkołach policealnych i LO dla Dorosłych."
     },
     {
       "date": "25 – 30 marca 2027",
