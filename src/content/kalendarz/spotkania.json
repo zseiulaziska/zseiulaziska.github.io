@@ -1,7 +1,7 @@
 {
   "meetings": [
     {
-      "date": "15 września",
+      "date": "15 września 2026",
       "time": "Godz. 17:00",
       "timeVariant": "blue",
       "title": "Zebranie organizacyjne",
@@ -9,7 +9,7 @@
       "colSpan": false
     },
     {
-      "date": "17 listopada",
+      "date": "17 listopada 2026",
       "time": "Godz. 17:00",
       "timeVariant": "blue",
       "title": "Wywiadówka i konsultacje",
@@ -17,7 +17,7 @@
       "colSpan": false
     },
     {
-      "date": "19 stycznia",
+      "date": "19 stycznia 2027",
       "time": "Godz. 17:00",
       "timeVariant": "blue",
       "title": "Wywiadówka półroczna",
@@ -25,7 +25,7 @@
       "colSpan": false
     },
     {
-      "date": "13 kwietnia",
+      "date": "13 kwietnia 2027",
       "time": "Godz. 17:00",
       "timeVariant": "purple",
       "title": "Zebranie klas maturalnych",
@@ -33,7 +33,7 @@
       "colSpan": false
     },
     {
-      "date": "18 maja",
+      "date": "18 maja 2027",
       "time": "Godz. 17:00",
       "timeVariant": "blue",
       "title": "Konsultacje końcoworoczne (Klasy I–IV)",

@@ -1,13 +1,13 @@
 {
   "events": [
     {
-      "date": "1 września",
+      "date": "1 września 2026",
       "category": "event",
       "badgeLabel": "Uroczystość",
       "badgeIcon": "calendar",
       "badgeVariant": "emerald",
       "title": "Rozpoczęcie roku szkolnego",
-      "description": "Uroczysta inauguracja nowego roku szkolnego dla wszystkich klas technikum i szkoły branżowej."
+      "description": "Uroczysta inauguracja roku szkolnego 2026/2027 dla wszystkich klas technikum i szkoły branżowej."
     },
     {
       "date": "14 października",
@@ -19,7 +19,7 @@
       "description": "Święto polskiej szkoły, nauczycieli oraz pracowników oświaty. Dzień wolny od zajęć dydaktycznych."
     },
     {
-      "date": "23 – 31 grudnia",
+      "date": "23 – 31 grudnia 2026",
       "category": "holiday",
       "badgeLabel": "Przerwa świąteczna",
       "badgeIcon": "arrow-right",
@@ -28,7 +28,16 @@
       "description": "Przerwa z okazji Świąt Bożego Narodzenia oraz Nowego Roku."
     },
     {
-      "date": "Styczeń",
+      "date": "8 stycznia 2027",
+      "category": "event",
+      "badgeLabel": "Zakończenie",
+      "badgeIcon": "check",
+      "badgeVariant": "indigo",
+      "title": "Zakończenie zajęć w LO dla Dorosłych (semestr letni)",
+      "description": "Zakończenie zajęć dydaktyczno-wychowawczych w klasach programowo najwyższych LO dla Dorosłych (rozpoczynających zajęcia w lutym)."
+    },
+    {
+      "date": "Styczeń 2027",
       "category": "exam",
       "badgeLabel": "Egzaminy",
       "badgeIcon": "diamond",
@@ -37,7 +46,7 @@
       "description": "Część pisemna i praktyczna egzaminów potwierdzających kwalifikacje w zawodzie."
     },
     {
-      "date": "18 – 31 stycznia",
+      "date": "18 – 31 stycznia 2027",
       "category": "holiday",
       "badgeLabel": "Ferie zimowe",
       "badgeIcon": "crosshair",
@@ -46,7 +55,25 @@
       "description": "Dwutygodniowy wypoczynek zimowy wyznaczony dla województwa śląskiego."
     },
     {
-      "date": "25 – 30 marca",
+      "date": "29 stycznia 2027",
+      "category": "event",
+      "badgeLabel": "Zakończenie",
+      "badgeIcon": "check",
+      "badgeVariant": "indigo",
+      "title": "Zakończenie zajęć w BS I stopnia i LO dla Dorosłych",
+      "description": "Zakończenie zajęć dydaktyczno-wychowawczych w branżowych szkołach I stopnia, szkołach policealnych i LO dla Dorosłych."
+    },
+    {
+      "date": "1 lutego 2027",
+      "category": "event",
+      "badgeLabel": "Rozpoczęcie",
+      "badgeIcon": "calendar",
+      "badgeVariant": "emerald",
+      "title": "Rozpoczęcie semestru letniego BS i LO dla Dorosłych",
+      "description": "Rozpoczęcie zajęć dydaktyczno-wychowawczych w niektórych branżowych szkołach I stopnia, szkołach policealnych i LO dla Dorosłych."
+    },
+    {
+      "date": "25 – 30 marca 2027",
       "category": "holiday",
       "badgeLabel": "Przerwa świąteczna",
       "badgeIcon": "circle",
@@ -55,40 +82,49 @@
       "description": "Wiosenna przerwa z okazji Świąt Wielkanocnych."
     },
     {
-      "date": "23 kwietnia",
+      "date": "30 kwietnia 2027",
       "category": "event",
-      "badgeLabel": "Uroczystość",
+      "badgeLabel": "Zakończenie",
       "badgeIcon": "diamond",
       "badgeVariant": "indigo",
       "title": "Zakończenie roku dla klas maturalnych",
-      "description": "Uroczyste pożegnanie absolwentów klas ostatnich technikum i liceum."
+      "description": "Uroczyste pożegnanie absolwentów klas programowo najwyższych technikum i liceum."
     },
     {
-      "date": "Maj",
+      "date": "Maj – czerwiec 2027",
       "category": "exam",
       "badgeLabel": "Egzaminy",
       "badgeIcon": "clipboard",
       "badgeVariant": "purple",
-      "title": "Egzamin maturalny (Sesja główna)",
-      "description": "Pisemne i ustne egzaminy maturalne z przedmiotów obowiązkowych oraz dodatkowych."
+      "title": "Egzamin maturalny (sesja główna)",
+      "description": "Pisemne i ustne egzaminy maturalne z przedmiotów obowiązkowych oraz dodatkowych. Termin ustala dyrektor CKE."
     },
     {
-      "date": "Czerwiec",
+      "date": "Czerwiec 2027",
       "category": "exam",
       "badgeLabel": "Egzaminy",
       "badgeIcon": "diamond",
       "badgeVariant": "purple",
       "title": "Sesja letnia egzaminów zawodowych",
-      "description": "Egzaminy państwowe potwierdzające kwalifikacje w zawodach technicznych i usługowych."
+      "description": "Egzaminy państwowe potwierdzające kwalifikacje w zawodach technicznych i usługowych. Termin ustala dyrektor CKE."
     },
     {
-      "date": "25 czerwca",
+      "date": "25 czerwca 2027",
       "category": "event",
       "badgeLabel": "Uroczystość",
       "badgeIcon": "check",
       "badgeVariant": "emerald",
       "title": "Zakończenie roku szkolnego",
       "description": "Uroczyste podsumowanie wyników w nauce i wręczenie świadectw dla pozostałych roczników."
+    },
+    {
+      "date": "26 czerwca – 31 sierpnia 2027",
+      "category": "holiday",
+      "badgeLabel": "Ferie letnie",
+      "badgeIcon": "sun",
+      "badgeVariant": "amber",
+      "title": "Ferie letnie",
+      "description": "Wakacyjna przerwa w zajęciach dydaktyczno-wychowawczych."
     }
   ]
 }

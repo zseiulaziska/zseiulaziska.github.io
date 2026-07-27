@@ -1,35 +1,35 @@
 {
   "rows": [
     {
-      "date": "31 października",
+      "date": "31 października 2026",
       "dayOfWeek": "Piątek",
       "reason": "Dzień przed Wszystkich Świętych",
       "status": "Dzień dyrektorski",
       "statusVariant": "default"
     },
     {
-      "date": "2 stycznia",
-      "dayOfWeek": "Piątek",
+      "date": "2 stycznia 2027",
+      "dayOfWeek": "Sobota",
       "reason": "Dzień po Nowym Roku",
       "status": "Dzień dyrektorski",
       "statusVariant": "default"
     },
     {
-      "date": "Maj (3 dni)",
+      "date": "Maj 2027 (3 dni)",
       "dayOfWeek": "Wtorek – Czwartek",
       "reason": "Pisemne egzaminy maturalne (język polski, matematyka, język angielski)",
       "status": "Egzamin maturalny",
       "statusVariant": "exam"
     },
     {
-      "date": "Maj (1 dzień)",
+      "date": "Maj 2027 (1 dzień)",
       "dayOfWeek": "Piątek",
       "reason": "Piątek po Bożym Ciele",
       "status": "Dzień dyrektorski",
       "statusVariant": "default"
     },
     {
-      "date": "Czerwiec (2 dni)",
+      "date": "Czerwiec 2027 (2 dni)",
       "dayOfWeek": "Poniedziałek – Wtorek",
       "reason": "Egzaminy zawodowe (część praktyczna)",
       "status": "Egzamin zawodowy",
