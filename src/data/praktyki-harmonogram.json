@@ -1,0 +1,62 @@
+{
+  "rokSzkolny": "2026/2027",
+  "p1": {
+    "label": "P1 – praktyka w klasie 3",
+    "tury": [
+      {
+        "id": "p1-t1",
+        "label": "Tura 1",
+        "dataRozpoczecia": "2026-09-01",
+        "dataZakonczenia": "2026-09-26",
+        "klasy": ["A", "B"]
+      },
+      {
+        "id": "p1-t2",
+        "label": "Tura 2",
+        "dataRozpoczecia": "2026-09-29",
+        "dataZakonczenia": "2026-10-24",
+        "klasy": ["C", "D"]
+      },
+      {
+        "id": "p1-t3",
+        "label": "Tura 3",
+        "dataRozpoczecia": "2026-10-27",
+        "dataZakonczenia": "2026-11-21",
+        "klasy": ["E"]
+      }
+    ]
+  },
+  "p2": {
+    "label": "P2 – praktyka w klasie 4",
+    "tury": [
+      {
+        "id": "p2-t1",
+        "label": "Tura 1",
+        "dataRozpoczecia": "2026-09-01",
+        "dataZakonczenia": "2026-09-26",
+        "klasy": ["F"]
+      },
+      {
+        "id": "p2-t2",
+        "label": "Tura 2",
+        "dataRozpoczecia": "2026-09-29",
+        "dataZakonczenia": "2026-10-24",
+        "klasy": ["G"]
+      },
+      {
+        "id": "p2-t3",
+        "label": "Tura 3",
+        "dataRozpoczecia": "2026-10-27",
+        "dataZakonczenia": "2026-11-21",
+        "klasy": ["H"]
+      },
+      {
+        "id": "p2-t4",
+        "label": "Tura 4",
+        "dataRozpoczecia": "2026-11-24",
+        "dataZakonczenia": "2026-12-19",
+        "klasy": ["I", "J"]
+      }
+    ]
+  }
+}

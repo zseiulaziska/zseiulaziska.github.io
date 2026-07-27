@@ -1,10 +1,251 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import data from '../content/podreczniki/podreczniki.json';
+
+interface Variant {
+  nazwa: string;
+  opis: string;
+}
+
+interface Przedmiot {
+  nazwa?: string;
+  opis?: string;
+  warianty?: Variant[];
+}
+
+interface PrzedmiotZawodowy {
+  nazwa?: string;
+  opis?: string;
+}
+
+interface Kierunek {
+  kierunek?: string;
+  przedmioty: PrzedmiotZawodowy[];
+}
+
+interface Klasa {
+  klasa: string;
+  przedmioty_ogolnoksztalcace: Przedmiot[];
+  ksztalcenie_zawodowe: Kierunek[];
+}
+
+interface Szkola {
+  typ_szkoly: string;
+  klasy: Klasa[];
+}
+
+const szkoly = data.szkoly as Szkola[];
 ---
 
-<Layout title="Podręczniki - ZSEiU Łaziska Górne" description="Wykazy podręczników dla ZSEiU Łaziska Górne na bieżący rok szkolny.">
-  <article class="prose max-w-4xl dark:prose-invert">
-    <h1>Podręczniki 2025/2026</h1>
-    <p>Wykaz podręczników dla Technikum i dla Branżowej Szkoły I Stopnia. (źródło: site.md)</p>
+<Layout title="Podręczniki 2026/2027 - ZSEiU Łaziska Górne" description="Wykaz podręczników szkolnych dla Technikum w ZSEiU Łaziska Górne na rok szkolny 2026/2027.">
+
+  <article class="w-full max-w-5xl mx-auto min-w-0">
+
+    <!-- HERO -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-slate-900 via-navy-950 to-slate-900 dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 border border-slate-700/50 dark:border-navy-700/50 p-5 sm:p-10 mb-10 w-full">
+      <div class="cyber-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -top-20 -right-20 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/20 text-primary-300 border border-primary-500/30 mb-4">Wykaz Podręczników</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">Podręczniki <span class="text-transparent bg-clip-text bg-linear-to-r from-primary-300 via-primary-400 to-blue-400">2026/2027</span></h1>
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed wrap-break-word">Kompletny wykaz podręczników dla wszystkich klas Technikum — przedmioty ogólnokształcące oraz kształcenie zawodowe.</p>
+      </div>
+    </div>
+
+    <!-- NARZĘDZIA: FILTRY + DRUKUJ -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8" id="toolbar">
+      <div class="flex flex-wrap items-center gap-2">
+        <button data-filter="all" data-school="" class="class-filter active px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-primary-600 text-white shadow-xs">Wszystkie</button>
+        {szkoly.map((s) => (
+          s.klasy.map((k) => {
+            const skroconyTyp = s.typ_szkoly === "Technikum" ? "T" : "BS1S";
+            const dotColor = s.typ_szkoly === "Technikum" ? "bg-primary-500" : "bg-emerald-500";
+            return <button data-filter={`${skroconyTyp}-${k.klasa}`} data-school={s.typ_szkoly} class="class-filter px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-700"><span class={`inline-block w-2 h-2 rounded-full ${dotColor} mr-1.5`}></span>{skroconyTyp} - Klasa {k.klasa}</button>;
+          })
+        ))}
+      </div>
+      <div class="flex items-center gap-2 self-start sm:self-auto">
+        <button id="print-btn" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 dark:border-navy-600 bg-white dark:bg-navy-800/90 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-navy-700 transition-all" title="Drukuj">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Drukuj
+        </button>
+      </div>
+    </div>
+
+    <!-- SZKOŁY I KLASY -->
+    {szkoly.map((szkola) => (
+      szkola.klasy.map((klasa) => {
+        const skroconyTyp = szkola.typ_szkoly === "Technikum" ? "T" : "BS1S";
+        const isTechnikum = szkola.typ_szkoly === "Technikum";
+        const accentColor = isTechnikum ? "primary" : "emerald";
+        const borderColor = isTechnikum ? "border-primary-500" : "border-emerald-500";
+        const badgeBg = isTechnikum ? "bg-navy-100 dark:bg-navy-700" : "bg-emerald-100 dark:bg-emerald-950/60";
+        const badgeText = isTechnikum ? "text-navy-700 dark:text-navy-300" : "text-emerald-700 dark:text-emerald-300";
+        return (
+      <section class="klasa-section mb-12" data-klasa={`${skroconyTyp}-${klasa.klasa}`}>
+        <!-- Nagłówek klasy -->
+        <div class={`flex items-center gap-3 mb-6 border-l-4 ${borderColor} pl-3 sm:pl-4`}>
+          <span class={`px-2.5 py-0.5 rounded-full ${badgeBg} ${badgeText} text-xs font-semibold`}>{szkola.typ_szkoly}</span>
+          <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Klasa {klasa.klasa}</h2>
+        </div>
+
+        <!-- Przedmioty ogólnokształcące -->
+        <div class="mb-8">
+          <h3 class="text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3">Przedmioty ogólnokształcące</h3>
+          <ul class="list-disc list-inside space-y-1.5">
+            {klasa.przedmioty_ogolnoksztalcace.map((p) => (
+              <li class="subject-card text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                <span class="font-semibold text-slate-900 dark:text-white">{p.nazwa}:</span>
+                {p.warianty ? (
+                  <ul class="list-none pl-5 mt-1 space-y-1.5">
+                    {p.warianty.map((w) => (
+                      <li class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        <span class="font-medium text-slate-700 dark:text-slate-300">[{w.nazwa}]</span>
+                        {w.opis}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <> {p.opis}</>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Kształcenie zawodowe -->
+        {klasa.ksztalcenie_zawodowe.length > 0 && (
+          <div>
+            <h3 class="text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3">Kształcenie zawodowe</h3>
+            <ul class="list-disc list-inside space-y-3">
+              {klasa.ksztalcenie_zawodowe.map((kier) => (
+                <li class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <span class="font-semibold text-slate-900 dark:text-white">{kier.kierunek}</span>
+                  <ul class="list-disc list-inside pl-5 mt-1 space-y-1">
+                    {kier.przedmioty.map((prz) => (
+                      <li class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {prz.nazwa && <span class="font-medium text-slate-700 dark:text-slate-300">{prz.nazwa}: </span>}
+                        {prz.opis}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
+        );
+      })
+    ))}
+
+    <!-- Stopka -->
+    <!-- <p class="text-center text-sm text-slate-400 dark:text-slate-500 mt-8 mb-4">
+      Stan na rok szkolny 2026/2027 · ZSEiU Łaziska Górne
+    </p> -->
   </article>
 </Layout>
+
+<style is:global>
+  @media print {
+    .site-header,
+    .site-header *,
+    .breadcrumbs,
+    #toolbar,
+    footer,
+    .skip-link,
+    article > div:first-child {
+      display: none !important;
+    }
+    body {
+      background: white !important;
+      color: black !important;
+    }
+    .dark body,
+    html.dark body {
+      background: white !important;
+      color: black !important;
+    }
+    .klasa-section {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .subject-card {
+      display: list-item;
+    }
+    .text-slate-900,
+    .dark\:text-white {
+      color: #111827 !important;
+    }
+    .text-slate-700,
+    .text-slate-600,
+    .text-slate-500,
+    .text-slate-400,
+    .dark\:text-slate-300,
+    .dark\:text-slate-400,
+    .dark\:text-slate-500 {
+      color: #4b5563 !important;
+    }
+    .text-primary-700,
+    .dark\:text-primary-300,
+    .text-slate-700 {
+      color: #0070b0 !important;
+    }
+    .border-slate-700\/50,
+    .dark\:border-navy-700\/50 {
+      border: none !important;
+      background: transparent !important;
+    }
+    .cyber-grid,
+    .cyber-glow {
+      display: none !important;
+    }
+    h1, h2, h3 {
+      color: #111827 !important;
+    }
+    @page {
+      margin: 1.5cm;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    // Filtrowanie po klasie
+    const classFilters = document.querySelectorAll('.class-filter');
+    const klasaSections = document.querySelectorAll('.klasa-section');
+
+    const activeBg = (school: string | null) => school === 'Branżowa Szkoła I Stopnia' ? 'bg-emerald-600' : 'bg-primary-600';
+
+    classFilters.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter') || 'all';
+        const school = btn.getAttribute('data-school');
+
+        classFilters.forEach((b) => {
+          b.classList.remove('active', 'bg-primary-600', 'bg-emerald-600', 'text-white', 'shadow-xs');
+          b.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-navy-700');
+        });
+        btn.classList.add('active', activeBg(school), 'text-white', 'shadow-xs');
+        btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-navy-700');
+
+        klasaSections.forEach((section) => {
+          const data = section.getAttribute('data-klasa');
+          if (filter === 'all' || data === filter) {
+            (section as HTMLElement).style.display = '';
+          } else {
+            (section as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+    // Drukowanie
+    const printBtn = document.getElementById('print-btn');
+    if (printBtn) {
+      printBtn.addEventListener('click', () => {
+        window.print();
+      });
+    }
+  })();
+</script>
