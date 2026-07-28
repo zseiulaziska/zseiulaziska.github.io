@@ -22,11 +22,19 @@ const teacherSchema = z.object({
   })),
 });
 
+const podrecznikiSchema = z.object({
+  typ_szkoly: z.string(),
+  klasa: z.string(),
+});
+
 export const collections = {
   blog: defineCollection({
     schema: blogSchema,
   }),
   teacher: defineCollection({
     schema: teacherSchema,
+  }),
+  podreczniki: defineCollection({
+    schema: podrecznikiSchema,
   }),
 };
