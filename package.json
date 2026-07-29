@@ -25,12 +25,14 @@
     "sharp": "^0.34.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@tailwindcss/postcss": "^4.3.1",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.1",
     "autoprefixer": "^10.5.2",
     "pagefind": "^1.5.2",
     "postcss": "^8.5.15",
-    "tailwindcss": "^4.3.1"
+    "tailwindcss": "^4.3.1",
+    "typescript": "^7.0.2"
   }
 }

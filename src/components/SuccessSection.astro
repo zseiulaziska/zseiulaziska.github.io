@@ -1,0 +1,81 @@
+---
+const stats = [
+  { value: '580+', label: 'Uczniów' },
+  { value: '13', label: 'Kierunków kształcenia' },
+  { value: '95%', label: 'Zdawalności egzaminów' },
+  { value: '40+', label: 'Partnerów' },
+  { value: '57', label: 'Nauczycieli' },
+  { value: '80+', label: 'Lat tradycji' },
+];
+
+const achievements = [
+  {
+    icon: 'trophy',
+    title: 'Konkursy przedmiotowe',
+    desc: 'Nasi uczniowie regularnie zdobywają czołowe miejsca w konkursach wojewódzkich i ogólnopolskich z informatyki, logistyki i elektryki.',
+  },
+  {
+    icon: 'medal',
+    title: 'Olimpiady zawodowe',
+    desc: 'Finaliści i laureaci Olimpiady Logistycznej, Olimpiady Informatycznej oraz Olimpiady Wiedzy Elektrycznej i Energetycznej.',
+  },
+  {
+    icon: 'sport',
+    title: 'Osiągnięcia sportowe',
+    desc: 'Reprezentacje szkoły zdobywają medale w zawodach powiatowych, rejonowych i wojewódzkich w piłce siatkowej, koszykówce i lekkiej atletyce.',
+  },
+  {
+    icon: 'project',
+    title: 'Projekty unijne',
+    desc: 'Aktywny udział w programach Erasmus+ i projektach unijnych, staże zagraniczne we Włoszech i Grecji.',
+  },
+  {
+    icon: 'scholarship',
+    title: 'Stypendia',
+    desc: 'Uczniowie z wysokimi wynikami otrzymują stypendia Prezesa Rady Ministrów oraz liczne stypendia motywacyjne.',
+  },
+];
+---
+
+<section class="reveal py-20 lg:py-28 bg-slate-50 dark:bg-navy-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
+      <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Nasze Sukcesy</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        Sukcesy szkoły
+      </p>
+      <p class="text-lg text-slate-600 dark:text-slate-300">
+        Jesteśmy dumni z osiągnięć naszych uczniów i całej społeczności szkolnej
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-16">
+      {stats.map((stat) => (
+        <div class="rounded-xl bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-5 text-center hover:shadow-md transition-shadow">
+          <p class="text-3xl font-extrabold text-primary-600 dark:text-primary-400">{stat.value}</p>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-10">Osiągnięcia</h3>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {achievements.map((item) => (
+        <div class="rounded-xl bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-6 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              {item.icon === 'trophy' && <><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></>}
+              {item.icon === 'medal' && <><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></>}
+              {item.icon === 'sport' && <><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/></>}
+              {item.icon === 'project' && <><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></>}
+              {item.icon === 'scholarship' && <><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></>}
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">{item.title}</h4>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

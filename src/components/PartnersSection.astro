@@ -1,0 +1,41 @@
+---
+const partners = [
+  { name: 'Kopex Machinery', logo: '/images/partners/kopex.png', type: 'Pracodawca' },
+  { name: 'PKP Cargo', logo: '/images/partners/pkp-cargo.png', type: 'Pracodawca' },
+  { name: 'Energetyka Cieplna', logo: '/images/partners/ec.png', type: 'Pracodawca' },
+  { name: 'PGE Górnictwo', logo: '/images/partners/pge.png', type: 'Pracodawca' },
+  { name: 'Wojsko Polskie', logo: '/images/partners/wojsko.png', type: 'Instytucja' },
+  { name: 'Politechnika Śląska', logo: '/images/partners/polsl.png', type: 'Uczelnia' },
+  { name: 'Starostwo Powiatowe', logo: '/images/partners/starostwo.png', type: 'Instytucja' },
+  { name: 'Komenda Miejska Policji', logo: '/images/partners/policja.png', type: 'Instytucja' },
+];
+
+const categories = [...new Set(partners.map(p => p.type))];
+---
+
+<section class="reveal py-20 lg:py-28 bg-white dark:bg-navy-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
+      <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Nasi Partnerzy</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        Partnerzy i pracodawcy
+      </p>
+      <p class="text-lg text-slate-600 dark:text-slate-300">
+        Nasi uczniowie zdobywają doświadczenie u najlepszych pracodawców regionu
+      </p>
+    </div>
+
+    {categories.map((cat) => (
+      <div class="mb-12 last:mb-0">
+        <h3 class="text-sm font-semibold text-primary-600 uppercase tracking-wider mb-6">{cat}</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {partners.filter(p => p.type === cat).map((partner) => (
+            <div class="flex items-center justify-center h-24 rounded-xl bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-4 hover:shadow-md transition-shadow">
+              <span class="text-slate-400 dark:text-slate-500 text-sm font-medium text-center">{partner.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
