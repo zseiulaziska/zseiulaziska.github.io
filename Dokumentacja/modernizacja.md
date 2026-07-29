@@ -1,589 +1,617 @@
-# TASK: Kompleksowa optymalizacja strony głównej ZSEiU pod kątem UX/UI i skuteczności rekrutacyjnej
-
-## Cel biznesowy
-
-Przekształcić stronę główną z funkcji informacyjnej w skuteczne narzędzie rekrutacyjne dla kandydatów, rodziców oraz osób zainteresowanych ofertą edukacyjną szkoły.
-
-Kluczowe cele:
-
-- zwiększenie widoczności oferty edukacyjnej,
-- zwiększenie liczby przejść do rekrutacji,
-- poprawa czytelności i hierarchii informacji,
-- zwiększenie czasu spędzanego na stronie,
-- poprawa jakości doświadczenia użytkownika (UX),
-- ujednolicenie warstwy wizualnej (UI).
+# AI Agent Specification: UI/UX Refactoring & Frontend Implementation Plan
+## Zespół Szkół Energetycznych i Usługowych — Modernizacja Interfejsu Strony Internetowej
 
 ---
 
-# ETAP 1 — Audyt i reorganizacja architektury informacji
+# 1. Role i zakres działania agenta AI
 
-## Zadanie
+## Typ agenta
 
-Przeanalizować aktualną kolejność sekcji na stronie głównej i dostosować ją do potrzeb kandydatów.
+Agent odpowiedzialny za kompleksową analizę, projektowanie i implementację zmian frontendowych:
 
-## Aktualna kolejność
+- UI/UX Designer Agent
+- Frontend Developer Agent
+- Accessibility QA Agent
+- Content Structure Agent
 
-1. Hero
-2. Aktualności
-3. Klasy mundurowe
-4. Struktura organizacyjna
-5. Kierunki kształcenia
-6. CTA
-7. Stopka
-
-## Docelowa kolejność
-
-1. Hero
-2. Dlaczego warto wybrać ZSEiU
-3. Kierunki kształcenia
-4. Klasy mundurowe
-5. Partnerzy i pracodawcy
-6. Sukcesy szkoły
-7. Aktualności
-8. CTA rekrutacyjne
-9. Stopka
-
-## Kryteria akceptacji
-
-- użytkownik widzi ofertę edukacyjną przed aktualnościami,
-- najważniejsze informacje dla kandydatów znajdują się w pierwszych sekcjach strony.
+Agent powinien działać jako doświadczony projektant i programista stron internetowych instytucji edukacyjnych.
 
 ---
 
-# ETAP 2 — Optymalizacja sekcji Hero
+# 2. Cel projektu
 
-## Cel
+## Cel główny
 
-Zwiększenie skuteczności pierwszego ekranu.
+Przeprowadzić kompleksową refaktoryzację obecnego interfejsu strony internetowej Zespołu Szkół Energetycznych i Usługowych.
 
----
+Aktualny projekt należy przekształcić z klasycznego, przeładowanego wizualnie układu opartego na wielu kolorowych kartach w:
 
-## Zadanie 2.1
-
-Zmniejszyć wysokość sekcji Hero.
-
-### Aktualny stan
-
-Hero zajmuje niemal cały ekran.
-
-### Docelowy stan
-
-- wysokość 60–75vh,
-- widoczny fragment kolejnej sekcji bez scrollowania.
-
-### Kryterium akceptacji
-
-Na ekranie 1366x768 użytkownik widzi początek następnej sekcji.
+- nowoczesną platformę informacyjną szkoły,
+- intuicyjny system komunikacji z uczniami i rodzicami,
+- profesjonalny serwis edukacyjny,
+- stronę zgodną ze standardami dostępności WCAG 2.1 AA,
+- responsywny interfejs dostosowany do urządzeń mobilnych.
 
 ---
 
-## Zadanie 2.2
+# 3. Główne grupy użytkowników
 
-Poprawić komunikat główny.
-
-### Aktualny tekst
-
-"Twoja droga do zawodu"
-
-### Zalecenie
-
-Stworzyć bardziej konkretny komunikat oparty o korzyści.
-
-### Przykłady
-
-- Zdobądź zawód przyszłości
-- Rozwijaj swoje umiejętności w nowoczesnym technikum
-- Wybierz kierunek, który daje perspektywy
+Projekt należy optymalizować dla dwóch podstawowych grup odbiorców.
 
 ---
 
-## Zadanie 2.3
+## Grupa A — Kandydaci i rodzice
 
-Wzmocnić CTA.
+### Potrzeby użytkowników:
 
-### CTA główne
+- szybkie poznanie oferty edukacyjnej,
+- znalezienie kierunków kształcenia,
+- poznanie atutów szkoły,
+- dostęp do informacji rekrutacyjnych,
+- możliwość kontaktu ze szkołą.
 
-"Rekrutacja 2026/2027"
+### Najważniejsze elementy:
 
-### CTA pomocnicze
-
-"Poznaj kierunki"
-
-### Kryteria
-
-- wyraźne rozróżnienie przycisku głównego i pomocniczego,
-- CTA widoczne bez przewijania.
-
----
-
-## Zadanie 2.4
-
-Dodać szybkie statystyki.
-
-### Przykład
-
-- 580+ uczniów
-- 13 kierunków
-- 4 typy szkół
-- 100% zaangażowania
-
-### Kryteria
-
-Statystyki widoczne bezpośrednio pod CTA.
-
----
-
-# ETAP 3 — Sekcja „Dlaczego warto wybrać ZSEiU”
-
-## Cel
-
-Przedstawienie najważniejszych przewag szkoły.
-
----
-
-## Zadanie
-
-Utworzyć sekcję z 4–6 kartami.
-
-### Karta 1
-
-Nowoczesne pracownie
-
-### Karta 2
-
-Praktyki zawodowe
-
-### Karta 3
-
-Klasy mundurowe
-
-### Karta 4
-
-Certyfikaty i kwalifikacje
-
-### Karta 5
-
-Wysoka zdawalność
-
-### Karta 6
-
-Aktywne życie szkoły
-
----
-
-## Kryteria
-
-Każda karta zawiera:
-
-- ikonę,
-- nagłówek,
-- krótki opis,
-- link do szczegółów (opcjonalnie).
-
----
-
-# ETAP 4 — Przebudowa sekcji kierunków kształcenia
-
-## Cel
-
-Ułatwienie porównania kierunków.
-
----
-
-## Zadanie 4.1
-
-Ograniczyć ilość tekstu w kartach.
-
-### Aktualny problem
-
-Zbyt duża ilość małego tekstu.
-
-### Docelowo
-
-Każda karta zawiera:
-
-- nazwę kierunku,
-- ikonę,
-- 2–3 najważniejsze kompetencje,
-- CTA.
-
----
-
-## Zadanie 4.2
-
-Dodać zdjęcia kierunków.
-
-### Przykłady
-
-- Technik informatyk
-- Technik logistyk
-- Technik elektryk
-- Technik energetyk
-
----
-
-## Zadanie 4.3
-
-Dodać filtrowanie.
-
-### Filtry
-
-- Technikum
-- Branżowa I stopnia
-- Branżowa II stopnia
-- Dla dorosłych
-
-### Kryteria
-
-Zmiana filtrów bez przeładowania strony.
-
----
-
-# ETAP 5 — Sekcja partnerów i pracodawców
-
-## Cel
-
-Budowanie wiarygodności.
-
----
-
-## Zadanie
-
-Utworzyć sekcję partnerów.
-
-### Zawartość
-
-- logotypy firm,
-- logotypy instytucji,
-- jednostki wojskowe,
-- uczelnie,
-- partnerzy edukacyjni.
-
-### Nagłówek
-
-"Nasi uczniowie zdobywają doświadczenie u najlepszych pracodawców regionu"
-
----
-
-## Kryteria
-
-- minimum 6 partnerów,
-- responsywna siatka logotypów.
-
----
-
-# ETAP 6 — Sekcja sukcesów szkoły
-
-## Cel
-
-Budowanie zaufania.
-
----
-
-## Zadanie 6.1
-
-Dodać liczby.
-
-### Przykłady
-
-- 580+ uczniów
-- 13 kierunków
-- 95% zdawalności
-- 40+ partnerów
-
----
-
-## Zadanie 6.2
-
-Dodać osiągnięcia.
-
-### Kategorie
-
-- konkursy,
-- olimpiady,
-- sport,
-- projekty unijne,
-- stypendia.
-
----
-
-## Kryteria
-
-Sekcja zawiera zarówno liczby jak i osiągnięcia.
-
----
-
-# ETAP 7 — Przebudowa sekcji aktualności
-
-## Cel
-
-Zmniejszenie dominacji aktualności przy zachowaniu funkcji informacyjnej.
-
----
-
-## Zadanie 7.1
-
-Przenieść sekcję niżej.
-
-### Lokalizacja
-
-Po sekcjach ofertowych i promocyjnych.
-
----
-
-## Zadanie 7.2
-
-Dodać kategorie.
-
-### Kategorie
-
+- Oferta edukacyjna
 - Rekrutacja
-- Sukcesy
-- Wydarzenia
-- Projekty
-- Sport
+- Profile zawodów
+- Statystyki szkoły
+- Opinie i sukcesy uczniów
 
 ---
 
-## Zadanie 7.3
+## Grupa B — Obecni uczniowie i nauczyciele
 
-Dodać oznaczenia ważnych wpisów.
+### Potrzeby użytkowników:
 
-### Przykłady
+Natychmiastowy dostęp do codziennie używanych usług.
 
-- WAŻNE
-- REKRUTACJA
-- PILNE
+### Priorytetowe elementy:
 
----
-
-## Zadanie 7.4
-
-Wyeliminować placeholdery.
-
-### Kryterium
-
-Każdy wpis posiada:
-
-- miniaturę,
-- datę,
-- tytuł,
-- krótki opis.
-
----
-
-# ETAP 8 — Ujednolicenie systemu UI
-
-## Cel
-
-Zwiększenie spójności wizualnej.
-
----
-
-## Zadanie 8.1
-
-Ujednolicić promienie zaokrągleń.
-
-### Standard
-
-12–16px
-
----
-
-## Zadanie 8.2
-
-Ujednolicić system cieni.
-
-### Standard
-
-Maksymalnie 2–3 poziomy cieni.
-
----
-
-## Zadanie 8.3
-
-Ujednolicić odstępy.
-
-### Sekcje
-
-80–120px
-
-### Elementy
-
-24–40px
-
----
-
-## Zadanie 8.4
-
-Ujednolicić przyciski.
-
-### Wymagania
-
-- jeden wariant primary,
-- jeden wariant secondary,
-- jeden wariant ghost (opcjonalnie).
-
----
-
-# ETAP 9 — Rozbudowa stopki
-
-## Cel
-
-Ułatwienie dostępu do najważniejszych informacji.
-
----
-
-## Sekcja „Dla kandydatów”
-
-- Rekrutacja
-- Kierunki
-- Kontakt
-
----
-
-## Sekcja „Dla uczniów”
-
-- Dziennik
+- E-dziennik
 - Plan lekcji
-- Dokumenty
+- Zastępstwa
+- Dzwonki
+- Ogłoszenia
+- Dokumenty szkolne
+- BIP
 
 ---
 
-## Sekcja „Dla rodziców”
-
-- Kontakt
-- Sekretariat
-- Informacje organizacyjne
+# 4. Audyt obecnego UI/UX
 
 ---
 
-## Kryteria
+# Problem 1 — Nadmierny chaos wizualny
 
-Najważniejsze linki dostępne bez konieczności korzystania z menu głównego.
+## Diagnoza
 
----
+Obecny projekt wykorzystuje wiele intensywnych kolorów dla poszczególnych kafelków:
 
-# ETAP 10 — Optymalizacja mobilna
+- czerwony,
+- zielony,
+- niebieski,
+- pomarańczowy,
+- fioletowy,
+- seledynowy.
 
-## Cel
-
-Zapewnienie wysokiej użyteczności na smartfonach.
-
----
-
-## Zadanie 10.1
-
-Przeprowadzić pełny audyt responsywności.
-
-### Rozdzielczości
-
-- 360px
-- 390px
-- 412px
-- 768px
+Każdy element konkuruje o uwagę użytkownika.
 
 ---
 
-## Zadanie 10.2
+## Negatywny efekt UX
 
-Dostosować Hero.
+Powoduje:
 
-### Wymagania
-
-- skrócona wysokość,
-- CTA widoczne bez przewijania.
-
----
-
-## Zadanie 10.3
-
-Dostosować karty kierunków.
-
-### Wymagania
-
-- pojedyncza kolumna,
-- odpowiednie odstępy,
-- brak poziomego scrolla.
+- przeciążenie poznawcze,
+- brak hierarchii informacji,
+- utratę spójności marki,
+- amatorski wygląd strony,
+- trudność w identyfikacji najważniejszych akcji.
 
 ---
 
-## Zadanie 10.4
+## Wymagana zmiana
 
-Dostosować menu.
+Zastąpić wielokolorowe moduły jednolitym systemem wizualnym.
 
-### Priorytetowe pozycje
-
-- Rekrutacja
-- Kierunki
-- Kontakt
+Kolor powinien pełnić funkcję informacyjną, a nie dekoracyjną.
 
 ---
 
-# ETAP 11 — Pomiar skuteczności
+# Problem 2 — Niepoprawna architektura informacji
 
-## Cel
+## Diagnoza
 
-Zweryfikowanie wpływu zmian.
+Aktualna strona wykorzystuje wiele podobnych sekcji:
 
----
+- karty,
+- kafelki,
+- siatki ikon,
+- boksy informacyjne.
 
-## KPI
-
-### Rekrutacja
-
-- liczba kliknięć w CTA rekrutacyjne,
-- liczba przejść do formularza rekrutacyjnego.
-
-### UX
-
-- czas na stronie,
-- scroll depth,
-- współczynnik odrzuceń.
-
-### Treści
-
-- kliknięcia w kierunki,
-- kliknięcia w aktualności.
+Elementy są ułożone pionowo bez jasnej hierarchii.
 
 ---
 
-# PRIORYTETY WDROŻENIA
+## Negatywny efekt UX
 
-## P0 — Krytyczne
+Użytkownik musi długo przewijać stronę.
 
-1. Reorganizacja kolejności sekcji.
-2. Skrócenie Hero.
-3. Dodanie sekcji „Dlaczego warto wybrać ZSEiU”.
-4. Przeniesienie kierunków wyżej.
-5. Wzmocnienie CTA rekrutacyjnych.
+Najważniejsze funkcje:
 
----
+- E-dziennik,
+- Plan lekcji,
+- Rekrutacja,
+- BIP,
 
-## P1 — Wysokie
-
-6. Modernizacja kart kierunków.
-7. Dodanie partnerów.
-8. Dodanie sukcesów szkoły.
-9. Przebudowa aktualności.
+są traktowane tak samo jak elementy promocyjne.
 
 ---
 
-## P2 — Średnie
+## Wymagana zmiana
 
-10. Ujednolicenie UI.
-11. Rozbudowa stopki.
-12. Dopracowanie wersji mobilnej.
+Należy stworzyć hierarchię:
+
+1. Najważniejsze zadania użytkownika.
+2. Oferta szkoły.
+3. Przewagi konkurencyjne.
+4. Aktualności.
+5. Informacje dodatkowe.
 
 ---
 
-# DEFINICJA UKOŃCZENIA (Definition of Done)
+# Problem 3 — Brak hierarchii wizualnej
 
-Projekt uznaje się za zakończony, gdy:
+## Diagnoza
 
-- oferta edukacyjna znajduje się w pierwszej części strony,
-- użytkownik może rozpocząć rekrutację z pierwszego ekranu,
-- wszystkie sekcje posiadają spójny design system,
-- strona jest w pełni responsywna,
-- nie występują placeholdery ani puste obszary,
-- wdrożone zostały KPI umożliwiające ocenę skuteczności zmian.
+Strona wykorzystuje zbyt wiele jednakowych komponentów:
+
+- karta,
+- karta,
+- karta,
+- kolejna karta.
+
+Brakuje elementów prowadzących wzrok użytkownika.
+
+---
+
+## Wymagana zmiana
+
+Wprowadzić:
+
+- sekcje naprzemienne,
+- różne typy bloków,
+- większe przestrzenie,
+- wyróżnione CTA,
+- elementy typu hero,
+- statystyki,
+- storytelling.
+
+---
+
+# Problem 4 — Dostępność WCAG
+
+## Problemy:
+
+- niewystarczający kontrast tekstu,
+- jasny tekst na jasnych tłach,
+- zbyt mała typografia,
+- słaba obsługa urządzeń mobilnych.
+
+---
+
+## Wymagania:
+
+Strona musi spełniać:
+
+WCAG 2.1 poziom AA.
+
+---
+
+# 5. Plan implementacji
+
+---
+
+# FAZA 1 — Budowa Design System
+
+## Zadanie dla AI Designer / CSS Agent
+
+Przygotować spójny system wizualny.
+
+---
+
+# System kolorów
+
+## Primary
+
+Kolor dominujący:
+#0F172A
+
+
+lub
+
+
+#1E3A8A
+
+
+Zastosowanie:
+
+- nagłówki,
+- sekcje premium,
+- nawigacja,
+- elementy brandingowe.
+
+---
+
+## Secondary
+
+Kolor interaktywny:
+
+
+#2563EB
+
+
+Zastosowanie:
+
+- linki,
+- aktywne elementy,
+- hover,
+- oznaczenia.
+
+---
+
+## Accent CTA
+
+Kolor akcji:
+
+
+#D97706
+
+
+Używać wyłącznie dla:
+
+- Rekrutacja,
+- Aplikuj,
+- Najważniejsze przyciski.
+
+---
+
+## Neutral
+
+Baza:
+
+
+#FFFFFF
+#F8FAFC
+#334155
+#E2E8F0
+
+
+---
+
+# Refaktoryzacja kart kierunków
+
+## Obecny model:
+
+Kolorowe pełne tło kafelka.
+
+---
+
+## Nowy model:
+
+Karta:
+
+| Ikona branży Tag |
+| |
+| Nazwa zawodu |
+| Krótki opis |
+| |
+| Sprawdź szczegóły → |
+
+---
+
+Wymagania:
+
+- białe tło,
+- subtelna ramka,
+- delikatny cień,
+- zaokrąglenia,
+- kolor tylko jako akcent.
+
+---
+
+# FAZA 2 — Hero oraz szybki dostęp
+
+## Zadanie dla Frontend Agent
+
+Przebudować górną część strony.
+
+---
+
+# Utility Bar
+
+Dodać stały pasek szybkiego dostępu.
+
+Elementy:
+
+
+E-Dziennik
+Plan Lekcji
+Zastępstwa
+Dzwonki
+
+
+oraz:
+
+
+Kontrast
+Powiększenie tekstu
+Deklaracja dostępności
+BIP
+
+
+---
+
+# Sekcja Hero
+
+Wymagania:
+
+- duże zdjęcie szkoły,
+- ciemna nakładka:
+
+
+rgba(0,0,0,0.65)
+
+
+- jasny nagłówek,
+- mocne CTA.
+
+---
+
+## Przyciski:
+
+### Primary CTA
+
+
+Odkryj kierunki
+
+
+### Secondary CTA
+
+
+Rekrutacja 2026/2027
+
+
+---
+
+# FAZA 3 — Oferta edukacyjna
+
+## Zadanie dla Component Agent
+
+Przebudować sekcję kierunków.
+
+---
+
+# System filtrowania
+
+Dostępne zakładki:
+
+
+Wszystkie
+
+Technikum
+
+Szkoła Branżowa I Stopnia
+
+Kwalifikacyjne Kursy
+
+
+---
+
+## Stan aktywny
+
+Aktywna zakładka musi posiadać:
+
+- pełne wypełnienie kolorem Primary,
+- kontrastowy tekst,
+- wyraźne wskazanie wyboru.
+
+---
+
+# FAZA 4 — Nowy układ strony
+
+Zastosować układ storytellingowy.
+
+---
+
+# Sekcja 1
+
+## Hero
+
+Elementy:
+
+- zdjęcie,
+- hasło szkoły,
+- CTA,
+- szybki dostęp.
+
+---
+
+# Sekcja 2
+
+## Najważniejsze atuty szkoły
+
+Forma:
+
+Pasek statystyk.
+
+Przykłady:
+
+- zdawalność egzaminów,
+- nowoczesne pracownie,
+- współpraca z firmami,
+- praktyki zagraniczne.
+
+---
+
+# Sekcja 3
+
+## Oferta edukacyjna
+
+Interaktywna siatka zawodów.
+
+---
+
+# Sekcja 4
+
+## Partnerzy szkoły
+
+Zmiana:
+
+Z:
+
+- wielu małych kafelków.
+
+Na:
+
+- ciemny banner,
+- elegancki slider logo,
+- sekcja premium.
+
+---
+
+# Sekcja 5
+
+## Aktualności
+
+Układ:
+
+
++----------------+
+| |
+| Główny artykuł |
+| |
++----------------+
+
++---------+
+| news 1 |
++---------+
+
++---------+
+| news 2 |
++---------+
+
+
+Układ desktop:
+
+1 duży artykuł + 2 mniejsze.
+
+---
+
+# FAZA 5 — Accessibility oraz Responsive Design
+
+## Zadanie dla QA Agent
+
+Przeprowadzić audyt końcowy.
+
+---
+
+# WCAG 2.1 AA
+
+Sprawdzić:
+
+## Kontrast
+
+Minimalne wartości:
+
+Tekst standardowy:
+
+
+4.5:1
+
+
+Duże nagłówki:
+
+
+3:1
+
+
+---
+
+## Klawiatura
+
+Każdy element interaktywny musi posiadać:
+
+
+:focus-visible
+
+
+---
+
+# Mobile UX
+
+## Karty kierunków
+
+Desktop:
+
+
+grid
+
+
+Mobile:
+
+
+single column
+
+
+lub:
+
+
+horizontal swipe cards
+
+
+---
+
+## Pasek szybkiego dostępu
+
+Na urządzeniach mobilnych:
+
+zastąpić dolnym paskiem:
+
+
+[E-dziennik]
+[Plan]
+[Zastępstwa]
+
+
+---
+
+# 6. Priorytety wdrożenia
+
+| Priorytet | Obszar | Zadanie | Efekt |
+|---|---|---|---|
+| CRITICAL | Design System | Usunięcie kolorowych kafelków | Redukcja chaosu wizualnego |
+| HIGH | UX Navigation | Pasek E-dziennik / Plan lekcji | Szybszy dostęp użytkowników |
+| HIGH | Accessibility | WCAG 2.1 AA | Dostępność i zgodność prawna |
+| HIGH | Hero | Nowe CTA i komunikacja | Lepsza konwersja kandydatów |
+| MEDIUM | Layout | Sekcje storytellingowe | Nowoczesny wygląd |
+| MEDIUM | Aktualności | Układ 1+2 | Lepsza prezentacja treści |
+
+---
+
+# 7. Kryteria zakończenia projektu
+
+Projekt można uznać za zakończony, gdy:
+
+- strona posiada spójny Design System,
+- usunięto nadmiar kolorów,
+- najważniejsze funkcje są dostępne w maksymalnie 1 kliknięciu,
+- oferta edukacyjna jest łatwa do filtrowania,
+- strona działa poprawnie na mobile,
+- spełnia wymagania WCAG 2.1 AA,
+- użytkownik natychmiast rozumie:
+  - czym jest szkoła,
+  - jakie oferuje kierunki,
+  - dlaczego warto ją wybrać,
+  - gdzie znaleźć najważniejsze usługi.
