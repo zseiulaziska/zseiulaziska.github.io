@@ -6,6 +6,9 @@ const blogSchema = z.object({
   pubDate: z.coerce.date(),
   heroImage: z.string().optional(),
   imageAlt: z.string().optional(),
+  category: z.string().optional(),
+  featured: z.boolean().optional(),
+  featuredLabel: z.string().optional(),
   tags: z.array(z.string()).optional(),
   draft: z.boolean().optional(),
 });

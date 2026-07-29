@@ -7,11 +7,10 @@ import SchoolFields from '../components/SchoolFields.astro';
 import PartnersSection from '../components/PartnersSection.astro';
 import SuccessSection from '../components/SuccessSection.astro';
 import WhyChooseSection from '../components/WhyChooseSection.astro';
+import NewsSection from '../components/NewsSection.astro';
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0) - (a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0));
-const latest = sortedPosts[0];
-const latestThree = sortedPosts.slice(0, 3);
 ---
 
 <Layout title="ZSEiU Łaziska Górne" description="Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych. Nowoczesna szkoła zawodowa z 80-letnią tradycją, kształcąca w kierunkach informatycznych, elektrycznych i logistycznych.">
@@ -127,60 +126,7 @@ const latestThree = sortedPosts.slice(0, 3);
 
     <SuccessSection />
 
-    <!-- Aktualności -->
-    <section class="reveal py-20 lg:py-28 bg-white dark:bg-navy-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Wpisy z bloga</h2>
-          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Aktualności</p>
-          <p class="text-lg text-slate-600 dark:text-slate-300">Bądź na bieżąco z wydarzeniami w szkole</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {latestThree.length > 0 ? latestThree.map((post) => (
-              <a href={`/blog/${post.id}`}
-              class="reveal group flex flex-col bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
-              {post.data.heroImage ? (
-                <img src={post.data.heroImage} alt={post.data.imageAlt || ''} class="w-full h-48 object-cover" />
-              ) : (
-                <div class="w-full h-48 bg-gray-200 dark:bg-navy-700 flex items-center justify-center text-slate-400">
-                  <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
-                </div>
-              )}
-              <div class="p-6 flex-1 flex flex-col">
-                <time class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  {post.data.pubDate ? new Date(post.data.pubDate).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
-                </time>
-                <h3 class="mt-3 text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-300 transition-colors">
-                  {post.data.title}
-                </h3>
-                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1">
-                  {post.data.description}
-                </p>
-                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-600 dark:text-primary-300">
-                  Czytaj więcej
-                  <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
-                  </svg>
-                </span>
-              </div>
-            </a>
-          )) : (
-            <p class="col-span-3 text-center text-slate-500 dark:text-slate-400">Brak opublikowanych wpisów.</p>
-          )}
-        </div>
-
-        <div class="text-center mt-12">
-          <a href="/blog"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition">
-            Zobacz wszystkie wpisy
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
+    <NewsSection posts={sortedPosts} />
 
     <!-- CTA -->
     <section class="reveal py-12 bg-primary-50 dark:bg-navy-800">
