@@ -2,8 +2,7 @@
 const links = [
   { href: 'https://uonetplus.vulcan.net.pl/powiatmikolowski', label: 'E-Dziennik', icon: 'book', external: true, hideMobile: true },
   { href: '/plan-lekcji', label: 'Plan lekcji', icon: 'calendar', hideMobile: true },
-  { href: '/dzwonki', label: 'Dzwonki', icon: 'bell' },
-  { href: '/dostepnosc', label: 'Deklaracja dostępności', icon: 'access' },
+  { href: '/dzwonki', label: 'Dzwonki', icon: 'bell', hideMobile: true },
 ];
 
 const iconSvgs = {
@@ -20,7 +19,7 @@ const iconSvgs = {
     {links.map((link) => (
       <a
         href={link.href}
-        class={`utility-bar__link${link.hideMobile ? ' max-sm:hidden' : ''}`}
+        class={`utility-bar__link${link.hideMobile ? ' utility-bar__link--hidden-mobile' : ''}`}
         target={link.external ? '_blank' : undefined}
         rel={link.external ? 'noopener noreferrer' : undefined}
         aria-label={link.label}

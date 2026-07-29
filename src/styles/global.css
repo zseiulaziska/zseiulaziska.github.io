@@ -104,6 +104,12 @@ summary:focus-visible {
   @apply mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 lg:px-6;
 }
 
+@media (max-width: 1023px) {
+  .site-header__top {
+    justify-content: space-between;
+  }
+}
+
 .site-brand {
   @apply flex min-w-0 items-center gap-3 rounded-md focus-visible:focus-ring-custom;
 }
@@ -142,7 +148,7 @@ summary:focus-visible {
 }
 
 .site-social {
-  @apply hidden shrink-0 items-center gap-1 xl:flex;
+  @apply flex shrink-0 items-center gap-1;
 }
 
 .site-social a {
@@ -504,6 +510,12 @@ html.high-contrast .utility-bar {
 }
 html.high-contrast .utility-bar__link {
   color: #ffff00 !important;
+}
+
+@media (max-width: 1023px) {
+  .utility-bar__link--hidden-mobile {
+    display: none !important;
+  }
 }
 
 /* Mobile bottom bar */
