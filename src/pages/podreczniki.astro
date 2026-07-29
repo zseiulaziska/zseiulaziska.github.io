@@ -111,8 +111,8 @@ const rendered = await Promise.all(entries.map(async (entry) => {
             <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:font-bold prose-headings:text-lg prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-ul:list-disc prose-ul:list-outside prose-ul:pl-5 prose-li:text-sm prose-li:leading-relaxed prose-li:text-slate-700 dark:prose-li:text-slate-300 prose-li:marker:text-slate-400">
               <Content />
             </div>
+            <hr class="my-10 border-slate-200 dark:border-navy-700" />
           </section>
-          {i < rendered.length - 1 && <hr class="my-10 border-slate-200 dark:border-navy-700" />}
         </>
       );
     })}
@@ -123,6 +123,10 @@ const rendered = await Promise.all(entries.map(async (entry) => {
 <style is:global>
   .klasa-section .prose ul ul {
     padding-left: 2.5rem;
+  }
+
+  .klasa-section:last-of-type hr {
+    display: none;
   }
 
   @media print {
