@@ -237,6 +237,10 @@ summary:focus-visible {
   @apply absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-primary-500 dark:bg-primary-300;
 }
 
+.mega-cta {
+  @apply relative inline-flex items-center whitespace-nowrap rounded-lg bg-primary-600 px-5 py-2 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-primary-700 hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400 dark:text-white;
+}
+
 .mega-trigger svg {
   @apply transition-transform;
 }
@@ -450,7 +454,7 @@ body {
 }
 
 .theme-switch {
-  @apply inline-flex cursor-pointer items-center gap-0.5 rounded-md px-2 py-1 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-primary-600;
+  @apply inline-flex cursor-pointer items-center rounded-md px-2 py-1 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-primary-600;
 }
 
 .theme-switch__track {
@@ -458,15 +462,15 @@ body {
 }
 
 .theme-switch__icon {
-  @apply h-3 w-3;
+  @apply absolute top-1/2 z-0 h-3 w-3 -translate-y-1/2;
 }
 
 .theme-switch__icon--sun {
-  @apply text-yellow-200;
+  @apply left-0.5 text-yellow-200;
 }
 
 .theme-switch__icon--moon {
-  @apply text-white/50;
+  @apply right-0.5 text-white/50;
 }
 
 .theme-switch[aria-checked="true"] .theme-switch__icon--sun {
@@ -478,11 +482,12 @@ body {
 }
 
 .theme-switch__knob {
-  @apply absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-200;
+  @apply absolute top-0.5 z-10 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-200;
+  left: 22px;
 }
 
 .theme-switch[aria-checked="true"] .theme-switch__knob {
-  @apply translate-x-5;
+  left: 2px;
 }
 
 @media (max-width: 639px) {
@@ -493,8 +498,7 @@ body {
   }
   .utility-bar::-webkit-scrollbar { display: none; }
   .utility-bar__inner {
-    @apply justify-start px-3 gap-2;
-    min-width: max-content;
+    @apply justify-center gap-3;
   }
   .utility-bar__link {
     @apply shrink-0 px-2.5 py-1.5;
