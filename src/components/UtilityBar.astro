@@ -1,0 +1,118 @@
+---
+const links = [
+  { href: 'https://uonetplus.vulcan.net.pl/powiatmikolowski', label: 'E-Dziennik', icon: 'book', external: true, hideMobile: true },
+  { href: '/plan-lekcji', label: 'Plan lekcji', icon: 'calendar', hideMobile: true },
+  { href: '/dzwonki', label: 'Dzwonki', icon: 'bell' },
+  { href: '/dostepnosc', label: 'Deklaracja dostępności', icon: 'access' },
+];
+
+const iconSvgs = {
+  book: '<path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  alert: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
+  bell: '<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>',
+  access: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1"/><path d="M7 11h10"/><path d="M12 11v7"/><path d="M9 18l3-7 3 7"/>',
+};
+---
+
+<div class="utility-bar" role="navigation" aria-label="Szybki dostęp">
+  <div class="utility-bar__inner">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        class={`utility-bar__link${link.hideMobile ? ' max-sm:hidden' : ''}`}
+        target={link.external ? '_blank' : undefined}
+        rel={link.external ? 'noopener noreferrer' : undefined}
+        aria-label={link.label}
+      >
+        <svg class="utility-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          {iconSvgs[link.icon as keyof typeof iconSvgs]}
+        </svg>
+        <span class="utility-bar__label">{link.label}</span>
+      </a>
+    ))}
+
+    <button id="theme-toggle-bar" type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Przełącz tryb ciemny lub jasny">
+      <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+      </svg>
+      <span class="theme-switch__track">
+        <span class="theme-switch__knob"></span>
+      </span>
+      <svg class="theme-switch__icon theme-switch__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>
+      </svg>
+    </button>
+
+    <button id="contrast-toggle-bar" type="button" class="utility-bar__link" aria-label="Włącz wysoki kontrast" aria-pressed="false">
+      <svg class="utility-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor"/>
+      </svg>
+      <span class="utility-bar__label">Kontrast</span>
+    </button>
+
+    <button id="font-size-toggle" type="button" class="utility-bar__link" aria-label="Zwiększ rozmiar tekstu" aria-pressed="false">
+      <svg class="utility-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/>
+      </svg>
+      <span class="utility-bar__label">Tekst</span>
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    var doc = document.documentElement;
+
+    function stor(key, val) { try { localStorage.setItem(key, val); } catch(e) {} }
+
+    var themeBtn = document.getElementById('theme-toggle-bar');
+    if (themeBtn) {
+      function updateThemeBtn() {
+        var isDark = doc.classList.contains('dark');
+        themeBtn.setAttribute('aria-checked', String(isDark));
+        themeBtn.setAttribute('aria-label', isDark ? 'Przełącz na tryb jasny' : 'Przełącz na tryb ciemny');
+      }
+      updateThemeBtn();
+      themeBtn.addEventListener('click', function() {
+        var isDark = doc.classList.toggle('dark');
+        stor('theme', isDark ? 'dark' : 'light');
+        updateThemeBtn();
+      });
+    }
+
+    var contrastBtn = document.getElementById('contrast-toggle-bar');
+    if (contrastBtn) {
+      function updateContrastBtn() {
+        var isHigh = doc.classList.contains('high-contrast');
+        contrastBtn.setAttribute('aria-pressed', String(isHigh));
+        contrastBtn.setAttribute('aria-label', isHigh ? 'Wyłącz wysoki kontrast' : 'Włącz wysoki kontrast');
+      }
+      updateContrastBtn();
+      contrastBtn.addEventListener('click', function() {
+        var isHigh = doc.classList.toggle('high-contrast');
+        stor('contrast', isHigh ? 'high' : 'standard');
+        updateContrastBtn();
+      });
+    }
+
+    var fontSizeBtn = document.getElementById('font-size-toggle');
+    if (fontSizeBtn) {
+      var currentSize = 100;
+      try { currentSize = parseInt(localStorage.getItem('font-size') || '100', 10); } catch(e) {}
+      doc.style.fontSize = currentSize + '%';
+      fontSizeBtn.addEventListener('click', function() {
+        var sizes = [100, 115, 130, 150];
+        var idx = sizes.indexOf(currentSize);
+        currentSize = sizes[(idx + 1) % sizes.length];
+        doc.style.fontSize = currentSize + '%';
+        stor('font-size', String(currentSize));
+        fontSizeBtn.setAttribute('aria-pressed', String(currentSize > 100));
+        fontSizeBtn.setAttribute('aria-label', currentSize > 100 ? 'Zmniejsz rozmiar tekstu' : 'Zwiększ rozmiar tekstu');
+      });
+      fontSizeBtn.setAttribute('aria-pressed', String(currentSize > 100));
+    }
+  })();
+</script>
+
+

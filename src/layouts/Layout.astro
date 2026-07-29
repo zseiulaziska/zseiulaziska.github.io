@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import SkipLink from '../components/SkipLink.astro';
+import UtilityBar from '../components/UtilityBar.astro';
 import MegaNav from '../components/MegaNav.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Footer from '../components/Footer.astro';
@@ -72,6 +73,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
   </head>
   <body class="min-h-screen flex flex-col">
     <SkipLink />
+    <UtilityBar />
     <MegaNav />
     <slot name="hero" />
     <main id="content" class="flex-1 w-full min-w-0 max-w-6xl mx-auto px-4 py-8" tabindex="-1" data-pagefind-body>
