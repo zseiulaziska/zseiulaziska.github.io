@@ -121,7 +121,7 @@ const smallIcons: Record<string, string> = {
 {variant === 'detailed' && (
   <div class="school-fields not-prose space-y-10 my-8 w-full min-w-0 text-slate-900 dark:text-white">
     <!-- STATS BAR -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-6 rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm text-center">
+    <div class="reveal grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-6 rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm text-center">
       <div class="p-3 rounded-xl bg-slate-50 dark:bg-navy-700/50">
         <span class="block text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400">{groups.length}</span>
         <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Typy Szkół</span>
@@ -141,7 +141,7 @@ const smallIcons: Record<string, string> = {
     </div>
 
     <!-- FILTER TABS -->
-    <div class="flex flex-wrap gap-2" id="field-filters" role="tablist" aria-label="Filtruj kierunki">
+    <div class="reveal flex flex-wrap gap-2" id="field-filters" role="tablist" aria-label="Filtruj kierunki" style="transition-delay: 0.1s">
       {filterTabs.map((tab, i) => (
         <button
           class={`filter-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${i === 0
@@ -160,12 +160,12 @@ const smallIcons: Record<string, string> = {
 
     <!-- GROUPS -->
     <div id="field-groups" class="space-y-10">
-      {renderedGroups.map((group) => {
+      {renderedGroups.map((group, gi) => {
         const category = categoryLabels[group.name] || group.name;
         const filterValue = groupFilterId[group.name] || 'all';
 
         return (
-          <div class="field-group overflow-hidden rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm transition-all duration-300 hover:shadow-lg group/card" data-filter-category={filterValue}>
+          <div class="reveal field-group overflow-hidden rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm transition-all duration-300 hover:shadow-lg group/card" data-filter-category={filterValue} style={`transition-delay: ${0.2 + gi * 0.15}s`}>
             <!-- Group Header -->
             <div class="px-5 sm:px-6 py-4 sm:py-5 border-b border-slate-200 dark:border-navy-700 bg-slate-50 dark:bg-navy-850 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3 min-w-0">

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import MobileBottomBar from '../components/MobileBottomBar.astro';
 
 import { getCollection } from 'astro:content';
 import SchoolFields from '../components/SchoolFields.astro';
@@ -16,31 +17,7 @@ const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDa
 <Layout title="ZSEiU Łaziska Górne" description="Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych. Nowoczesna szkoła zawodowa z 80-letnią tradycją, kształcąca w kierunkach informatycznych, elektrycznych i logistycznych.">
   <div slot="hero">
     <Hero />
-    <!-- Mobile fixed bottom bar -->
-    <div class="mobile-bottom-bar">
-      <a href="https://uonetplus.vulcan.net.pl/powiatmikolowski" target="_blank" rel="noopener noreferrer" class="mobile-bottom-bar__link" aria-label="E-Dziennik">
-        <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-          <path d="M8 7h8M8 11h6"/>
-        </svg>
-        <span>E-Dziennik</span>
-      </a>
-      <a href="/plan-lekcji" class="mobile-bottom-bar__link" aria-label="Plan lekcji">
-        <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2"/>
-          <path d="M16 2v4M8 2v4M3 10h18"/>
-          <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
-        </svg>
-        <span>Plan</span>
-      </a>
-      <a href="/dzwonki" class="mobile-bottom-bar__link" aria-label="Dzwonki">
-        <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
-        </svg>
-        <span>Dzwonki</span>
-      </a>
-    </div>
+    <MobileBottomBar />
   </div>
 
 <div class="page-index">
@@ -48,7 +25,7 @@ const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDa
     <WhyChooseSection />
 
     <!-- Kierunki kształcenia -->
-    <section id="kierunki" class="reveal max-w-4xl mx-auto mb-16 scroll-mt-20 py-12">
+    <section id="kierunki" class="max-w-4xl mx-auto mb-16 scroll-mt-20 py-12">
       <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Nasze kierunki kształcenia</h2>
           <SchoolFields variant="detailed" />
     </section>
