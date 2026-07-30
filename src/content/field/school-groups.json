@@ -6,8 +6,8 @@
       { "name": "Technik elektryk", "note": "311303", "slug": "technik-elektryk" },
       { "name": "Technik informatyk", "note": "351203", "slug": "technik-informatyk" },
       { "name": "Technik logistyk", "note": "333107", "slug": "technik-logistyk" },
-      { "name": "Technik logistyk", "note": "Oddziały Przygotowania Wojskowego · 333107", "slug": "opw" },
-      { "name": "Technik logistyk", "note": "Oddziały Przygotowania Mundurowego | Policja i Straż Graniczna | · 333107", "slug": "opm" },
+      { "name": "Oddział Przygotowania Wojskowego OPW", "note": "Zawod - Technik logistyk | Służby mundurowe", "slug": "opw" },
+      { "name": "Oddział Przygotowania Mundurowego OPM", "note": "Zawod - Technik logistyk | Policja i Straż Graniczna", "slug": "opm" },
       { "name": "Technik urządzeń i systemów energetyki odnawialnej", "note": "OZE · 311930", "slug": "technik-oze" },
       { "name": "Technik organizacji turystyki", "note": "422104", "slug": "technik-organizacji-turystyki" },
       { "name": "Technik stylista", "note": "311946", "slug": "technik-stylista" }

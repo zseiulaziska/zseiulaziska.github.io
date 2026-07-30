@@ -10,7 +10,7 @@ const sections = [
           ['Informacje o szkole', '/informacje', 'Dane szkoły i podstawowe informacje'],
           ['Historia', '/historia', 'Dzieje ZSEiU w Łaziskach Górnych'],
           ['Kierunki kształcenia', '/kierunki', 'Przegląd zawodów i profili'],
-          ['Nasza społeczność', '/nasza-spolecznosc', 'Uczniowie, absolwenci i wydarzenia'],
+          ['Aktualności', '/blog', 'Wydarzenia i informacje ze szkoły'],
           ['Dostępność', '/dostepnosc', 'Deklaracja dostępności'],
         ],
       },
@@ -103,15 +103,8 @@ const sections = [
   },
 ];
 
-const quickLinks = [
-  ['Plan lekcji', '/plan-lekcji'],  
-  ['Plan LO dla dorosłych', '/plan-zajec-lo'],
-  ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'],
-  ['Rekrutacja', '/rekrutacja'],
-];
-
 const mobileSections = [
-  { title: 'Najważniejsze', links: [['Strona główna', '/'], ...quickLinks, ['Kontakt', '/kontakt']] },
+  { title: 'Najważniejsze', links: [['Strona główna', '/'], ['Plan lekcji', '/plan-lekcji'], ['Plan LO dla dorosłych', '/plan-zajec-lo'], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']] },
   ...sections.map((section) => ({
     title: section.title,
     links: section.groups.flatMap((group) => group.links.map(([label, href]) => [label, href])),
@@ -131,7 +124,7 @@ const isExternal = (href: string) => href.startsWith('http');
 const linkIcons = {
   '/informacje': 'info',
   '/historia': 'clock',
-  '/nasza-spolecznosc': 'users',
+  '/blog': 'news',
   '/dyrekcja': 'people',
   '/grono-pedagogiczne': 'graduation',
   '/klienci-i-partnerzy': 'briefcase',
@@ -189,7 +182,6 @@ const iconPaths = {
   shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>',
   spark: '<path d="M13 2 3 14h8l-1 8 10-12h-8l1-8z"></path>',
   terminal: '<polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line>',
-  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path>',
 };
 
 const iconForHref = (href: string) => {
@@ -215,14 +207,6 @@ const iconForHref = (href: string) => {
       <img src="/images/Herb_powiatu.svg" alt="Herb powiatu mikołowskiego" />
 
     
-    </div>
-
-    <div class="site-quick-links" aria-label="Szybkie linki">
-      {quickLinks.map(([label, href]) => (
-        <a href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>
-          {label}
-        </a>
-      ))}
     </div>
 
     <div class="site-search">

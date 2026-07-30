@@ -122,16 +122,8 @@ summary:focus-visible {
   @apply h-9 w-auto;
 }
 
-.site-quick-links {
-  @apply ml-auto hidden items-center gap-1 lg:flex;
-}
-
-.site-quick-links a {
-  @apply inline-flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-primary-700 focus-visible:focus-ring-custom dark:text-slate-200 dark:hover:bg-navy-750 dark:hover:text-primary-300;
-}
-
 .site-search {
-  @apply relative hidden min-w-56 lg:block;
+  @apply relative hidden min-w-56 lg:block ml-auto;
 }
 
 .site-search svg {
@@ -395,7 +387,6 @@ html {
 .nav-link,
 .site-icon-button,
 .site-social a,
-.site-quick-links a,
 .btn-primary,
 .btn-secondary,
 .skip-link,
