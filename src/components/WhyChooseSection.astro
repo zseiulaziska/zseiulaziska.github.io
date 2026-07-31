@@ -2,45 +2,66 @@
 const cards = [
   {
     icon: 'laptop',
-    title: 'Nowoczesne pracownie',
-    desc: 'Specjalistyczne laboratoria informatyczne, elektryczne i logistyczne wyposażone w najnowszy sprzęt i oprogramowanie.',
+    category: 'Kształcenie zawodowe',
+    title: 'Zawód z przyszłością i pasja',
+    desc: 'Oferujemy kierunki techniczne i branżowe dostosowane do aktualnych trendów (IT, logistyka, elektryka, energetyka) oraz unikalne klasy mundurowe (OPW i klasa policyjna). Łączymy wiedzę z praktyką!',
     link: '/kierunki',
+    linkText: 'Poznaj nasze kierunki',
   },
   {
-    icon: 'briefcase',
-    title: 'Praktyki zawodowe',
-    desc: 'Współpraca z liderami branży — staże i praktyki u najlepszych pracodawców regionu, również zagraniczne.',
-    link: '/praktyki-zawodowe',
-  },
-  {
-    icon: 'shield',
-    title: 'Klasy mundurowe',
-    desc: 'Program łączący kształcenie zawodowe z przygotowaniem wojskowym — wirtualna strzelnica i obozy poligonowe.',
-    link: '/klasy-mundurowe',
+    icon: 'globe',
+    category: 'Międzynarodowe Doświadczenie',
+    title: 'Zagraniczne praktyki z Erasmus+',
+    desc: 'Odkrywaj świat i zdobywaj doświadczenie! Nasi uczniowie wyjeżdżają na bezpłatne staże zagraniczne m.in. do Grecji i na Sycylię, rozwijając kompetencje w międzynarodowym środowisku.',
+    link: '/erasmus',
+    linkText: 'Zobacz relacje z wyjazdów',
+    isFeatured: true,
+    statNumber: 'Grecja & Sycylia',
+    statLabel: 'bezpłatne staże',
   },
   {
     icon: 'certificate',
-    title: 'Certyfikaty i kwalifikacje',
-    desc: 'Możliwość zdobycia dodatkowych uprawnień i certyfikatów potwierdzających kwalifikacje zawodowe.',
+    category: 'Projekty Unijne',
+    title: 'Bezpłatne certyfikaty i płatne staże',
+    desc: 'Dzięki projektom („Profesjonalny Mikołowski”, „Zawodowy Mikołowski”) nasi uczniowie biorą udział w darmowych kursach zawodowych oraz odbywają płatne staże u lokalnych pracodawców.',
+    link: '/projekty',
+    linkText: 'Zobacz kursy i staże',
   },
   {
-    icon: 'trending-up',
-    title: 'Wysoka zdawalność',
-    desc: 'Egzaminy zawodowe zdaje u nas ponad 95% uczniów — to jeden z najlepszych wyników w regionie.',
+    icon: 'target',
+    category: 'Infrastruktura & Praktyka',
+    title: 'Unikalna baza i własna strzelnica',
+    desc: 'Uczymy na sprzęcie z przyszłej pracy. Posiadamy własną powiatową strzelnicę (idealną dla klas mundurowych) oraz nowoczesne pracownie, w tym proekologiczną Zieloną Pracownię.',
+    link: '/baza-dydaktyczna',
+    linkText: 'Zobacz naszą bazę',
+  },
+  {
+    icon: 'briefcase',
+    category: 'Lokalny Rynek Pracy',
+    title: 'Pewny start w karierze',
+    desc: 'Współpracujemy z czołowymi firmami powiatu mikołowskiego, Policją oraz Wojskiem Polskim. Pomagamy uczniom budować sieć kontaktów jeszcze w trakcie nauki.',
+    link: '/partnerzy',
+    linkText: 'Poznaj naszych partnerów',
   },
   {
     icon: 'heart',
-    title: 'Aktywne życie szkoły',
-    desc: 'Koła zainteresowań, wydarzenia kulturalne, sport, wolontariat i projekty międzynarodowe Erasmus+.',
-    link: '/blog',
+    category: 'Atmosfera & Relacje',
+    title: 'Bezpieczeństwo i wsparcie',
+    desc: 'Jesteśmy szkołą, w której nikt nie jest anonimowy. Stawiamy na partnerskie relacje z uczniami i rodzicami, wysoki standard opieki psychologicznej oraz dobrą atmosferę.',
+    link: '/o-szkole',
+    linkText: 'Dowiedz się więcej',
   },
 ];
 ---
 
 <section class="reveal py-20 lg:py-28 bg-white dark:bg-navy-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
     <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
-      <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Dlaczego My</h2>
+      <h2 class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest">
+        Dlaczego My
+      </h2>
       <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
         Dlaczego warto wybrać ZSEiU
       </p>
@@ -49,29 +70,76 @@ const cards = [
       </p>
     </div>
 
+    <!-- Cards Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {cards.map((card) => (
-        <div class="group rounded-2xl bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-7 hover:shadow-lg hover:border-primary-200 dark:hover:border-primary-800 transition-all duration-300">
-          <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              {card.icon === 'laptop' && <><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></>}
-              {card.icon === 'briefcase' && <><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></>}
-              {card.icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></>}
-              {card.icon === 'certificate' && <><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></>}
-              {card.icon === 'trending-up' && <><polyline points="23 6 13.5 15 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></>}
-              {card.icon === 'heart' && <><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></>}
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">{card.title}</h3>
-          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{card.desc}</p>
-          {card.link && (
-            <a href={card.link} class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors group/link">
-              Czytaj więcej
-              <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </a>
-          )}
-        </div>
+        card.isFeatured ? (
+          /* Wyróżniona karta: Erasmus+ (Grecja & Sycylia) */
+          <a 
+            href={card.link} 
+            class="group rounded-2xl bg-primary-600 text-white p-7 shadow-xl shadow-primary-600/20 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300"
+          >
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-primary-200">
+                {card.category}
+              </span>
+              <div class="text-3xl sm:text-4xl font-black text-white mt-3 mb-1 tracking-tight">
+                {card.statNumber}
+              </div>
+              <p class="text-xs font-medium uppercase tracking-wide text-primary-200 mb-3">
+                {card.statLabel}
+              </p>
+              <h3 class="text-xl font-bold text-white mb-2">
+                {card.title}
+              </h3>
+              <p class="text-sm text-primary-100 leading-relaxed">
+                {card.desc}
+              </p>
+            </div>
+            <div class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:underline">
+              <span>{card.linkText}</span>
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        ) : (
+          /* Standardowa karta */
+          <a 
+            href={card.link} 
+            class="group rounded-2xl bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-7 hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+          >
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  {card.icon === 'laptop' && <><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></>}
+                  {card.icon === 'globe' && <><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></>}
+                  {card.icon === 'certificate' && <><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></>}
+                  {card.icon === 'target' && <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></>}
+                  {card.icon === 'briefcase' && <><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></>}
+                  {card.icon === 'heart' && <><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></>}
+                </svg>
+              </div>
+              <span class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wider">
+                {card.category}
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {card.title}
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                {card.desc}
+              </p>
+            </div>
+            <div class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 transition-colors">
+              <span>{card.linkText}</span>
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        )
       ))}
     </div>
+
   </div>
 </section>
