@@ -6,6 +6,7 @@ interface FieldItem {
   note?: string;
   slug: string;
   colSpan?: boolean;
+  points?: string[];
 }
 
 interface SchoolGroup {
@@ -21,18 +22,18 @@ const { groups = schoolGroups, variant = 'detailed' }: { groups?: SchoolGroup[];
 const renderedGroups = groups.filter(g => g.name !== "Branżowa Szkoła I stopnia - klasa wielozawodowa");
 const totalFieldsCount = renderedGroups.reduce((acc, g) => acc + g.fields.length, 0);
 
-const categoryKey: Record<string, string> = {
-  "Technikum Nr 1": "Technikum",
-  "Branżowa Szkoła I stopnia": "Branżowa I stopnia",
-  "Branżowa Szkoła II stopnia": "Branżowa II stopnia",
-  "LO dla Dorosłych": "Dla dorosłych",
-};
-
 const categoryLabels: Record<string, string> = {
-  "Technikum Nr 1": "Technikum",
+  "Technikum Nr 1": "Szkoła 5-letnia",
   "Branżowa Szkoła I stopnia": "Szkoła Branżowa I st.",
   "Branżowa Szkoła II stopnia": "Szkoła Branżowa II st.",
   "LO dla Dorosłych": "Liceum dla Dorosłych",
+};
+
+const badgeLabels: Record<string, string> = {
+  "Technikum Nr 1": "Technikum",
+  "Branżowa Szkoła I stopnia": "Branża I st.",
+  "Branżowa Szkoła II stopnia": "Branża II st.",
+  "LO dla Dorosłych": "Dla dorosłych",
 };
 
 const knownPages: Record<string, string> = {
@@ -68,60 +69,103 @@ const getCompetencies = (note?: string): string[] => {
   return note.split('|').flatMap(part => part.split('·')).map(p => p.trim()).filter(p => p && !/^\d+$/.test(p));
 };
 
-const fieldPhotoStyle: Record<string, string> = {
-  'technik-elektryk': 'bg-slate-100 dark:bg-navy-700 text-amber-400 dark:text-amber-500',
-  'technik-informatyk': 'bg-slate-100 dark:bg-navy-700 text-blue-400 dark:text-blue-500',
-  'technik-logistyk': 'bg-slate-100 dark:bg-navy-700 text-emerald-400 dark:text-emerald-500',
-  'opw': 'bg-slate-100 dark:bg-navy-700 text-red-400 dark:text-red-500',
-  'opm': 'bg-slate-100 dark:bg-navy-700 text-red-400 dark:text-red-500',
-  'technik-oze': 'bg-slate-100 dark:bg-navy-700 text-green-400 dark:text-green-500',
-  'technik-organizacji-turystyki': 'bg-slate-100 dark:bg-navy-700 text-sky-400 dark:text-sky-500',
-  'technik-stylista': 'bg-slate-100 dark:bg-navy-700 text-pink-400 dark:text-pink-500',
-  'mechanik-monter-maszyn': 'bg-slate-100 dark:bg-navy-700 text-slate-300 dark:text-slate-600',
-  'operator-maszyn-tworzyw': 'bg-slate-100 dark:bg-navy-700 text-slate-300 dark:text-slate-600',
-  'technik-mechanik': 'bg-slate-100 dark:bg-navy-700 text-slate-300 dark:text-slate-600',
-  'lo-profil-ogolny': 'bg-slate-100 dark:bg-navy-700 text-purple-400 dark:text-purple-500',
-  'wielozawodowa': 'bg-slate-100 dark:bg-navy-700 text-slate-300 dark:text-slate-600',
+// Kolory akcentów ikon i animowanych pasków u dołu kart
+const fieldThemeStyle: Record<string, { iconBg: string; iconText: string; accentGrad: string }> = {
+  'technik-elektryk': {
+    iconBg: 'bg-amber-500/10 dark:bg-amber-400/10',
+    iconText: 'text-amber-600 dark:text-amber-400',
+    accentGrad: 'from-amber-400 to-amber-600',
+  },
+  'technik-informatyk': {
+    iconBg: 'bg-blue-500/10 dark:bg-blue-400/10',
+    iconText: 'text-blue-600 dark:text-blue-400',
+    accentGrad: 'from-blue-400 to-blue-600',
+  },
+  'technik-logistyk': {
+    iconBg: 'bg-emerald-500/10 dark:bg-emerald-400/10',
+    iconText: 'text-emerald-600 dark:text-emerald-400',
+    accentGrad: 'from-emerald-400 to-emerald-600',
+  },
+  'opw': {
+    iconBg: 'bg-red-500/10 dark:bg-red-400/10',
+    iconText: 'text-red-600 dark:text-red-400',
+    accentGrad: 'from-red-400 to-red-600',
+  },
+  'opm': {
+    iconBg: 'bg-red-500/10 dark:bg-red-400/10',
+    iconText: 'text-red-600 dark:text-red-400',
+    accentGrad: 'from-red-400 to-red-600',
+  },
+  'technik-oze': {
+    iconBg: 'bg-teal-500/10 dark:bg-teal-400/10',
+    iconText: 'text-teal-600 dark:text-teal-400',
+    accentGrad: 'from-teal-400 to-teal-600',
+  },
+  'technik-organizacji-turystyki': {
+    iconBg: 'bg-sky-500/10 dark:bg-sky-400/10',
+    iconText: 'text-sky-600 dark:text-sky-400',
+    accentGrad: 'from-sky-400 to-sky-600',
+  },
+  'technik-stylista': {
+    iconBg: 'bg-pink-500/10 dark:bg-pink-400/10',
+    iconText: 'text-pink-600 dark:text-pink-400',
+    accentGrad: 'from-pink-400 to-pink-600',
+  },
+  'mechanik-monter-maszyn': {
+    iconBg: 'bg-slate-500/10 dark:bg-slate-400/10',
+    iconText: 'text-slate-600 dark:text-slate-400',
+    accentGrad: 'from-slate-400 to-slate-600',
+  },
+  'operator-maszyn-tworzyw': {
+    iconBg: 'bg-indigo-500/10 dark:bg-indigo-400/10',
+    iconText: 'text-indigo-600 dark:text-indigo-400',
+    accentGrad: 'from-indigo-400 to-indigo-600',
+  },
+  'technik-mechanik': {
+    iconBg: 'bg-slate-500/10 dark:bg-slate-400/10',
+    iconText: 'text-slate-600 dark:text-slate-400',
+    accentGrad: 'from-slate-400 to-slate-600',
+  },
+  'lo-profil-ogolny': {
+    iconBg: 'bg-purple-500/10 dark:bg-purple-400/10',
+    iconText: 'text-purple-600 dark:text-purple-400',
+    accentGrad: 'from-purple-400 to-purple-600',
+  },
+  'wielozawodowa': {
+    iconBg: 'bg-orange-500/10 dark:bg-orange-400/10',
+    iconText: 'text-orange-600 dark:text-orange-400',
+    accentGrad: 'from-orange-400 to-orange-600',
+  },
+};
+
+const defaultTheme = {
+  iconBg: 'bg-primary-500/10 dark:bg-primary-400/10',
+  iconText: 'text-primary-600 dark:text-primary-400',
+  accentGrad: 'from-primary-400 to-primary-600',
 };
 
 const fieldIcons: Record<string, string> = {
-  'technik-elektryk': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
-  'technik-informatyk': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
-  'technik-logistyk': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9H9l-3-9H2"/><path d="M2 12h4l3 9h10l3-9h4"/><circle cx="12" cy="12" r="3"/></svg>',
-  'opw': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-  'opm': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-  'technik-oze': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
-  'technik-organizacji-turystyki': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>',
-  'technik-stylista': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5L3.5 14.5"/><path d="M14.5 3.5l4 4"/><path d="M3.5 14.5l4 4"/><path d="M14.5 3.5L21 10"/><path d="M3.5 14.5L10 21"/><path d="M14.5 9.5l-5 5"/><path d="M9.5 14.5l5-5"/><path d="M19 14l-3 3"/><path d="M14 19l-3 3"/><path d="M21 11l-3 3"/></svg>',
-  'mechanik-monter-maszyn': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>',
-  'operator-maszyn-tworzyw': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
-  'technik-mechanik': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>',
-  'lo-profil-ogolny': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>',
-  'wielozawodowa': '<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
-};
-
-const smallIcons: Record<string, string> = {
-  'technik-elektryk': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
-  'technik-informatyk': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
-  'technik-logistyk': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9H9l-3-9H2"/><path d="M2 12h4l3 9h10l3-9h4"/><circle cx="12" cy="12" r="3"/></svg>',
-  'opw': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-  'opm': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-  'technik-oze': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
-  'technik-organizacji-turystyki': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>',
-  'technik-stylista': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5L3.5 14.5"/><path d="M14.5 3.5l4 4"/><path d="M3.5 14.5l4 4"/><path d="M14.5 3.5L21 10"/><path d="M3.5 14.5L10 21"/><path d="M14.5 9.5l-5 5"/><path d="M9.5 14.5l5-5"/><path d="M19 14l-3 3"/><path d="M14 19l-3 3"/><path d="M21 11l-3 3"/></svg>',
-  'mechanik-monter-maszyn': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>',
-  'operator-maszyn-tworzyw': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
-  'technik-mechanik': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>',
-  'lo-profil-ogolny': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>',
-  'wielozawodowa': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
-  'default': '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>',
+  'technik-elektryk': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+  'technik-informatyk': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+  'technik-logistyk': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9H9l-3-9H2"/><path d="M2 12h4l3 9h10l3-9h4"/><circle cx="12" cy="12" r="3"/></svg>',
+  'opw': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  'opm': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  'technik-oze': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+  'technik-organizacji-turystyki': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>',
+  'technik-stylista': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5L3.5 14.5"/><path d="M14.5 3.5l4 4"/><path d="M3.5 14.5l4 4"/><path d="M14.5 3.5L21 10"/><path d="M3.5 14.5L10 21"/><path d="M14.5 9.5l-5 5"/><path d="M9.5 14.5l5-5"/><path d="M19 14l-3 3"/><path d="M14 19l-3 3"/><path d="M21 11l-3 3"/></svg>',
+  'mechanik-monter-maszyn': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>',
+  'operator-maszyn-tworzyw': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
+  'technik-mechanik': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>',
+  'lo-profil-ogolny': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>',
+  'wielozawodowa': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>',
+  'default': '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>',
 };
 ---
 
 {variant === 'detailed' && (
-  <div class="school-fields not-prose space-y-10 my-8 w-full min-w-0 text-slate-900 dark:text-white">
+  <div class="school-fields not-prose space-y-8 my-8 w-full min-w-0 text-slate-900 dark:text-white">
     <!-- STATS BAR -->
-    <div class="reveal grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-6 rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm text-center">
+    {/* <div class="reveal grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 sm:p-6 rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm text-center">
       <div class="p-3 rounded-xl bg-slate-50 dark:bg-navy-700/50">
         <span class="block text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400">{groups.length}</span>
         <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Typy Szkół</span>
@@ -138,13 +182,13 @@ const smallIcons: Record<string, string> = {
         <span class="block text-2xl sm:text-3xl font-extrabold text-primary-600 dark:text-primary-400">100%</span>
         <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">Skutecznej nauki</span>
       </div>
-    </div>
+    </div> */}
 
     <!-- FILTER TABS -->
     <div class="reveal flex flex-wrap gap-2" id="field-filters" role="tablist" aria-label="Filtruj kierunki" style="transition-delay: 0.1s">
       {filterTabs.map((tab, i) => (
         <button
-          class={`filter-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${i === 0
+          class={`filter-tab px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${i === 0
             ? 'bg-primary-600 text-white border-primary-600 shadow-sm'
             : 'bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-navy-700 hover:bg-primary-50 dark:hover:bg-navy-700 hover:border-primary-200 dark:hover:border-primary-800'
           }`}
@@ -159,85 +203,89 @@ const smallIcons: Record<string, string> = {
     </div>
 
     <!-- GROUPS -->
-    <div id="field-groups" class="space-y-10">
+    <div id="field-groups" class="space-y-8">
       {renderedGroups.map((group, gi) => {
         const category = categoryLabels[group.name] || group.name;
         const filterValue = groupFilterId[group.name] || 'all';
 
         return (
-          <div class="reveal field-group overflow-hidden rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm transition-all duration-300 hover:shadow-lg group/card" data-filter-category={filterValue} style={`transition-delay: ${0.2 + gi * 0.15}s`}>
+          <div class="reveal field-group overflow-hidden rounded-2xl bg-white dark:bg-navy-800/80 border border-slate-200 dark:border-navy-700 shadow-sm transition-all duration-300" data-filter-category={filterValue} style={`transition-delay: ${0.15 + gi * 0.1}s`}>
             <!-- Group Header -->
-            <div class="px-5 sm:px-6 py-4 sm:py-5 border-b border-slate-200 dark:border-navy-700 bg-slate-50 dark:bg-navy-850 flex flex-wrap items-center justify-between gap-3">
+            <div class="px-5 sm:px-6 py-4 border-b border-slate-200/80 dark:border-navy-700/80 bg-slate-50/70 dark:bg-navy-850 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="p-2 rounded-lg bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 shrink-0">
+                <span class="p-2 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 shrink-0">
                   <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
                     <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
                   </svg>
                 </span>
                 <div class="min-w-0">
-                  <h3 class="text-lg sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight wrap-break-word">{group.name}</h3>
-                  <span class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{category}</span>
+                  <h3 class="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight wrap-break-word">{group.name}</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">{category}</span>
                 </div>
               </div>
               {group.years && (
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-200 dark:bg-navy-700 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-navy-600 shrink-0">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-200/70 dark:bg-navy-700 text-slate-700 dark:text-slate-300 border border-slate-300/60 dark:border-navy-600 shrink-0">
                   {group.years}
                 </span>
               )}
             </div>
 
-            <!-- Fields Grid -->
-            <div class="p-4 sm:p-6">
-              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Fields Grid (Modernized Compact Block-Link Cards) -->
+            <div class="p-4 sm:p-5">
+              <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {group.fields.map((field) => {
                   const targetPage = knownPages[field.slug];
-                  const competencies = getCompetencies(field.note || '');
-                  const photoStyle = fieldPhotoStyle[field.slug] || 'bg-slate-100 dark:bg-navy-700 text-primary-300 dark:text-primary-600';
+                  const theme = fieldThemeStyle[field.slug] || defaultTheme;
                   const icon = fieldIcons[field.slug] || fieldIcons['default'];
-                  const smallIcon = smallIcons[field.slug] || smallIcons['default'];
+
+                  const Tag = targetPage ? 'a' : 'div';
+                  const linkProps = targetPage ? { href: targetPage } : {};
 
                   return (
-                    <div class={`flex flex-col min-w-0 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden${field.colSpan ? ' sm:col-span-2 lg:col-span-2' : ''}${targetPage ? ' hover:border-primary-200 dark:hover:border-primary-800 cursor-pointer' : ''}`}>
-                      <a href={targetPage || '#'} class="block shrink-0" tabindex={targetPage ? '0' : '-1'}>
-                        <div class={`h-28 sm:h-32 ${photoStyle} flex items-center justify-center overflow-hidden`}>
-                          <span set:html={icon}></span>
-                        </div>
-                      </a>
+                    <Tag
+                      {...linkProps}
+                      class={`group relative block overflow-hidden rounded-xl border border-slate-200/90 dark:border-navy-700 bg-white dark:bg-navy-800 p-4 transition-all duration-300 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-700 hover:-translate-y-0.5 ${field.colSpan ? ' sm:col-span-2 lg:col-span-2' : ''}`}
+                    >
+                      <!-- Dynamic bottom accent bar on hover -->
+                      <span class={`absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r ${theme.accentGrad} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></span>
 
-                      <div class="p-4 sm:p-5 flex flex-col flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-2">
-                          <span class="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 shrink-0" set:html={smallIcon}></span>
-                          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-100 dark:bg-navy-700 text-slate-600 dark:text-slate-300 shrink-0 whitespace-nowrap">
-                            {category}
+                      <!-- Top row: icon + badge above the title, chevron at the right -->
+                      <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center gap-3 min-w-0">
+                          <div class={`size-12 shrink-0 flex items-center justify-center rounded-xl ${theme.iconBg} ${theme.iconText} transition-transform group-hover:scale-110 duration-300`}>
+                            <span set:html={icon}></span>
+                          </div>
+                          <span class="inline-flex items-center rounded-full bg-blue-50 dark:bg-navy-700 px-2.5 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 whitespace-nowrap">
+                            {badgeLabels[group.name] || group.name}
                           </span>
                         </div>
 
-                        <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 wrap-break-word">
-                          {field.name}
-                        </h4>
-
-                        {competencies.length > 0 && (
-                          <ul class="space-y-1 mb-3">
-                            {competencies.slice(0, 3).map((comp) => (
-                              <li class="flex items-start gap-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-400 dark:bg-primary-500 shrink-0"></span>
-                                <span>{comp}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-
+                        <!-- Chevron signalling clickability, visible on hover -->
                         {targetPage && (
-                          <a href={targetPage} class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors group/link">
-                            Sprawdź szczegóły
-                            <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+                          <span class="shrink-0 pt-1 text-slate-300 dark:text-slate-600 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
-                          </a>
+                          </span>
                         )}
                       </div>
-                    </div>
+
+                      <!-- Content -->
+                      <div class="mt-3 min-w-0">
+                        <h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug mb-1.5">
+                          {field.name}
+                        </h4>
+                        <ul class="space-y-1">
+                          {(field.points || []).slice(0, 2).map((point) => (
+                            <li class="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+                              <span class={`mt-1.5 w-2 h-2 rounded-full bg-gradient-to-br ${theme.accentGrad} shrink-0`}></span>
+                              <span class="line-clamp-2">{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </Tag>
                   );
                 })}
               </div>
