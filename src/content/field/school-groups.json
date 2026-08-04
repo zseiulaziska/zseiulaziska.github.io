@@ -14,7 +14,7 @@
     ]
   },
   {
-    "name": "Branżowa Szkoła I stopnia",
+    "name": "Branżowa Szkoła 1 stopnia",
     "years": "3 lata",
     "fields": [
       { "name": "Mechanik-monter maszyn i urządzeń", "note": "723310", "slug": "mechanik-monter-maszyn", "points": ["Montaż, obsługa i naprawa maszyn oraz urządzeń przemysłowych", "Czytanie dokumentacji technicznej i diagnostyka"] },
@@ -23,17 +23,11 @@
     ]
   },
   {
-    "name": "Branżowa Szkoła II stopnia",
-    "years": "2 lata",
+    "name": "Szkoły dla dorosłych",
+    "years": "3 lata LO lub 2 lata BS2S",
     "fields": [
-      { "name": "Technik mechanik", "note": "311504", "slug": "technik-mechanik", "colSpan": true, "points": ["Projektowanie, wytwarzanie i naprawa części maszyn oraz urządzeń", "Diagnostyka, modernizacja i konserwacja w przemyśle"] }
-    ]
-  },
-  {
-    "name": "LO dla Dorosłych",
-    "years": "3 lata",
-    "fields": [
-      { "name": "Profil ogólny", "note": "nauka bezpłatna, zaoczna", "slug": "lo-profil-ogolny", "colSpan": true, "points": ["Nauka bezpłatna w trybie zaocznym dla dorosłych", "Przygotowanie do egzaminu maturalnego i dalszej edukacji"] }
+      { "name": "Liceum Ogólnokształcące dla Dorosłych - Profil ogólny", "note": "nauka bezpłatna, zaoczna", "slug": "lo-profil-ogolny", "colSpan": true, "points": ["Nauka bezpłatna w trybie zaocznym dla dorosłych", "Przygotowanie do egzaminu maturalnego i dalszej edukacji"] },
+      { "name": "Branżowa Szkoła 2 Stopnia - Technik mechanik", "note": "311504", "slug": "technik-mechanik", "colSpan": true, "points": ["Projektowanie, wytwarzanie i naprawa części maszyn oraz urządzeń", "Diagnostyka, modernizacja i konserwacja w przemyśle"] }
     ]
   }
 ]

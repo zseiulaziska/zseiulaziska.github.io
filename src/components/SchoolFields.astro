@@ -24,16 +24,14 @@ const totalFieldsCount = renderedGroups.reduce((acc, g) => acc + g.fields.length
 
 const categoryLabels: Record<string, string> = {
   "Technikum Nr 1": "Szkoła 5-letnia",
-  "Branżowa Szkoła I stopnia": "Szkoła Branżowa I st.",
-  "Branżowa Szkoła II stopnia": "Szkoła Branżowa II st.",
-  "LO dla Dorosłych": "Liceum dla Dorosłych",
+  "Branżowa Szkoła 1 stopnia": "Szkoła Branżowa I st.",
+  "Szkoły dla dorosłych": "Liceum dla Dorosłych · Branżowa II st.",
 };
 
 const badgeLabels: Record<string, string> = {
   "Technikum Nr 1": "Technikum",
-  "Branżowa Szkoła I stopnia": "Branża I st.",
-  "Branżowa Szkoła II stopnia": "Branża II st.",
-  "LO dla Dorosłych": "Dla dorosłych",
+  "Branżowa Szkoła 1 stopnia": "Branżowa I st.",
+  "Szkoły dla dorosłych": "Szkoła dla dorosłych",
 };
 
 const knownPages: Record<string, string> = {
@@ -53,15 +51,13 @@ const filterTabs = [
   { id: "all", label: "Wszystkie" },
   { id: "technikum", label: "Technikum" },
   { id: "branzowa-i-stopnia", label: "Branżowa I stopnia" },
-  { id: "branzowa-ii-stopnia", label: "Branżowa II stopnia" },
-  { id: "dla-doroslych", label: "Dla dorosłych" },
+  { id: "dla-doroslych", label: "Szkoły dla dorosłych" },
 ];
 
 const groupFilterId: Record<string, string> = {
   "Technikum Nr 1": "technikum",
-  "Branżowa Szkoła I stopnia": "branzowa-i-stopnia",
-  "Branżowa Szkoła II stopnia": "branzowa-ii-stopnia",
-  "LO dla Dorosłych": "dla-doroslych",
+  "Branżowa Szkoła 1 stopnia": "branzowa-i-stopnia",
+  "Szkoły dla dorosłych": "dla-doroslych",
 };
 
 const getCompetencies = (note?: string): string[] => {
@@ -245,7 +241,8 @@ const fieldIcons: Record<string, string> = {
                   return (
                     <Tag
                       {...linkProps}
-                      class={`group relative block overflow-hidden rounded-xl border border-slate-200/90 dark:border-navy-700 bg-white dark:bg-navy-800 p-4 transition-all duration-300 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-700 hover:-translate-y-0.5 ${field.colSpan ? ' sm:col-span-2 lg:col-span-2' : ''}`}
+                      class={`group relative block overflow-hidden rounded-xl border border-slate-200/90 dark:border-navy-700 bg-white dark:bg-navy-800 p-4 transition-all duration-300 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-700 hover:-translate-y-0.5 ${field.colSpan ? ' sm:col-span-2 lg:col-span-3' : ''}`}
+                      data-filter-field={filterValue}
                     >
                       <!-- Dynamic bottom accent bar on hover -->
                       <span class={`absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r ${theme.accentGrad} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></span>
@@ -363,13 +360,19 @@ const fieldIcons: Record<string, string> = {
         tab.classList.add('bg-primary-600', 'text-white', 'border-primary-600', 'shadow-sm');
         tab.setAttribute('aria-selected', 'true');
 
-        groups.forEach(function(group) {
-          if (filter === 'all' || group.getAttribute('data-filter-category') === filter) {
-            group.style.display = '';
-          } else {
-            group.style.display = 'none';
-          }
-        });
+groups.forEach(function(group) {
+      var fields = group.querySelectorAll('[data-filter-field]');
+      var visibleCount = 0;
+
+      fields.forEach(function(field) {
+        var fieldFilters = (field.getAttribute('data-filter-field') || '').split(' ');
+        var match = filter === 'all' || fieldFilters.indexOf(filter) !== -1;
+        field.style.display = match ? '' : 'none';
+        if (match) visibleCount++;
+      });
+
+      group.style.display = visibleCount > 0 ? '' : 'none';
+    });
       });
     });
   })();
