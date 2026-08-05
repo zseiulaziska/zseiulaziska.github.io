@@ -1,24 +1,103 @@
 ---
 const stats = [
-  { value: '580+', label: 'Uczniów' },
-  { value: '15+', label: 'lat realizacji projektów europejskich' },
-  { value: '10+', label: 'Nowoczesne laboratoria i pracownie' },
-  { value: '40+', label: 'Partnerów biznesowych i instytucji' },
-  { value: '100%', label: 'Uczniów odbywa praktyki u pracodawców' },
-  { value: '80+', label: 'Lat tradycji' },
+  {
+    value: '580+',
+    label: 'Uczniów',
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    iconWrap: 'bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400',
+  },
+  {
+    value: '15+',
+    label: 'lat realizacji projektów europejskich',
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    iconWrap: 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400',
+  },
+  {
+    value: '10+',
+    label: 'Nowoczesne laboratoria i pracownie',
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>',
+    iconWrap: 'bg-violet-500/10 text-violet-600 dark:bg-violet-400/10 dark:text-violet-400',
+  },
+  {
+    value: '40+',
+    label: 'Partnerów biznesowych i instytucji',
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    iconWrap: 'bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-400',
+  },
+  {
+    value: '100%',
+    label: 'Uczniów odbywa praktyki u pracodawców',
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>',
+    iconWrap: 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400',
+  },
+  {
+    value: '80+',
+    label: 'Lat tradycji',
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
+    iconWrap: 'bg-rose-500/10 text-rose-600 dark:bg-rose-400/10 dark:text-rose-400',
+  },
 ];
 ---
 
-
-<section class="reveal bg-slate-50 dark:bg-navy-950">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+<section class="reveal bg-white dark:bg-navy-900">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-28">
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6">
       {stats.map((stat) => (
-        <div class="rounded-xl bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-5 text-center hover:shadow-md transition-shadow">
-          <p class="text-3xl font-extrabold text-primary-600 dark:text-primary-400">{stat.value}</p>
-          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">{stat.label}</p>
+        <div class="group rounded-2xl bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-8 text-center hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-700 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center">
+          <div class={`w-14 h-14 rounded-2xl ${stat.iconWrap} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <span set:html={stat.icon}></span>
+          </div>
+          <p class="text-5xl font-black text-slate-900 dark:text-white tracking-tight" data-count={stat.value}>{stat.value}</p>
+          <p class="mt-3 text-sm text-slate-500 dark:text-slate-400 font-medium leading-snug min-h-[2.5rem] line-clamp-2">{stat.label}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = document.querySelectorAll('[data-count]');
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    function parseValue(text) {
+      const match = text.match(/^(\d+)(.*)$/);
+      if (!match) return null;
+      return { target: parseInt(match[1], 10), suffix: match[2] };
+    }
+
+    function animate(el) {
+      const data = parseValue(el.getAttribute('data-count') || '');
+      if (!data) return;
+      const duration = 1400;
+      const start = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(data.target * eased) + data.suffix;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    els.forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
+</script>

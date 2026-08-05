@@ -9,6 +9,7 @@ import PartnersSection from '../components/PartnersSection.astro';
 import SuccessSection from '../components/SuccessSection.astro';
 import WhyChooseSection from '../components/WhyChooseSection.astro';
 import NewsSection from '../components/NewsSection.astro';
+import PhotoBannerSection from '../components/PhotoBannerSection.astro';
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0) - (a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0));
@@ -26,17 +27,30 @@ const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDa
     <WhyChooseSection />
 
     <!-- Kierunki kształcenia -->
-    <section id="kierunki" class="max-w-4xl mx-auto mb-16 scroll-mt-20 py-12">
-      <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Wybierz kierunek dla siebie</h2>
+    <section id="kierunki" class="reveal max-w-screen-2xl mx-auto scroll-mt-20 py-24 px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-4">
+        <h2 class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest">Oferta edukacyjna</h2>
+        <p class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-slate-900 dark:text-white">Wybierz kierunek dla siebie</p>
+      </div>
           <SchoolFields variant="detailed" />
     </section>
 
-    <section id="mundurowe" class="reveal py-20 lg:py-28 bg-slate-50 dark:bg-navy-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <PhotoBannerSection
+      image="/images/blog/second-post/heroImage.jpg"
+      alt="Uczniowie ZSEiU podczas zajęć"
+      badge="Nowoczesna baza dydaktyczna"
+      title="Pracownie, w których rodzą się umiejętności"
+      description="Laboratoria informatyczne, energetyczne i logistyczne — uczymy na sprzęcie, który czeka na Ciebie w przyszłej pracy."
+      ctaText="Zobacz naszą bazę"
+      ctaHref="/pracownie"
+    />
+
+    <section id="mundurowe" class="reveal py-24 lg:py-32 bg-slate-50 dark:bg-navy-950">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                 <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Elitarny Profil Technikum nr 1</h2>
-                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Technik Logistyk – Klasy mundurowe i&nbsp;Oddziały Przygotowania Wojskowego</p>
+                <p class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-slate-900 dark:text-white">Technik Logistyk – Klasy mundurowe i&nbsp;Oddziały Przygotowania Wojskowego</p>
                 <p class="text-lg text-slate-600 dark:text-slate-300">
                     Nasz autorski program łączy pełne kształcenie zawodowe technika logistyka z wszechstronnym przygotowaniem do pracy w formacjach mundurowych.
                 </p>
@@ -102,13 +116,19 @@ const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDa
     <NewsSection posts={sortedPosts} />
 
     <!-- CTA -->
-    <section class="reveal py-12 bg-primary-50 dark:bg-navy-800">
-      <div class="container max-w-6xl text-center">
-        <h2 class="text-2xl font-semibold">Zacznij swoją ścieżkę kariery</h2>
-        <p class="mt-2 text-slate-700 dark:text-slate-300">Dołącz do szkoły, która łączy praktykę z realnymi partnerstwami branżowymi.</p>
-        <div class="mt-4 flex justify-center gap-3">
-          <a href="/rekrutacja" class="px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition cursor-pointer">Rekrutacja</a>
-          <a href="/informacje" class="px-6 py-3 border border-gray-200 dark:border-navy-500 rounded-md text-slate-900 dark:text-white hover:bg-gray-50 dark:hover:bg-navy-700 transition cursor-pointer">Więcej informacji</a>
+    <section class="reveal relative overflow-hidden bg-navy-950 py-24 lg:py-32">
+      <div class="absolute inset-0" aria-hidden="true">
+        <img src="/images/333_mundurowi.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async" class="h-full w-full object-cover opacity-20" />
+        <div class="absolute inset-0 bg-linear-to-br from-navy-950 via-navy-900/80 to-primary-900/40"></div>
+      </div>
+      <div class="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-3xl mx-auto space-y-6">
+          <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-white">Zacznij swoją ścieżkę kariery</h2>
+          <p class="text-lg text-slate-300">Dołącz do szkoły, która łączy praktykę z realnymi partnerstwami branżowymi.</p>
+          <div class="mt-4 flex flex-wrap justify-center gap-4">
+            <a href="/rekrutacja" class="inline-flex items-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl shadow-lg shadow-primary-600/25 hover:bg-primary-700 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-lg">Rekrutacja</a>
+            <a href="/informacje" class="inline-flex items-center px-8 py-4 border-2 border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 cursor-pointer backdrop-blur-sm text-lg">Więcej informacji</a>
+          </div>
         </div>
       </div>
     </section>

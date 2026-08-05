@@ -76,7 +76,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <UtilityBar />
     <MegaNav />
     <slot name="hero" />
-    <main id="content" class="flex-1 w-full min-w-0 max-w-6xl mx-auto px-4 py-8" tabindex="-1" data-pagefind-body>
+    <main id="content" class="flex-1 w-full min-w-0 max-w-screen-2xl mx-auto px-4 py-8" tabindex="-1" data-pagefind-body>
       <Breadcrumbs title={title} />
       <slot />
     </main>

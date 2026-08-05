@@ -32,15 +32,15 @@ const featuredStyles: Record<string, string> = {
 };
 ---
 
-<section class="reveal py-20 lg:py-28 bg-white dark:bg-navy-900">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
+<section class="reveal py-24 lg:py-32 bg-white dark:bg-navy-900">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
       <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Wpisy z bloga</h2>
-      <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Aktualności</p>
+      <p class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-slate-900 dark:text-white">Aktualności</p>
       <p class="text-lg text-slate-600 dark:text-slate-300">Bądź na bieżąco z wydarzeniami w szkole</p>
     </div>
 
-    <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
       <button data-category="all" class="category-filter active px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-primary-600 text-white shadow-xs">Wszystkie</button>
       {['Rekrutacja', 'Sukcesy', 'Wydarzenia', 'Projekty', 'Sport'].map((cat) => (
         <button data-category={cat} class="category-filter px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-700">
@@ -49,14 +49,14 @@ const featuredStyles: Record<string, string> = {
       ))}
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8" id="news-grid">
-      {posts.slice(0, 4).map((post, i) => {
+    <div class="grid lg:grid-cols-3 gap-8" id="news-grid">
+      {posts.slice(0, 5).map((post, i) => {
         const isFirst = i === 0;
         return (
         <a href={`/blog/${post.id}`}
-          class={`news-card group flex flex-col bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300${isFirst ? ' md:col-span-3' : ''}`}
+          class={`news-card group flex flex-col bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300${isFirst ? ' lg:col-span-2' : ''}`}
           data-category={post.data.category || ''}>
-          <div class={`relative w-full overflow-hidden bg-gray-200 dark:bg-navy-700 ${isFirst ? 'h-64' : 'h-48'}`}>
+          <div class={`relative w-full overflow-hidden bg-gray-200 dark:bg-navy-700 ${isFirst ? 'h-72 lg:h-80' : 'h-56'}`}>
             {post.data.heroImage ? (
               <img src={post.data.heroImage} alt={post.data.imageAlt || ''} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
             ) : (
@@ -79,7 +79,7 @@ const featuredStyles: Record<string, string> = {
             <time class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               {post.data.pubDate ? new Date(post.data.pubDate).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
             </time>
-            <h3 class={`mt-3 font-bold text-slate-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-300 transition-colors ${isFirst ? 'text-2xl' : 'text-lg'}`}>
+            <h3 class={`mt-3 font-bold text-slate-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-300 transition-colors ${isFirst ? 'text-3xl' : 'text-lg'}`}>
               {post.data.title}
             </h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1">
