@@ -13,7 +13,7 @@ Przeprowadzić kompleksową modernizację strony głównej przy zachowaniu obecn
 - Zachować wszystkie istniejące treści.
 - Zachować obecną architekturę informacji.
 - Nie usuwać żadnych sekcji.
-- Skupić się na poprawie UI, UX oraz kompozycji.
+- Skupić się na poprawie UI, UX oraz kompozycji.    
 - Projektować zgodnie z Mobile First.
 - Wykorzystać możliwości Astro oraz Tailwind CSS.
 - Stosować nowoczesne utility classes zamiast nadmiernej ilości własnego CSS.
