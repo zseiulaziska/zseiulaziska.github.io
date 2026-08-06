@@ -3,37 +3,31 @@
     "name": "Technikum Nr 1",
     "years": "5 lat",
     "fields": [
-      { "name": "Technik elektryk", "note": "311303", "slug": "technik-elektryk" },
-      { "name": "Technik informatyk", "note": "351203", "slug": "technik-informatyk" },
-      { "name": "Technik logistyk", "note": "333107", "slug": "technik-logistyk" },
-      { "name": "Technik logistyk", "note": "Oddziały Przygotowania Wojskowego · 333107", "slug": "opw" },
-      { "name": "Technik logistyk", "note": "Oddziały Przygotowania Mundurowego | Policja i Straż Graniczna | · 333107", "slug": "opm" },
-      { "name": "Technik urządzeń i systemów energetyki odnawialnej", "note": "OZE · 311930", "slug": "technik-oze" },
-      { "name": "Technik organizacji turystyki", "note": "422104", "slug": "technik-organizacji-turystyki" },
-      { "name": "Technik stylista", "note": "311946", "slug": "technik-stylista" }
+      { "name": "Technik elektryk", "note": "311303", "slug": "technik-elektryk", "points": ["Montaż i serwis instalacji oraz urządzeń elektrycznych", "Pomiary, diagnostyka i eksploatacja sieci"] },
+      { "name": "Technik informatyk", "note": "351203", "slug": "technik-informatyk", "points": ["Programowanie, sieci komputerowe i bazy danych", "Budowa, konfiguracja i diagnostyka komputerów"] },
+      { "name": "Technik logistyk", "note": "333107", "slug": "technik-logistyk", "points": ["Organizacja transportu, magazynowania i dystrybucji", "Obsługa dokumentów i systemów logistycznych"] },
+      { "name": "Oddział Przygotowania Wojskowego OPW", "note": "Zawod - Technik logistyk | Służby mundurowe", "slug": "opw", "points": ["Zawód technika logistyka + szkolenie wojskowe", "Przygotowanie do służby z Wojskiem Polskim"] },
+      { "name": "Oddział Przygotowania Mundurowego OPM", "note": "Zawod - Technik logistyk | Policja i Straż Graniczna", "slug": "opm", "points": ["Zawód technika logistyka + przygotowanie mundurowe", "Przygotowanie do służby w Policji i Straży Granicznej"] },
+      { "name": "Technik urządzeń i systemów energetyki odnawialnej", "note": "OZE · 311930", "slug": "technik-oze", "points": ["Projektowanie instalacji fotowoltaicznych i kotłów na biomasę", "Montaż i serwis odnawialnych źródeł energii"] },
+      { "name": "Technik organizacji turystyki", "note": "4221024", "slug": "technik-organizacji-turystyki", "points": ["Planowanie wycieczek i ofert turystycznych", "Rezerwacja, obsługa klienta i grupy turystycznej"] },
+      { "name": "Technik stylista", "note": "311946", "slug": "technik-stylista", "points": ["Projektowanie i modelowanie ubrań oraz stylizacji", "Dobór ubioru, tkanin i dodatków do wizerunku klienta"] }
     ]
   },
   {
-    "name": "Branżowa Szkoła I stopnia",
+    "name": "Branżowa Szkoła 1 stopnia",
     "years": "3 lata",
     "fields": [
-      { "name": "Mechanik-monter maszyn i urządzeń", "note": "723310", "slug": "mechanik-monter-maszyn" },
-      { "name": "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych", "note": "814209", "slug": "operator-maszyn-tworzyw" },
-      { "name": "Klasa wielozawodowa", "note": "nauka z wynagrodzeniem, elastyczny wybór zawodu", "slug": "wielozawodowa", "colSpan": true }
+      { "name": "Mechanik-monter maszyn i urządzeń", "note": "723310", "slug": "mechanik-monter-maszyn", "points": ["Montaż, obsługa i naprawa maszyn oraz urządzeń przemysłowych", "Czytanie dokumentacji technicznej i diagnostyka"] },
+      { "name": "Operator maszyn i urządzeń do przetwórstwa tworzyw sztucznych", "note": "814209", "slug": "operator-maszyn-tworzyw", "points": ["Obsługa maszyn formujących wyroby z tworzyw sztucznych", "Kontrola jakości i parametry procesu produkcji"] },
+      { "name": "Klasa wielozawodowa", "note": "nauka z wynagrodzeniem, elastyczny wybór zawodu", "slug": "wielozawodowa", "colSpan": false, "points": ["Nauka zawodu z wynagrodzeniem podczas praktyk", "Szeroki wybór zawodu dopasowany do zainteresowań"] }
     ]
   },
   {
-    "name": "Branżowa Szkoła II stopnia",
-    "years": "2 lata",
+    "name": "Szkoły dla dorosłych",
+    "years": "3 lata LO lub 2 lata BS2S",
     "fields": [
-      { "name": "Technik mechanik", "note": "311504", "slug": "technik-mechanik", "colSpan": true }
-    ]
-  },
-  {
-    "name": "LO dla Dorosłych",
-    "years": "3 lata",
-    "fields": [
-      { "name": "Profil ogólny", "note": "nauka bezpłatna, zaoczna", "slug": "lo-profil-ogolny", "colSpan": true }
+      { "name": "Liceum Ogólnokształcące dla Dorosłych - Profil ogólny", "note": "nauka bezpłatna, zaoczna", "slug": "lo-profil-ogolny", "colSpan": true, "points": ["Nauka bezpłatna w trybie zaocznym dla dorosłych", "Przygotowanie do egzaminu maturalnego i dalszej edukacji"] },
+      { "name": "Branżowa Szkoła 2 Stopnia - Technik mechanik", "note": "311504", "slug": "technik-mechanik", "colSpan": true, "points": ["Projektowanie, wytwarzanie i naprawa części maszyn oraz urządzeń", "Diagnostyka, modernizacja i konserwacja w przemyśle"] }
     ]
   }
 ]

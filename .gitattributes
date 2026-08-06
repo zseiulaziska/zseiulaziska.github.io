@@ -1,1 +1,20 @@
-* text=auto
+#* text=auto
+
+# Automatycznie normalizuj pliki tekstowe do LF podczas commitu
+* text=auto eol=lf
+
+# Wymuś LF dla plików projektowych Astro, JS, TS i stylów
+*.astro text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Pliki binarne pozostają nietknięte
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary

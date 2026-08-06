@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pracownie = [
+  {
+    slug: 'logistyczna-1',
+    title: 'Pracownia logistyczna 1',
+    desc: 'Sala kształcenia w zawodzie technik logistyk – 24 stanowiska komputerowe z oprogramowaniem planistycznym i systemami ERP. Uczysz się planowania dostaw, transportu i spedycji w środowisku zbliżonym do realnej firmy.',
+    tags: ['Systemy ERP', 'Planowanie transportu', 'Spedycja'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9H9l-3-9H2"/><path d="M2 12h4l3 9h10l3-9h4"/><circle cx="12" cy="12" r="3"/></svg>',
+    iconWrap: 'bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400',
+  },
+  {
+    slug: 'logistyczna-2',
+    title: 'Pracownia logistyczna 2',
+    desc: 'Specjalistyczna pracownia identyfikacji i obsługi towarów: czytniki kodów kreskowych, technologia RFID, drukarki etykiet oraz symulatory systemów WMS. Ćwiczysz ewidencję zapasów i inwentaryzację na profesjonalnym sprzęcie.',
+    tags: ['Systemy WMS', 'RFID', 'Kody kreskowe'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5v14"/><path d="M8 5v14"/><path d="M13 5v14"/><path d="M18 5v14"/></svg>',
+    iconWrap: 'bg-sky-500/10 text-sky-600 dark:bg-sky-400/10 dark:text-sky-400',
+  },
+  {
+    slug: 'dokumentacji',
+    title: 'Pracownia dokumentacji',
+    desc: 'Pracownia obsługi dokumentacji magazynowej i firmowej: tworzenie i archiwizacja dokumentów, fakturowanie oraz prowadzenie ewidencji w oprogramowaniu biurowym. Przygotowuje do egzaminów z kwalifikacji logistycznych.',
+    tags: ['Dokumentacja', 'Archiwizacja', 'Oprogramowanie biurowe'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>',
+    iconWrap: 'bg-slate-500/10 text-slate-600 dark:bg-slate-400/10 dark:text-slate-400',
+  },
+  {
+    slug: 'oze',
+    title: 'Pracownia energetyki odnawialnej',
+    desc: 'Proekologiczna Zielona Pracownia: stanowiska do nauki projektowania instalacji fotowoltaicznych, pomp ciepła oraz magazynów energii. Poznajesz systemy Smart i zarządzanie energią od strony praktycznej.',
+    tags: ['Fotowoltaika', 'Pompy ciepła', 'Magazyny energii'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+    iconWrap: 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400',
+  },
+  {
+    slug: 'elektryczna-1',
+    title: 'Pracownia elektryczna 1',
+    desc: 'Pracownia montażowa: wykonywanie i pomiary instalacji elektrycznych, montaż osprzętu oraz próby odbiorcze. Uczysz się pracy zgodnej z normami i zasadami BHP na rzeczywistych stanowiskach.',
+    tags: ['Instalacje elektryczne', 'Pomiary', 'Montaż'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+    iconWrap: 'bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-400',
+  },
+  {
+    slug: 'elektryczna-2',
+    title: 'Pracownia elektryczna 2',
+    desc: 'Pracownia automatyki: sterowniki PLC, układy sterowania i automatyka Smart Home. Ćwiczysz programowanie sterowników i diagnostykę systemów, które znajdziesz w nowoczesnym przemyśle i budynkach.',
+    tags: ['Sterowniki PLC', 'Automatyka', 'Smart Home'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+    iconWrap: 'bg-orange-500/10 text-orange-600 dark:bg-orange-400/10 dark:text-orange-400',
+  },
+  {
+    slug: 'programowania',
+    title: 'Pracownia programowania',
+    desc: 'Nowoczesna pracownia informatyczna: 20 stanowisk z komputerami Dell Precision, monitory 27" i serwer laboratoryjny. Uczysz się programowania w Pythonie, C++ i Javie oraz administrowania bazami danych.',
+    tags: ['Python', 'C++', 'Java', 'Bazy danych'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+    iconWrap: 'bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400',
+  },
+  {
+    slug: 'sieci',
+    title: 'Pracownia sieci komputerowych',
+    desc: 'Pracownia sieciowa z okablowaniem światłowodowym i przełącznikami zarządzalnymi. Konfigurujesz routery, administrujesz systemami Linux oraz ćwiczycie cyberbezpieczeństwo na wydzielonych maszynach i zestawach Raspberry Pi.',
+    tags: ['Sieci LAN/WAN', 'Linux', 'Cyberbezpieczeństwo'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="3"/><circle cx="19" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M7.5 7.5l3.5 7.5"/><path d="M16.5 7.5l-3.5 7.5"/></svg>',
+    iconWrap: 'bg-violet-500/10 text-violet-600 dark:bg-violet-400/10 dark:text-violet-400',
+  },
+  {
+    slug: 'strony',
+    title: 'Pracownia stron i aplikacji internetowych',
+    desc: 'Pracownia projektowania i wytwarzania aplikacji webowych: frontend i backend z wykorzystaniem nowoczesnych frameworków, relacyjne bazy danych oraz grafika komputerowa. Realizujesz projekty, które rozwiązują realne problemy.',
+    tags: ['Frontend', 'Backend', 'Frameworki', 'Grafika'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+    iconWrap: 'bg-indigo-500/10 text-indigo-600 dark:bg-indigo-400/10 dark:text-indigo-400',
+  },
+  {
+    slug: 'stylizacji',
+    title: 'Pracownia stylizacji',
+    desc: 'Pracownia wizażu i stylizacji dla przyszłych stylistów: projektowanie ubioru, dobór materiałów, krawiectwo oraz materiały do nauki stylizacji i wizerunku. Kreatywna przestrzeń do rozwijania artystycznych pasji.',
+    tags: ['Wizaż', 'Projektowanie mody', 'Materiałoznawstwo'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg>',
+    iconWrap: 'bg-pink-500/10 text-pink-600 dark:bg-pink-400/10 dark:text-pink-400',
+  },
+  {
+    slug: 'turystyki',
+    title: 'Pracownia organizacji turystyki',
+    desc: 'Pracownia obsługi ruchu turystycznego: geografia turystyczna, rezerwacje i obsługa biura podróży oraz nowoczesna pracownia językowa z systemem multimedialnym. Przygotowuje do pracy w branży travel.',
+    tags: ['Rezerwacje', 'Geografia turystyczna', 'Obsługa biura podróży'],
+    icon: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    iconWrap: 'bg-teal-500/10 text-teal-600 dark:bg-teal-400/10 dark:text-teal-400',
+  },
+];
+---
+
+<Layout
+  title="Pracownie - ZSEiU Łaziska Górne"
+  description="Pracownie ZSEiU Łaziska Górne – logistyczne, elektryczne, informatyczne, energetyki odnawialnej, stylizacji i organizacji turystyki. Zobacz, gdzie uczą się nasi uczniowie."
+>
+  <article class="w-full max-w-6xl mx-auto min-w-0">
+
+    <!-- HERO -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-slate-900 via-navy-950 to-slate-900 dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 border border-slate-700/50 dark:border-navy-700/50 p-5 sm:p-10 mb-12 w-full">
+      <div class="cyber-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -top-20 -right-20 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/20 text-primary-300 border border-primary-500/30 mb-4">Baza dydaktyczna</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">11 pracowni. Jeden cel – <span class="text-transparent bg-clip-text bg-linear-to-r from-primary-300 via-primary-400 to-blue-400">Twoje umiejętności.</span></h1>
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl leading-relaxed wrap-break-word">Specjalistyczne pracownie, w których teoria zamienia się w praktykę. Uczymy na sprzęcie, który czeka na Ciebie w przyszłej pracy.</p>
+      </div>
+    </div>
+
+    <!-- LISTA PRACOWNI -->
+    <div class="mb-12">
+      <p class="section-kicker">Poznaj nasze pracownie</p>
+      <h2 class="section-title">Przejdź przez 11 pracowni ZSEiU</h2>
+      <p class="section-lead">Każda pracownia to osobne, specjalistycznie wyposażone stanowisko nauki – od magazynu i instalacji elektrycznych po programowanie i stylizację.</p>
+    </div>
+
+    <ol class="space-y-6">
+      {pracownie.map((p, i) => (
+        <li class="reveal group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6 sm:p-8 flex flex-col sm:flex-row gap-6 sm:gap-8 hover:shadow-xl hover:border-primary-300 dark:hover:border-primary-700 transition-all duration-300">
+          <div class="flex items-center gap-4 sm:flex-col sm:items-start shrink-0">
+            <span class="text-5xl sm:text-6xl font-black tracking-tighter text-primary-600/15 dark:text-primary-400/15 tabular-nums group-hover:text-primary-600/40 dark:group-hover:text-primary-400/40 transition-colors duration-300">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div class={`w-14 h-14 rounded-2xl ${p.iconWrap} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+              <span set:html={p.icon}></span>
+            </div>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white wrap-break-word">{p.title}</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed wrap-break-word">{p.desc}</p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {p.tags.map((t) => (
+                <li class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-navy-700 text-slate-700 dark:text-slate-300">{t}</li>
+              ))}
+            </ul>
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[1, 2, 3].map((n) => (
+                <img
+                  src={`/images/pracownie/${p.slug}-${n}.svg`}
+                  alt={`${p.title} – zdjęcie ${n}`}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-[4/3] w-full rounded-xl object-cover border border-slate-200 dark:border-navy-700 transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              ))}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <!-- CTA -->
+    <section class="mt-14 rounded-3xl border border-primary-200 bg-primary-50 p-6 dark:border-primary-800/60 dark:bg-navy-800 sm:p-9" aria-labelledby="pracownie-cta-title">
+      <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <p class="section-kicker">Dołącz do ZSEiU</p>
+          <h2 id="pracownie-cta-title" class="section-title">Przekonaj się na własne oczy</h2>
+          <p class="mt-3 max-w-2xl text-slate-700 dark:text-slate-300">Pracownie możesz zobaczyć podczas dni otwartych i spotkań z nauczycielami. Przyjdź i zapytaj, jak wygląda nauka w ZSEiU.</p>
+        </div>
+        <a href="/rekrutacja" class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-5 py-3 font-bold text-white shadow-md transition hover:bg-primary-700">Zobacz, jak się rekrutować <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+  </article>
+</Layout>
+
+<style>
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+  .cyber-glow {
+    animation: glow-pulse 4s ease-in-out infinite alternate;
+  }
+  @keyframes glow-pulse {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+  }
+  .section-kicker { color: #0070b0; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  :global(.dark) .section-kicker { color: #7dd3fc; }
+  .section-title { margin-top: .35rem; color: #0f172a; font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: 900; line-height: 1.1; }
+  :global(.dark) .section-title { color: #fff; }
+  .section-lead { margin-top: .65rem; max-width: 48rem; color: #475569; line-height: 1.65; }
+  :global(.dark) .section-lead { color: #94a3b8; }
+</style>

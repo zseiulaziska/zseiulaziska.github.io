@@ -1,0 +1,186 @@
+---
+const cards = [
+  {
+    icon: 'laptop',
+    category: 'Kształcenie zawodowe',
+    title: 'Zawód z przyszłością i pasja',
+    desc: 'Oferujemy kierunki techniczne i branżowe dostosowane do aktualnych trendów (IT, logistyka, elektryka, energetyka) oraz unikalne klasy mundurowe (OPW i klasa policyjna). Łączymy wiedzę z praktyką!',
+    link: '/kierunki',
+    linkText: 'Poznaj nasze kierunki',
+  },
+  {
+    icon: 'globe',
+    category: 'Międzynarodowe Doświadczenie',
+    title: 'Zagraniczne praktyki z Erasmus+',
+    desc: 'Odkrywaj świat i zdobywaj doświadczenie! Nasi uczniowie wyjeżdżają na bezpłatne staże zagraniczne m.in. do Grecji i na Sycylię, rozwijając kompetencje w międzynarodowym środowisku.',
+    link: '/erasmus',
+    linkText: 'Zobacz relacje z wyjazdów',
+    isFeatured: true,
+    statNumber: 'Grecja & Sycylia',
+    statLabel: 'bezpłatne staże',
+  },
+  {
+    icon: 'certificate',
+    category: 'Projekty Unijne',
+    title: 'Bezpłatne certyfikaty i płatne staże',
+    desc: 'Dzięki projektom („Profesjonalny Mikołowski”, „Zawodowy Mikołowski”) nasi uczniowie biorą udział w darmowych kursach zawodowych oraz odbywają płatne staże u lokalnych pracodawców.',
+    link: '/projekty',
+    linkText: 'Zobacz kursy i staże',
+  },
+  {
+    icon: 'target',
+    category: 'Infrastruktura & Praktyka',
+    title: 'Unikalna baza i własna strzelnica',
+    desc: 'Uczymy na sprzęcie z przyszłej pracy. Posiadamy własną powiatową strzelnicę (idealną dla klas mundurowych) oraz nowoczesne pracownie, w tym proekologiczną Zieloną Pracownię.',
+    link: '/pracownie',
+    linkText: 'Zobacz naszą bazę',
+  },
+  {
+    icon: 'briefcase',
+    category: 'Lokalny Rynek Pracy',
+    title: 'Pewny start w karierze',
+    desc: 'Współpracujemy z czołowymi firmami powiatu mikołowskiego, Policją oraz Wojskiem Polskim. Pomagamy uczniom budować sieć kontaktów jeszcze w trakcie nauki.',
+    link: '/partnerzy',
+    linkText: 'Poznaj naszych partnerów',
+  },
+  {
+    icon: 'heart',
+    category: 'Atmosfera & Relacje',
+    title: 'Bezpieczeństwo i wsparcie',
+    desc: 'Jesteśmy szkołą, w której nikt nie jest anonimowy. Stawiamy na partnerskie relacje z uczniami i rodzicami, wysoki standard opieki psychologicznej oraz dobrą atmosferę.',
+    link: '/informacje',
+    linkText: 'Dowiedz się więcej',
+  },
+];
+---
+
+<section class="reveal py-24 lg:py-32 bg-slate-50 dark:bg-navy-950">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+      <h2 class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest">
+        Dlaczego My
+      </h2>
+      <p class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-slate-900 dark:text-white">
+        Dlaczego warto wybrać ZSEiU
+      </p>
+      <p class="text-lg text-slate-600 dark:text-slate-300">
+        Poznaj 6 powodów, dla których warto dołączyć do społeczności naszej szkoły
+      </p>
+    </div>
+
+    <!-- Asymmetric Grid: 1 featured (2 rows) + 5 standard -->
+    <div class="grid lg:grid-cols-3 gap-6">
+      {cards.map((card, i) => (
+        card.isFeatured ? (
+          /* Wyróżniona karta: Erasmus+ (Grecja & Sycylia) — dominująca, 2 wiersze */
+          <a 
+            href={card.link} 
+            class="group relative overflow-hidden rounded-3xl bg-linear-to-br from-primary-600 to-primary-700 text-white p-10 shadow-xl shadow-primary-600/25 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 lg:row-span-2"
+          >
+            <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 blur-2xl"></div>
+            <div aria-hidden="true" class="pointer-events-none absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-accent-500/20 blur-2xl"></div>
+            <div class="relative">
+              <span class="text-xs font-bold uppercase tracking-wider text-primary-200">
+                {card.category}
+              </span>
+              <div class="text-5xl font-black text-white mt-5 mb-2 tracking-tight">
+                {card.statNumber}
+              </div>
+              <p class="text-sm font-medium uppercase tracking-wide text-primary-200 mb-5">
+                {card.statLabel}
+              </p>
+              <h3 class="text-2xl font-bold text-white mb-3">
+                {card.title}
+              </h3>
+              <p class="text-primary-100 leading-relaxed">
+                {card.desc}
+              </p>
+            </div>
+            <div class="relative mt-10 inline-flex items-center gap-2 text-base font-semibold text-white group-hover:gap-3 transition-all">
+              <span>{card.linkText}</span>
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        ) : (
+          /* Standardowa karta — mniejsza, z lekkim opóźnieniem */
+          <a 
+            href={card.link} 
+            class="group rounded-2xl bg-white dark:bg-navy-800 border border-slate-200 dark:border-navy-600 p-7 hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+            style={`transition-delay: ${0.05 + (i % 5) * 0.05}s`}
+          >
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  {card.icon === 'laptop' && <><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></>}
+                  {card.icon === 'globe' && <><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></>}
+                  {card.icon === 'certificate' && <><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></>}
+                  {card.icon === 'target' && <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></>}
+                  {card.icon === 'briefcase' && <><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></>}
+                  {card.icon === 'heart' && <><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></>}
+                </svg>
+              </div>
+              <span class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wider">
+                {card.category}
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {card.title}
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                {card.desc}
+              </p>
+            </div>
+            <div class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 transition-colors">
+              <span>{card.linkText}</span>
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        )
+      ))}
+
+      {/* Karta foto — uzupełnia wolne pole w ostatnim wierszu (lg), szeroka na 2 kolumny */}
+      <div class="group relative overflow-hidden rounded-2xl min-h-56 lg:col-span-2 lg:min-h-0">
+        <img
+          src="/images/mundurowi.jpg"
+          alt="Uczniowie klas mundurowych ZSEiU"
+          width="1200"
+          height="800"
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/25 to-transparent"></div>
+        <div class="relative z-10 flex h-full min-h-56 flex-col justify-end p-7">
+          <span class="text-xs font-bold uppercase tracking-wider text-primary-300">Na żywo</span>
+          <h3 class="mt-2 text-xl font-bold text-white">Klasy mundurowe w akcji</h3>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a
+              href="/opw"
+              class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+            >
+              OPW
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a
+              href="/opm"
+              class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+            >
+              OPM
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

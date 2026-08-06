@@ -20,7 +20,6 @@ html.high-contrast .tech-chip,
 html.high-contrast .filter-btn,
 html.high-contrast .mega-item,
 html.high-contrast .mega-highlight,
-html.high-contrast .site-quick-links,
 html.high-contrast footer,
 html.high-contrast article,
 html.high-contrast aside,
@@ -41,7 +40,6 @@ html.high-contrast .mega-nav-link,
 html.high-contrast .nav-link,
 html.high-contrast .mega-item strong,
 html.high-contrast .mega-highlight strong,
-html.high-contrast .site-quick-links a,
 html.high-contrast .site-social a {
   color: #ffff00 !important;
   text-decoration: underline;
@@ -106,7 +104,18 @@ html.high-contrast .mega-item:focus-visible,
 html.high-contrast .mega-highlight:focus-visible,
 html.high-contrast .nav-link:focus-visible,
 html.high-contrast .search-result-item:focus-visible,
+html.high-contrast .skip-link {
+  background: #000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+  outline: none !important;
+}
+
+html.high-contrast .skip-link:focus,
 html.high-contrast .skip-link:focus-visible {
+  background: #ffff00 !important;
+  color: #000 !important;
+  border-color: #ffff00 !important;
   outline: 3px solid #ffff00 !important;
   outline-offset: 2px !important;
 }

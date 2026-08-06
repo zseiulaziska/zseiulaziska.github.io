@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Lekcja {
+  nr: number;
+  start: string;
+  koniec: string;
+}
+
+const lekcje: Lekcja[] = [
+  { nr: 0, start: '07:00', koniec: '07:45' },
+  { nr: 1, start: '07:50', koniec: '08:35' },
+  { nr: 2, start: '08:45', koniec: '09:30' },
+  { nr: 3, start: '09:35', koniec: '10:20' },
+  { nr: 4, start: '10:25', koniec: '11:10' },
+  { nr: 5, start: '11:25', koniec: '12:10' },
+  { nr: 6, start: '12:15', koniec: '13:00' },
+  { nr: 7, start: '13:10', koniec: '13:55' },
+  { nr: 8, start: '14:00', koniec: '14:45' },
+  { nr: 9, start: '14:50', koniec: '15:35' },
+  { nr: 10, start: '15:40', koniec: '16:25' },
+  { nr: 11, start: '16:30', koniec: '17:15' },
+  { nr: 12, start: '17:20', koniec: '18:05' },
+  { nr: 13, start: '18:10', koniec: '18:55' },
+  { nr: 14, start: '19:00', koniec: '19:45' },
+];
+
+function breakAfter(lekcja: Lekcja): string | null {
+  const breaks: Record<number, string> = {
+    0: '5 min',
+    1: '10 min',
+    2: '5 min',
+    3: '5 min',
+    4: '15 min',
+    5: '5 min',
+    6: '10 min',
+    7: '5 min',
+    8: '5 min',
+    9: '5 min',
+    10: '5 min',
+    11: '5 min',
+    12: '5 min',
+    13: '5 min',
+  };
+  return breaks[lekcja.nr] ?? null;
+}
+
+function breakEnd(lekcja: Lekcja): string | null {
+  const next = lekcje.find(l => l.nr === lekcja.nr + 1);
+  return next ? next.start : null;
+}
+---
+
+<Layout title="Dzwonki - ZSEiU Łaziska Górne" description="Rozkład dzwonków w ZSEiU Łaziska Górne — godziny lekcji i przerw w bieżącym roku szkolnym.">
+
+  <article class="w-full max-w-5xl mx-auto min-w-0 px-6 md:px-12">
+
+    <div class="mt-12 mb-6 border-l-4 border-primary-500 pl-3 sm:pl-4">
+      <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">
+        Rozkład dzwonków
+      </h2>
+    </div>
+
+    <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-2 wrap-break-word">
+      Godziny lekcyjne i przerwy obowiązujące w Zespole Szkół Energetycznych i Usługowych w Łaziskach Górnych.
+    </p>
+    
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800/70 shadow-xs mb-16">
+      <table class="w-full text-sm sm:text-base">
+        <thead>
+          <tr class="bg-primary-50 dark:bg-navy-800 text-slate-900 dark:text-white">
+            <th scope="col" class="px-4 sm:px-6 py-3 sm:py-4 text-left font-bold">LP</th>
+            <th scope="col" class="px-4 sm:px-6 py-3 sm:py-4 text-left font-bold">Rozp.</th>
+            <th scope="col" class="px-4 sm:px-6 py-3 sm:py-4 text-left font-bold">Zak.</th>
+            <th scope="col" class="px-4 sm:px-6 py-3 sm:py-4 text-left font-bold">Przerwa</th>
+          </tr>
+        </thead>
+        <tbody>
+          {lekcje.map((l) => {
+            const br = breakAfter(l);
+            const brEnd = breakEnd(l);
+            return (
+              <tr class="border-t border-slate-100 dark:border-navy-700 even:bg-slate-50 dark:even:bg-navy-800/40">
+                <td class="px-4 sm:px-6 py-3 sm:py-4 font-semibold text-slate-900 dark:text-white whitespace-nowrap">
+                  {l.nr}
+                </td>
+                <td class="px-4 sm:px-6 py-3 sm:py-4 text-slate-700 dark:text-slate-300 whitespace-nowrap">{l.start}</td>
+                <td class="px-4 sm:px-6 py-3 sm:py-4 text-slate-700 dark:text-slate-300 whitespace-nowrap">{l.koniec}</td>
+                <td class="px-4 sm:px-6 py-3 sm:py-4 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                  {br ? (
+                    <span class="inline-flex items-center gap-1.5">
+                      <svg class="w-4 h-4 text-primary-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                      {br}
+                      <span class="text-xs text-slate-400 dark:text-slate-500">(do {brEnd})</span>
+                    </span>
+                  ) : (
+                    <span class="text-slate-400 dark:text-slate-500 italic">—</span>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mb-16 p-6 rounded-xl bg-primary-50 dark:bg-navy-800/60 border border-primary-100 dark:border-primary-700/40">
+      <div class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+        </svg>
+        <div>
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-1">Informacja</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Dzwonek na lekcję oznajmia <strong class="text-slate-900 dark:text-white font-semibold">początek</strong> zajęć.
+            Uczniowie proszeni są o punktualne przychodzenie na lekcje.
+            W razie zmian organizacyjnych godziny mogą ulec modyfikacji.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </article>
+
+</Layout>

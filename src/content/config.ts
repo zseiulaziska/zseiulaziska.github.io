@@ -6,6 +6,9 @@ const blogSchema = z.object({
   pubDate: z.coerce.date(),
   heroImage: z.string().optional(),
   imageAlt: z.string().optional(),
+  category: z.string().optional(),
+  featured: z.boolean().optional(),
+  featuredLabel: z.string().optional(),
   tags: z.array(z.string()).optional(),
   draft: z.boolean().optional(),
 });
@@ -22,11 +25,19 @@ const teacherSchema = z.object({
   })),
 });
 
+const podrecznikiSchema = z.object({
+  typ_szkoly: z.string(),
+  klasa: z.string(),
+});
+
 export const collections = {
   blog: defineCollection({
     schema: blogSchema,
   }),
   teacher: defineCollection({
     schema: teacherSchema,
+  }),
+  podreczniki: defineCollection({
+    schema: podrecznikiSchema,
   }),
 };

@@ -20,4 +20,13 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+const podreczniki = defineCollection({
+	loader: glob({ base: './src/content/podreczniki', pattern: ['*.md', '!Podręczniki*'] }),
+	schema: z.object({
+		typ_szkoly: z.string(),
+		klasa: z.string(),
+		skroconyTyp: z.string().optional(),
+	}),
+});
+
+export const collections = { blog, podreczniki };

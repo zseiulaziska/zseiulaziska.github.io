@@ -1,119 +1,56 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import MobileBottomBar from '../components/MobileBottomBar.astro';
 
 import { getCollection } from 'astro:content';
-import InfoStructure from '../components/InfoStructure.astro';
 import SchoolFields from '../components/SchoolFields.astro';
-import IconMission from '../components/icons/IconMission.astro';
-import IconStats from '../components/icons/IconStats.astro';
-import IconContact from '../components/icons/IconContact.astro';
-import IconLab from '../components/icons/IconLab.astro';
+import PartnersSection from '../components/PartnersSection.astro';
+import SuccessSection from '../components/SuccessSection.astro';
+import WhyChooseSection from '../components/WhyChooseSection.astro';
+import NewsSection from '../components/NewsSection.astro';
+import PhotoBannerSection from '../components/PhotoBannerSection.astro';
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0) - (a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0));
-const latest = sortedPosts[0];
-const latestThree = sortedPosts.slice(0, 3);
 ---
 
 <Layout title="ZSEiU Łaziska Górne" description="Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych. Nowoczesna szkoła zawodowa z 80-letnią tradycją, kształcąca w kierunkach informatycznych, elektrycznych i logistycznych.">
   <div slot="hero">
-    <section class="md:hidden bg-white dark:bg-navy-800 border-b border-gray-200 dark:border-navy-700">
-      <div class="flex items-center justify-around px-4 py-3 max-w-md mx-auto">
-        <a href="#" title="Plan lekcji" aria-label="Plan lekcji"
-          class="flex flex-col items-center gap-1 text-[11px] font-medium text-gray-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
-            <rect x="9" y="3" width="6" height="4" rx="1"/>
-            <path d="M9 14l2 2 4-4"/>
-          </svg>
-          <span>Plan lekcji</span>
-        </a>
-        <a href="/plan-zajec-lo" title="Plan LO dla Dorosłych" aria-label="Plan LO"
-          class="flex flex-col items-center gap-1 text-[11px] font-medium text-gray-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2"/>
-            <path d="M16 2v4M8 2v4M3 10h18"/>
-          </svg>
-          <span>Plan LO dla Dorosłych</span>
-        </a>
-        <a href="https://uonetplus.vulcan.net.pl/powiatmikolowski" target="_blank" rel="noopener noreferrer" title="Dziennik elektroniczny" aria-label="Dziennik elektroniczny"
-          class="flex flex-col items-center gap-1 text-[11px] font-medium text-gray-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-300 transition-colors">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-            <path d="M8 7h8M8 11h6"/>
-          </svg>
-          <span>Dziennik</span>
-        </a>
-      </div>
-    </section>
     <Hero />
+    <MobileBottomBar />
   </div>
 
 <div class="page-index">
 
-    <section class="reveal py-20 lg:py-28 bg-white dark:bg-navy-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Wpisy z bloga</h2>
-          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Aktualności</p>
-          <p class="text-lg text-slate-600 dark:text-slate-300">Bądź na bieżąco z wydarzeniami w szkole</p>
-        </div>
+    <SuccessSection />
+    <WhyChooseSection />
 
-        <div class="grid md:grid-cols-3 gap-8">
-          {latestThree.length > 0 ? latestThree.map((post) => (
-              <a href={`/blog/${post.id}`}
-              class="reveal group flex flex-col bg-slate-50 dark:bg-navy-800 border border-slate-200 dark:border-navy-600 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
-              {post.data.heroImage ? (
-                <img src={post.data.heroImage} alt={post.data.imageAlt || ''} class="w-full h-48 object-cover" />
-              ) : (
-                <div class="w-full h-48 bg-gray-200 dark:bg-navy-700 flex items-center justify-center text-slate-400">
-                  <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
-                </div>
-              )}
-              <div class="p-6 flex-1 flex flex-col">
-                <time class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  {post.data.pubDate ? new Date(post.data.pubDate).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
-                </time>
-                <h3 class="mt-3 text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-300 transition-colors">
-                  {post.data.title}
-                </h3>
-                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1">
-                  {post.data.description}
-                </p>
-                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-600 dark:text-primary-300">
-                  Czytaj więcej
-                  <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
-                  </svg>
-                </span>
-              </div>
-            </a>
-          )) : (
-            <p class="col-span-3 text-center text-slate-500 dark:text-slate-400">Brak opublikowanych wpisów.</p>
-          )}
-        </div>
-
-        <div class="text-center mt-12">
-          <a href="/blog"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition">
-            Zobacz wszystkie wpisy
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
+    <!-- Kierunki kształcenia -->
+    <section id="kierunki" class="reveal max-w-screen-2xl mx-auto scroll-mt-20 py-24 px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-4">
+        <h2 class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest">Oferta edukacyjna</h2>
+        <p class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-slate-900 dark:text-white">Wybierz kierunek dla siebie</p>
       </div>
+          <SchoolFields variant="detailed" />
     </section>
 
+    <PhotoBannerSection
+      image="/images/blog/second-post/heroImage.jpg"
+      alt="Uczniowie ZSEiU podczas zajęć"
+      badge="Nowoczesna baza dydaktyczna"
+      title="Pracownie, w których rodzą się umiejętności"
+      description="Laboratoria informatyczne, energetyczne i logistyczne — uczymy na sprzęcie, który czeka na Ciebie w przyszłej pracy."
+      ctaText="Zobacz naszą bazę"
+      ctaHref="/pracownie"
+    />
 
-  <section id="mundurowe" class="reveal py-20 lg:py-28 bg-slate-50 dark:bg-navy-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="mundurowe" class="reveal py-24 lg:py-32 bg-slate-50 dark:bg-navy-950">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                 <h2 class="text-xs font-bold text-primary-600 uppercase tracking-widest">Elitarny Profil Technikum nr 1</h2>
-                <p class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Technik Logistyk – Klasy mundurowe i&nbsp;Oddziały Przygotowania Wojskowego</p>
+                <p class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-slate-900 dark:text-white">Technik Logistyk – Klasy mundurowe i&nbsp;Oddziały Przygotowania Wojskowego</p>
                 <p class="text-lg text-slate-600 dark:text-slate-300">
                     Nasz autorski program łączy pełne kształcenie zawodowe technika logistyka z wszechstronnym przygotowaniem do pracy w formacjach mundurowych.
                 </p>
@@ -172,47 +109,29 @@ const latestThree = sortedPosts.slice(0, 3);
         </div>
     </section>
 
-
-
-  <section class="reveal py-12 bg-gray-50 dark:bg-navy-950 border-b border-gray-100 dark:border-navy-800">
-    <div class="container max-w-6xl text-center">
-      <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Zespół Szkół Energetycznych i&nbsp;Usługowych w Łaziskach Górnych</h2>
-      <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Szkoła z tradycjami, stawiająca na nowoczesność, praktyczne umiejętności i sukcesy zawodowe naszych uczniów.</p>
-    </div>
-  </section>
-
-<!-- Struktura organizacyjna -->
-    <section id="struktura" class="reveal max-w-4xl mx-auto mb-16 scroll-mt-20 py-12">
-      <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Struktura organizacyjna</h2>
-      <InfoStructure />
-    </section>
+    <PartnersSection />
 
 
 
-<!-- Kierunki kształcenia -->
-    <section id="struktura" class="reveal max-w-4xl mx-auto mb-16 scroll-mt-20 py-12">
-      <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Nasze kierunki kształcenia</h2>
-          <SchoolFields variant="detailed" />
-      
-    </section>
+    <NewsSection posts={sortedPosts} />
 
-
-
-
-
-
-
-
-  <section class="reveal py-12 bg-primary-50 dark:bg-navy-800">
-    <div class="container max-w-6xl text-center">
-      <h2 class="text-2xl font-semibold">Zacznij swoją ścieżkę kariery</h2>
-      <p class="mt-2 text-slate-700 dark:text-slate-300">Dołącz do szkoły, która łączy praktykę z realnymi partnerstwami branżowymi.</p>
-      <div class="mt-4 flex justify-center gap-3">
-        <a href="/rekrutacja" class="px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition cursor-pointer">Rekrutacja</a>
-        <a href="/informacje" class="px-6 py-3 border border-gray-200 dark:border-navy-500 rounded-md text-slate-900 dark:text-white hover:bg-gray-50 dark:hover:bg-navy-700 transition cursor-pointer">Więcej informacji</a>
+    <!-- CTA -->
+    <section class="reveal relative overflow-hidden bg-navy-950 py-24 lg:py-32">
+      <div class="absolute inset-0" aria-hidden="true">
+        <img src="/images/333_mundurowi.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async" class="h-full w-full object-cover opacity-20" />
+        <div class="absolute inset-0 bg-linear-to-br from-navy-950 via-navy-900/80 to-primary-900/40"></div>
       </div>
-    </div>
-  </section>
+      <div class="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-3xl mx-auto space-y-6">
+          <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-balance text-white">Zacznij swoją ścieżkę kariery</h2>
+          <p class="text-lg text-slate-300">Dołącz do szkoły, która łączy praktykę z realnymi partnerstwami branżowymi.</p>
+          <div class="mt-4 flex flex-wrap justify-center gap-4">
+            <a href="/rekrutacja" class="inline-flex items-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl shadow-lg shadow-primary-600/25 hover:bg-primary-700 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-lg">Rekrutacja</a>
+            <a href="/informacje" class="inline-flex items-center px-8 py-4 border-2 border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 cursor-pointer backdrop-blur-sm text-lg">Więcej informacji</a>
+          </div>
+        </div>
+      </div>
+    </section>
 </div>
 
 <!-- high-contrast styles moved to src/styles/high-contrast.css -->

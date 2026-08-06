@@ -1,40 +1,64 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import data from '../content/podreczniki/podreczniki.json';
+import { getCollection, render } from 'astro:content';
 
-interface Variant {
-  nazwa: string;
-  opis: string;
+const entries = await getCollection('podreczniki');
+
+const schoolOrder: Record<string, number> = {
+  'Technikum': 0,
+  'Branżowa Szkoła I Stopnia': 1,
+  'Lieceum Ogólnokształcące dla Dorosłych': 2,
+};
+
+entries.sort((a, b) => {
+  const aOrder = schoolOrder[a.data.typ_szkoly] ?? 99;
+  const bOrder = schoolOrder[b.data.typ_szkoly] ?? 99;
+  if (aOrder !== bOrder) return aOrder - bOrder;
+  return parseInt(a.data.klasa, 10) - parseInt(b.data.klasa, 10);
+});
+
+function getSkroconyTyp(entry: typeof entries[0]): string {
+  return entry.data.skroconyTyp ?? (
+    entry.data.typ_szkoly === 'Technikum' ? 'T'
+    : entry.data.typ_szkoly === 'Branżowa Szkoła I Stopnia' ? 'BS1S'
+    : 'LO'
+  );
 }
 
-interface Przedmiot {
-  nazwa?: string;
-  opis?: string;
-  warianty?: Variant[];
-}
+const accentMap: Record<string, string> = {
+  T: 'primary',
+  BS1S: 'emerald',
+  LO: 'violet',
+};
 
-interface PrzedmiotZawodowy {
-  nazwa?: string;
-  opis?: string;
-}
+const dotColorMap: Record<string, string> = {
+  T: 'bg-primary-500',
+  BS1S: 'bg-emerald-500',
+  LO: 'bg-violet-500',
+};
 
-interface Kierunek {
-  kierunek?: string;
-  przedmioty: PrzedmiotZawodowy[];
-}
+const borderColorMap: Record<string, string> = {
+  T: 'border-primary-500',
+  BS1S: 'border-emerald-500',
+  LO: 'border-violet-500',
+};
 
-interface Klasa {
-  klasa: string;
-  przedmioty_ogolnoksztalcace: Przedmiot[];
-  ksztalcenie_zawodowe: Kierunek[];
-}
+const badgeBgMap: Record<string, string> = {
+  T: 'bg-navy-100 dark:bg-navy-700',
+  BS1S: 'bg-emerald-100 dark:bg-emerald-950/60',
+  LO: 'bg-violet-100 dark:bg-violet-950/60',
+};
 
-interface Szkola {
-  typ_szkoly: string;
-  klasy: Klasa[];
-}
+const badgeTextMap: Record<string, string> = {
+  T: 'text-navy-700 dark:text-navy-300',
+  BS1S: 'text-emerald-700 dark:text-emerald-300',
+  LO: 'text-violet-700 dark:text-violet-300',
+};
 
-const szkoly = data.szkoly as Szkola[];
+const rendered = await Promise.all(entries.map(async (entry) => {
+  const { Content } = await render(entry);
+  return { ...entry, Content };
+}));
 ---
 
 <Layout title="Podręczniki 2026/2027 - ZSEiU Łaziska Górne" description="Wykaz podręczników szkolnych dla Technikum w ZSEiU Łaziska Górne na rok szkolny 2026/2027.">
@@ -57,13 +81,11 @@ const szkoly = data.szkoly as Szkola[];
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8" id="toolbar">
       <div class="flex flex-wrap items-center gap-2">
         <button data-filter="all" data-school="" class="class-filter active px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-primary-600 text-white shadow-xs">Wszystkie</button>
-        {szkoly.map((s) => (
-          s.klasy.map((k) => {
-            const skroconyTyp = s.typ_szkoly === "Technikum" ? "T" : "BS1S";
-            const dotColor = s.typ_szkoly === "Technikum" ? "bg-primary-500" : "bg-emerald-500";
-            return <button data-filter={`${skroconyTyp}-${k.klasa}`} data-school={s.typ_szkoly} class="class-filter px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-700"><span class={`inline-block w-2 h-2 rounded-full ${dotColor} mr-1.5`}></span>{skroconyTyp} - Klasa {k.klasa}</button>;
-          })
-        ))}
+        {rendered.map(({ data }) => {
+          const st = getSkroconyTyp({ data } as typeof entries[0]);
+          const dotColor = dotColorMap[st] ?? 'bg-primary-500';
+          return <button data-filter={`${st}-${data.klasa}`} data-school={data.typ_szkoly} class="class-filter px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-700"><span class={`inline-block w-2 h-2 rounded-full ${dotColor} mr-1.5`}></span>{st} - Klasa {data.klasa}</button>;
+        })}
       </div>
       <div class="flex items-center gap-2 self-start sm:self-auto">
         <button id="print-btn" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 dark:border-navy-600 bg-white dark:bg-navy-800/90 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-navy-700 transition-all" title="Drukuj">
@@ -73,81 +95,40 @@ const szkoly = data.szkoly as Szkola[];
       </div>
     </div>
 
-    <!-- SZKOŁY I KLASY -->
-    {szkoly.map((szkola) => (
-      szkola.klasy.map((klasa) => {
-        const skroconyTyp = szkola.typ_szkoly === "Technikum" ? "T" : "BS1S";
-        const isTechnikum = szkola.typ_szkoly === "Technikum";
-        const accentColor = isTechnikum ? "primary" : "emerald";
-        const borderColor = isTechnikum ? "border-primary-500" : "border-emerald-500";
-        const badgeBg = isTechnikum ? "bg-navy-100 dark:bg-navy-700" : "bg-emerald-100 dark:bg-emerald-950/60";
-        const badgeText = isTechnikum ? "text-navy-700 dark:text-navy-300" : "text-emerald-700 dark:text-emerald-300";
-        return (
-      <section class="klasa-section mb-12" data-klasa={`${skroconyTyp}-${klasa.klasa}`}>
-        <!-- Nagłówek klasy -->
-        <div class={`flex items-center gap-3 mb-6 border-l-4 ${borderColor} pl-3 sm:pl-4`}>
-          <span class={`px-2.5 py-0.5 rounded-full ${badgeBg} ${badgeText} text-xs font-semibold`}>{szkola.typ_szkoly}</span>
-          <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Klasa {klasa.klasa}</h2>
-        </div>
+    <!-- SEKCJE KLAS -->
+    {rendered.map(({ Content, data }, i) => {
+      const st = getSkroconyTyp({ data } as typeof entries[0]);
+      const borderColor = borderColorMap[st] ?? 'border-primary-500';
+      const badgeBg = badgeBgMap[st] ?? 'bg-navy-100 dark:bg-navy-700';
+      const badgeText = badgeTextMap[st] ?? 'text-navy-700 dark:text-navy-300';
+      return (
+        <>
+          <section class="klasa-section mb-12" data-klasa={`${st}-${data.klasa}`}>
+            <div class={`flex items-center gap-3 mb-6 border-l-4 ${borderColor} pl-3 sm:pl-4`}>
+              <span class={`px-2.5 py-0.5 rounded-full ${badgeBg} ${badgeText} text-xs font-semibold`}>{data.typ_szkoly}</span>
+              <h2 class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug wrap-break-word">Klasa {data.klasa}</h2>
+            </div>
+            <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:font-bold prose-headings:text-lg prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-ul:list-disc prose-ul:list-outside prose-ul:pl-5 prose-li:text-sm prose-li:leading-relaxed prose-li:text-slate-700 dark:prose-li:text-slate-300 prose-li:marker:text-slate-400">
+              <Content />
+            </div>
+            <hr class="my-10 border-slate-200 dark:border-navy-700" />
+          </section>
+        </>
+      );
+    })}
 
-        <!-- Przedmioty ogólnokształcące -->
-        <div class="mb-8">
-          <h3 class="text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3">Przedmioty ogólnokształcące</h3>
-          <ul class="list-disc list-inside space-y-1.5">
-            {klasa.przedmioty_ogolnoksztalcace.map((p) => (
-              <li class="subject-card text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                <span class="font-semibold text-slate-900 dark:text-white">{p.nazwa}:</span>
-                {p.warianty ? (
-                  <ul class="list-none pl-5 mt-1 space-y-1.5">
-                    {p.warianty.map((w) => (
-                      <li class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                        <span class="font-medium text-slate-700 dark:text-slate-300">[{w.nazwa}]</span>
-                        {w.opis}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <> {p.opis}</>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- Kształcenie zawodowe -->
-        {klasa.ksztalcenie_zawodowe.length > 0 && (
-          <div>
-            <h3 class="text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3">Kształcenie zawodowe</h3>
-            <ul class="list-disc list-inside space-y-3">
-              {klasa.ksztalcenie_zawodowe.map((kier) => (
-                <li class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                  <span class="font-semibold text-slate-900 dark:text-white">{kier.kierunek}</span>
-                  <ul class="list-disc list-inside pl-5 mt-1 space-y-1">
-                    {kier.przedmioty.map((prz) => (
-                      <li class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                        {prz.nazwa && <span class="font-medium text-slate-700 dark:text-slate-300">{prz.nazwa}: </span>}
-                        {prz.opis}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </section>
-        );
-      })
-    ))}
-
-    <!-- Stopka -->
-    <!-- <p class="text-center text-sm text-slate-400 dark:text-slate-500 mt-8 mb-4">
-      Stan na rok szkolny 2026/2027 · ZSEiU Łaziska Górne
-    </p> -->
   </article>
 </Layout>
 
 <style is:global>
+  .klasa-section .prose ul ul {
+    padding-left: 2.5rem;
+  }
+
+  .klasa-section:last-of-type hr {
+    display: none;
+  }
+
   @media print {
     .site-header,
     .site-header *,
@@ -170,9 +151,6 @@ const szkoly = data.szkoly as Szkola[];
     .klasa-section {
       page-break-inside: avoid;
       break-inside: avoid;
-    }
-    .subject-card {
-      display: list-item;
     }
     .text-slate-900,
     .dark\:text-white {
@@ -212,11 +190,14 @@ const szkoly = data.szkoly as Szkola[];
 
 <script>
   (function () {
-    // Filtrowanie po klasie
     const classFilters = document.querySelectorAll('.class-filter');
     const klasaSections = document.querySelectorAll('.klasa-section');
 
-    const activeBg = (school: string | null) => school === 'Branżowa Szkoła I Stopnia' ? 'bg-emerald-600' : 'bg-primary-600';
+    const activeBg = (school) => {
+      if (school === 'Branżowa Szkoła I Stopnia') return 'bg-emerald-600';
+      if (school === 'Lieceum Ogólnokształcące dla Dorosłych') return 'bg-violet-600';
+      return 'bg-primary-600';
+    };
 
     classFilters.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -233,14 +214,14 @@ const szkoly = data.szkoly as Szkola[];
         klasaSections.forEach((section) => {
           const data = section.getAttribute('data-klasa');
           if (filter === 'all' || data === filter) {
-            (section as HTMLElement).style.display = '';
+            section.style.display = '';
           } else {
-            (section as HTMLElement).style.display = 'none';
+            section.style.display = 'none';
           }
         });
       });
     });
-    // Drukowanie
+
     const printBtn = document.getElementById('print-btn');
     if (printBtn) {
       printBtn.addEventListener('click', () => {

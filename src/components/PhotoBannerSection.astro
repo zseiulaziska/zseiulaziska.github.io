@@ -1,0 +1,52 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+  badge?: string;
+  title: string;
+  description?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { image, alt, badge, title, description, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="photo-banner reveal relative overflow-hidden">
+  <div class="relative min-h-[55vh] lg:min-h-[65vh] w-full flex items-center">
+    <img
+      src={image}
+      alt={alt}
+      width="1600"
+      height="900"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0" style="background: rgba(2, 10, 26, 0.65);"></div>
+    <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
+
+    <div class="relative z-10 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-2xl">
+        {badge && (
+          <p class="inline-flex items-center gap-2 text-sm font-medium text-primary-300 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10">{badge}</p>
+        )}
+        <h2 class="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white leading-tight text-balance">{title}</h2>
+        {description && (
+          <p class="mt-6 text-lg text-slate-300 leading-relaxed max-w-xl">{description}</p>
+        )}
+        {ctaText && ctaHref && (
+          <a href={ctaHref} class="mt-10 inline-flex items-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl shadow-lg shadow-primary-600/25 hover:bg-primary-700 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-base">
+            {ctaText}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  html.high-contrast .photo-banner img {
+    filter: grayscale(1) brightness(0.35);
+  }
+</style>
