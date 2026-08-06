@@ -11,6 +11,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 
 const keystaticEnabled = !process.env.SKIP_KEYSTATIC;
+const staticBuild = !!process.env.GITHUB_ACTIONS;
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,7 +19,7 @@ export default defineConfig({
     redirects: {
         '/kierunki-ksztalcenia': '/kierunki',
     },
-    adapter: cloudflare(),
+    adapter: staticBuild ? undefined : cloudflare(),
     integrations: [
         mdx(),
         sitemap(),
