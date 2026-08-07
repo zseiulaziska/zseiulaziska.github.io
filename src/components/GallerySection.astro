@@ -1,0 +1,91 @@
+---
+interface GalleryItem {
+  type: 'photo' | 'video';
+  src: string;
+  span: string;
+  alt: string;
+}
+
+const items: GalleryItem[] = [
+  { type: 'video', src: '/wideo/video3.mp4', span: 'col-span-2 row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'video', src: '/wideo/video4.mp4', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'video', src: '/wideo/video5.mp4', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: '/wideo/photo1.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo4.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo5.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo7.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'video', src: '/wideo/video.mp4', span: '', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: '/wideo/photo_DX9bwrsMJYv.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'video', src: '/wideo/video2.mp4', span: 'col-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: '/wideo/photo_DYKR3bkCOFB.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo_DWL8SlIiJLr.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+];
+---
+
+<section class="reveal relative left-1/2 w-screen -translate-x-1/2 bg-white dark:bg-navy-950">
+  <div class="grid w-full auto-rows-[30vw] grid-flow-dense grid-cols-2 sm:auto-rows-[24vw] lg:auto-rows-[15vw] lg:grid-cols-6">
+    {
+      items.map((item) =>
+        item.type === 'photo' ? (
+          <div class={`group relative overflow-hidden ${item.span}`}>
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+            />
+          </div>
+        ) : (
+          <div class={`group relative overflow-hidden bg-slate-950 ${item.span}`}>
+            <video
+              class="h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+              src={item.src}
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              data-gallery-video
+              aria-label={item.alt}
+            ></video>
+            <span data-gallery-play-icon class="pointer-events-none absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0" aria-hidden="true">
+              <span class="flex h-14 w-14 items-center justify-center rounded-full bg-black/40 backdrop-blur-sm">
+                <svg class="ml-1 h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </span>
+            </span>
+          </div>
+        )
+      )
+    }
+  </div>
+</section>
+
+<script>
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  document.querySelectorAll<HTMLVideoElement>('[data-gallery-video]').forEach((video) => {
+    const icon = video.parentElement!.querySelector<HTMLElement>('[data-gallery-play-icon]');
+    const setIcon = () => {
+      if (icon) icon.classList.toggle('opacity-0', !video.paused);
+    };
+    video.addEventListener('play', setIcon);
+    video.addEventListener('pause', setIcon);
+    if (isTouch) {
+      video.addEventListener('click', () => {
+        if (video.paused) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    } else {
+      video.addEventListener('mouseenter', () => {
+        video.play().catch(() => {});
+      });
+      video.addEventListener('mouseleave', () => {
+        video.pause();
+      });
+    }
+  });
+</script>

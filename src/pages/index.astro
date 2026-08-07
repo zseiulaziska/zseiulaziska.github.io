@@ -8,6 +8,7 @@ import SchoolFields from '../components/SchoolFields.astro';
 import PartnersSection from '../components/PartnersSection.astro';
 import SuccessSection from '../components/SuccessSection.astro';
 import WhyChooseSection from '../components/WhyChooseSection.astro';
+import GallerySection from '../components/GallerySection.astro';
 import NewsSection from '../components/NewsSection.astro';
 import PhotoBannerSection from '../components/PhotoBannerSection.astro';
 
@@ -24,6 +25,7 @@ const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDa
 <div class="page-index">
 
     <SuccessSection />
+    <GallerySection />
     <WhyChooseSection />
 
     <!-- Kierunki kształcenia -->
