@@ -63,14 +63,6 @@
       ]
     },
     {
-      "name": "Marian Augustyniak",
-      "subjects": [
-        "Pracownia wykonywania połączeń elementów z tworzyw sztucznych",
-        "Pracownia wytwarzania wyrobów z tworzyw sztucznych"
-      ]
-    },
-    { "name": "Maciej Bąk", "subjects": ["Edukacja dla bezpieczeństwa"] },
-    {
       "name": "Wojciech Błażyca",
       "subjects": [
         "Historia",
@@ -98,15 +90,6 @@
         "Montaż, konfiguracja i naprawa lokalnych sieci komputerowych"
       ]
     },
-    {
-      "name": "Dorota Charzewska",
-      "subjects": [
-        "Matematyka",
-        "Matematyka rozszerzona",
-        "Zajęcia z wychowawcą",
-        "Zajęcia dydaktyczno-wyrównawcze"
-      ]
-    },
     { "name": "Katarzyna Chrapiec", "subjects": ["Język niemiecki"] },
     {
       "name": "Renata Ciesielska-Prasoł",
@@ -132,7 +115,6 @@
       "subjects": ["Geografia", "Geografia rozszerzona"]
     },
     { "name": "Barbara Erkier", "subjects": ["Historia"] },
-    { "name": "Marek Fenisz", "subjects": ["Religia"] },
     {
       "name": "Paulina Gaik",
       "subjects": [
@@ -292,10 +274,6 @@
       ]
     },
     {
-      "name": "Katarzyna Nitkowska",
-      "subjects": ["Język niemiecki", "Zajęcia z wychowawcą"]
-    },
-    {
       "name": "Mariola Ostafińska",
       "subjects": [
         "Język angielski",
@@ -352,10 +330,6 @@
       ]
     },
     {
-      "name": "Dominika Romanek",
-      "subjects": ["Język niemiecki", "Zajęcia z wychowawcą"]
-    },
-    {
       "name": "Honorata Skrzypiec",
       "subjects": [
         "Język angielski",
@@ -390,10 +364,6 @@
     {
       "name": "Wioletta Syrek",
       "subjects": ["Matematyka", "Matematyka rozszerzona"]
-    },
-    {
-      "name": "Tadeusz Szczypka",
-      "subjects": ["Fizyka", "Maszyny i urządzenia górnicze"]
     },
     {
       "name": "Beata Szlejter",
