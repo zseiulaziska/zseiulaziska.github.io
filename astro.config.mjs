@@ -28,6 +28,9 @@ export default defineConfig({
     ],
     vite: {
         plugins: [tailwindcss()],
+        ssr: {
+            noExternal: ['react', 'react-dom'],
+        },
     },
     fonts: [
         {
