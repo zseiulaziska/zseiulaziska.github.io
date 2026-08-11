@@ -4,10 +4,10 @@
     "label": "P1 – praktyka w klasie 3",
     "tury": [
       {
-        "id": "p1-t4",
-        "label": "Tura 4",
-        "dataRozpoczecia": "2027-05-04",
-        "dataZakonczenia": "2027-06-02",
+        "id": "p1-t1",
+        "label": "Tura 1",
+        "dataRozpoczecia": "2026-10-12",
+        "dataZakonczenia": "2026-11-06",
         "klasy": ["3LE"]
       }
     ]
@@ -20,14 +20,14 @@
         "label": "Tura 1",
         "dataRozpoczecia": "2026-10-12",
         "dataZakonczenia": "2026-11-06",
-        "klasy": ["4LI"]
+        "klasy": ["4Mb"]
       },
       {
         "id": "p2-t2",
         "label": "Tura 2",
         "dataRozpoczecia": "2026-11-16",
         "dataZakonczenia": "2026-12-18",
-        "klasy": ["4Mb"]
+        "klasy": ["4ET"]
       },
       {
         "id": "p2-t3",
@@ -39,9 +39,9 @@
       {
         "id": "p2-t4",
         "label": "Tura 4",
-        "dataRozpoczecia": "2027-05-04",
-        "dataZakonczenia": "2027-06-02",
-        "klasy": ["4ET"]
+        "dataRozpoczecia": "2027-04-05",
+        "dataZakonczenia": "2027-04-30",
+        "klasy": ["4LI"]
       }
     ]
   }
