@@ -119,6 +119,13 @@ const mobileSections = [
   },
 ];
 
+// Struktura akordeonu mobilnego — zachowuje hierarchię sections → groups (4 sekcje + Najważniejsze/Linki)
+const mobileAccordionData = [
+  { title: 'Najważniejsze', desc: 'Szybki dostęp', links: [['Strona główna', '/'], ['Plan lekcji', '/plan-lekcji'], ['Plan LO dla dorosłych', '/plan-zajec-lo'], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']], isFlat: true },
+  ...sections.map((section) => ({ title: section.title, desc: section.desc, groups: section.groups, highlight: section.highlight, isFlat: false })),
+  { title: 'Linki zewnętrzne', desc: 'Zewnętrzne serwisy', links: [['BIP', 'https://zseiu.ssdip.bip.gov.pl/'], ['Facebook', 'https://www.facebook.com/zseiu'], ['Instagram', 'https://www.instagram.com/zseiu_laziska/']], isFlat: true },
+];
+
 const isExternal = (href: string) => href.startsWith('http');
 
 const linkIcons = {
@@ -248,22 +255,47 @@ const iconForHref = (href: string) => {
           <input id="mobile-search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
           <div id="mobile-search-results" class="search-popover mt-2 hidden overflow-hidden rounded-md border border-slate-100 dark:border-navy-700"></div>
         </div>
-        <div class="mobile-nav__grid">
-          {mobileSections.map((section) => (
-            <section>
-              <h2>{section.title}</h2>
-              <ul>
-                {section.links.map(([label, href]) => (
-                  <li>
-                    <a class="nav-link" href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
+        <nav class="mobile-accordion" aria-label="Nawigacja mobilna">
+          {mobileAccordionData.map((section, idx) => (
+            <details class="mobile-accordion__item" open={idx === 0}>
+              <summary class="mobile-accordion__summary">
+                <span>
+                  <span class="block text-sm font-semibold text-slate-900 dark:text-white">{section.title}</span>
+                  {section.desc && <span class="block text-xs font-normal text-slate-500 dark:text-slate-400">{section.desc}</span>}
+                </span>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="mobile-accordion__content">
+                {section.isFlat ? (
+                  <ul class="space-y-1">
+                    {section.links.map(([label, href]) => (
+                      <li><a class="nav-link" href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>{label}</a></li>
+                    ))}
+                  </ul>
+                ) : (
+                  <>
+                    {section.highlight && (
+                      <a class="mobile-highlight" href={section.highlight[1]}>
+                        <strong>{section.highlight[0]}</strong>
+                        <small>{section.highlight[2]}</small>
+                      </a>
+                    )}
+                    {(section.groups as any[]).map((group) => (
+                      <section class="mobile-accordion__group">
+                        <h3>{group.title}</h3>
+                        <ul class="space-y-1">
+                          {group.links.map(([label, href, desc]) => (
+                            <li><a class="nav-link" href={href}><span class="block font-medium">{label}</span>{desc && <span class="block text-xs text-slate-500 dark:text-slate-400">{desc}</span>}</a></li>
+                          ))}
+                        </ul>
+                      </section>
+                    ))}
+                  </>
+                )}
+              </div>
+            </details>
           ))}
-        </div>
+        </nav>
       </div>
     </div>
   </div>
@@ -458,6 +490,16 @@ const iconForHref = (href: string) => {
       if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) {
         toggleMobileNav(false);
       }
+    });
+
+    // 4.2 Akordeon mobilny — exclusive open + sticky headers już via CSS
+    const accordionItems = document.querySelectorAll('.mobile-accordion__item');
+    accordionItems.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          accordionItems.forEach((other) => { if (other !== item) other.removeAttribute('open'); });
+        }
+      });
     });
 
     const menus = Array.from(document.querySelectorAll('.mega-menu'));

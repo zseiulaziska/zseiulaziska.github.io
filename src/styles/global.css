@@ -231,6 +231,71 @@ summary:focus-visible {
   @apply mt-2 space-y-1;
 }
 
+/* Mobile accordion — 4.2 fix: akordeon zamiast flat 30+ linków, sticky nagłówki grup */
+.mobile-accordion {
+  @apply divide-y divide-slate-100 dark:divide-navy-700;
+}
+
+.mobile-accordion__item {
+  @apply bg-white dark:bg-navy-850;
+}
+
+.mobile-accordion__item:first-child {
+  @apply rounded-t-2xl overflow-hidden;
+}
+
+.mobile-accordion__item:last-child {
+  @apply rounded-b-2xl overflow-hidden;
+}
+
+.mobile-accordion__summary {
+  @apply flex items-center justify-between gap-3 px-4 py-3.5 cursor-pointer list-none transition-colors hover:bg-slate-50 dark:hover:bg-navy-800;
+}
+
+.mobile-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-accordion__summary svg {
+  @apply h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200;
+}
+
+.mobile-accordion__item[open] > .mobile-accordion__summary svg {
+  @apply rotate-180 text-primary-600 dark:text-primary-400;
+}
+
+.mobile-accordion__item[open] > .mobile-accordion__summary {
+  @apply bg-primary-50/70 dark:bg-navy-800;
+}
+
+.mobile-accordion__content {
+  @apply px-3 pb-3 pt-1 bg-slate-50/50 dark:bg-navy-900/30;
+}
+
+.mobile-accordion__group {
+  @apply mt-3 first:mt-1;
+}
+
+.mobile-accordion__group h3 {
+  @apply sticky top-0 z-10 -mx-3 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-700 dark:text-primary-300 bg-slate-50/95 dark:bg-navy-900/95 backdrop-blur border-y border-slate-100 dark:border-navy-700;
+}
+
+.mobile-accordion__group ul {
+  @apply mt-1 space-y-1;
+}
+
+.mobile-highlight {
+  @apply mb-3 flex flex-col gap-0.5 rounded-xl bg-primary-600 px-3 py-2.5 text-white shadow-sm transition-colors hover:bg-primary-700;
+}
+
+.mobile-highlight strong {
+  @apply text-sm font-semibold;
+}
+
+.mobile-highlight small {
+  @apply text-xs leading-4 text-primary-100;
+}
+
 .mega-nav {
   @apply hidden border-t border-slate-200/80 bg-slate-50/90 dark:border-navy-700/80 dark:bg-navy-850/90 lg:block;
 }

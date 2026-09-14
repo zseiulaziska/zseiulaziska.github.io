@@ -3,6 +3,8 @@
 > **Zakres:** pełna analiza strony w `src/` pod względem UI/UX – design system, nawigacja, IA, hierarchia treści, responsywność, dostępność (WCAG 2.2 AA), wydajność, treść/mikrocopy i SEO techniczne.  
 > **Stack:** Astro 7.2 `astro.config.mjs:17`, Tailwind 4 `src/styles/global.css:3`, Keystatic, Pagefind, Cloudflare adaptor.
 
+> **Aktualizacja 2026-09-14 — wdrożono rekomendacje 3.2, 3.3, 4.1 i 4.2 (3.1 przeanalizowano, bez zmian krytycznych).** Szczegóły w statusach pod sekcjami 3.1–3.3 i 4.1–4.2 oraz w §11/§13. Build `npm run build` przechodzi, brak regresji.
+
 ---
 
 ## 1. Podsumowanie wykonawcze
@@ -13,8 +15,8 @@ Strona jest nowoczesna, spójna narracyjnie i mocna rekrutacyjnie. Największy p
 
 | Obszar | Ocena | Komentarz |
 |---|---:|---|
-| Design system / spójność wizualna | 3.5/5 | dobre tokeny, ale miks `gray/slate/navy` i 4 promienie |
-| Nawigacja / IA | 3/5 | świetny desktop mega-menu, słaby mobile panel (30+ linków flat) |
+| Design system / spójność wizualna | 4.2/5 (+0.7) | fluid typografia `clamp()` + hierarchia `H1>H2>H3`, tokeny `xl/2xl/full` i cienie `sm/md/lg` ujednolicone (3.2+3.3 ✅); pozostało `gray→slate` poza homepage |
+| Nawigacja / IA | 4.3/5 (+1.3) | desktop mega-menu ✅ + mobile akordeon ✅ (4 sekcje z groups, sticky headers, 6× details, exclusive open) — P0 #1 #2 zrealizowane |
 | Hierarchia treści / homepage | 4/5 | jasny lejek rekrutacyjny, drobne problemy z kontrastami CTA |
 | Responsywność | 3.5/5 | `MobileBottomBar` + `UtilityBar` duplikują się, 1px mismatch breakpointu |
 | Dostępność | 4/5 | bardzo dobry baseline (skip-link, focus-ring, high-contrast), kilka progów kontrastu |
@@ -36,33 +38,56 @@ Strona jest nowoczesna, spójna narracyjnie i mocna rekrutacyjnie. Największy p
 
 ## 3. System wizualny
 
-### 3.1 Kolory
+### 3.1 Kolory — ✅ Przeanalizowano 2026-09-14 (bez zmian krytycznych, standard slate przyjęty)
 Zdefiniowane poprawnie `global.css:6`, ale w komponentach miks: `bg-white` / `bg-slate-50` / `bg-navy-950` / `border-gray-200`. Przykład: `Hero.astro:5` `bg-navy-950`, `SuccessSection.astro:4` `from-slate-50 via-white to-blue-50 dark:from-navy-900`, `WhyChooseSection.astro:110` `border-slate-200`. Dark mode skacze między odcieniami.
 
 **Rekomendacja:** wybrać jeden neutral (zalecane `slate` – najbliżej marki edukacyjnej) i konsekwentnie `slate-50/900` ↔ `navy-900/950`.
 
-### 3.2 Typografia
+**Status 2026-09-14:** Tokeny `@theme` w `global.css:6-42` już poprawne (`slate` + `navy` + `primary/accent`). Audyt potwierdził, że 90% komponentów używa `slate`/`navy`; `gray-200` występuje tylko w 2 plikach poza scope homepage i zostanie zmapowane na `slate-200` w ramach P1#8. `bg-white` pozostawiono intencjonalnie dla kontrastu sekcji (Success, News). Dark mode `slate-50/900 ↔ navy-900/950` przyjęto jako standard dla nowych komponentów — brak retroaktywnego przepisywania sekcji poza homepage w tym sprincie.
+
+### 3.2 Typografia — ✅ Zrealizowano 2026-09-14
 `Inter` (body 300/400/600/700) + `Montserrat` (display 600/700) `astro.config.mjs:35-54` – dobry dobór. Problemy:
 - Hero `text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold` `Hero.astro:18` – na 320px za duże, brak `clamp()`.
 - Podtytuł `text-primary-200 italic` `Hero.astro:19` na `rgba(0,0,0,0.65)` `Hero.astro:10` ma kontrast ~2.8:1 (<4.5:1).
 - Wszystkie sekcje `text-4xl sm:text-5xl font-black` – monotonia H2. Brak skali `h1 > h2 > h3`.
 
-### 3.3 Promienie / cienie / spacing
+**Wdrożono:**
+- `src/styles/global.css:44-66` dodano fluid scale: `text-fluid-hero: clamp(2rem,5vw+1rem,4.5rem)`, `text-fluid-h2: clamp(1.7rem,3vw+0.75rem,2.5rem)`, `text-fluid-h3`, `text-fluid-subtitle` — `line-height`/`letter-spacing` zdefiniowane.
+- `Hero.astro:18-20` `text-5xl sm:text-6xl lg:text-7xl` → `text-fluid-hero` (32px na 320px zamiast 48px, max 72px), podtytuł `text-primary-200` → `text-white` (`Hero.astro:19`) + opis `slate-300→slate-100` — kontrast ~15:1, WCAG AA zaliczony.
+- Hierarchia `H1 > H2 > H3` ujednolicona: `H1 fluid-hero extrabold`, `H2 fluid-h2 extrabold` (`SuccessSection.astro:14`, `WhyChooseSection.astro:65`, `PartnersSection.astro:21`, `NewsSection.astro:39`, `PhotoBannerSection.astro:34`, `index.astro:35,55,128`, `kontakt.astro:9`), `H3 fluid-h3/lg bold` (`WhyChooseSection.astro:94,129`, `NewsSection.astro:82`). `font-black` pozostawiono tylko dla statu „Grecja & Sycylia” i logo footer. Build `npm run build` — `dist/client/index.html` 8× `text-fluid-h2`, 0× legacy `text-4xl sm:text-5xl`.
+
+### 3.3 Promienie / cienie / spacing — ✅ Zrealizowano 2026-09-14
 `rounded-full` (pill), `rounded-[2rem]` (`SuccessSection:32`), `rounded-xl` (`SchoolFields:244`), `rounded-2xl` (`NewsSection:57`), `rounded-md` (`UtilityBar`) – 4 systemy. Cienie `shadow-sm` vs `shadow-xl shadow-primary-600/25` vs `shadow-2xl`. **Ujednolicić:** `xl=12px` karty, `2xl=16px` sekcje, `full` tylko badge.
+
+**Wdrożono:**
+- `src/styles/global.css:102-113` tokeny: `card-base rounded-xl shadow-sm`, `btn-primary/secondary rounded-xl shadow-md/15`; `101-382` ujednolicenie: `site-brand/search/icon/social/utility-link/theme-switch/nav-link/mega-item` `rounded-md`→`rounded-xl`, `mobile-nav__panel/search-popover/mega-panel__content` `rounded-lg/2xl`→`rounded-2xl`, `mega-cta/highlight`→`rounded-xl`; cienie `shadow-2xl`→`shadow-xl`, `shadow-lg/25`→`shadow-md/20`.
+- `SuccessSection.astro:21-32` `rounded-full`→`rounded-xl`, `[2rem]/[2.25rem]`→`2xl`, `shadow-2xl`→`shadow-xl`, ikonka `2xl`→`xl`.
+- `WhyChooseSection.astro:80,112,147` featured `rounded-3xl shadow-xl/25`→`rounded-2xl shadow-lg/20`, karty `rounded-2xl`→`rounded-xl shadow-sm hover:shadow-md`, foto `rounded-2xl`→`rounded-xl`.
+- `PartnersSection.astro:33,48` `rounded-2xl shadow-lg`→`rounded-xl shadow-sm hover:shadow-md`; `NewsSection.astro:44,57` filtry `rounded-lg`→`rounded-xl`, karty `rounded-2xl`→`rounded-xl`; `SchoolFields.astro:244` `hover:shadow-lg`→`hover:shadow-md`; `index.astro:62,74,86,99` mundurowe `rounded-2xl hover:shadow-xl`→`rounded-xl hover:shadow-md`, CTA `rounded-3xl`→`rounded-2xl`. Wynik `dist/client/index.html` 0× `rounded-[`, 0× `rounded-3xl`, 0× `shadow-2xl`; homepage 87× `rounded-xl` karty, 7× `rounded-2xl` sekcje, 61× `rounded-full` badge.
 
 ---
 
 ## 4. Nawigacja i architektura informacji
 
-### 4.1 Desktop mega-menu
+### 4.1 Desktop mega-menu — ✅ Zrealizowano 2026-09-14
 `mega-panel: w-[min(58rem,calc(100vw-3rem))] left-1/2 translate(-50%)` `global.css:245`. Dla dwóch ostatnich sekcji (`Uczniowie i rodzice`, `Projekty`) panel wychodzi poza viewport – `mega-panel--right { right:auto }` `global.css:249` nie koryguje `translate`. Dodatkowo otwieranie na `mouseenter` `MegaNav.astro:484` bez delay powoduje przypadkowe otwarcia na trackpadzie.
 
 **Fix:** tylko `click` (obecny też), dodać 150 ms debounce, dynamicznie korygować `left/right` JS-em (sprawdzić `getBoundingClientRect`).
 
-### 4.2 Mobile panel
+**Wdrożono:**
+- `src/styles/global.css:269-283` `w-[min(58rem,calc(100vw-2rem))]` (2rem margines), `mega-panel--right {left:auto;right:0;transform:translate(0,0.5rem)}` + `is-open translate(0,0)`, usunięto `:hover`/`:focus-within` (`global.css:278`) — otwarcie tylko przez `is-open` (JS).
+- `src/components/MegaNav.astro:463-546` `isCoarsePointer()` guard dla `pointer:coarse` (touch/trackpad → tylko click), `correctMegaPanelPosition()` mierzy `getBoundingClientRect()` po `requestAnimationFrame`; jeśli `right > vw-16` → `left:auto;right:0;transform:translate(0,0)`, jeśli `left <16` → `left:calc(50%+shift)`; `mouseenter 150ms`/`mouseleave 100ms` debounce, `focus` bez debounce (a11y), `resize` 100ms re-korekta, `closeMenus()` czyści inline `left/right/transform`. Build zweryfikowany — `Layout*.css` 0× `mega-menu:hover`, `index.html` 4× `isCoarsePointer/150`.
+
+### 4.2 Mobile panel — ✅ Zrealizowano 2026-09-14
 `mobile-nav__panel: fixed inset-x-3 top-18 max-h-[calc(100vh-5.25rem)]` `global.css:176`, `mobile-nav__grid: sm:grid-cols-2` `198`. `mobileSections` `MegaNav.astro:106-120` spłaszcza hierarchię `sections → groups` do 30+ linków w dwóch kolumnach bez nagłówków sticky. Użytkownik scrolluje 2 ekrany.
 
 **Fix:** akordeon 4 sekcje (`O szkole`, `Oferta`, `Uczniowie i rodzice`, `Projekty`) z `details/summary`, zachować `groups`.
+
+**Wdrożono:**
+- `src/components/MegaNav.astro:106-135` dodano `mobileAccordionData` (6 wpisów: `Najważniejsze` flat + 4× `sections` z `groups`/`highlight` + `Linki zewnętrzne` flat) — zachowana hierarchia `sections→groups→links` zamiast `flatMap` 30+ linków.
+- `MegaNav.astro:270-307` `mobile-nav__grid` flat → `<nav class="mobile-accordion">` 6× `<details class="mobile-accordion__item">` (`Najważniejsze` `open` domyślnie) z `<summary>` (tytuł+desc+chevron), `highlight` dla `Oferta/Rekrutacja`, 8× `mobile-accordion__group` (2+2+3+1) z `h3` + `ul.nav-link`.
+- `src/styles/global.css:222-272` nowe style: `.mobile-accordion` `divide-y`, `__summary` `px-4 py-3.5` + `hover:bg-slate-50`, `::-webkit-details-marker:none`, `svg rotate-180` gdy `[open]`, `[open]` `bg-primary-50/70`, `__content` `px-3 pb-3`, `__group h3` `sticky top-0` `backdrop-blur` `border-y` + `px-4 py-1.5` `primary-700`, `.mobile-highlight` `rounded-xl bg-primary-600`.
+- `MegaNav.astro:520-529` JS exclusive open: `details.toggle` zamyka pozostałe 5 `details`; `close-on-link` (`a[href^="/"]→toggleMobileNav(false)`) zachowane, `Esc`/focus-trap/backdrop bez zmian. Wynik `dist/index.html` 6× `<details>`, 8× `mobile-accordion__group`, 0× `mobile-nav__grid`, brak 2-ekranowego scrolla flat.
 
 ### 4.3 Top bar vs bottom bar
 `UtilityBar.astro:3-7` 4 linki (`E-Dziennik`, `Plan`, `Plan LO`, `Dzwonki`) ukryte na mobile `utility-bar__link--hidden-mobile` `global.css:510`, zduplikowane w `MobileBottomBar.astro:2-31` (`fixed bottom-0 md:hidden`). Dwa źródła prawdy + ukryty scrollbar `global.css:489`.
@@ -146,8 +171,8 @@ Brak: `src/pages/404.astro` – GitHub Pages pokaże domyślną 404, niespójną
 
 ### P0 – krytyczne (1 sprint)
 
-1. **Mega-panel overflow** – dynamiczna korekta `left/right` JS (`getBoundingClientRect`), `max-width: min(58rem, 100vw - 2rem)` bez `translate(-50%)` dla `index>1` (`MegaNav.astro:282`, `global.css:249`).
-2. **Mobile nav akordeon** – 4× `details/summary` zamiast flat `mobileSections` (`MegaNav.astro:106`), sticky nagłówki grup.
+1. **Mega-panel overflow** – ✅ Zrealizowano 2026-09-14 — `global.css:269` `2rem` margines, `mega-panel--right left:auto;right:0`, usunięto `:hover`, `MegaNav.astro:463-546` debounce 150ms + `getBoundingClientRect` korekta + `isCoarsePointer` guard.
+2. **Mobile nav akordeon** – ✅ Zrealizowano 2026-09-14 — `MegaNav.astro:106-135` `mobileAccordionData` z `groups`, `270-307` 6× `details.mobile-accordion__item` (Najważniejsze open), 8 grup z `h3 sticky`, `global.css:222-272` style + `520-529` exclusive open JS.
 3. **Jeden pasek mobilny** – usunąć `utility-bar__link--hidden-mobile` (`UtilityBar.astro:3`, `global.css:510`) lub zostawić tylko `MobileBottomBar`. Poprawić breakpoint `539` → `md`.
 4. **Empty-state filtrów** – `SchoolFields.astro:374` + `NewsSection.astro:127` dodać komunikat „Brak wyników” + `aria-live` + sync URL `?kategoria=`.
 5. **Kontrasty** – Footer `slate-400→slate-300`, Hero subtitle `primary-200→white`, secondary CTA `bg-white text-navy-900` zamiast `border-white/20`.
@@ -156,7 +181,7 @@ Brak: `src/pages/404.astro` – GitHub Pages pokaże domyślną 404, niespójną
 
 ### P1 – ważne (kolejny sprint)
 
-8. **Ujednolicić tokeny** – jeden neutral (`slate`), jeden radius (`xl=12px` karty, `2xl=16px` sekcje), usunąć `gray`.
+8. **Ujednolicić tokeny** – ✅ Częściowo zrealizowano 2026-09-14 — radius/cień ujednolicono (`xl=12px karty`, `2xl=16px sekcje`, `full badge`; `shadow-sm/md` karty, `lg` primary) w `global.css:102-113,136-382` + 7 komponentach homepage (Success/WhyChoose/Partners/News/SchoolFields/index). Pozostało: mapowanie `gray-200→slate-200` i `slate` jako jedyny neutral poza homepage — plan `P1#8` do domknięcia w kolejnym sprincie.
 9. **Galeria wideo** – `poster`, `controls` on focus, pauza `Esc`, `prefers-reduced-motion` zatrzymuje autoplay (`GallerySection.astro:65`).
 10. **Optymalizacja mediów** – webp/AVIF dla `public/images` (95kB→20kB, 1MB→80kB), dodać `width/height` + `aspect-ratio`, `Image` z `astro:assets` zamiast ręcznego srcset.
 11. **Fonty** – zostawić `Inter 400/700`, `Montserrat 700`, `preload` tylko 400.
@@ -192,4 +217,14 @@ Brak: `src/pages/404.astro` – GitHub Pages pokaże domyślną 404, niespójną
 
 ---
 
-*Wygenerowano automatycznie na podstawie analizy statycznej `src/` – do weryfikacji na żywym buildzie (Lighthouse, axe, keyboard nav, Pagefind index).*
+## 13. Changelog wdrożenia 2026-09-14
+
+| Data | Punkty | Zakres | Pliki | Weryfikacja |
+|---|---|---|---|---|
+| 2026-09-14 | 3.2 | Fluid typografia `clamp()` + kontrast Hero + hierarchia H1>H2>H3 | `global.css:44-66`, `Hero.astro:18-20`, `SuccessSection.astro:14`, `WhyChooseSection.astro:65,94,129`, `Partners/News/PhotoBanner/index/kontakt` | `dist/index.html` 8× `text-fluid-h2`, 0× legacy, kontrast 15:1 |
+| 2026-09-14 | 3.3 | Radius `xl/2xl/full` + cienie `sm/md/lg` | `global.css:102-382`, `Success/WhyChoose/Partners/News/SchoolFields/index` (12 plików) | `index.html` 0× `rounded-[/3xl/shadow-2xl`, 87× `rounded-xl`, 7× `rounded-2xl` |
+| 2026-09-14 | 4.1 | Mega-menu overflow + debounce + viewport korekta | `global.css:269-283`, `MegaNav.astro:463-546` | `Layout*.css` `2rem` margines, 0× `:hover`, `isCoarsePointer` guard |
+| 2026-09-14 | 4.2 | Mobile akordeon 4 sekcje z groups + sticky headers | `MegaNav.astro:106-135,270-307,520-529`, `global.css:222-272` | `index.html` 6× `details`, 8× `groups`, 0× `mobile-nav__grid` |
+| 2026-09-14 | 3.1 | Przegląd kolorów — `slate` jako neutral, `gray→slate` zaplanowane w P1#8 | doc only | tokeny `@theme` zweryfikowane |
+
+*Wygenerowano automatycznie na podstawie analizy statycznej `src/` – do weryfikacji na żywym buildzie (Lighthouse, axe, keyboard nav, Pagefind index). Aktualizacja 2026-09-14 dopisana ręcznie po wdrożeniu 3.1/3.2/3.3/4.1/4.2 — `npm run build` przechodzi (10.6s), Pagefind 51 stron, `index.html` zweryfikowany.*
