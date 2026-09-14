@@ -26,14 +26,14 @@ function getFirstImage(body: string | undefined): string | undefined {
 
     <ul class="space-y-6">
       {livePosts.map(post => (
-        <li key={post.id} class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start py-6 border-b border-gray-200 dark:border-navy-600">
+        <li key={post.id} class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start py-6 border-b border-slate-200 dark:border-navy-600">
           <a href={`/blog/${post.id}`} class="w-full sm:w-48 shrink-0">
             {(() => {
               const thumb = post.data.heroImage || getFirstImage(post.body);
               return thumb ? (
                 <img src={thumb} alt="" class="w-full h-48 sm:h-32 object-cover rounded-xl" />
               ) : (
-              <div class="w-full h-48 sm:h-32 bg-gray-200 dark:bg-navy-700 rounded-xl flex items-center justify-center text-slate-400">
+              <div class="w-full h-48 sm:h-32 bg-slate-200 dark:bg-navy-700 rounded-xl flex items-center justify-center text-slate-400">
                 <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
               </div>
             )})()}

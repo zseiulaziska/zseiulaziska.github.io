@@ -197,7 +197,7 @@ const iconForHref = (href: string) => {
       <img src="/images/logo-szkoly-dark.png" alt="" class="hidden h-12 w-auto dark:block" />
       <span class="min-w-0">
         <span class="block truncate text-lg font-bold tracking-tight sm:text-xl">ZSEiU</span>
-        <span class="hidden truncate text-xs text-gray-500 dark:text-slate-400 sm:block">Łaziska Górne</span>
+        <span class="hidden truncate text-xs text-slate-500 dark:text-slate-400 sm:block">Łaziska Górne</span>
       </span>
     </a>
 
@@ -246,7 +246,7 @@ const iconForHref = (href: string) => {
         <div class="mobile-search">
           <label for="mobile-search-input" class="sr-only">Szukaj</label>
           <input id="mobile-search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
-          <div id="mobile-search-results" class="search-popover mt-2 hidden overflow-hidden rounded-md border border-gray-100 dark:border-navy-700"></div>
+          <div id="mobile-search-results" class="search-popover mt-2 hidden overflow-hidden rounded-md border border-slate-100 dark:border-navy-700"></div>
         </div>
         <div class="mobile-nav__grid">
           {mobileSections.map((section) => (
@@ -374,10 +374,10 @@ const iconForHref = (href: string) => {
                 var title = item.meta && item.meta.title ? item.meta.title : item.url;
                 return '<a href="' + escapeHtml(item.url) + '" class="search-result-item">' +
                   '<span class="text-sm font-semibold">' + escapeHtml(title) + '</span>' +
-                  '<span class="mt-1 block text-xs text-gray-500 dark:text-slate-400">' + (item.excerpt || '') + '</span></a>';
+                  '<span class="mt-1 block text-xs text-slate-500 dark:text-slate-400">' + (item.excerpt || '') + '</span></a>';
               }).join('');
             } else {
-              html = '<div class="px-4 py-3 text-sm text-gray-500 dark:text-slate-400">Brak wyników</div>';
+              html = '<div class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Brak wyników</div>';
             }
             results.innerHTML = html;
             results.classList.remove('hidden');
