@@ -18,7 +18,7 @@ const partners = [
   <div class="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto mb-16 max-w-2xl space-y-4 text-center">
       <h2 class="text-xs font-bold uppercase tracking-widest text-primary-300">Nasi Partnerzy</h2>
-      <p class="text-4xl font-black tracking-tight text-balance text-white sm:text-5xl">
+      <p class="text-fluid-h2 font-extrabold tracking-tight text-balance text-white">
         Partnerzy i pracodawcy
       </p>
       <p class="text-lg text-slate-300">
@@ -30,7 +30,7 @@ const partners = [
       <div class="partners-track">
         <ul class="partners-group" role="list">
           {partners.map((partner) => (
-            <li class="group flex h-32 shrink-0 items-center justify-center rounded-2xl bg-white px-12 shadow-lg shadow-black/20 hover:scale-105 transition-transform duration-300">
+            <li class="group flex h-32 shrink-0 items-center justify-center rounded-xl bg-white px-12 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300">
               <img
                 src={partner.logo}
                 alt={partner.name}
@@ -45,7 +45,7 @@ const partners = [
         </ul>
         <ul class="partners-group" aria-hidden="true">
           {partners.map((partner) => (
-            <li class="group flex h-32 shrink-0 items-center justify-center rounded-2xl bg-white px-12 shadow-lg shadow-black/20 hover:scale-105 transition-transform duration-300">
+            <li class="group flex h-32 shrink-0 items-center justify-center rounded-xl bg-white px-12 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300">
               <img
                 src={partner.logo}
                 alt=""

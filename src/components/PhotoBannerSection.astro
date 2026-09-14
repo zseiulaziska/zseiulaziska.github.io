@@ -31,7 +31,7 @@ const { image, alt, badge, title, description, ctaText, ctaHref } = Astro.props;
         {badge && (
           <p class="inline-flex items-center gap-2 text-sm font-medium text-primary-300 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10">{badge}</p>
         )}
-        <h2 class="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white leading-tight text-balance">{title}</h2>
+        <h2 class="mt-8 text-fluid-h2 font-display font-extrabold text-white text-balance">{title}</h2>
         {description && (
           <p class="mt-6 text-lg text-slate-300 leading-relaxed max-w-xl">{description}</p>
         )}
