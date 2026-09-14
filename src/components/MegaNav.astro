@@ -461,33 +461,104 @@ const iconForHref = (href: string) => {
     });
 
     const menus = Array.from(document.querySelectorAll('.mega-menu'));
+
+    function isCoarsePointer() {
+      try { return window.matchMedia('(pointer: coarse)').matches; } catch (e) { return false; }
+    }
+
+    function correctMegaPanelPosition(menu) {
+      const panel = menu.querySelector('.mega-panel');
+      if (!panel) return;
+      // reset inline overrides to measure natural position
+      panel.style.left = '';
+      panel.style.right = '';
+      panel.style.transform = '';
+      // force layout
+      const rect = panel.getBoundingClientRect();
+      const margin = 16;
+      const vw = window.innerWidth;
+      // panel wychodzi poza prawą krawędź -> przyklej do prawej z marginesem
+      if (rect.right > vw - margin) {
+        panel.style.left = 'auto';
+        panel.style.right = '0';
+        panel.style.transform = menu.classList.contains('is-open') ? 'translate(0, 0)' : 'translate(0, 0.5rem)';
+      } else if (rect.left < margin) {
+        // wychodzi poza lewą – skoryguj o overflow
+        const shift = margin - rect.left;
+        panel.style.left = `calc(50% + ${shift}px)`;
+      }
+    }
+
     function closeMenus(except) {
       menus.forEach((menu) => {
         if (menu === except) return;
         menu.classList.remove('is-open');
         const trigger = menu.querySelector('[data-mega-trigger]');
+        const panel = menu.querySelector('.mega-panel');
         if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        if (panel) { panel.style.left = ''; panel.style.right = ''; panel.style.transform = ''; }
       });
+    }
+
+    function openMenu(menu) {
+      closeMenus(menu);
+      menu.classList.add('is-open');
+      const trigger = menu.querySelector('[data-mega-trigger]');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      // korekta po otwarciu (panel musi być widoczny by zmierzyć)
+      requestAnimationFrame(() => correctMegaPanelPosition(menu));
     }
 
     menus.forEach((menu) => {
       const trigger = menu.querySelector('[data-mega-trigger]');
       if (!trigger) return;
+      let enterTimer = null;
+      let leaveTimer = null;
+
       trigger.addEventListener('click', () => {
         const open = !menu.classList.contains('is-open');
-        closeMenus(menu);
-        menu.classList.toggle('is-open', open);
-        trigger.setAttribute('aria-expanded', String(open));
+        if (open) {
+          openMenu(menu);
+        } else {
+          menu.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+          const panel = menu.querySelector('.mega-panel');
+          if (panel) { panel.style.left = ''; panel.style.right = ''; panel.style.transform = ''; }
+        }
       });
+
       menu.addEventListener('mouseenter', () => {
-        closeMenus(menu);
-        menu.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
+        if (isCoarsePointer()) return;
+        clearTimeout(leaveTimer);
+        clearTimeout(enterTimer);
+        enterTimer = setTimeout(() => { openMenu(menu); }, 150);
       });
       menu.addEventListener('mouseleave', () => {
-        menu.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
+        if (isCoarsePointer()) return;
+        clearTimeout(enterTimer);
+        clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(() => {
+          menu.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+          const panel = menu.querySelector('.mega-panel');
+          if (panel) { panel.style.left = ''; panel.style.right = ''; panel.style.transform = ''; }
+        }, 100);
       });
+      // obsługa klawiatury: focus wchodzi -> otwórz bez debounce
+      trigger.addEventListener('focus', () => {
+        if (isCoarsePointer()) return;
+        clearTimeout(enterTimer);
+        openMenu(menu);
+      });
+    });
+
+    // rekorekta przy resize/orientation
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        menus.forEach((m) => { if (m.classList.contains('is-open')) correctMegaPanelPosition(m); });
+      }, 100);
     });
 
     document.addEventListener('click', (event) => {

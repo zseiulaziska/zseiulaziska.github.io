@@ -267,19 +267,23 @@ summary:focus-visible {
 }
 
 .mega-panel {
-  @apply invisible absolute left-1/2 top-full z-50 w-[min(58rem,calc(100vw-3rem))] pt-3 opacity-0 transition duration-150;
+  @apply invisible absolute left-1/2 top-full z-50 w-[min(58rem,calc(100vw-2rem))] pt-3 opacity-0 transition duration-150;
   transform: translate(-50%, 0.5rem);
 }
 
 .mega-panel--right {
-  right: auto;
+  left: auto;
+  right: 0;
+  transform: translate(0, 0.5rem);
 }
 
-.mega-menu.is-open .mega-panel,
-.mega-menu:hover .mega-panel,
-.mega-menu:focus-within .mega-panel {
+.mega-menu.is-open .mega-panel {
   @apply visible opacity-100;
   transform: translate(-50%, 0);
+}
+
+.mega-menu.is-open .mega-panel--right {
+  transform: translate(0, 0);
 }
 
 .mega-panel__content {
