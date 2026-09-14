@@ -607,10 +607,16 @@ html.high-contrast .utility-bar__link {
   }
 }
 
-/* Mobile bottom bar */
+/* Mobile bottom bar — fix Firefox Mobile skakanie (dynamic viewport + backdrop-blur) */
 .mobile-bottom-bar {
   @apply fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-slate-200 bg-white/95 backdrop-blur dark:border-navy-700 dark:bg-navy-900/95 md:hidden;
   padding-bottom: env(safe-area-inset-bottom, 0);
+  /* stabilizacja warstwy kompozytora — Firefox przelicza fixed przy chowaniu paska adresu */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: layout style;
+  min-height: calc(3.5rem + env(safe-area-inset-bottom, 0));
 }
 
 .mobile-bottom-bar__link {
@@ -621,6 +627,18 @@ html.high-contrast .utility-bar__link {
   @apply h-5 w-5;
 }
 
+/* Firefox Mobile: backdrop-blur powoduje jank przy scrollu + inny visual viewport */
+@supports (-moz-appearance: none) {
+  .mobile-bottom-bar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgb(255 255 255 / 0.98) !important;
+  }
+  html.dark .mobile-bottom-bar {
+    background: rgb(10 22 40 / 0.98) !important;
+  }
+}
+
 html.high-contrast .mobile-bottom-bar {
   background: #000 !important;
   border-top: 2px solid #fff;
@@ -629,10 +647,10 @@ html.high-contrast .mobile-bottom-bar__link {
   color: #ffff00 !important;
 }
 
-/* Bottom padding for mobile to avoid bottom bar overlap */
-@media (max-width: 767px) {
+/* Bottom padding for mobile to avoid bottom bar overlap — wyrównane do md:hidden (768px) + safe-area */
+@media (max-width: 767.98px) {
   body {
-    padding-bottom: 3.5rem;
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0));
   }
 }
 
