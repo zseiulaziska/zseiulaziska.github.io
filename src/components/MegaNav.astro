@@ -435,7 +435,7 @@ const iconForHref = (href: string) => {
 
     function getFocusable(el) {
       if (!el) return [];
-      return Array.from(el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+      return Array.from(el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'));
     }
 
     function toggleMobileNav(forceOpen) {
@@ -446,8 +446,13 @@ const iconForHref = (href: string) => {
       document.body.style.overflow = isOpen ? 'hidden' : '';
 
       if (isOpen) {
-        const focusable = getFocusable(mobilePanel);
-        if (focusable.length) focusable[0].focus();
+        // nie fokusuj automatycznie pola wyszukiwania — otwiera klawiaturę ekranową i zasłania menu
+        const focusable = getFocusable(mobilePanel).filter(function (el) { return el.id !== 'mobile-search-input' && el.id !== 'search-input'; });
+        const target = focusable.length ? focusable[0] : mobilePanel;
+        if (target && typeof target.focus === 'function') {
+          // opóźnij focus by nie wywołać scrolla, nie przewijaj panelu
+          try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); }
+        }
       } else {
         if (mobileToggle) mobileToggle.focus();
       }
