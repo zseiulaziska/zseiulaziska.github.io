@@ -1,37 +1,51 @@
 {
   "rows": [
     {
-      "date": "31 października 2026",
-      "dayOfWeek": "Piątek",
-      "reason": "Dzień przed Wszystkich Świętych",
+      "date": "2 listopada 2026",
+      "dayOfWeek": "Poniedziałek",
+      "reason": "Zaduszki",
       "status": "Dzień dyrektorski",
       "statusVariant": "default"
     },
     {
-      "date": "2 stycznia 2027",
-      "dayOfWeek": "Sobota",
+      "date": "4 stycznia 2027",
+      "dayOfWeek": "Poniedziałek",
       "reason": "Dzień po Nowym Roku",
       "status": "Dzień dyrektorski",
       "statusVariant": "default"
     },
     {
-      "date": "Maj 2027 (3 dni)",
-      "dayOfWeek": "Wtorek – Czwartek",
-      "reason": "Pisemne egzaminy maturalne (język polski, matematyka, język angielski)",
+      "date": "5 stycznia 2027",
+      "dayOfWeek": "Wtorek",
+      "reason": "Egzamin zawodowy praktyczny",
+      "status": "Egzamin zawodowy",
+      "statusVariant": "vocational"
+    },
+    {
+      "date": "12 marca 2027",
+      "dayOfWeek": "Piątek",
+      "reason": "Dzień Otwarty ZSEiU",
+      "status": "Dzień otwarty",
+      "statusVariant": "default"
+    },
+    {
+      "date": "Maj 2027 (4 dni)",
+      "dayOfWeek": "Wtorek – Piątek",
+      "reason": "Egzamin maturalny",
       "status": "Egzamin maturalny",
       "statusVariant": "exam"
     },
     {
-      "date": "Maj 2027 (1 dzień)",
+      "date": "28 maja 2027",
       "dayOfWeek": "Piątek",
-      "reason": "Piątek po Bożym Ciele",
+      "reason": "Piątek po święcie Boże Ciało",
       "status": "Dzień dyrektorski",
       "statusVariant": "default"
     },
     {
-      "date": "Czerwiec 2027 (2 dni)",
-      "dayOfWeek": "Poniedziałek – Wtorek",
-      "reason": "Egzaminy zawodowe (część praktyczna)",
+      "date": "1 czerwca 2027",
+      "dayOfWeek": "Wtorek",
+      "reason": "Egzamin zawodowy praktyczny",
       "status": "Egzamin zawodowy",
       "statusVariant": "vocational"
     }
