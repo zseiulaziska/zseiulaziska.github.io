@@ -1,0 +1,177 @@
+---
+import komunikatData from '../data/komunikat.json';
+
+interface Komunikat {
+  active?: boolean;
+  type?: string;
+  title?: string;
+  message?: string;
+  details?: string;
+  url?: string;
+  expiresAt?: string;
+}
+
+const data = komunikatData as Komunikat;
+
+const typeStyles: Record<string, {
+  label: string;
+  wrapper: string;
+  icon: string;
+  link: string;
+  close: string;
+}> = {
+  info: {
+    label: 'Informacja',
+    wrapper: 'border-primary-200 bg-primary-50 text-primary-950 dark:border-primary-500/30 dark:bg-navy-800 dark:text-slate-100',
+    icon: 'bg-primary-600 text-white',
+    link: 'text-primary-700 hover:text-primary-900 dark:text-primary-300 dark:hover:text-primary-200',
+    close: 'text-primary-700 hover:bg-primary-100 dark:text-primary-300 dark:hover:bg-navy-700',
+  },
+  warning: {
+    label: 'Ostrzeżenie',
+    wrapper: 'border-accent-300 bg-accent-50 text-amber-950 dark:border-accent-500/40 dark:bg-navy-800 dark:text-accent-100',
+    icon: 'bg-accent-500 text-navy-950',
+    link: 'text-accent-700 hover:text-accent-800 dark:text-accent-300 dark:hover:text-accent-200',
+    close: 'text-accent-700 hover:bg-accent-100 dark:text-accent-300 dark:hover:bg-navy-700',
+  },
+  urgent: {
+    label: 'Ważne',
+    wrapper: 'border-red-300 bg-red-50 text-red-950 dark:border-red-500/40 dark:bg-navy-800 dark:text-red-100',
+    icon: 'bg-red-600 text-white',
+    link: 'text-red-700 hover:text-red-800 dark:text-red-300 dark:hover:text-red-200',
+    close: 'text-red-700 hover:bg-red-100 dark:text-red-300 dark:hover:bg-navy-700',
+  },
+};
+
+const style = typeStyles[data.type ?? 'info'] ?? typeStyles.info;
+const expiry = data.expiresAt ? new Date(data.expiresAt).getTime() : Number.NaN;
+const expired = Number.isFinite(expiry) ? expiry <= Date.now() : false;
+const hasContent = Boolean(data.title || data.message);
+const shouldRender = data.active === true && !expired && hasContent;
+
+const dismissalKey = `${data.title ?? ''}|${data.expiresAt ?? 'bez-terminu'}`;
+---
+
+{shouldRender && (
+  <aside
+    id="pilny-komunikat"
+    class:list={['komunikat border-b', style.wrapper]}
+    aria-label={`Ważny komunikat: ${data.title ?? 'komunikat szkoły'}`}
+    data-komunikat
+    data-komunikat-key={dismissalKey}
+    data-komunikat-expires={data.expiresAt ?? ''}
+  >
+    <div class="mx-auto flex max-w-7xl items-start gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <span
+        class:list={['komunikat__icon mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full', style.icon]}
+        aria-hidden="true"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z" />
+          <path d="M14 8a4 4 0 0 1 0 8" />
+          <path d="M17.5 5.5a8 8 0 0 1 0 13" />
+        </svg>
+      </span>
+
+      <div class="min-w-0 flex-1">
+        <p class="komunikat__type text-xs font-semibold uppercase tracking-widest opacity-80">{style.label}</p>
+
+        <div class="mt-0.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          {data.title && <p class="komunikat__title text-base font-bold">{data.title}</p>}
+          {data.message && <p class="komunikat__message text-sm">{data.message}</p>}
+        </div>
+
+        {data.details && <p class="komunikat__details mt-1 text-sm opacity-80">{data.details}</p>}
+
+        {data.url && (
+          <a href={data.url} class:list={['komunikat__link mt-2 inline-flex items-center gap-1 text-sm font-semibold underline underline-offset-4', style.link]}>
+            Czytaj więcej
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="m13 6 6 6-6 6" />
+            </svg>
+          </a>
+        )}
+      </div>
+
+      <button
+        type="button"
+        class:list={['komunikat__close -m-1 grid h-9 w-9 shrink-0 cursor-pointer place-items-center rounded-xl transition-colors', style.close]}
+        aria-label="Zamknij komunikat"
+        data-komunikat-close
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+  </aside>
+)}
+
+<script is:inline>
+  (function () {
+    var banner = document.querySelector('[data-komunikat]');
+    if (!banner) return;
+
+    var storageKey = 'komunikat-ukryty:' + (banner.getAttribute('data-komunikat-key') || '');
+    var expiresAt = Date.parse(banner.getAttribute('data-komunikat-expires') || '');
+    var isExpired = !isNaN(expiresAt) && expiresAt <= Date.now();
+    var isDismissed = false;
+
+    try {
+      isDismissed = localStorage.getItem(storageKey) === '1';
+    } catch (e) {}
+
+    if (isDismissed || isExpired) {
+      banner.hidden = true;
+      return;
+    }
+
+    if (!isNaN(expiresAt)) {
+      var remaining = expiresAt - Date.now();
+      if (remaining > 0 && remaining < 2147483647) {
+        window.setTimeout(function () {
+          banner.hidden = true;
+        }, remaining);
+      }
+    }
+
+    var closeButton = banner.querySelector('[data-komunikat-close]');
+    if (closeButton) {
+      closeButton.addEventListener('click', function () {
+        banner.hidden = true;
+        try {
+          localStorage.setItem(storageKey, '1');
+        } catch (e) {}
+      });
+    }
+  })();
+</script>
+
+<style>
+  .komunikat[hidden] {
+    display: none;
+  }
+
+  .komunikat__message {
+    font-weight: 500;
+  }
+
+  :global(html.high-contrast) .komunikat {
+    background: #000 !important;
+    color: #fff !important;
+    border-bottom: 2px solid #fff !important;
+  }
+
+  :global(html.high-contrast) .komunikat__icon {
+    background: #000 !important;
+    color: #ffff00 !important;
+    border: 1px solid #fff;
+  }
+
+  :global(html.high-contrast) .komunikat__link,
+  :global(html.high-contrast) .komunikat__close {
+    color: #ffff00 !important;
+  }
+</style>

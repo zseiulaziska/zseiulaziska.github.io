@@ -1,0 +1,114 @@
+{
+  "active": true,
+  "type": "info",
+  "title": "Wywiadówka dla rodziców",
+  "message": "Przypominamy o spotkaniu z rodzicami 4 listopada o godz. 17:00.",
+  "details": "Spotkanie odbędzie się w salach lekcyjnych zgodnie z przydziałem wychowawców.",
+  "url": "/kalendarz",
+  "expiresAt": "2026-11-04T23:59:00+01:00",
+  "_documentation": {
+    "komponent": "src/components/PilnyKomunikat.astro",
+    "plikDanych": "src/data/komunikat.json",
+    "gdzieSieWyswietla": "Strona główna (/), bezpośrednio pod nawigacją i nad sekcją hero.",
+    "opis": "Baner ważnego komunikatu dla uczniów i rodziców. Treść jest wczytywana z tego pliku, a wygląd i zachowanie obsługuje komponent PilnyKomunikat.astro.",
+    "zasadaDzialania": [
+      "Baner jest widoczny tylko wtedy, gdy active ma wartość true, a expiresAt jest puste lub data jeszcze nie minęła.",
+      "Po upływie expiresAt baner ukrywa się automatycznie, również gdy strona jest już otwarta.",
+      "Użytkownik może zamknąć baner przyciskiem ×. Decyzja jest zapamiętywana w localStorage osobno dla każdej pary title + expiresAt, więc nowy komunikat pojawi się ponownie.",
+      "Brak pola type lub nieznana wartość powoduje użycie wariantu info.",
+      "Pole url może wskazywać stronę wewnętrzną (np. /kalendarz) lub zewnętrzną (pełny adres https://...).",
+      "Przy statycznym wdrożeniu (GitHub Actions) zmiana tego pliku wymaga ponownego builda i wdrożenia."
+    ],
+    "pola": {
+      "active": {
+        "typ": "boolean",
+        "wymagane": true,
+        "opis": "Włącza (true) lub wyłącza (false) wyświetlanie komunikatu."
+      },
+      "type": {
+        "typ": "info | warning | urgent",
+        "wymagane": false,
+        "domyslnie": "info",
+        "opis": "Rodzaj komunikatu decydujący o kolorach oraz etykiecie nad tytułem."
+      },
+      "title": {
+        "typ": "string",
+        "wymagane": true,
+        "opis": "Krótki nagłówek komunikatu, np. nazwa wydarzenia. Wymagany przynajmniej title albo message."
+      },
+      "message": {
+        "typ": "string",
+        "wymagane": true,
+        "opis": "Główna treść komunikatu, np. data i godzina spotkania. Wymagany przynajmniej title albo message."
+      },
+      "details": {
+        "typ": "string",
+        "wymagane": false,
+        "opis": "Dodatkowe informacje wyświetlane mniejszą czcionką pod treścią główną."
+      },
+      "url": {
+        "typ": "string",
+        "wymagane": false,
+        "opis": "Adres pełnego komunikatu lub powiązanej strony. Jeśli jest podany, pod treścią pojawia się link „Czytaj więcej”."
+      },
+      "expiresAt": {
+        "typ": "string (ISO 8601)",
+        "wymagane": false,
+        "przyklad": "2026-11-04T23:59:00+01:00",
+        "opis": "Data i godzina automatycznego wygaśnięcia komunikatu wraz ze strefą czasową. Brak pola oznacza, że komunikat nie wygasa."
+      }
+    },
+    "typy": {
+      "info": {
+        "etykieta": "Informacja",
+        "kolory": "niebieskie tło i akcenty",
+        "zastosowanie": "Neutralne komunikaty bieżące: przypomnienia o terminach, informacje organizacyjne, zmiany w planie, sukcesy uczniów."
+      },
+      "warning": {
+        "etykieta": "Ostrzeżenie",
+        "kolory": "bursztynowe tło i akcenty",
+        "zastosowanie": "Sprawy wymagające uwagi: zbliżające się zebrania, terminy składania dokumentów, utrudnienia w funkcjonowaniu szkoły."
+      },
+      "urgent": {
+        "etykieta": "Ważne",
+        "kolory": "czerwone tło i akcenty",
+        "zastosowanie": "Sprawy pilne i krytyczne: odwołane zajęcia, zagrożenie bezpieczeństwa, nagłe zmiany organizacyjne wymagające natychmiastowej reakcji."
+      }
+    },
+    "przyklady": {
+      "info": {
+        "active": true,
+        "type": "info",
+        "title": "Zmiana planu lekcji",
+        "message": "Od poniedziałku obowiązuje nowy plan zajęć.",
+        "details": "Aktualny plan znajduje się w zakładce Plan lekcji.",
+        "url": "/plan-lekcji",
+        "expiresAt": "2026-11-10T23:59:00+01:00"
+      },
+      "warning": {
+        "active": true,
+        "type": "warning",
+        "title": "Wywiadówka dla rodziców",
+        "message": "Przypominamy o spotkaniu z rodzicami 4 listopada o godz. 17:00.",
+        "details": "Spotkanie odbędzie się w salach lekcyjnych zgodnie z przydziałem wychowawców.",
+        "url": "/kalendarz",
+        "expiresAt": "2026-11-04T23:59:00+01:00"
+      },
+      "urgent": {
+        "active": true,
+        "type": "urgent",
+        "title": "Odwołane zajęcia",
+        "message": "Zajęcia w dniu 29 października są odwołane.",
+        "details": "Informacje o sposobie odrobienia zajęć przekażą wychowawcy.",
+        "url": "/blog",
+        "expiresAt": "2026-10-29T23:59:00+01:00"
+      },
+      "wylaczony": {
+        "active": false,
+        "type": "info",
+        "title": "Komunikat nieaktywny",
+        "message": "Ten wpis nie będzie wyświetlany, dopóki active nie zostanie ustawione na true."
+      }
+    }
+  }
+}
