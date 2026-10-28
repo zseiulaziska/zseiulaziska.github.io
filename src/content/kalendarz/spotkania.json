@@ -1,44 +1,71 @@
 {
   "meetings": [
     {
-      "date": "15 września 2026",
+      "date": "16 września 2026",
       "time": "Godz. 17:00",
       "timeVariant": "blue",
-      "title": "Zebranie organizacyjne",
-      "description": "Pierwsze zebranie z rodzicami, wybór Trójek Klasowych oraz przedstawienie wymagań edukacyjnych.",
+      "title": "Zebranie informacyjne dla rodziców klas pierwszych",
+      "description": "Zebranie informacyjne dla rodziców klas pierwszych z Dyrekcją Szkoły i wychowawcami.",
       "colSpan": false
     },
     {
-      "date": "17 listopada 2026",
+      "date": "16 września 2026",
       "time": "Godz. 17:00",
       "timeVariant": "blue",
-      "title": "Wywiadówka i konsultacje",
-      "description": "Informacja o ocenach cząstkowych i frekwencji oraz konsultacje indywidualne z nauczycielami.",
+      "title": "Zebranie informacyjne dla rodziców klas starszych",
+      "description": "Zebranie informacyjne dla rodziców klas starszych z wychowawcami.",
       "colSpan": false
     },
     {
-      "date": "19 stycznia 2027",
-      "time": "Godz. 17:00",
-      "timeVariant": "blue",
-      "title": "Wywiadówka półroczna",
-      "description": "Podsumowanie wyników klasyfikacji za I półrocze oraz omówienie sukcesów i frekwencji uczniów.",
-      "colSpan": false
-    },
-    {
-      "date": "13 kwietnia 2027",
+      "date": "23 września 2026",
       "time": "Godz. 17:00",
       "timeVariant": "purple",
-      "title": "Zebranie klas maturalnych",
-      "description": "Przekazanie informacji o ocenach przewidywanych dla absolwentów oraz procedurach maturalnych.",
+      "title": "Zebranie dla rodziców klas maturalnych",
+      "description": "Zebranie dla rodziców klas maturalnych z Dyrekcją Szkoły i wychowawcami - omówienie zasad przeprowadzania egzaminu maturalnego i egzaminu potwierdzające kwalifikacje zawodowe.",
       "colSpan": false
     },
     {
-      "date": "18 maja 2027",
+      "date": "4 listopada 2026",
       "time": "Godz. 17:00",
       "timeVariant": "blue",
-      "title": "Konsultacje końcoworoczne (Klasy I–IV)",
-      "description": "Informacja o przewidywanych ocenach rocznych i ocenach z zachowania przed końcową klasyfikacją.",
+      "title": "Wywiadówka dla wszystkich klas",
+      "description": "Informacja o wynikach w nauce, frekwencji i zachowaniu, pedagogizacja.",
+      "colSpan": false
+    },
+    {
+      "date": "14 stycznia 2027",
+      "time": "Godz. 17:00",
+      "timeVariant": "blue",
+      "title": "Wywiadówka dla wszystkich klas (oprócz maturalnych)",
+      "description": "Informacja o ocenach klasyfikacyjnych na I semestr i podsumowanie semestru.",
+      "colSpan": false
+    },
+    {
+      "date": "14 kwietnia 2027",
+      "time": "Godz. 17:00",
+      "timeVariant": "purple",
+      "title": "Zebranie rodziców klas maturalnych",
+      "description": "Informacja o przewidywanych ocenach końcoworocznych.",
+      "colSpan": false
+    },
+    {
+      "date": "14 kwietnia 2027",
+      "time": "Godz. 17:00",
+      "timeVariant": "blue",
+      "title": "Zebranie rodziców pozostałych klas",
+      "description": "Informacja o wynikach w nauce, frekwencji i zachowaniu, pedagogizacja.",
+      "colSpan": false
+    },
+    {
+      "date": "2 czerwca 2027",
+      "time": "Godz. 17:00",
+      "timeVariant": "blue",
+      "title": "Zebranie rodziców wszystkich klas (bez maturalnych)",
+      "description": "Informacja o przewidywanych ocenach końcoworocznych.",
       "colSpan": false
     }
-  ]
+  ],
+  "comments": {
+    "colors": "Możliwe oznaczenia kolorów (timeVariant): blue - zebrania ogólne/wywiadówki dla wszystkich klas, purple - zebrania dotyczące klas maturalnych/specjalne."
+  }
 }
