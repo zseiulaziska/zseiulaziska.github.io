@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/postbuild.cjs",
     "preview": "npm run build && wrangler dev",
+    "preview:node": "node scripts/preview-node.mjs",
     "astro": "astro",
     "generate-types": "wrangler types",
     "deploy": "npm run build && wrangler deploy"

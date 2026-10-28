@@ -12,6 +12,12 @@ import cloudflare from '@astrojs/cloudflare';
 
 const keystaticEnabled = !process.env.SKIP_KEYSTATIC;
 const staticBuild = !!process.env.GITHUB_ACTIONS;
+// Keystatic w trybie lokalnym potrzebuje dostępu do systemu plików, którego nie zapewnia
+// środowisko workerd używane przez adapter Cloudflare podczas `astro dev`.
+const isDev = process.env.NODE_ENV === 'development';
+// Podgląd builda z Keystatic w trybie lokalnym musi działać na Node (workerd nie ma dostępu do plików).
+const useNodeRuntime = isDev || process.env.PREVIEW_NODE === '1';
+const previewNode = process.env.PREVIEW_NODE === '1';
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,7 +25,9 @@ export default defineConfig({
     redirects: {
         '/kierunki-ksztalcenia': '/kierunki',
     },
-    adapter: staticBuild ? undefined : cloudflare(),
+    adapter: staticBuild ? undefined : useNodeRuntime ? node({ mode: 'standalone' }) : cloudflare(),
+    // Osobny katalog dla podglądu Node, aby nie kolidować z buildem/preview Cloudflare.
+    ...(previewNode && { outDir: './dist-node' }),
     integrations: [
         mdx(),
         sitemap(),
@@ -28,9 +36,6 @@ export default defineConfig({
     ],
     vite: {
         plugins: [tailwindcss()],
-        ssr: {
-            noExternal: ['react', 'react-dom'],
-        },
     },
     fonts: [
         {

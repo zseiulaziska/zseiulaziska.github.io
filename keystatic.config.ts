@@ -40,6 +40,7 @@ export default config({
 						{ label: 'WAŻNE', value: 'WAŻNE' },
 						{ label: 'REKRUTACJA', value: 'REKRUTACJA' },
 						{ label: 'PILNE', value: 'PILNE' },
+						{ label: 'SUKCES', value: 'SUKCES' },
 					],
 					defaultValue: '',
 				}),
