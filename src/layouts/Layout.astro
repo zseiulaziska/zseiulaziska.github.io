@@ -21,6 +21,12 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <BaseHead title={title} description={description} />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)" />
+    <noscript>
+      {/* Bez JS obserwator nigdy nie doda klasy .visible — treść musi być widoczna. */}
+      <style>
+        .reveal { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
     <slot name="head" />
     <script is:inline>
       (function() {
@@ -83,27 +89,42 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <Footer />
     <script>
       (function() {
-        if ('IntersectionObserver' in window) {
-          var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.15 });
+        function showAll() {
+          document.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('visible');
+          });
+        }
 
-          document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.reveal').forEach(function (el) {
-              observer.observe(el);
-            });
+        if (!('IntersectionObserver' in window)) {
+          showAll();
+          return;
+        }
+
+        // threshold 0 + ujemny rootMargin: sekcja jest odsłaniana, gdy tylko
+        // wejdzie w kadr. Przy threshold > 0 sekcje wyższe niż viewport
+        // (np. na małych telefonach) nigdy nie osiągały progu i zostawały
+        // na stałe ukryte (opacity: 0) — stąd wrażenie, że obrazki się nie ładują.
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
           });
+        }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+
+        function setup() {
+          var items = document.querySelectorAll('.reveal:not(.visible)');
+          if (!items.length) return;
+          items.forEach(function (el) {
+            observer.observe(el);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setup);
         } else {
-          document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.reveal').forEach(function (el) {
-              el.classList.add('visible');
-            });
-          });
+          setup();
         }
       })();
     </script>
