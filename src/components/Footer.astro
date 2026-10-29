@@ -1,4 +1,5 @@
 ---
+import { PLAN_LEKCJI_URL, PLAN_LO_URL } from '../consts';
 ---
 
 <footer aria-label="Nawigacja w stopce" class="bg-navy-950 text-slate-300 border-t border-navy-900 relative overflow-hidden font-sans">
@@ -159,12 +160,12 @@
             </a>
           </li>
           <li>
-            <a href="/plan-lekcji" class="hover:text-white transition-colors duration-200 block">
+            <a href={PLAN_LEKCJI_URL} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200 block">
               Plan lekcji
             </a>
           </li>
           <li>
-            <a href="/plan-zajec-lo" class="hover:text-white transition-colors duration-200 block">
+            <a href={PLAN_LO_URL} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200 block">
               Plan lekcji LO
             </a>
           </li>

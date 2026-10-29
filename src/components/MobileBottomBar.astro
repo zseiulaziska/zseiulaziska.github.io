@@ -1,3 +1,7 @@
+---
+import { PLAN_LEKCJI_URL, PLAN_LO_URL } from '../consts';
+---
+
 <div class="mobile-bottom-bar">
   <a href="https://uonetplus.vulcan.net.pl/powiatmikolowski" target="_blank" rel="noopener noreferrer" class="mobile-bottom-bar__link" aria-label="E-Dziennik">
     <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7,7 +11,7 @@
     </svg>
     <span>E-Dziennik</span>
   </a>
-  <a href="http://zsplaziska.nazwa.pl/zseiu/images/PlanLekcji/" class="mobile-bottom-bar__link" aria-label="Plan lekcji">
+  <a href={PLAN_LEKCJI_URL} target="_blank" rel="noopener noreferrer" class="mobile-bottom-bar__link" aria-label="Plan lekcji">
     <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="4" width="18" height="18" rx="2"/>
       <path d="M16 2v4M8 2v4M3 10h18"/>
@@ -15,7 +19,7 @@
     </svg>
     <span>Plan</span>
   </a>
-  <a href="https://docs.google.com/spreadsheets/d/1ubkH5As0d0tvuR6caCA4J8M3W8oSdRaGB_0G940rLwI/edit?usp=sharing" class="mobile-bottom-bar__link" aria-label="Plan LO dla dorosłych">
+  <a href={PLAN_LO_URL} target="_blank" rel="noopener noreferrer" class="mobile-bottom-bar__link" aria-label="Plan LO dla dorosłych">
     <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="4" width="18" height="18" rx="2"/>
       <path d="M16 2v4M8 2v4M3 10h18"/>

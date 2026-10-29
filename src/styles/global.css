@@ -181,7 +181,9 @@ summary:focus-visible {
 }
 
 .mobile-nav {
-  @apply relative lg:hidden;
+  /* drawer nad paskiem dolnym (z-50) i headerem (z-40) — inaczej MobileBottomBar
+     zasłania koniec listy linków i nie da się dojechać scrollem do ostatnich pozycji */
+  @apply relative z-[60] lg:hidden;
 }
 
 .mobile-nav__backdrop {
@@ -197,8 +199,15 @@ summary:focus-visible {
   pointer-events: auto;
 }
 
+/* Drawer leży poza <header> (backdrop-filter headera psuł position: fixed),
+   więc pozycjonuje się względem viewportu. Wysokość wynika z top + bottom,
+   a nie z 100vh — na telefonach 100vh bywa większe niż widoczny ekran i końcówka
+   listy lądowała poza zasięgiem scrolla. */
 .mobile-nav__panel {
-  @apply fixed inset-x-3 top-18 z-50 max-h-[calc(100vh-5.25rem)] overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-navy-600 dark:bg-navy-850 sm:inset-x-6;
+  @apply fixed inset-x-3 z-50 overflow-y-auto overscroll-contain rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-navy-600 dark:bg-navy-850 sm:inset-x-6;
+  top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;

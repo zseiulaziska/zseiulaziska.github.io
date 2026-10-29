@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { PLAN_LO_URL } from '../consts';
 ---
 
 <Layout title="LO dla Dorosłych – ZSEiU Łaziska Górne" description="Liceum Ogólnokształcące dla Dorosłych w ZSEiU Łaziska Górne. Nauka w systemie zaocznym, zajęcia w weekendy, bezpłatna edukacja dla dorosłych.">
@@ -97,7 +98,7 @@ import Layout from '../layouts/Layout.astro';
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
         </div>
         <h3 class="font-bold text-slate-900 dark:text-white wrap-break-word">Plan zajęć</h3>
-        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Aktualny plan dostępny w zakładce <a href="/plan-zajec-lo" class="text-primary-600 dark:text-primary-400 hover:underline">Plan zajęć LO</a></p>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 wrap-break-word">Aktualny plan dostępny jest w arkuszu <a href={PLAN_LO_URL} target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline">Plan zajęć LO</a></p>
       </div>
     </div>
 

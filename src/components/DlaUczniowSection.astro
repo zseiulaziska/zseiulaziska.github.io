@@ -1,4 +1,5 @@
 ---
+import { PLAN_LEKCJI_URL } from '../consts';
 ---
 
 <section class="py-20 lg:py-28 bg-navy-950">
@@ -29,7 +30,9 @@
 
         <div class="flex flex-wrap gap-3">
           <a
-            href="/plan-lekcji"
+            href={PLAN_LEKCJI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-bold text-sm transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
           >
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>

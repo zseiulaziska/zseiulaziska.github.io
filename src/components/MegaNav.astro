@@ -1,4 +1,6 @@
 ---
+import { PLAN_LEKCJI_URL, PLAN_LO_URL } from '../consts';
+
 const sections = [
   {
     title: 'O szkole',
@@ -61,7 +63,7 @@ const sections = [
           ['Dla uczniów', '/dla-uczniow', 'Informacje i zasoby dla uczniów'],
           ['Dla rodziców', '/dla-rodzicow', 'Komunikaty dla opiekunów'],
           ['Praktyki zawodowe', '/praktyki-zawodowe', 'Informacje i dokumenty praktyk'],
-          ['Plan lekcji', '/plan-lekcji', 'Aktualny plan zajęć'],
+          ['Plan lekcji', PLAN_LEKCJI_URL, 'Aktualny plan zajęć'],
           ['Kalendarz', '/kalendarz', 'Rok szkolny i ważne terminy'],
         ],
       },
@@ -78,7 +80,7 @@ const sections = [
         title: 'Liceum dla Dorosłych',
         links: [
           ['LO dla Dorosłych', '/lo-dla-doroslych', 'Nauka w systemie zaocznym'],
-          ['Plan lekcji', '/plan-zajec-lo', 'Aktualny plan zajęć'],
+          ['Plan lekcji', PLAN_LO_URL, 'Aktualny plan zajęć'],
         ],
       },
     ],
@@ -104,7 +106,7 @@ const sections = [
 ];
 
 const mobileSections = [
-  { title: 'Najważniejsze', links: [['Strona główna', '/'], ['Plan lekcji', '/plan-lekcji'], ['Plan LO dla dorosłych', '/plan-zajec-lo'], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']] },
+  { title: 'Najważniejsze', links: [['Strona główna', '/'], ['Plan lekcji', PLAN_LEKCJI_URL], ['Plan LO dla dorosłych', PLAN_LO_URL], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']] },
   ...sections.map((section) => ({
     title: section.title,
     links: section.groups.flatMap((group) => group.links.map(([label, href]) => [label, href])),
@@ -121,7 +123,7 @@ const mobileSections = [
 
 // Struktura akordeonu mobilnego — zachowuje hierarchię sections → groups (4 sekcje + Najważniejsze/Linki)
 const mobileAccordionData = [
-  { title: 'Najważniejsze', desc: 'Szybki dostęp', links: [['Strona główna', '/'], ['Plan lekcji', '/plan-lekcji'], ['Plan LO dla dorosłych', '/plan-zajec-lo'], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']], isFlat: true },
+  { title: 'Najważniejsze', desc: 'Szybki dostęp', links: [['Strona główna', '/'], ['Plan lekcji', PLAN_LEKCJI_URL], ['Plan LO dla dorosłych', PLAN_LO_URL], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']], isFlat: true },
   ...sections.map((section) => ({ title: section.title, desc: section.desc, groups: section.groups, highlight: section.highlight, isFlat: false })),
   { title: 'Linki zewnętrzne', desc: 'Zewnętrzne serwisy', links: [['BIP', 'https://zseiu.ssdip.bip.gov.pl/'], ['Facebook', 'https://www.facebook.com/zseiu'], ['Instagram', 'https://www.instagram.com/zseiu_laziska/']], isFlat: true },
 ];
@@ -129,6 +131,7 @@ const mobileAccordionData = [
 const isExternal = (href: string) => href.startsWith('http');
 
 const linkIcons = {
+  [PLAN_LEKCJI_URL]: 'calendar',
   '/informacje': 'info',
   '/historia': 'clock',
   '/blog': 'news',
@@ -138,6 +141,7 @@ const linkIcons = {
   '/rekrutacja': 'check',
   '/kierunki': 'graduation',
 
+  [PLAN_LO_URL]: 'calendar',
   '/lo-dla-doroslych': 'book',
   '/klasy-mundurowe': 'shield',
   '/klasa-policyjna': 'badge',
@@ -242,61 +246,12 @@ const iconForHref = (href: string) => {
       </a>
     </div>
 
-    <div id="mobile-nav" class="mobile-nav">
-      <button class="site-icon-button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-nav__panel">
+    <div class="lg:hidden">
+      <button id="mobile-nav-toggle" class="site-icon-button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-nav__panel">
         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
         </svg>
       </button>
-      <div class="mobile-nav__backdrop" aria-hidden="true"></div>
-      <div id="mobile-nav__panel" class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Nawigacja">
-        <div class="mobile-search">
-          <label for="mobile-search-input" class="sr-only">Szukaj</label>
-          <input id="mobile-search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
-          <div id="mobile-search-results" class="search-popover mt-2 hidden overflow-hidden rounded-md border border-slate-100 dark:border-navy-700"></div>
-        </div>
-        <nav class="mobile-accordion" aria-label="Nawigacja mobilna">
-          {mobileAccordionData.map((section, idx) => (
-            <details class="mobile-accordion__item" open={idx === 0}>
-              <summary class="mobile-accordion__summary">
-                <span>
-                  <span class="block text-sm font-semibold text-slate-900 dark:text-white">{section.title}</span>
-                  {section.desc && <span class="block text-xs font-normal text-slate-500 dark:text-slate-400">{section.desc}</span>}
-                </span>
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </summary>
-              <div class="mobile-accordion__content">
-                {section.isFlat ? (
-                  <ul class="space-y-1">
-                    {section.links.map(([label, href]) => (
-                      <li><a class="nav-link" href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>{label}</a></li>
-                    ))}
-                  </ul>
-                ) : (
-                  <>
-                    {section.highlight && (
-                      <a class="mobile-highlight" href={section.highlight[1]}>
-                        <strong>{section.highlight[0]}</strong>
-                        <small>{section.highlight[2]}</small>
-                      </a>
-                    )}
-                    {(section.groups as any[]).map((group) => (
-                      <section class="mobile-accordion__group">
-                        <h3>{group.title}</h3>
-                        <ul class="space-y-1">
-                          {group.links.map(([label, href, desc]) => (
-                            <li><a class="nav-link" href={href}><span class="block font-medium">{label}</span>{desc && <span class="block text-xs text-slate-500 dark:text-slate-400">{desc}</span>}</a></li>
-                          ))}
-                        </ul>
-                      </section>
-                    ))}
-                  </>
-                )}
-              </div>
-            </details>
-          ))}
-        </nav>
-      </div>
     </div>
   </div>
 
@@ -330,7 +285,7 @@ const iconForHref = (href: string) => {
                     <ul>
                       {group.links.map(([label, href, desc]) => (
                         <li>
-                          <a class="mega-item" href={href} role="menuitem">
+                          <a class="mega-item" href={href} role="menuitem" target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>
                             <span aria-hidden="true">
                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconForHref(href)} />
                             </span>
@@ -355,6 +310,65 @@ const iconForHref = (href: string) => {
     </div>
   </nav>
 </header>
+
+{/*
+  Panel nawigacji mobilnej celowo leży POZA <header>.
+  Header ma backdrop-filter (backdrop-blur), a to tworzy containing block dla
+  elementów position: fixed. Panel pozycjonował się wtedy względem headera,
+  a nie viewportu — jego dolna część (i koniec listy linków) lądowała poza
+  ekranem, przez co nie dało się doscrollować menu do końca.
+*/}
+<div id="mobile-nav" class="mobile-nav">
+  <div class="mobile-nav__backdrop" aria-hidden="true"></div>
+  <div id="mobile-nav__panel" class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Nawigacja">
+    <div class="mobile-search">
+      <label for="mobile-search-input" class="sr-only">Szukaj</label>
+      <input id="mobile-search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
+      <div id="mobile-search-results" class="search-popover mt-2 hidden overflow-hidden rounded-md border border-slate-100 dark:border-navy-700"></div>
+    </div>
+    <nav class="mobile-accordion" aria-label="Nawigacja mobilna">
+      {mobileAccordionData.map((section, idx) => (
+        <details class="mobile-accordion__item" open={idx === 0}>
+          <summary class="mobile-accordion__summary">
+            <span>
+              <span class="block text-sm font-semibold text-slate-900 dark:text-white">{section.title}</span>
+              {section.desc && <span class="block text-xs font-normal text-slate-500 dark:text-slate-400">{section.desc}</span>}
+            </span>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="mobile-accordion__content">
+            {section.isFlat ? (
+              <ul class="space-y-1">
+                {section.links.map(([label, href]) => (
+                  <li><a class="nav-link" href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>{label}</a></li>
+                ))}
+              </ul>
+            ) : (
+              <>
+                {section.highlight && (
+                  <a class="mobile-highlight" href={section.highlight[1]}>
+                    <strong>{section.highlight[0]}</strong>
+                    <small>{section.highlight[2]}</small>
+                  </a>
+                )}
+                {(section.groups as any[]).map((group) => (
+                  <section class="mobile-accordion__group">
+                    <h3>{group.title}</h3>
+                    <ul class="space-y-1">
+                      {group.links.map(([label, href, desc]) => (
+                        <li><a class="nav-link" href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}><span class="block font-medium">{label}</span>{desc && <span class="block text-xs text-slate-500 dark:text-slate-400">{desc}</span>}</a></li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </>
+            )}
+          </div>
+        </details>
+      ))}
+    </nav>
+  </div>
+</div>
 
 <script is:inline>
   (function () {
@@ -429,23 +443,40 @@ const iconForHref = (href: string) => {
     setupSearch(document.getElementById('mobile-search-input'), document.getElementById('mobile-search-results'));
 
     const mobileNav = document.getElementById('mobile-nav');
-    const mobileToggle = mobileNav ? mobileNav.querySelector('button') : null;
+    const mobileToggle = document.getElementById('mobile-nav-toggle');
     const mobilePanel = document.getElementById('mobile-nav__panel');
     const mobileBackdrop = mobileNav ? mobileNav.querySelector('.mobile-nav__backdrop') : null;
+    const siteHeader = document.querySelector('.site-header');
 
     function getFocusable(el) {
       if (!el) return [];
       return Array.from(el.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'));
     }
 
+    // Panel startuje pod headerem, a kończy się nad dolną krawędzią viewportu.
+    // Dzięki temu maks. wysokość liczy się od realnego miejsca, w którym panel
+    // się zaczyna — niezależnie od paska przewijania strony i 100vh na mobile.
+    function fitMobilePanel() {
+      if (!mobilePanel) return;
+      const vh = window.innerHeight;
+      const headerBottom = siteHeader ? siteHeader.getBoundingClientRect().bottom : 0;
+      const top = Math.max(8, Math.min(headerBottom + 8, vh - 200));
+      mobilePanel.style.top = top + 'px';
+    }
+
     function toggleMobileNav(forceOpen) {
       if (!mobileNav) return;
       const isOpen = forceOpen !== undefined ? forceOpen : !mobileNav.classList.contains('is-open');
       mobileNav.classList.toggle('is-open', isOpen);
-      if (mobileToggle) mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      if (mobileToggle) {
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+        mobileToggle.setAttribute('aria-label', isOpen ? 'Zamknij menu' : 'Otwórz menu');
+      }
       document.body.style.overflow = isOpen ? 'hidden' : '';
 
       if (isOpen) {
+        fitMobilePanel();
+        if (mobilePanel) mobilePanel.scrollTop = 0;
         // nie fokusuj automatycznie pola wyszukiwania — otwiera klawiaturę ekranową i zasłania menu
         const focusable = getFocusable(mobilePanel).filter(function (el) { return el.id !== 'mobile-search-input' && el.id !== 'search-input'; });
         const target = focusable.length ? focusable[0] : mobilePanel;
@@ -490,6 +521,14 @@ const iconForHref = (href: string) => {
     if (mobileBackdrop) {
       mobileBackdrop.addEventListener('click', () => { toggleMobileNav(false); });
     }
+
+    // panel musi zmieścić się w nowym viewporcie (obrót ekranu, pasek adresu)
+    window.addEventListener('resize', () => {
+      if (mobileNav && mobileNav.classList.contains('is-open')) fitMobilePanel();
+    });
+    window.addEventListener('orientationchange', () => {
+      if (mobileNav && mobileNav.classList.contains('is-open')) setTimeout(fitMobilePanel, 150);
+    });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) {
