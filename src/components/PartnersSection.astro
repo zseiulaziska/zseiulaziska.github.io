@@ -1,11 +1,11 @@
 ---
 const partners = [
-  { name: 'Polska Grupa Górnicza', logo: '/images/partnerzy/logo_pgg.png', width: 621, height: 256, type: 'Pracodawca' },
-  { name: 'TAURON', logo: '/images/partnerzy/tauron.webp', width: 601, height: 152, type: 'Pracodawca' },
+  { name: 'Polska Grupa Górnicza', logo: '/images/partnerzy/logo_pgg-320.png', width: 320, height: 132, type: 'Pracodawca' },
+  { name: 'TAURON', logo: '/images/partnerzy/tauron-320.webp', width: 320, height: 81, type: 'Pracodawca' },
   { name: 'bekuplast S.A.', logo: '/images/partnerzy/bekuplast.svg', width: 183, height: 48, type: 'Pracodawca' },
-  { name: 'Wojskowe Centrum Rekrutacji', logo: '/images/partnerzy/wcr.jpg', width: 1080, height: 1080, type: 'Instytucja' },
-  { name: 'Policja Śląska', logo: '/images/partnerzy/Policja_Slaska.png', width: 250, height: 249, type: 'Instytucja' },
-  { name: '13 Śląska Brygada Obrony Terytorialnej', logo: '/images/partnerzy/odz13_.png', width: 3096, height: 2995, type: 'Instytucja' },
+  { name: 'Wojskowe Centrum Rekrutacji', logo: '/images/partnerzy/wcr-160.jpg', width: 160, height: 160, type: 'Instytucja' },
+  { name: 'Policja Śląska', logo: '/images/partnerzy/Policja_Slaska-160.png', width: 160, height: 159, type: 'Instytucja' },
+  { name: '13 Śląska Brygada Obrony Terytorialnej', logo: '/images/partnerzy/odz13_-160.png', width: 160, height: 155, type: 'Instytucja' },
 ];
 ---
 
@@ -36,7 +36,7 @@ const partners = [
                 alt={partner.name}
                 width={partner.width}
                 height={partner.height}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 class="max-h-16 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:grayscale-0"
               />
@@ -51,7 +51,7 @@ const partners = [
                 alt=""
                 width={partner.width}
                 height={partner.height}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 class="max-h-16 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:grayscale-0"
               />

@@ -17,7 +17,7 @@ const posts = await getCollection('blog');
 const sortedPosts = posts.filter(p => !p.data.draft).sort((a,b) => (b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0) - (a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0));
 ---
 
-<Layout title="ZSEiU Łaziska Górne" description="Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych. Nowoczesna szkoła zawodowa z 80-letnią tradycją, kształcąca w kierunkach informatycznych, elektrycznych i logistycznych.">
+<Layout title="Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych" description="Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych. Nowoczesna szkoła zawodowa z 80-letnią tradycją, kształcąca w kierunkach informatycznych, elektrycznych i logistycznych.">
   <div slot="hero">
     <PilnyKomunikat />
     <Hero />

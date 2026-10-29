@@ -4,21 +4,22 @@ interface GalleryItem {
   src: string;
   span: string;
   alt: string;
+  poster?: string;
 }
 
 const items: GalleryItem[] = [
-  { type: 'video', src: '/wideo/video3.mp4', span: 'col-span-2 row-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'video', src: '/wideo/video4.mp4', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'video', src: '/wideo/video5.mp4', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'photo', src: '/wideo/photo1.jpg', span: '', alt: 'Uczniowie ZSEiU' },
-  { type: 'photo', src: '/wideo/photo4.jpg', span: '', alt: 'Uczniowie ZSEiU' },
-  { type: 'photo', src: '/wideo/photo5.jpg', span: '', alt: 'Uczniowie ZSEiU' },
-  { type: 'photo', src: '/wideo/photo7.jpg', span: '', alt: 'Uczniowie ZSEiU' },
-  { type: 'video', src: '/wideo/video.mp4', span: '', alt: 'Wideo z życia szkoły' },
-  { type: 'photo', src: '/wideo/photo_DX9bwrsMJYv.jpg', span: '', alt: 'Uczniowie ZSEiU' },
-  { type: 'video', src: '/wideo/video2.mp4', span: 'col-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'photo', src: '/wideo/photo_DYKR3bkCOFB.jpg', span: '', alt: 'Uczniowie ZSEiU' },
-  { type: 'photo', src: '/wideo/photo_DWL8SlIiJLr.jpg', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'video', src: '/wideo/video3.mp4', poster: '/wideo/video3-poster.webp', span: 'col-span-2 row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'video', src: '/wideo/video4.mp4', poster: '/wideo/video4-poster.webp', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'video', src: '/wideo/video5.mp4', poster: '/wideo/video5-poster.webp', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: '/wideo/photo1-900.webp', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo4-900.webp', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo5-900.webp', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo7-900.webp', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'video', src: '/wideo/video.mp4', poster: '/wideo/video-poster.webp', span: '', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: '/wideo/photo_DX9bwrsMJYv-900.webp', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'video', src: '/wideo/video2.mp4', poster: '/wideo/video2-poster.webp', span: 'col-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: '/wideo/photo_DYKR3bkCOFB-900.webp', span: '', alt: 'Uczniowie ZSEiU' },
+  { type: 'photo', src: '/wideo/photo_DWL8SlIiJLr-900.webp', span: '', alt: 'Uczniowie ZSEiU' },
 ];
 ---
 
@@ -27,11 +28,11 @@ const items: GalleryItem[] = [
     {
       items.map((item) =>
         item.type === 'photo' ? (
-          <div class={`group relative overflow-hidden ${item.span}`}>
+          <div class={`group relative overflow-hidden bg-slate-200 dark:bg-navy-800 ${item.span}`}>
             <img
               src={item.src}
               alt={item.alt}
-              loading="lazy"
+              loading="eager"
               decoding="async"
               class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
             />
@@ -41,10 +42,11 @@ const items: GalleryItem[] = [
             <video
               class="h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-100"
               src={item.src}
+              poster={item.poster}
               muted
               loop
               playsinline
-              preload="metadata"
+              preload="none"
               data-gallery-video
               aria-label={item.alt}
             ></video>

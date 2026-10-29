@@ -203,12 +203,15 @@ const iconForHref = (href: string) => {
 
 <header class="site-header">
   <div class="site-header__top">
-    <a href="/" class="site-brand" aria-label="ZSEiU - strona główna">
-      <img src="/images/logo-szkoly-light.png" alt="" class="h-12 w-auto dark:hidden" />
-      <img src="/images/logo-szkoly-dark.png" alt="" class="hidden h-12 w-auto dark:block" />
+    <a href="/" class="site-brand" aria-label="Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych - strona główna">
+      <img src="/images/logo-szkoly-light.png" alt="" class="h-12 w-auto dark:hidden shrink-0" />
+      <img src="/images/logo-szkoly-dark.png" alt="" class="hidden h-12 w-auto dark:block shrink-0" />
       <span class="min-w-0">
-        <span class="block truncate text-lg font-bold tracking-tight sm:text-xl">ZSEiU</span>
-        <span class="hidden truncate text-xs text-slate-500 dark:text-slate-400 sm:block">Łaziska Górne</span>
+        <span class="block truncate text-lg font-bold tracking-tight sm:hidden">ZSEiU</span>
+        <span class="hidden min-w-0 flex-col sm:flex">
+          <span class="block truncate text-sm font-bold tracking-tight lg:text-base">Zespół Szkół Energetycznych i Usługowych</span>
+          <span class="block truncate text-xs text-slate-500 dark:text-slate-400">w Łaziskach Górnych</span>
+        </span>
       </span>
     </a>
 
@@ -216,8 +219,6 @@ const iconForHref = (href: string) => {
       <img src="/images/Herb_Polski.svg" alt="Godło Polski" />
       <img src="/images/Coat_of_arms_of_Upper_Silesia.svg" alt="Herb Śląska" />
       <img src="/images/Herb_powiatu.svg" alt="Herb powiatu mikołowskiego" />
-
-    
     </div>
 
     <div class="site-search">
