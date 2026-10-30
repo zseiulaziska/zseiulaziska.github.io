@@ -109,7 +109,7 @@ function buildCrumbs(): Crumb[] {
   const crumbs: Crumb[] = [{ href: '/', label: 'Strona główna' }];
 
   if (pathname.startsWith('/blog/')) {
-    crumbs.push({ href: '/blog', label: 'Aktualności' });
+    crumbs.push({ href: '/blog/', label: 'Aktualności' });
     if (title) {
       crumbs.push({ href: PATH, label: title });
     }
