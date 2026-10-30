@@ -1,6 +1,8 @@
 ---
-const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const PATH = Astro.url.pathname;
+const pathname = PATH.replace(/\/+$/, '') || '/';
 const { title } = Astro.props as { title?: string };
+const origin = Astro.site ?? Astro.url.origin;
 
 const LABELS: Record<string, string> = {
   '/': 'Strona główna',
@@ -91,7 +93,15 @@ const SECTIONS: Record<string, string> = {
   '/blog': 'Projekty',
 };
 
-type Crumb = { href?: string; label: string };
+type Crumb = { href: string; label: string };
+
+/** Adresy stron-sekcji — każdy okruszek musi mieć `item` (URL) w danych strukturalnych. */
+const SECTION_HREFS: Record<string, string> = {
+  'O szkole': '/informacje/',
+  'Oferta': '/kierunki/',
+  'Uczniowie i rodzice': '/dla-uczniow/',
+  'Projekty': '/projekty/',
+};
 
 function buildCrumbs(): Crumb[] {
   if (pathname === '/') return [];
@@ -101,19 +111,19 @@ function buildCrumbs(): Crumb[] {
   if (pathname.startsWith('/blog/')) {
     crumbs.push({ href: '/blog', label: 'Aktualności' });
     if (title) {
-      crumbs.push({ label: title });
+      crumbs.push({ href: PATH, label: title });
     }
     return crumbs;
   }
 
   const section = SECTIONS[pathname];
   if (section) {
-    crumbs.push({ label: section });
+    crumbs.push({ href: SECTION_HREFS[section] ?? PATH, label: section });
   }
 
   const pageLabel = LABELS[pathname];
   if (pageLabel && pathname !== '/') {
-    crumbs.push({ label: pageLabel });
+    crumbs.push({ href: PATH, label: pageLabel });
   }
 
   return crumbs;
@@ -129,7 +139,7 @@ const jsonLd = {
     '@type': 'ListItem',
     position: i + 1,
     name: crumb.label,
-    ...(crumb.href ? { item: new URL(crumb.href, Astro.url.origin).href } : {}),
+    item: new URL(crumb.href, origin).href,
   })),
 };
 ---
@@ -140,10 +150,10 @@ const jsonLd = {
   <ol>
     {crumbs.map((crumb, i) => (
       <li>
-        {crumb.href ? (
-          <a href={crumb.href}>{crumb.label}</a>
+        {i === crumbs.length - 1 ? (
+          <span aria-current="page">{crumb.label}</span>
         ) : (
-          <span aria-current={i === crumbs.length - 1 ? 'page' : undefined}>{crumb.label}</span>
+          <a href={crumb.href}>{crumb.label}</a>
         )}
       </li>
     ))}
