@@ -9,6 +9,7 @@ import node from '@astrojs/node';
 import { defineConfig, fontProviders } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
+import sitemapRoot from './src/integrations/sitemap-root.mjs';
 
 const keystaticEnabled = !process.env.SKIP_KEYSTATIC;
 const staticBuild = !!process.env.GITHUB_ACTIONS;
@@ -31,6 +32,7 @@ export default defineConfig({
     integrations: [
         mdx(),
         sitemap(),
+        sitemapRoot(),
         react(),
         ...(keystaticEnabled ? [keystatic()] : []),
     ],
