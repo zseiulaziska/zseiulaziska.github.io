@@ -22,7 +22,7 @@ const previewNode = process.env.PREVIEW_NODE === '1';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://zseiulaziska.github.io',
+    site: 'https://zseiulaziska.pl',
     redirects: {
         '/kierunki-ksztalcenia': '/kierunki',
     },
