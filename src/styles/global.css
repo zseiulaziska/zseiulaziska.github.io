@@ -469,6 +469,23 @@ html {
   font-size: 100%;
   color-scheme: light;
   scroll-behavior: smooth;
+  /* sticky header (~140 px) nie może zasłaniać celu skoku z linku „Pomiń…” ani kotwic */
+  scroll-padding-top: 11rem;
+}
+
+/* element docelowy skip linku — margines przewijania przy powiększeniu 200% */
+#content {
+  scroll-margin-top: 11rem;
+}
+
+@media (max-width: 1023px) {
+  html {
+    scroll-padding-top: 7.5rem;
+  }
+
+  #content {
+    scroll-margin-top: 7.5rem;
+  }
 }
 
 html.dark {

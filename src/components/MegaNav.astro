@@ -114,7 +114,7 @@ const mobileSections = [
   {
     title: 'Linki zewnętrzne',
     links: [
-      ['BIP', 'https://zseiu.ssdip.bip.gov.pl/'],
+      ['BIP', 'https://zseiu.bip.gov.pl/'],
       ['Facebook', 'https://www.facebook.com/zseiu'],
       ['Instagram', 'https://www.instagram.com/zseiu_laziska/'],
     ],
@@ -125,7 +125,7 @@ const mobileSections = [
 const mobileAccordionData = [
   { title: 'Najważniejsze', desc: 'Szybki dostęp', links: [['Strona główna', '/'], ['Plan lekcji', PLAN_LEKCJI_URL], ['Plan LO dla dorosłych', PLAN_LO_URL], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']], isFlat: true },
   ...sections.map((section) => ({ title: section.title, desc: section.desc, groups: section.groups, highlight: section.highlight, isFlat: false })),
-  { title: 'Linki zewnętrzne', desc: 'Zewnętrzne serwisy', links: [['BIP', 'https://zseiu.ssdip.bip.gov.pl/'], ['Facebook', 'https://www.facebook.com/zseiu'], ['Instagram', 'https://www.instagram.com/zseiu_laziska/']], isFlat: true },
+  { title: 'Linki zewnętrzne', desc: 'Zewnętrzne serwisy', links: [['BIP', 'https://zseiu.bip.gov.pl/'], ['Facebook', 'https://www.facebook.com/zseiu'], ['Instagram', 'https://www.instagram.com/zseiu_laziska/']], isFlat: true },
 ];
 
 const isExternal = (href: string) => href.startsWith('http');
@@ -232,15 +232,15 @@ const iconForHref = (href: string) => {
     </div>
 
     <div class="site-social" aria-label="Linki społecznościowe i BIP">
-      <a href="https://zseiu.ssdip.bip.gov.pl/" target="_blank" rel="noopener noreferrer" aria-label="BIP">
+      <a href="https://zseiu.bip.gov.pl/" target="_blank" rel="noopener noreferrer" aria-label="Biuletyn Informacji Publicznej (otwiera się w nowej karcie)">
         <img src="/images/bip_simple.svg" alt="" />
       </a>
-      <a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer" aria-label="Facebook ZSEiU (otwiera się w nowej karcie)">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1c0 6 4.4 11 10.1 11.9v-8.4h-3v-3.5h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.3l-.5 3.5h-2.8V24c5.8-.9 10.2-5.9 10.2-11.9z"></path>
         </svg>
       </a>
-      <a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer" aria-label="Instagram ZSEiU (otwiera się w nowej karcie)">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M7.1 2h9.8A5.1 5.1 0 0 1 22 7.1v9.8a5.1 5.1 0 0 1-5.1 5.1H7.1A5.1 5.1 0 0 1 2 16.9V7.1A5.1 5.1 0 0 1 7.1 2zm0 2A3.1 3.1 0 0 0 4 7.1v9.8A3.1 3.1 0 0 0 7.1 20h9.8a3.1 3.1 0 0 0 3.1-3.1V7.1A3.1 3.1 0 0 0 16.9 4H7.1zm10.4 1.7a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>
         </svg>
@@ -260,7 +260,7 @@ const iconForHref = (href: string) => {
     <div class="mega-nav__inner">
       <a href="/" class="mega-nav-link">Strona główna</a>
       {sections.map((section, index) => (
-        <div class="mega-menu" role="menu">
+        <div class="mega-menu">
           <button class="mega-nav-link mega-trigger" type="button" aria-expanded="false" aria-controls={`mega-panel-${index}`} data-mega-trigger>
             {section.title}
             <svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -286,7 +286,7 @@ const iconForHref = (href: string) => {
                     <ul>
                       {group.links.map(([label, href, desc]) => (
                         <li>
-                          <a class="mega-item" href={href} role="menuitem" target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>
+                          <a class="mega-item" href={href} target={isExternal(href) ? '_blank' : undefined} rel={isExternal(href) ? 'noopener noreferrer' : undefined}>
                             <span aria-hidden="true">
                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconForHref(href)} />
                             </span>
@@ -576,14 +576,19 @@ const iconForHref = (href: string) => {
       }
     }
 
+    function closeMenu(menu) {
+      if (!menu) return;
+      menu.classList.remove('is-open');
+      const trigger = menu.querySelector('[data-mega-trigger]');
+      const panel = menu.querySelector('.mega-panel');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      if (panel) { panel.style.left = ''; panel.style.right = ''; panel.style.transform = ''; }
+    }
+
     function closeMenus(except) {
       menus.forEach((menu) => {
         if (menu === except) return;
-        menu.classList.remove('is-open');
-        const trigger = menu.querySelector('[data-mega-trigger]');
-        const panel = menu.querySelector('.mega-panel');
-        if (trigger) trigger.setAttribute('aria-expanded', 'false');
-        if (panel) { panel.style.left = ''; panel.style.right = ''; panel.style.transform = ''; }
+        closeMenu(menu);
       });
     }
 
@@ -607,10 +612,7 @@ const iconForHref = (href: string) => {
         if (open) {
           openMenu(menu);
         } else {
-          menu.classList.remove('is-open');
-          trigger.setAttribute('aria-expanded', 'false');
-          const panel = menu.querySelector('.mega-panel');
-          if (panel) { panel.style.left = ''; panel.style.right = ''; panel.style.transform = ''; }
+          closeMenu(menu);
         }
       });
 
@@ -625,10 +627,9 @@ const iconForHref = (href: string) => {
         clearTimeout(enterTimer);
         clearTimeout(leaveTimer);
         leaveTimer = setTimeout(() => {
-          menu.classList.remove('is-open');
-          trigger.setAttribute('aria-expanded', 'false');
-          const panel = menu.querySelector('.mega-panel');
-          if (panel) { panel.style.left = ''; panel.style.right = ''; panel.style.transform = ''; }
+          // nie zamykaj, gdy fokus klawiatury jest wewnątrz panelu
+          if (menu.contains(document.activeElement)) return;
+          closeMenu(menu);
         }, 100);
       });
       // obsługa klawiatury: focus wchodzi -> otwórz bez debounce
@@ -636,6 +637,10 @@ const iconForHref = (href: string) => {
         if (isCoarsePointer()) return;
         clearTimeout(enterTimer);
         openMenu(menu);
+      });
+      // Tab wychodzący poza panel zamyka go, żeby nie zasłaniał treści
+      menu.addEventListener('focusout', (event) => {
+        if (!menu.contains(event.relatedTarget)) closeMenu(menu);
       });
     });
 
