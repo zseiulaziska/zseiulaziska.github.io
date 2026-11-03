@@ -1,25 +1,56 @@
 ---
-interface GalleryItem {
-  type: 'photo' | 'video';
-  src: string;
+import { Image, getImage, type ImageMetadata } from 'astro:assets';
+import photo1 from '../assets/images/galeria/photo1.webp';
+import photo4 from '../assets/images/galeria/photo4.webp';
+import photo5 from '../assets/images/galeria/photo5.webp';
+import photo7 from '../assets/images/galeria/photo7.webp';
+import photoDx9 from '../assets/images/galeria/photo_DX9bwrsMJYv.webp';
+import photoDykr from '../assets/images/galeria/photo_DYKR3bkCOFB.webp';
+import photoDwl from '../assets/images/galeria/photo_DWL8SlIiJLr.webp';
+import poster1 from '../assets/images/galeria/video-poster.webp';
+import poster2 from '../assets/images/galeria/video2-poster.webp';
+import poster3 from '../assets/images/galeria/video3-poster.webp';
+import poster4 from '../assets/images/galeria/video4-poster.webp';
+import poster5 from '../assets/images/galeria/video5-poster.webp';
+
+interface GalleryBase {
   span: string;
   alt: string;
-  poster?: string;
 }
 
+type GalleryItem =
+  | (GalleryBase & { type: 'photo'; src: ImageMetadata })
+  | (GalleryBase & { type: 'video'; src: string; poster: string });
+
+// Plakaty wideo są tłem kafelka (max ~300 px szerokości), więc generujemy mały wariant WebP.
+const posterUrl = async (src: ImageMetadata) =>
+  (await getImage({ src, width: 480, format: 'webp', quality: 55 })).src;
+
+const posters = {
+  video1: await posterUrl(poster1),
+  video2: await posterUrl(poster2),
+  video3: await posterUrl(poster3),
+  video4: await posterUrl(poster4),
+  video5: await posterUrl(poster5),
+};
+
+// Kafelki mają maks. ~50vw na mobile i ~16vw na desktopie — dlatego warianty 240–720 px.
+const photoWidths = [240, 360, 480, 720];
+const photoSizes = '(min-width: 1024px) 16vw, 50vw';
+
 const items: GalleryItem[] = [
-  { type: 'video', src: '/wideo/video3.mp4', poster: '/wideo/video3-poster.webp', span: 'col-span-2 row-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'video', src: '/wideo/video4.mp4', poster: '/wideo/video4-poster.webp', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'video', src: '/wideo/video5.mp4', poster: '/wideo/video5-poster.webp', span: 'row-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'photo', src: '/wideo/photo1-900.webp', span: '', alt: 'Uczniowie klas mundurowych w mundurach przed szklanym gmachem' },
-  { type: 'photo', src: '/wideo/photo4-900.webp', span: '', alt: 'Uczniowie w mundurach wojskowych i policyjnych w szeregu przed budynkiem szkoły' },
-  { type: 'photo', src: '/wideo/photo5-900.webp', span: '', alt: 'Uczniowie klas mundurowych z robotem pirotechnicznym i kombinezonem sapera' },
-  { type: 'photo', src: '/wideo/photo7-900.webp', span: '', alt: 'Uczniowie klas mundurowych z psem służbowym na lotnisku, w tle tablica przylotów' },
-  { type: 'video', src: '/wideo/video.mp4', poster: '/wideo/video-poster.webp', span: '', alt: 'Wideo z życia szkoły' },
-  { type: 'photo', src: '/wideo/photo_DX9bwrsMJYv-900.webp', span: '', alt: 'Grupa uczniów ZSEiU na wycieczce przed zabytkową fontanną' },
-  { type: 'video', src: '/wideo/video2.mp4', poster: '/wideo/video2-poster.webp', span: 'col-span-2', alt: 'Wideo z życia szkoły' },
-  { type: 'photo', src: '/wideo/photo_DYKR3bkCOFB-900.webp', span: '', alt: 'Uczniowie podczas praktyk Erasmus+ na Sycylii, na pokładzie łodzi' },
-  { type: 'photo', src: '/wideo/photo_DWL8SlIiJLr-900.webp', span: '', alt: 'Uczniowie w mundurach i wyposażeniu taktycznym podczas pokazu' },
+  { type: 'video', src: '/wideo/video3.mp4', poster: posters.video3, span: 'col-span-2 row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'video', src: '/wideo/video4.mp4', poster: posters.video4, span: 'row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'video', src: '/wideo/video5.mp4', poster: posters.video5, span: 'row-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: photo1, span: '', alt: 'Uczniowie klas mundurowych w mundurach przed szklanym gmachem' },
+  { type: 'photo', src: photo4, span: '', alt: 'Uczniowie w mundurach wojskowych i policyjnych w szeregu przed budynkiem szkoły' },
+  { type: 'photo', src: photo5, span: '', alt: 'Uczniowie klas mundurowych z robotem pirotechnicznym i kombinezonem sapera' },
+  { type: 'photo', src: photo7, span: '', alt: 'Uczniowie klas mundurowych z psem służbowym na lotnisku, w tle tablica przylotów' },
+  { type: 'video', src: '/wideo/video.mp4', poster: posters.video1, span: '', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: photoDx9, span: '', alt: 'Grupa uczniów ZSEiU na wycieczce przed zabytkową fontanną' },
+  { type: 'video', src: '/wideo/video2.mp4', poster: posters.video2, span: 'col-span-2', alt: 'Wideo z życia szkoły' },
+  { type: 'photo', src: photoDykr, span: '', alt: 'Uczniowie podczas praktyk Erasmus+ na Sycylii, na pokładzie łodzi' },
+  { type: 'photo', src: photoDwl, span: '', alt: 'Uczniowie w mundurach i wyposażeniu taktycznym podczas pokazu' },
 ];
 ---
 
@@ -29,10 +60,13 @@ const items: GalleryItem[] = [
       items.map((item) =>
         item.type === 'photo' ? (
           <div class={`group relative overflow-hidden bg-slate-200 dark:bg-navy-800 ${item.span}`}>
-            <img
+            <Image
               src={item.src}
               alt={item.alt}
-              loading="eager"
+              widths={photoWidths}
+              sizes={photoSizes}
+              quality={65}
+              loading="lazy"
               decoding="async"
               class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
             />

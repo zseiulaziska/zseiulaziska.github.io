@@ -1,6 +1,8 @@
 ---
+import { Image, type ImageMetadata } from 'astro:assets';
+
 interface Props {
-  image: string;
+  image: ImageMetadata;
   alt: string;
   badge?: string;
   title: string;
@@ -14,11 +16,12 @@ const { image, alt, badge, title, description, ctaText, ctaHref } = Astro.props;
 
 <section class="photo-banner reveal relative overflow-hidden">
   <div class="relative min-h-[55vh] lg:min-h-[65vh] w-full flex items-center">
-    <img
+    <Image
       src={image}
       alt={alt}
-      width="1600"
-      height="900"
+      widths={[640, 960, 1280, 1600]}
+      sizes="100vw"
+      quality={65}
       loading="lazy"
       decoding="async"
       class="absolute inset-0 h-full w-full object-cover"

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import mundurowiImage from '../assets/images/mundurowi.jpg';
+
 const cards = [
   {
     icon: 'laptop',
@@ -145,11 +148,12 @@ const cards = [
 
       {/* Karta foto — uzupełnia wolne pole w ostatnim wierszu (lg), szeroka na 2 kolumny */}
       <div class="group relative overflow-hidden rounded-xl min-h-56 lg:col-span-2 lg:min-h-0 shadow-sm">
-        <img
-          src="/images/mundurowi.jpg"
+        <Image
+          src={mundurowiImage}
           alt="Uczniowie klas mundurowych ZSEiU"
-          width="1200"
-          height="800"
+          widths={[400, 640, 960]}
+          sizes="(min-width: 1024px) 60vw, 100vw"
+          quality={65}
           loading="lazy"
           decoding="async"
           class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
