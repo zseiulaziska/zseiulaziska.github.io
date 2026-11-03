@@ -48,9 +48,11 @@ export default config({
 				draft: fields.checkbox({ label: 'Draft' }),
 				content: fields.mdx({
 					label: 'Content',
-					image: {
-						directory: 'public/images/blog',
-						publicPath: '/images/blog',
+					options: {
+						image: {
+							directory: 'public/images/blog',
+							publicPath: '/images/blog',
+						},
 					},
 				}),
 			},
