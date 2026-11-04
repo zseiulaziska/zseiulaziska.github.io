@@ -227,8 +227,20 @@ const iconForHref = (href: string) => {
         <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"></circle>
         <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
       </svg>
-      <input id="search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
-      <div id="search-results" class="search-popover hidden"></div>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Szukaj..."
+        autocomplete="off"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="search-results-listbox"
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+      />
+      <div id="search-results" class="search-popover hidden" role="region" aria-live="polite" aria-label="Wyniki wyszukiwania">
+        <ul id="search-results-listbox" class="search-results-list" role="listbox" aria-label="Wyniki wyszukiwania"></ul>
+      </div>
     </div>
 
     <div class="site-social" aria-label="Linki społecznościowe i BIP">
@@ -324,8 +336,20 @@ const iconForHref = (href: string) => {
   <div id="mobile-nav__panel" class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Nawigacja">
     <div class="mobile-search">
       <label for="mobile-search-input" class="sr-only">Szukaj</label>
-      <input id="mobile-search-input" type="search" placeholder="Szukaj..." autocomplete="off" />
-      <div id="mobile-search-results" class="search-popover mt-2 hidden overflow-hidden rounded-md border border-slate-100 dark:border-navy-700"></div>
+      <input
+        id="mobile-search-input"
+        type="search"
+        placeholder="Szukaj..."
+        autocomplete="off"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="mobile-search-results-listbox"
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+      />
+      <div id="mobile-search-results" class="search-popover mt-2 hidden overflow-hidden rounded-md border border-slate-100 dark:border-navy-700" role="region" aria-live="polite" aria-label="Wyniki wyszukiwania">
+        <ul id="mobile-search-results-listbox" class="search-results-list" role="listbox" aria-label="Wyniki wyszukiwania"></ul>
+      </div>
     </div>
     <nav class="mobile-accordion" aria-label="Nawigacja mobilna">
       {mobileAccordionData.map((section, idx) => (
@@ -400,8 +424,89 @@ const iconForHref = (href: string) => {
       });
     }
 
+    function formatSearchDate(value) {
+      if (!value) return '';
+      var date = new Date(value);
+      if (isNaN(date.getTime())) return '';
+      try {
+        return date.toLocaleDateString('pl-PL', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function normalizeSearchImage(src) {
+      if (!src) return '';
+      if (/^(?:https?:)?\/\//i.test(src) || src.charAt(0) === '/') return src;
+      return '/' + src.replace(/^\.\//, '');
+    }
+
     function setupSearch(input, results) {
       if (!input || !results) return;
+
+      var listbox = results.querySelector('[role="listbox"]');
+      if (!listbox) {
+        listbox = document.createElement('ul');
+        listbox.id = (input.id || 'search') + '-listbox';
+        listbox.className = 'search-results-list';
+        listbox.setAttribute('role', 'listbox');
+        listbox.setAttribute('aria-label', 'Wyniki wyszukiwania');
+        results.appendChild(listbox);
+        input.setAttribute('aria-controls', listbox.id);
+      }
+
+      var activeIndex = -1;
+      var itemIdPrefix = (input.id || 'search') + '-result-';
+
+      function getOptions() {
+        return Array.prototype.slice.call(listbox.querySelectorAll('[role="option"]'));
+      }
+
+      function setActive(index) {
+        var options = getOptions();
+        if (index < -1) index = -1;
+        if (index >= options.length) index = options.length - 1;
+        activeIndex = index;
+
+        options.forEach(function (option, i) {
+          var isActive = i === index;
+          option.setAttribute('aria-selected', String(isActive));
+          option.classList.toggle('is-active', isActive);
+        });
+
+        if (index >= 0 && options[index]) {
+          var option = options[index];
+          input.setAttribute('aria-activedescendant', option.id);
+          // Przewiń tylko listę wyników, nie całą stronę.
+          if (option.offsetTop < results.scrollTop) {
+            results.scrollTop = option.offsetTop;
+          } else if (option.offsetTop + option.offsetHeight > results.scrollTop + results.clientHeight) {
+            results.scrollTop = option.offsetTop + option.offsetHeight - results.clientHeight;
+          }
+        } else {
+          input.removeAttribute('aria-activedescendant');
+        }
+      }
+
+      function closeResults() {
+        setActive(-1);
+        results.classList.add('hidden');
+        input.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function openResults() {
+        results.classList.remove('hidden');
+        input.setAttribute('aria-expanded', 'true');
+      }
+
+      // Globalne zamknięcie (klik poza wyszukiwarką / Escape) musi wyczyścić
+      // również stan ARIA, inaczej zostaje nieaktualny aria-activedescendant.
+      document.addEventListener('search:close', closeResults);
 
       // Leniwe pobieranie Pagefind przy pierwszej interakcji (hover myszą, focus, tap)
       input.addEventListener('focus', loadPagefind, { once: true });
@@ -413,9 +518,12 @@ const iconForHref = (href: string) => {
         clearTimeout(debounceTimer);
         var query = input.value.trim();
         if (query.length < 2) {
-          results.classList.add('hidden');
+          listbox.innerHTML = '';
+          closeResults();
           return;
         }
+
+        setActive(-1);
 
         debounceTimer = setTimeout(function () {
           loadPagefind().then(function (pagefind) {
@@ -428,27 +536,78 @@ const iconForHref = (href: string) => {
               return Promise.all(items.map(function (r) { return r.data(); }));
             }).then(function (data) {
               if (!data || input.value.trim() !== query) return;
-              var html;
+
               if (data.length) {
-                html = data.map(function (item) {
-                  var title = item.meta && item.meta.title ? item.meta.title : item.url;
-                  return '<a href="' + escapeHtml(item.url) + '" class="search-result-item">' +
-                    '<span class="text-sm font-semibold">' + escapeHtml(title) + '</span>' +
-                    '<span class="mt-1 block text-xs text-slate-500 dark:text-slate-400">' + (item.excerpt || '') + '</span></a>';
+                listbox.innerHTML = data.map(function (item, index) {
+                  var meta = item.meta || {};
+                  var title = meta.title || item.url;
+                  var image = normalizeSearchImage(meta.image);
+                  var date = formatSearchDate(meta.date);
+                  var thumb = image
+                    ? '<img class="search-result-thumb" src="' + escapeHtml(image) + '" alt="" loading="lazy" decoding="async" width="56" height="56" />'
+                    : '';
+                  var dateRow = date
+                    ? '<span class="search-result-date">' + escapeHtml(date) + '</span>'
+                    : '';
+
+                  return '<li id="' + escapeHtml(itemIdPrefix + index) + '" role="option" aria-selected="false" class="search-result-option">' +
+                    '<a href="' + escapeHtml(item.url) + '" class="search-result-item" tabindex="-1">' +
+                      thumb +
+                      '<span class="search-result-content">' +
+                        '<span class="search-result-title">' + escapeHtml(title) + '</span>' +
+                        dateRow +
+                        '<span class="search-result-excerpt">' + (item.excerpt || '') + '</span>' +
+                      '</span>' +
+                    '</a>' +
+                  '</li>';
                 }).join('');
+
+                // Usuń miniaturkę, jeśli plik nie istnieje — zamiast złamanej ikony.
+                Array.prototype.forEach.call(listbox.querySelectorAll('.search-result-thumb'), function (img) {
+                  img.addEventListener('error', function () { img.remove(); }, { once: true });
+                });
               } else {
-                html = '<div class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Brak wyników</div>';
+                listbox.innerHTML = '<li role="presentation" class="search-result-empty">Brak wyników</li>';
               }
-              results.innerHTML = html;
-              results.classList.remove('hidden');
+
+              setActive(-1);
+              openResults();
             }).catch(function () {});
           }).catch(function () {});
         }, 150);
       });
 
       input.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
-          results.classList.add('hidden');
+        var isOpen = !results.classList.contains('hidden');
+        var options = getOptions();
+
+        if (event.key === 'ArrowDown') {
+          if (!isOpen || !options.length) return;
+          event.preventDefault();
+          setActive(activeIndex + 1);
+        } else if (event.key === 'ArrowUp') {
+          if (!isOpen || !options.length) return;
+          event.preventDefault();
+          setActive(activeIndex - 1);
+        } else if (event.key === 'Home' && isOpen && options.length) {
+          event.preventDefault();
+          setActive(0);
+        } else if (event.key === 'End' && isOpen && options.length) {
+          event.preventDefault();
+          setActive(options.length - 1);
+        } else if (event.key === 'Enter') {
+          if (!isOpen || activeIndex < 0) return;
+          var activeOption = options[activeIndex];
+          var link = activeOption ? activeOption.querySelector('a[href]') : null;
+          if (link) {
+            event.preventDefault();
+            window.location.href = link.getAttribute('href');
+          }
+        } else if (event.key === 'Escape') {
+          if (isOpen) {
+            event.preventDefault();
+            closeResults();
+          }
           input.blur();
         }
       });
@@ -671,12 +830,15 @@ const iconForHref = (href: string) => {
       const target = event.target;
       if (target && !target.closest('.mega-menu') && !target.closest('.site-search') && !target.closest('.mobile-search')) {
         closeMenus();
-        document.querySelectorAll('.search-popover').forEach((el) => { el.classList.add('hidden'); });
+        document.dispatchEvent(new CustomEvent('search:close'));
       }
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeMenus();
+      if (event.key === 'Escape') {
+        closeMenus();
+        document.dispatchEvent(new CustomEvent('search:close'));
+      }
     });
 
     const path = location.pathname.replace(/\/+$/, '') || '/';

@@ -42,7 +42,7 @@ function getFirstImage(body: string | undefined): string | undefined {
             <a href={`/blog/${post.id}`} class="text-primary-700 dark:text-primary-300 hover:underline font-semibold text-lg sm:text-xl block">{post.data.title}</a>
             <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">{post.data.pubDate?.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) ?? ''} {post.data.author}</div>
             <p class="text-sm text-slate-700 dark:text-slate-300 mt-2 leading-relaxed">{getExcerpt(post.body)}</p>
-            <a href={`/blog/${post.id}`} class="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-primary-600 dark:text-primary-300 hover:underline">Czytaj dalej →</a>
+            <a href={`/blog/${post.id}`} class="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-primary-600 dark:text-primary-300 hover:underline" data-pagefind-ignore>Czytaj dalej →</a>
           </div>
         </li>
       ))}

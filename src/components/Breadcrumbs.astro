@@ -146,7 +146,7 @@ const jsonLd = {
 
 <script set:html={JSON.stringify(jsonLd)} type="application/ld+json"></script>
 
-<nav aria-label="Ścieżka nawigacyjna" class="breadcrumbs">
+<nav aria-label="Ścieżka nawigacyjna" class="breadcrumbs" data-pagefind-ignore>
   <ol>
     {crumbs.map((crumb, i) => (
       <li>

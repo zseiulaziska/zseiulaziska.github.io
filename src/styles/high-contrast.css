@@ -12,6 +12,7 @@ html.high-contrast .mobile-nav__panel,
 html.high-contrast .mobile-search,
 html.high-contrast .search-popover,
 html.high-contrast .search-result-item,
+html.high-contrast .search-result-thumb,
 html.high-contrast .card-base,
 html.high-contrast .teacher-card,
 html.high-contrast .stat-card,
@@ -104,6 +105,7 @@ html.high-contrast .mega-item:focus-visible,
 html.high-contrast .mega-highlight:focus-visible,
 html.high-contrast .nav-link:focus-visible,
 html.high-contrast .search-result-item:focus-visible,
+html.high-contrast .search-result-option.is-active .search-result-item,
 html.high-contrast .skip-link {
   background: #000 !important;
   color: #ffff00 !important;

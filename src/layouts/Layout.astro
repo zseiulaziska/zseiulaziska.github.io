@@ -11,9 +11,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 interface Props {
   title?: string;
   description?: string;
+  pagefindTitle?: string;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, pagefindTitle } = Astro.props;
+
+// Czyszczenie sufiksu szkoły dla Pagefind, aby wyniki wyszukiwania miały zwięzłe tytuły
+const resolvedPagefindTitle = pagefindTitle ?? (
+  Astro.url.pathname === '/'
+    ? 'Strona główna'
+    : title.replace(/\s*[-|–]\s*ZSEiU.*$/i, '').trim() || title
+);
 ---
 <!doctype html>
 <html lang="pl" class="antialiased">
@@ -83,6 +91,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <MegaNav />
     <slot name="hero" />
     <main id="content" class="flex-1 w-full min-w-0 max-w-screen-2xl mx-auto px-4 py-8" tabindex="-1" data-pagefind-body>
+      <span class="sr-only" data-pagefind-meta={`title:${resolvedPagefindTitle}`}></span>
       <Breadcrumbs title={title} />
       <slot />
     </main>
