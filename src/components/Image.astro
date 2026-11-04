@@ -1,7 +1,7 @@
 ---
 const { src, alt, class: cls } = Astro.props;
 if (!src) throw new Error('src is required for Image component');
-if (!alt) throw new Error('alt is required for Image component for accessibility');
+if (alt === undefined || alt === null) throw new Error('alt is required for Image component for accessibility (pass alt="" for decorative images)');
 ---
 <!-- Simple responsive image component without external integration.
      Uses native img with srcset and sizes to provide responsive images.
