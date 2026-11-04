@@ -373,32 +373,40 @@ const iconForHref = (href: string) => {
 
 <script is:inline>
   (function () {
+    var pagefindPromise = null;
+    function loadPagefind() {
+      if (!pagefindPromise) {
+        pagefindPromise = import('/pagefind/pagefind.js').then(function (mod) {
+          return mod.init().then(function () {
+            return mod;
+          });
+        }).catch(function () {
+          // Pagefind not available (np. w trybie dev przed buildem)
+          return null;
+        });
+      }
+      return pagefindPromise;
+    }
+
+    function escapeHtml(value) {
+      return String(value || '').replace(/[&<>"']/g, function (char) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char];
+      });
+    }
+
     function setupSearch(input, results) {
       if (!input || !results) return;
 
-      var pagefind = null;
-      var ready = false;
-
-      function escapeHtml(value) {
-        return String(value || '').replace(/[&<>"']/g, function (char) {
-          return {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-          }[char];
-        });
-      }
-
-      import('/pagefind/pagefind.js').then(function (mod) {
-        pagefind = mod;
-        return mod.init();
-      }).then(function () {
-        ready = true;
-      }).catch(function () {
-        // Pagefind not available (dev mode)
-      });
+      // Leniwe pobieranie Pagefind przy pierwszej interakcji (hover myszą, focus, tap)
+      input.addEventListener('focus', loadPagefind, { once: true });
+      input.addEventListener('pointerenter', loadPagefind, { once: true });
+      input.addEventListener('touchstart', loadPagefind, { once: true, passive: true });
 
       var debounceTimer;
       input.addEventListener('input', function () {
@@ -408,26 +416,32 @@ const iconForHref = (href: string) => {
           results.classList.add('hidden');
           return;
         }
-        if (!ready) return;
 
         debounceTimer = setTimeout(function () {
-          pagefind.search(query).then(function (searchResult) {
-            var items = searchResult.results.slice(0, 8);
-            return Promise.all(items.map(function (r) { return r.data(); }));
-          }).then(function (data) {
-            var html;
-            if (data.length) {
-              html = data.map(function (item) {
-                var title = item.meta && item.meta.title ? item.meta.title : item.url;
-                return '<a href="' + escapeHtml(item.url) + '" class="search-result-item">' +
-                  '<span class="text-sm font-semibold">' + escapeHtml(title) + '</span>' +
-                  '<span class="mt-1 block text-xs text-slate-500 dark:text-slate-400">' + (item.excerpt || '') + '</span></a>';
-              }).join('');
-            } else {
-              html = '<div class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Brak wyników</div>';
-            }
-            results.innerHTML = html;
-            results.classList.remove('hidden');
+          loadPagefind().then(function (pagefind) {
+            if (!pagefind) return;
+            if (input.value.trim() !== query) return;
+
+            pagefind.search(query).then(function (searchResult) {
+              if (input.value.trim() !== query) return;
+              var items = searchResult.results.slice(0, 8);
+              return Promise.all(items.map(function (r) { return r.data(); }));
+            }).then(function (data) {
+              if (!data || input.value.trim() !== query) return;
+              var html;
+              if (data.length) {
+                html = data.map(function (item) {
+                  var title = item.meta && item.meta.title ? item.meta.title : item.url;
+                  return '<a href="' + escapeHtml(item.url) + '" class="search-result-item">' +
+                    '<span class="text-sm font-semibold">' + escapeHtml(title) + '</span>' +
+                    '<span class="mt-1 block text-xs text-slate-500 dark:text-slate-400">' + (item.excerpt || '') + '</span></a>';
+                }).join('');
+              } else {
+                html = '<div class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Brak wyników</div>';
+              }
+              results.innerHTML = html;
+              results.classList.remove('hidden');
+            }).catch(function () {});
           }).catch(function () {});
         }, 150);
       });
