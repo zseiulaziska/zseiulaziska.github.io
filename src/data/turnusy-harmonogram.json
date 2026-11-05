@@ -1,0 +1,292 @@
+{
+  "meta": {
+    "tytul": "Harmonogram turnusów dokształcania teoretycznego młodocianych pracowników",
+    "rok_szkolny": "2026/2027",
+    "szkola": "Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych",
+    "zatwierdzajacy": {
+      "stanowisko": "Wicedyrektor",
+      "jednostka": "Centrum Kształcenia Zawodowego w Rudzie Śląskiej",
+      "osoba": "mgr inż. Elżbieta Wojtowicz"
+    },
+    "objasnienia": {
+      "plus": "Oznaczenie (+) przy zawodzie wskazuje na turnus/kurs specjalistyczny"
+    }
+  },
+  "turnusy": [
+    {
+      "id": 1,
+      "numer": "I",
+      "okres": "07.09.2026 - 03.10.2026",
+      "data_rozpoczecia": "2026-09-17",
+      "data_zakonczenia": "2026-10-03",
+      "zawody": [
+        {
+          "nazwa": "Blacharz samochodowy",
+          "kod_zawodu": "721306",
+          "klasa": "II",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Lakiernik samochodowy",
+          "kod_zawodu": "713203",
+          "klasa": "II",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "numer": "II",
+      "okres": "05.10.2026 - 31.10.2026",
+      "data_rozpoczecia": "2026-10-05",
+      "data_zakonczenia": "2026-10-31",
+      "zawody": [
+        {
+          "nazwa": "Fryzjer",
+          "kod_zawodu": "514101",
+          "klasa": "III",
+          "grupa": "Grupa 2",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Kucharz",
+          "kod_zawodu": "512001",
+          "klasa": "I",
+          "grupa": null,
+          "specjalny": false
+        },
+        {
+          "nazwa": "Piekarz",
+          "kod_zawodu": "751204",
+          "klasa": "III",
+          "grupa": "Grupa 2",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Sprzedawca",
+          "kod_zawodu": "522301",
+          "klasa": "I",
+          "grupa": null,
+          "specjalny": false
+        },
+        {
+          "nazwa": "Stolarz",
+          "kod_zawodu": "752205",
+          "klasa": "III",
+          "grupa": null,
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "numer": "III",
+      "okres": "02.11.2026 - 28.11.2026",
+      "data_rozpoczecia": "2026-11-02",
+      "data_zakonczenia": "2026-11-28",
+      "zawody": [
+        {
+          "nazwa": "Cukiernik",
+          "kod_zawodu": "751201",
+          "klasa": "III",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Sprzedawca",
+          "kod_zawodu": "522301",
+          "klasa": "I",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Monter sieci i instalacji sanitarnych",
+          "kod_zawodu": "712618",
+          "klasa": "III",
+          "grupa": null,
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "numer": "IV",
+      "okres": "30.11.2026 - 22.12.2026",
+      "data_rozpoczecia": "2026-11-30",
+      "data_zakonczenia": "2026-12-22",
+      "zawody": [
+        {
+          "nazwa": "Fryzjer",
+          "kod_zawodu": "514101",
+          "klasa": "III",
+          "grupa": null,
+          "specjalny": false
+        },
+        {
+          "nazwa": "Lakiernik samochodowy",
+          "kod_zawodu": "713203",
+          "klasa": "I",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Magazynier logistyk",
+          "kod_zawodu": "432106",
+          "klasa": "II",
+          "grupa": null,
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "numer": "V",
+      "okres": "11.01.2027 - 20.02.2027",
+      "data_rozpoczecia": "2027-01-11",
+      "data_zakonczenia": "2027-02-20",
+      "uwagi": "W tym 2 tyg. ferii: 18.01.2027 - 31.01.2027",
+      "ferie": {
+        "data_rozpoczecia": "2027-01-18",
+        "data_zakonczenia": "2027-01-31"
+      },
+      "zawody": [
+        {
+          "nazwa": "Fryzjer",
+          "kod_zawodu": "514101",
+          "klasa": "II",
+          "grupa": null,
+          "specjalny": false
+        },
+        {
+          "nazwa": "Cukiernik",
+          "kod_zawodu": "751201",
+          "klasa": "I",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Lakiernik samochodowy",
+          "kod_zawodu": "713203",
+          "klasa": "III",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Piekarz",
+          "kod_zawodu": "751204",
+          "klasa": "I",
+          "grupa": "Grupa 1",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Ślusarz",
+          "kod_zawodu": "722204",
+          "klasa": "III",
+          "grupa": null,
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "numer": "VI",
+      "okres": "22.02.2027 - 20.03.2027",
+      "data_rozpoczecia": "2027-02-22",
+      "data_zakonczenia": "2027-03-20",
+      "zawody": [
+        {
+          "nazwa": "Stolarz",
+          "kod_zawodu": "752205",
+          "klasa": "II",
+          "grupa": null,
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "numer": "VII",
+      "okres": "22.03.2027 - 24.04.2027",
+      "data_rozpoczecia": "2027-03-22",
+      "data_zakonczenia": "2027-04-24",
+      "zawody": [
+        {
+          "nazwa": "Cukiernik",
+          "kod_zawodu": "751201",
+          "klasa": "II",
+          "grupa": "Grupa 2",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Ślusarz",
+          "kod_zawodu": "722204",
+          "klasa": "II",
+          "typ_zajec": "Konsultacje",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Elektryk",
+          "kod_zawodu": "741103",
+          "klasa": "I",
+          "typ_zajec": "Grupa",
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "numer": "VIII",
+      "okres": "26.04.2027 - 22.05.2027",
+      "data_rozpoczecia": "2027-04-26",
+      "data_zakonczenia": "2027-05-22",
+      "zawody": [
+        {
+          "nazwa": "Blacharz samochodowy",
+          "kod_zawodu": "721306",
+          "klasa": "I",
+          "typ_zajec": "Konsultacje",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Kucharz",
+          "kod_zawodu": "512001",
+          "klasa": "II",
+          "grupa": null,
+          "specjalny": false
+        },
+        {
+          "nazwa": "Ślusarz",
+          "kod_zawodu": "722204",
+          "klasa": "II",
+          "grupa": "Grupa 2",
+          "specjalny": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "numer": "IX",
+      "okres": "24.05.2027 - 19.06.2027",
+      "data_rozpoczecia": "2027-05-24",
+      "data_zakonczenia": "2027-06-19",
+      "zawody": [
+        {
+          "nazwa": "Blacharz samochodowy",
+          "kod_zawodu": "721306",
+          "klasa": "I",
+          "typ_zajec": "Konsultacje",
+          "specjalny": false
+        },
+        {
+          "nazwa": "Sprzedawca",
+          "kod_zawodu": "522301",
+          "klasa": "II",
+          "grupa": "Grupa 2",
+          "specjalny": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HarmonogramTurnusow from '../components/HarmonogramTurnusow.astro';
+import turnusyData from '../data/turnusy-harmonogram.json';
+---
+
+<Layout
+  title="Pracownicy młodociani – Turnusy dokształcania teoretycznego – ZSEiU Łaziska Górne"
+  description="Harmonogram turnusów dokształcania teoretycznego młodocianych pracowników w ZSEiU Łaziska Górne. Sprawdź terminy 9 turnusów, zawody, poziomy i dokumenty dla uczniów oraz pracodawców."
+>
+  <article class="w-full max-w-5xl mx-auto min-w-0">
+
+    <!-- HERO BANER -->
+    <div class="relative overflow-hidden rounded-2xl bg-linear-to-br from-amber-950 via-slate-900 to-navy-950 dark:from-amber-950/80 dark:via-slate-950 dark:to-navy-950 border border-amber-700/40 dark:border-amber-700/40 p-5 sm:p-10 mb-10 w-full">
+      <div class="cyber-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -top-20 -right-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="cyber-glow absolute -bottom-20 -left-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-4">
+          Branżowa Szkoła I stopnia · Rok szkolny {turnusyData.meta.rok_szkolny}
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3 leading-tight wrap-break-word">
+          Pracownicy <span class="text-transparent bg-clip-text bg-linear-to-r from-amber-300 via-yellow-400 to-orange-400">młodociani</span>
+        </h1>
+        <p class="text-base sm:text-xl text-amber-200 max-w-2xl leading-relaxed wrap-break-word">
+          Turnusy dokształcania teoretycznego oraz informacje organizacyjne dla uczniów i pracodawców
+        </p>
+      </div>
+    </div>
+
+    <!-- WPROWADZENIE -->
+    <div class="prose max-w-none dark:prose-invert mb-10">
+      <p class="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+        Uczniowie klas wielozawodowych <strong>Branżowej Szkoły I stopnia</strong> realizują kształcenie w systemie dualnym: zajęcia ogólnokształcące odbywają się w szkole w Łaziskach Górnych, praktyczna nauka zawodu prowadzona jest bezpośrednio u pracodawców na podstawie umowy o pracę, a <strong>dokształcanie w zakresie teoretycznych przedmiotów zawodowych</strong> odbywa się na comiesięcznych, 4-tygodniowych turnusach organizowanych w Centrach Kształcenia Zawodowego (CKZ).
+      </p>
+    </div>
+
+    <!-- POZIOMY NAUCZANIA / STOPNIE TURNUSÓW -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 w-full">
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 shadow-2xs hover:border-amber-300 dark:hover:border-amber-600 transition-colors">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 font-extrabold text-xl mb-2">
+          I
+        </div>
+        <span class="block text-lg font-bold text-slate-900 dark:text-white">Klasa I (Poziom I)</span>
+        <span class="block mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400">Podstawy teoretyczne wybranego zawodu i BHP</span>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 shadow-2xs hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 font-extrabold text-xl mb-2">
+          II
+        </div>
+        <span class="block text-lg font-bold text-slate-900 dark:text-white">Klasa II (Poziom II)</span>
+        <span class="block mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400">Zaawansowane zagadnienia technologiczne i maszynoznawstwo</span>
+      </div>
+
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-5 text-center min-w-0 shadow-2xs hover:border-purple-300 dark:hover:border-purple-600 transition-colors">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 font-extrabold text-xl mb-2">
+          III
+        </div>
+        <span class="block text-lg font-bold text-slate-900 dark:text-white">Klasa III (Poziom III)</span>
+        <span class="block mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400">Przygotowanie do państwowego egzaminu zawodowego / czeladniczego</span>
+      </div>
+    </div>
+
+    <!-- HARMONOGRAM 9 TURNUSÓW Z PLIKU DATA/TURNUSY-HARMONOGRAM.JSON -->
+    <div class="mb-12">
+      <HarmonogramTurnusow meta={turnusyData.meta} turnusy={turnusyData.turnusy} />
+    </div>
+
+    <!-- DWIE KOLUMNY: DLA UCZNIA I DLA PRACODAWCY -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+      <!-- Kolumna: Dla ucznia -->
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.9"></path>
+            <path d="M16 3.1a4 4 0 0 1 0 7.8"></path>
+          </svg>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Dla młodocianego pracownika (ucznia)</h2>
+        <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Obowiązkowy udział:</strong> Uczestnictwo w turnusie dokształcania teoretycznego jest warunkiem klasyfikacji rocznej z przedmiotów zawodowych.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Zwolnienie z pracy:</strong> W okresie turnusu uczeń jest formalnie zwolniony ze świadczenia pracy u pracodawcy oraz z zajęć ogólnokształcących w szkole macierzystej.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Prawo do wynagrodzenia:</strong> Za czas trwania turnusu młodociany pracownik zachowuje pełne prawo do przysługującego comiesięcznego wynagrodzenia.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Zaświadczenie końcowe:</strong> Po zakończeniu turnusu uczeń odbiera zaświadczenie z ocenami i niezwłocznie dostarcza je do sekretariatu ZSEiU.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Kolumna: Dla pracodawcy -->
+      <div class="rounded-xl bg-white dark:bg-navy-800/70 border border-slate-200 dark:border-navy-700 p-6 shadow-xs">
+        <div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-orange-600 dark:text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>
+            <path d="M2 13h20"></path>
+          </svg>
+        </div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Dla pracodawcy</h2>
+        <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Zwolnienie pracownika:</strong> Zgodnie z art. 198 Kodeksu Pracy pracodawca ma obowiązek zwolnić młodocianego ze świadczenia pracy na czas trwania turnusu.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Wypłata wynagrodzenia:</strong> Wynagrodzenie młodocianego za okres dokształcania teoretycznego jest wypłacane bez żadnych potrąceń.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Koordynacja ze szkołą:</strong> Szkoła wydaje oficjalne skierowanie na turnus, a pracodawca jest informowany o dokładnym terminie z wyprzedzeniem.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-amber-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path>
+              <path d="M22 4 12 14.1l-3-3"></path>
+            </svg>
+            <span><strong>Dofinansowanie kosztów:</strong> Po ukończeniu nauki i zdaniu egzaminu pracodawca może ubiegać się o dofinansowanie kosztów kształcenia młodocianego.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <!-- NAJCZĘŚCIEJ ZADAWANE PYTANIA (FAQ) -->
+    <div class="mb-12">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-6 pl-3 sm:pl-4 border-l-4 border-amber-500">
+        Najczęstsze pytania i odpowiedzi (FAQ)
+      </h2>
+
+      <div class="space-y-3">
+        <details class="group rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800/80 p-4 transition-all">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 dark:text-white cursor-pointer list-none">
+            <span>Czym jest turnus dokształcania teoretycznego?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Turnus dokształcania teoretycznego to skondensowany, 4-tygodniowy kurs przedmiotów zawodowych dla danego zawodu w klasie wielozawodowej. Odbywa się w wyspecjalizowanych placówkach (np. Centrum Kształcenia Zawodowego) i obejmuje pełny roczny wymiar godzin z teorii zawodowej.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800/80 p-4 transition-all">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 dark:text-white cursor-pointer list-none">
+            <span>Czy w czasie trwania turnusu uczeń chodzi do pracy u pracodawcy?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Nie. W trakcie trwania 4-tygodniowego turnusu młodociany pracownik uczestniczy w zajęciach teoretycznych w ośrodku dokształcania i jest zwolniony ze świadczenia pracy w zakładzie pracy, zachowując przy tym pełne prawo do comiesięcznego wynagrodzenia.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800/80 p-4 transition-all">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 dark:text-white cursor-pointer list-none">
+            <span>Kto kieruje ucznia na turnus dokształcania teoretycznego?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Na turnus ucznia kieruje Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych na podstawie porozumienia z odpowiednim Centrum Kształcenia Zawodowego (CKZ). Informacja o terminie i miejscu jest przekazywana uczniowi oraz pracodawcy z odpowiednim wyprzedzeniem.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800/80 p-4 transition-all">
+          <summary class="flex items-center justify-between font-semibold text-slate-900 dark:text-white cursor-pointer list-none">
+            <span>Co się dzieje po zakończeniu turnusu?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Ośrodek prowadzący turnus wystawia zaświadczenie o ukończeniu dokształcania z ocenami z poszczególnych przedmiotów zawodowych. Oceny te są wpisywane do arkusza ocen ucznia w ZSEiU i stanowią podstawę klasyfikacji rocznej.
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <!-- BLOK KONTAKTOWY (WZOROWANY NA PRAKTYKACH) -->
+    <div class="rounded-2xl bg-linear-to-br from-amber-950 via-slate-900 to-navy-950 border border-amber-500/30 p-6 sm:p-8 text-white shadow-lg">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 16.9v2a2 2 0 0 1-2.1 2h-16A2 2 0 0 1 2 18.9v-2"></path>
+              <path d="M6 10l6 6 6-6"></path>
+              <path d="M12 16V3"></path>
+            </svg>
+            Kontakt
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold">Kierownik szkolenia praktycznego</h3>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            W sprawach organizacji turnusów dokształcania teoretycznego młodocianych pracowników oraz umów prosimy o kontakt z kierownikiem szkolenia praktycznego lub sekretariatem szkoły.
+          </p>
+          <p class="text-sm text-amber-200">
+            mgr inż. Piotr Dębowski – Kierownik szkolenia praktycznego<br />
+            Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych<br />
+            ul. Chopina 11b, 43-170 Łaziska Górne<br />
+            tel.: 32 224 24 15 · e-mail: sekretariat@zseiulaziska.pl
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </article>
+</Layout>

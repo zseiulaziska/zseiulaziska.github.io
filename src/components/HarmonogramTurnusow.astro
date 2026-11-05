@@ -1,0 +1,381 @@
+---
+export interface Zawod {
+  nazwa: string;
+  kod_zawodu?: string;
+  klasa: 'I' | 'II' | 'III' | string;
+  grupa?: string | null;
+  typ_zajec?: string;
+  specjalny?: boolean;
+}
+
+export interface Turnus {
+  id: number;
+  numer: string;
+  okres: string;
+  data_rozpoczecia: string;
+  data_zakonczenia: string;
+  uwagi?: string;
+  ferie?: {
+    data_rozpoczecia: string;
+    data_zakonczenia: string;
+  };
+  zawody: Zawod[];
+}
+
+export interface MetaData {
+  tytul: string;
+  rok_szkolny: string;
+  szkola: string;
+  zatwierdzajacy?: {
+    stanowisko: string;
+    jednostka: string;
+    osoba: string;
+  };
+  objasnienia?: {
+    plus?: string;
+  };
+}
+
+interface Props {
+  meta: MetaData;
+  turnusy: Turnus[];
+}
+
+const { meta, turnusy } = Astro.props;
+
+function formatDate(iso: string): string {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-').map(Number);
+  const date = new Date(y, m - 1, d);
+  return date.toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+
+<div class="harmonogram-turnusow space-y-6" id="harmonogram-turnusow">
+  <!-- Pasek informacyjny i filtry -->
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-navy-700">
+    <div class="flex items-start gap-3">
+      <div class="p-2.5 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+          <path d="M16 2v4M8 2v4M3 10h18"></path>
+        </svg>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+          Harmonogram turnusów dokształcania teoretycznego <span class="text-amber-600 dark:text-amber-400">{meta.rok_szkolny}</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">
+          {meta.szkola} · Łącznie 9 turnusów dokształcania
+        </p>
+      </div>
+    </div>
+
+    <!-- Wyszukiwarka zawodu lub kodu -->
+    <div class="flex items-center gap-2">
+      <label for="turnusy-search" class="sr-only">Szukaj zawodu lub kodu</label>
+      <div class="relative w-full sm:w-64">
+        <input
+          type="search"
+          id="turnusy-search"
+          placeholder="Szukaj zawodu lub kodu..."
+          class="w-full px-3.5 py-2 pl-9 text-xs sm:text-sm rounded-lg bg-slate-50 dark:bg-navy-900 border border-slate-200 dark:border-navy-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+        />
+        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Przyciski filtrujące po klasie / poziomie -->
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filtruj według poziomu/klasy">
+      <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mr-1">Filtruj poziom:</span>
+      <button
+        type="button"
+        data-filter="all"
+        class="turnus-filter-btn px-3 py-1.5 text-xs font-medium rounded-full border transition-all bg-amber-500 text-white border-amber-500 shadow-xs"
+        aria-pressed="true"
+      >
+        Wszystkie poziomy (9 turnusów)
+      </button>
+      <button
+        type="button"
+        data-filter="I"
+        class="turnus-filter-btn px-3 py-1.5 text-xs font-medium rounded-full border transition-all bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-700"
+        aria-pressed="false"
+      >
+        <span class="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1.5" aria-hidden="true"></span>
+        Klasa I (Poziom I)
+      </button>
+      <button
+        type="button"
+        data-filter="II"
+        class="turnus-filter-btn px-3 py-1.5 text-xs font-medium rounded-full border transition-all bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-700"
+        aria-pressed="false"
+      >
+        <span class="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1.5" aria-hidden="true"></span>
+        Klasa II (Poziom II)
+      </button>
+      <button
+        type="button"
+        data-filter="III"
+        class="turnus-filter-btn px-3 py-1.5 text-xs font-medium rounded-full border transition-all bg-white dark:bg-navy-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-navy-700 hover:bg-slate-100 dark:hover:bg-navy-700"
+        aria-pressed="false"
+      >
+        <span class="inline-block w-2 h-2 rounded-full bg-purple-500 mr-1.5" aria-hidden="true"></span>
+        Klasa III (Poziom III)
+      </button>
+    </div>
+
+    <!-- Legenda oznaczeń -->
+    <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+      <span class="inline-flex items-center gap-1">
+        <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-700">Poz. I</span> Klasa 1
+      </span>
+      <span class="inline-flex items-center gap-1">
+        <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 border border-blue-300 dark:border-blue-700">Poz. II</span> Klasa 2
+      </span>
+      <span class="inline-flex items-center gap-1">
+        <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300 border border-purple-300 dark:border-purple-700">Poz. III</span> Klasa 3
+      </span>
+      <span class="inline-flex items-center gap-1" title={meta.objasnienia?.plus}>
+        <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-700">+</span> Kurs specj.
+      </span>
+    </div>
+  </div>
+
+  <!-- Lista kart 9 turnusów -->
+  <div class="grid grid-cols-1 gap-4" id="turnusy-list">
+    {turnusy.map((turnus) => {
+      const klasyList = Array.from(new Set(turnus.zawody.map((z) => z.klasa))).join(',');
+      const keywords = [
+        turnus.numer,
+        `turnus ${turnus.numer}`,
+        turnus.okres,
+        ...turnus.zawody.map((z) => `${z.nazwa} ${z.kod_zawodu || ''} ${z.klasa} ${z.grupa || ''} ${z.typ_zajec || ''}`)
+      ].join(' ').toLowerCase();
+
+      return (
+        <article
+          class="turnus-card rounded-xl border border-slate-200 dark:border-navy-700 overflow-hidden bg-white dark:bg-navy-800/80 shadow-xs transition-all duration-200 hover:border-amber-300 dark:hover:border-amber-600"
+          data-poziomy={klasyList}
+          data-keywords={keywords}
+        >
+          <!-- Pasek nagłówkowy turnusu -->
+          <div class="bg-slate-50 dark:bg-navy-900/60 px-4 sm:px-6 py-3.5 border-b border-slate-200 dark:border-navy-700 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center min-w-9 px-2.5 py-1 rounded-lg text-xs font-black bg-amber-500 text-white shadow-xs">
+                Turnus {turnus.numer}
+              </span>
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold text-slate-900 dark:text-white">
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                    <path d="M16 2v4M8 2v4M3 10h18"></path>
+                  </svg>
+                  {turnus.okres}
+                </span>
+                <span class="text-xs font-normal text-slate-500 dark:text-slate-400">
+                  ({formatDate(turnus.data_rozpoczecia)} – {formatDate(turnus.data_zakonczenia)})
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              {turnus.uwagi && (
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-700/50">
+                  <svg class="w-3.5 h-3.5 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  {turnus.uwagi}
+                </span>
+              )}
+              <span class="inline-flex items-center gap-1 text-xs font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-navy-800 px-2.5 py-1 rounded-md border border-slate-200 dark:border-navy-700">
+                Zawodów: {turnus.zawody.length}
+              </span>
+            </div>
+          </div>
+
+          <!-- Lista zawodów w turnusie -->
+          <div class="p-4 sm:p-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              {turnus.zawody.map((zawod) => {
+                let badgeClass = 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/40 dark:text-amber-300 dark:border-amber-700/50';
+                let dotClass = 'bg-amber-500';
+
+                if (zawod.klasa === 'II') {
+                  badgeClass = 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-700/50';
+                  dotClass = 'bg-blue-500';
+                } else if (zawod.klasa === 'III') {
+                  badgeClass = 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-700/50';
+                  dotClass = 'bg-purple-500';
+                }
+
+                return (
+                  <div
+                    class="turnus-zawod-item flex items-center justify-between gap-2 p-2.5 rounded-lg border bg-slate-50/50 dark:bg-navy-900/40 border-slate-200 dark:border-navy-700 hover:bg-slate-100/70 dark:hover:bg-navy-900/70 transition-colors"
+                    data-klasa={zawod.klasa}
+                    data-zawod={`${zawod.nazwa} ${zawod.kod_zawodu || ''}`.toLowerCase()}
+                  >
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <span class="font-bold text-sm text-slate-900 dark:text-white truncate" title={zawod.nazwa}>
+                          {zawod.nazwa}
+                        </span>
+                        {zawod.specjalny && (
+                          <span
+                            class="inline-flex items-center justify-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300 border border-rose-300 dark:border-rose-700"
+                            title="Turnus / kurs specjalistyczny (+)"
+                          >
+                            +
+                          </span>
+                        )}
+                      </div>
+
+                      <div class="flex items-center gap-2 mt-1 text-[11px] text-slate-500 dark:text-slate-400">
+                        {zawod.kod_zawodu && <span>Kod: {zawod.kod_zawodu}</span>}
+                        {zawod.grupa && (
+                          <span class="px-1.5 py-0.2 rounded bg-slate-200 dark:bg-navy-800 text-slate-700 dark:text-slate-300">
+                            {zawod.grupa}
+                          </span>
+                        )}
+                        {zawod.typ_zajec && (
+                          <span class="px-1.5 py-0.2 rounded bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/40">
+                            {zawod.typ_zajec}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <!-- Badge Poziomu / Klasy -->
+                    <span
+                      class={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold border shrink-0 ${badgeClass}`}
+                      title={`Klasa ${zawod.klasa} (Poziom ${zawod.klasa})`}
+                    >
+                      <span class={`w-1.5 h-1.5 rounded-full ${dotClass}`} aria-hidden="true"></span>
+                      Poz. {zawod.klasa}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </article>
+      );
+    })}
+
+    <!-- Komunikat braku wyników po filtrowaniu -->
+    <div id="turnusy-no-results" class="hidden text-center py-12 px-4 rounded-xl border border-dashed border-slate-300 dark:border-navy-700 bg-slate-50 dark:bg-navy-800/40">
+      <svg class="w-10 h-10 text-slate-400 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <p class="text-base font-semibold text-slate-900 dark:text-white mb-1">Brak turnusów spełniających wybrane kryteria</p>
+      <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Spróbuj zmienić filtr poziomu lub wpisaną frazę w wyszukiwarce.</p>
+    </div>
+  </div>
+
+  <!-- Stopka informacji o zatwierdzeniu -->
+  {meta.zatwierdzajacy && (
+    <div class="mt-6 p-4 rounded-xl bg-slate-50 dark:bg-navy-900/40 border border-slate-200 dark:border-navy-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-emerald-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <span>
+          Harmonogram zatwierdzony przez: <strong>{meta.zatwierdzajacy.osoba}</strong> ({meta.zatwierdzajacy.stanowisko}, {meta.zatwierdzajacy.jednostka})
+        </span>
+      </div>
+      <div class="text-slate-500 dark:text-slate-400">
+        Oznaczenie <strong>(+)</strong>: turnus/kurs specjalistyczny
+      </div>
+    </div>
+  )}
+</div>
+
+<script is:inline>
+  (function () {
+    const container = document.getElementById('harmonogram-turnusow');
+    if (!container) return;
+
+    const searchInput = document.getElementById('turnusy-search');
+    const filterButtons = container.querySelectorAll('.turnus-filter-btn');
+    const cards = container.querySelectorAll('.turnus-card');
+    const noResults = document.getElementById('turnusy-no-results');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function applyFilters() {
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const poziomy = (card.getAttribute('data-poziomy') || '').split(',');
+        const keywords = card.getAttribute('data-keywords') || '';
+
+        const matchesLevel = currentFilter === 'all' || poziomy.includes(currentFilter);
+        const matchesSearch = !searchQuery || keywords.includes(searchQuery);
+
+        if (matchesLevel && matchesSearch) {
+          card.classList.remove('hidden');
+          visibleCount++;
+
+          const items = card.querySelectorAll('.turnus-zawod-item');
+          items.forEach((item) => {
+            const itemKlasa = item.getAttribute('data-klasa');
+            const itemZawod = item.getAttribute('data-zawod') || '';
+
+            const levelMatch = currentFilter === 'all' || itemKlasa === currentFilter;
+            const searchMatch = !searchQuery || itemZawod.includes(searchQuery);
+
+            if (levelMatch && searchMatch) {
+              item.style.opacity = '1';
+            } else {
+              item.style.opacity = currentFilter === 'all' && !searchQuery ? '1' : '0.35';
+            }
+          });
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter') || 'all';
+        currentFilter = filter;
+
+        filterButtons.forEach((b) => {
+          const isActive = b === btn;
+          b.setAttribute('aria-pressed', String(isActive));
+          if (isActive) {
+            b.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-700', 'dark:text-slate-200', 'border-slate-300', 'dark:border-navy-700');
+            b.classList.add('bg-amber-500', 'text-white', 'border-amber-500', 'shadow-xs');
+          } else {
+            b.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-700', 'dark:text-slate-200', 'border-slate-300', 'dark:border-navy-700');
+            b.classList.remove('bg-amber-500', 'text-white', 'border-amber-500', 'shadow-xs');
+          }
+        });
+
+        applyFilters();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = (e.target.value || '').trim().toLowerCase();
+        applyFilters();
+      });
+    }
+  })();
+</script>
