@@ -492,6 +492,11 @@ export const trasy: Trasa[] = [
   defineTrasa({ path: '/kontakt', label: 'Kontakt', icon: 'info' }),
 ];
 
+// Konfiguracja Astro konsumuje tę mapę; aliasy pozostają faktem Trasy, nie osobną listą.
+export const redirects: Record<string, string> = Object.fromEntries(
+  trasy.flatMap((trasa) => (trasa.aliases ?? []).map((alias) => [alias, trasa.path])),
+);
+
 function normalizePath(pathname: string): string {
   return pathname.replace(/\/+$/, '') || '/';
 }

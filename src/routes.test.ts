@@ -2,7 +2,7 @@ import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { PLAN_LEKCJI_URL, PLAN_LO_URL } from './consts';
-import { buildCrumbs, findTrasa, footerGroups, quickAccessLinks, resolveSearchTitle, trasy } from './routes';
+import { buildCrumbs, findTrasa, footerGroups, quickAccessLinks, redirects, resolveSearchTitle, trasy } from './routes';
 
 const pagesDir = fileURLToPath(new URL('./pages', import.meta.url));
 
@@ -41,6 +41,24 @@ describe('katalog Tras', () => {
     }
 
     expect(findTrasa('/kierunki-ksztalcenia')?.path).toBe('/kierunki');
+  });
+});
+
+describe('redirecty z katalogu Tras', () => {
+  it('stary adres kierunków prowadzi do aktualnej oferty', () => {
+    expect(redirects['/kierunki-ksztalcenia']).toBe('/kierunki');
+  });
+
+  it('pokrywa każdy alias Trasy i prowadzi do jej kanonicznego adresu', () => {
+    const aliasy = trasy.flatMap((trasa) => trasa.aliases ?? []);
+
+    expect(Object.keys(redirects).sort()).toEqual([...aliasy].sort());
+    for (const trasa of trasy) {
+      for (const alias of trasa.aliases ?? []) {
+        expect(findTrasa(alias)?.path, `Alias ${alias} nie prowadzi do Trasy`).toBe(trasa.path);
+        expect(redirects[alias]).toBe(trasa.path);
+      }
+    }
   });
 });
 
