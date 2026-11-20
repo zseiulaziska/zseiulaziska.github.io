@@ -10,6 +10,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
 import sitemapRoot from './src/integrations/sitemap-root.mjs';
+import { redirects } from './src/routes';
 
 const keystaticEnabled = !process.env.SKIP_KEYSTATIC;
 const staticBuild = !!process.env.GITHUB_ACTIONS;
@@ -23,9 +24,7 @@ const previewNode = process.env.PREVIEW_NODE === '1';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://zseiulaziska.pl',
-    redirects: {
-        '/kierunki-ksztalcenia': '/kierunki',
-    },
+    redirects,
     adapter: staticBuild ? undefined : useNodeRuntime ? node({ mode: 'standalone' }) : cloudflare(),
     // Osobny katalog dla podglądu Node, aby nie kolidować z buildem/preview Cloudflare.
     ...(previewNode && { outDir: './dist-node' }),
