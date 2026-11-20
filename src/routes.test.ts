@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { buildCrumbs, findTrasa, trasy } from './routes';
+import { buildCrumbs, findTrasa, resolveSearchTitle, trasy } from './routes';
 
 const pagesDir = fileURLToPath(new URL('./pages', import.meta.url));
 
@@ -40,6 +40,29 @@ describe('katalog Tras', () => {
     }
 
     expect(findTrasa('/kierunki-ksztalcenia')?.path).toBe('/kierunki');
+  });
+});
+
+describe('resolveSearchTitle', () => {
+  it('dla Trasy zwraca etykietę kanoniczną z katalogu zamiast tytułu strony z sufiksem', () => {
+    expect(resolveSearchTitle(
+      '/opm',
+      'Oddział Przygotowania Mundurowego – Technik Logistyk | ZSEiU Łaziska Górne',
+    )).toBe('Oddział Przygotowania Mundurowego');
+  });
+
+  it('dla strony głównej zwraca etykietę Trasy bez osobnego przypadku w adapterze', () => {
+    expect(resolveSearchTitle('/', 'Zespół Szkół Energetycznych i Usługowych w Łaziskach Górnych'))
+      .toBe('Strona główna');
+  });
+
+  it('dla aliasu zwraca tytuł wyszukiwania rozwiązanej Trasy', () => {
+    expect(resolveSearchTitle('/kierunki-ksztalcenia', 'Kierunki kształcenia'))
+      .toBe('Kierunki kształcenia');
+  });
+
+  it('dla wpisu bloga, który nie jest Trasą, zwraca tytuł wpisu', () => {
+    expect(resolveSearchTitle('/blog/powitanie', 'Powitanie')).toBe('Powitanie');
   });
 });
 
