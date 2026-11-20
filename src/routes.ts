@@ -4,12 +4,15 @@ export type SectionId = 'o-szkole' | 'oferta' | 'uczniowie-i-rodzice' | 'projekt
 
 export type Crumb = { href: string; label: string };
 
+export type SectionMenuEntry = { trasa: string } | { external: string };
+
 export type Section = {
   id: SectionId;
   title: string;
   description: string;
   href: string;
-  groups: string[];
+  highlight?: string;
+  groups: { title: string; entries: SectionMenuEntry[] }[];
 };
 
 export type Trasa = {
@@ -30,6 +33,8 @@ export type ExternalLink = {
   id: string;
   label: string;
   href: string;
+  description?: string;
+  ariaLabel?: string;
   icon?: string;
   external?: boolean;
   hideMobile?: boolean;
@@ -51,28 +56,100 @@ export const sections: Section[] = [
     title: 'O szkole',
     description: 'Informacje, zespół i życie szkolnej społeczności.',
     href: '/informacje/',
-    groups: ['Szkoła', 'Ludzie'],
+    groups: [
+      {
+        title: 'Szkoła',
+        entries: [
+          { trasa: '/informacje' },
+          { trasa: '/historia' },
+          { trasa: '/kierunki' },
+          { trasa: '/blog' },
+          { trasa: '/dostepnosc' },
+        ],
+      },
+      {
+        title: 'Ludzie',
+        entries: [{ trasa: '/dyrekcja' }, { trasa: '/grono-pedagogiczne' }],
+      },
+    ],
   },
   {
     id: 'oferta',
     title: 'Oferta',
     description: 'Kierunki, klasy i informacje dla kandydatów.',
     href: '/kierunki/',
-    groups: ['Kierunki', 'Profile'],
+    highlight: '/rekrutacja',
+    groups: [
+      {
+        title: 'Kierunki',
+        entries: [{ trasa: '/kierunki' }, { trasa: '/lo-dla-doroslych' }, { trasa: '/wielozawodowa' }],
+      },
+      {
+        title: 'Profile',
+        entries: [
+          { trasa: '/opw' },
+          { trasa: '/opm' },
+          { trasa: '/technik-elektryk' },
+          { trasa: '/technik-informatyk' },
+          { trasa: '/technik-logistyk' },
+          { trasa: '/technik-organizacji-turystyki' },
+          { trasa: '/technik-urzadzen-i-systemow-energetyki-odnawialnej' },
+          { trasa: '/technik-stylista' },
+        ],
+      },
+    ],
   },
   {
     id: 'uczniowie-i-rodzice',
     title: 'Uczniowie i rodzice',
     description: 'Codzienne sprawy, terminy, plany i dokumenty.',
     href: '/dla-uczniow/',
-    groups: ['Na co dzień', 'Dokumenty', 'Liceum dla Dorosłych'],
+    groups: [
+      {
+        title: 'Na co dzień',
+        entries: [
+          { trasa: '/dla-uczniow' },
+          { trasa: '/dla-rodzicow' },
+          { trasa: '/praktyki-zawodowe' },
+          { trasa: '/pracownicy-mlodociani' },
+          { external: 'plan-lekcji' },
+          { trasa: '/kalendarz' },
+        ],
+      },
+      {
+        title: 'Dokumenty',
+        entries: [
+          { trasa: '/podreczniki' },
+          { trasa: '/dokumenty' },
+          { trasa: '/rodo' },
+          { trasa: '/egzaminy-zawodowe' },
+        ],
+      },
+      {
+        title: 'Liceum dla Dorosłych',
+        entries: [{ trasa: '/lo-dla-doroslych' }, { external: 'plan-lo' }],
+      },
+    ],
   },
   {
     id: 'projekty',
     title: 'Projekty',
     description: 'Programy, Erasmus+ i aktualności z życia szkoły.',
     href: '/projekty/',
-    groups: ['Aktywności'],
+    groups: [
+      {
+        title: 'Aktywności',
+        entries: [
+          { trasa: '/projekty' },
+          { trasa: '/erasmus' },
+          { trasa: '/erasmus-grecja' },
+          { trasa: '/erasmus-sycylia' },
+          { trasa: '/zawodowy-mikolowski' },
+          { trasa: '/profesjonalny-mikolowski' },
+          { trasa: '/narodowy-program-rozwoju-czytelnictwa' },
+        ],
+      },
+    ],
   },
 ];
 
@@ -90,6 +167,7 @@ export const externalLinks: ExternalLink[] = [
     id: 'plan-lekcji',
     label: 'Plan lekcji',
     href: PLAN_LEKCJI_URL,
+    description: 'Aktualny plan zajęć',
     icon: 'calendar',
     external: true,
     hideMobile: true,
@@ -98,6 +176,7 @@ export const externalLinks: ExternalLink[] = [
     id: 'plan-lo',
     label: 'Plan LO',
     href: PLAN_LO_URL,
+    description: 'Aktualny plan zajęć',
     icon: 'calendar',
     external: true,
     hideMobile: true,
@@ -106,27 +185,37 @@ export const externalLinks: ExternalLink[] = [
     id: 'bip',
     label: 'BIP',
     href: 'https://zseiu.bip.gov.pl/',
+    ariaLabel: 'BIP (otwiera się w nowej karcie)',
     external: true,
   },
   {
     id: 'facebook',
     label: 'Facebook',
     href: 'https://www.facebook.com/zseiu',
+    ariaLabel: 'Facebook ZSEiU (otwiera się w nowej karcie)',
     external: true,
   },
   {
     id: 'instagram',
     label: 'Instagram',
     href: 'https://www.instagram.com/zseiu_laziska/',
+    ariaLabel: 'Instagram ZSEiU (otwiera się w nowej karcie)',
     external: true,
   },
   {
     id: 'linkedin',
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/company/zespół-szkół-energetycznych-i-usługowych-w-łaziskach-górnych',
+    ariaLabel: 'LinkedIn ZSEiU (otwiera się w nowej karcie)',
     external: true,
   },
 ];
+
+export function externalLink(id: string): ExternalLink {
+  const link = externalLinks.find((candidate) => candidate.id === id);
+  if (!link) throw new Error(`Brak linku zewnętrznego „${id}” w katalogu Tras`);
+  return link;
+}
 
 // Kolejność grup stopki jest znacząca: wyznacza kolejność linków w adapterze.
 export const footerGroups = {
@@ -187,6 +276,7 @@ export const trasy: Trasa[] = [
     path: '/blog',
     label: 'Blog',
     navLabel: 'Aktualności',
+    searchTitle: 'Aktualności',
     description: 'Wydarzenia i informacje ze szkoły',
     section: 'projekty',
     navGroup: 'Szkoła',
@@ -312,6 +402,7 @@ export const trasy: Trasa[] = [
     label: 'Technik urządzeń i systemów energetyki odnawialnej',
     navLabel: 'Technik urządzeń OZE',
     footerLabel: 'Technik urządzeń OZE',
+    searchTitle: 'Technik urządzeń OZE',
     description: 'Fotowoltaika, pompy ciepła, magazyny energii',
     section: 'oferta',
     navGroup: 'Profile',
@@ -511,8 +602,7 @@ const quickTrasaPath = '/dzwonki';
 
 export function quickAccessLinks(): QuickAccessLink[] {
   const links = quickExternalIds.map((id): QuickAccessLink => {
-    const link = externalLinks.find((candidate) => candidate.id === id);
-    if (!link) throw new Error(`Brak linku zewnętrznego „${id}” w katalogu Tras`);
+    const link = externalLink(id);
     return { ...link, external: link.external ?? true, source: 'external' };
   });
 
@@ -531,9 +621,13 @@ export function quickAccessLinks(): QuickAccessLink[] {
   return links;
 }
 
-// Wpisy bloga i nieznane ścieżki nie są Trasami — wtedy zostaje tytuł przekazany przez stronę.
+// Wpisy bloga i nieznane ścieżki nie są Trasami — wtedy czyścimy sufiks szkoły z tytułu strony.
 export function resolveSearchTitle(pathname: string, fallbackTitle: string): string {
-  return findTrasa(pathname)?.searchTitle ?? fallbackTitle;
+  const trasa = findTrasa(pathname);
+  if (trasa) return trasa.searchTitle;
+
+  const title = fallbackTitle.replace(/\s*[-|–]\s*ZSEiU.*$/i, '').trim();
+  return title || fallbackTitle;
 }
 
 export function buildCrumbs(pathname: string, postTitle?: string): Crumb[] {

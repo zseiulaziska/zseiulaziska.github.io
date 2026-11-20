@@ -1,7 +1,7 @@
 ---
-import { externalLinks, findTrasa, sections, type ExternalLink, type SectionId, type Trasa } from '../routes';
+import { externalLink, findTrasa, sections, type SectionMenuEntry, type Trasa } from '../routes';
 
-type MenuEntry = { trasa: string } | { external: string };
+type MenuEntry = { trasaPath: string } | { externalId: string };
 
 type MenuLink = {
   href: string;
@@ -24,73 +24,15 @@ type MobileSection =
   | { title: string; desc: string; isFlat: true; links: MenuLink[] }
   | { title: string; desc: string; isFlat: false; groups: MenuGroup[]; highlight?: MenuLink };
 
-// Katalog Tras jest źródłem nazw, opisów, adresów i ikon. Adapter zachowuje
-// wyłącznie układ menu: Trasa może pojawić się w kilku grupach, a linki
-// zewnętrzne nie są Trasami i nie mają własnej sekcji w katalogu.
-type MenuLayout = { highlight?: MenuEntry; groups: MenuEntry[][] };
-
-const menuLayout: Record<SectionId, MenuLayout> = {
-  'o-szkole': {
-    groups: [
-      [{ trasa: '/informacje' }, { trasa: '/historia' }, { trasa: '/kierunki' }, { trasa: '/blog' }, { trasa: '/dostepnosc' }],
-      [{ trasa: '/dyrekcja' }, { trasa: '/grono-pedagogiczne' }],
-    ],
-  },
-  oferta: {
-    highlight: { trasa: '/rekrutacja' },
-    groups: [
-      [{ trasa: '/kierunki' }, { trasa: '/lo-dla-doroslych' }, { trasa: '/wielozawodowa' }],
-      [
-        { trasa: '/opw' },
-        { trasa: '/opm' },
-        { trasa: '/technik-elektryk' },
-        { trasa: '/technik-informatyk' },
-        { trasa: '/technik-logistyk' },
-        { trasa: '/technik-organizacji-turystyki' },
-        { trasa: '/technik-urzadzen-i-systemow-energetyki-odnawialnej' },
-        { trasa: '/technik-stylista' },
-      ],
-    ],
-  },
-  'uczniowie-i-rodzice': {
-    groups: [
-      [
-        { trasa: '/dla-uczniow' },
-        { trasa: '/dla-rodzicow' },
-        { trasa: '/praktyki-zawodowe' },
-        { trasa: '/pracownicy-mlodociani' },
-        { external: 'plan-lekcji' },
-        { trasa: '/kalendarz' },
-      ],
-      [{ trasa: '/podreczniki' }, { trasa: '/dokumenty' }, { trasa: '/rodo' }, { trasa: '/egzaminy-zawodowe' }],
-      [{ trasa: '/lo-dla-doroslych' }, { external: 'plan-lo' }],
-    ],
-  },
-  projekty: {
-    groups: [
-      [
-        { trasa: '/projekty' },
-        { trasa: '/erasmus' },
-        { trasa: '/erasmus-grecja' },
-        { trasa: '/erasmus-sycylia' },
-        { trasa: '/zawodowy-mikolowski' },
-        { trasa: '/profesjonalny-mikolowski' },
-        { trasa: '/narodowy-program-rozwoju-czytelnictwa' },
-      ],
-    ],
-  },
-};
-
-// Katalog opisuje linki zewnętrzne bez opisu — teksty pomocnicze w menu pozostają w adapterze.
-const externalDescriptions: Record<string, string> = {
-  'plan-lekcji': 'Aktualny plan zajęć',
-  'plan-lo': 'Aktualny plan zajęć',
-};
+// Sekcje katalogu niosą kolejność i przynależność linków; adapter tylko je renderuje.
+function menuEntry(entry: SectionMenuEntry): MenuEntry {
+  return 'trasa' in entry ? { trasaPath: entry.trasa } : { externalId: entry.external };
+}
 
 function menuLink(entry: MenuEntry): MenuLink {
-  if ('trasa' in entry) {
-    const trasa: Trasa | undefined = findTrasa(entry.trasa);
-    if (!trasa) throw new Error(`Menu odwołuje się do nieistniejącej Trasy: ${entry.trasa}`);
+  if ('trasaPath' in entry) {
+    const trasa: Trasa | undefined = findTrasa(entry.trasaPath);
+    if (!trasa) throw new Error(`Menu odwołuje się do nieistniejącej Trasy: ${entry.trasaPath}`);
     return {
       href: trasa.path,
       label: trasa.navLabel ?? trasa.label,
@@ -100,46 +42,46 @@ function menuLink(entry: MenuEntry): MenuLink {
     };
   }
 
-  const link: ExternalLink | undefined = externalLinks.find((candidate) => candidate.id === entry.external);
-  if (!link) throw new Error(`Menu odwołuje się do nieistniejącego linku zewnętrznego: ${entry.external}`);
+  const link = externalLink(entry.externalId);
   return {
     href: link.href,
     label: link.label,
-    description: externalDescriptions[entry.external],
+    description: link.description,
     icon: link.icon ?? 'info',
     external: link.external ?? true,
   };
 }
 
-const menuSections: MenuSection[] = sections.map((section) => {
-  const layout = menuLayout[section.id];
-  return {
-    title: section.title,
-    description: section.description,
-    highlight: layout.highlight ? menuLink(layout.highlight) : undefined,
-    groups: layout.groups.map((entries, index) => {
-      const title = section.groups[index];
-      if (!title) throw new Error(`Katalog nie deklaruje grupy ${index} sekcji ${section.id}`);
-      return { title, links: entries.map(menuLink) };
-    }),
-  };
-});
+const menuSections: MenuSection[] = sections.map((section) => ({
+  title: section.title,
+  description: section.description,
+  highlight: section.highlight ? menuLink({ trasaPath: section.highlight }) : undefined,
+  groups: section.groups.map((group) => ({
+    title: group.title,
+    links: group.entries.map((entry) => menuLink(menuEntry(entry))),
+  })),
+}));
 
-const homeLink = menuLink({ trasa: '/' });
-const newsLink = menuLink({ trasa: '/blog' });
-const recruitmentLink = menuLink({ trasa: '/rekrutacja' });
-const contactLink = menuLink({ trasa: '/kontakt' });
+const homeLink = menuLink({ trasaPath: '/' });
+const newsLink = menuLink({ trasaPath: '/blog' });
+const recruitmentLink = menuLink({ trasaPath: '/rekrutacja' });
+const contactLink = menuLink({ trasaPath: '/kontakt' });
 
 const quickLinks: MenuEntry[] = [
-  { trasa: '/' },
-  { external: 'plan-lekcji' },
-  { external: 'plan-lo' },
-  { external: 'edziennik' },
-  { trasa: '/rekrutacja' },
-  { trasa: '/kontakt' },
+  { trasaPath: '/' },
+  { externalId: 'plan-lekcji' },
+  { externalId: 'plan-lo' },
+  { externalId: 'edziennik' },
+  { trasaPath: '/rekrutacja' },
+  { trasaPath: '/kontakt' },
 ];
 
-const socialLinks: MenuEntry[] = ['bip', 'facebook', 'instagram', 'linkedin'].map((id) => ({ external: id }));
+const socialLinkIds = ['bip', 'facebook', 'instagram', 'linkedin'] as const;
+const socialLinks: MenuEntry[] = socialLinkIds.map((id) => ({ externalId: id }));
+const bipLink = externalLink('bip');
+const facebookLink = externalLink('facebook');
+const instagramLink = externalLink('instagram');
+const linkedinLink = externalLink('linkedin');
 
 // Struktura akordeonu mobilnego — zachowuje hierarchię sekcje → grupy (4 sekcje + Najważniejsze/Linki).
 const mobileAccordionData: MobileSection[] = [
@@ -223,20 +165,20 @@ const iconForName = (name: string | undefined): string =>
     </div>
 
     <div class="site-social" aria-label="Linki społecznościowe i BIP">
-      <a href="https://zseiu.bip.gov.pl/" target="_blank" rel="noopener noreferrer" aria-label="Biuletyn Informacji Publicznej (otwiera się w nowej karcie)">
+      <a href={bipLink.href} target="_blank" rel="noopener noreferrer" aria-label="Biuletyn Informacji Publicznej (otwiera się w nowej karcie)">
         <img src="/images/bip_simple.svg" alt="" />
       </a>
-      <a href="https://www.facebook.com/zseiu" target="_blank" rel="noopener noreferrer" aria-label="Facebook ZSEiU (otwiera się w nowej karcie)">
+      <a href={facebookLink.href} target="_blank" rel="noopener noreferrer" aria-label={facebookLink.ariaLabel}>
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1c0 6 4.4 11 10.1 11.9v-8.4h-3v-3.5h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.3l-.5 3.5h-2.8V24c5.8-.9 10.2-5.9 10.2-11.9z"></path>
         </svg>
       </a>
-      <a href="https://www.instagram.com/zseiu_laziska/" target="_blank" rel="noopener noreferrer" aria-label="Instagram ZSEiU (otwiera się w nowej karcie)">
+      <a href={instagramLink.href} target="_blank" rel="noopener noreferrer" aria-label={instagramLink.ariaLabel}>
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M7.1 2h9.8A5.1 5.1 0 0 1 22 7.1v9.8a5.1 5.1 0 0 1-5.1 5.1H7.1A5.1 5.1 0 0 1 2 16.9V7.1A5.1 5.1 0 0 1 7.1 2zm0 2A3.1 3.1 0 0 0 4 7.1v9.8A3.1 3.1 0 0 0 7.1 20h9.8a3.1 3.1 0 0 0 3.1-3.1V7.1A3.1 3.1 0 0 0 16.9 4H7.1zm10.4 1.7a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>
         </svg>
       </a>
-      <a href="https://www.linkedin.com/company/zespół-szkół-energetycznych-i-usługowych-w-łaziskach-górnych" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn ZSEiU (otwiera się w nowej karcie)">
+      <a href={linkedinLink.href} target="_blank" rel="noopener noreferrer" aria-label={linkedinLink.ariaLabel}>
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
         </svg>

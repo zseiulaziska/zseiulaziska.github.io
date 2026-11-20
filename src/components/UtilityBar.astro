@@ -1,15 +1,8 @@
 ---
 import { quickAccessLinks } from '../routes';
+import { quickAccessIconPaths } from './quick-access-icons';
 
 const links = quickAccessLinks();
-
-const iconSvgs = {
-  book: '<path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>',
-  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
-  alert: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
-  bell: '<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>',
-  access: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1"/><path d="M7 11h10"/><path d="M12 11v7"/><path d="M9 18l3-7 3 7"/>',
-};
 ---
 
 <div class="utility-bar" role="navigation" aria-label="Szybki dostęp">
@@ -22,7 +15,7 @@ const iconSvgs = {
         rel={link.external ? 'noopener noreferrer' : undefined}
         aria-label={link.label}
       >
-        <svg class="utility-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={iconSvgs[link.icon as keyof typeof iconSvgs]} />
+        <svg class="utility-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={quickAccessIconPaths[link.icon as keyof typeof quickAccessIconPaths]} />
         <span class="utility-bar__label">{link.label}</span>
       </a>
     ))}
