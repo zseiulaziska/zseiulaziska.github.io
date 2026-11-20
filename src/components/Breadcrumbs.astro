@@ -2,7 +2,6 @@
 import { buildCrumbs } from '../routes';
 
 const PATH = Astro.url.pathname;
-const currentPath = PATH.replace(/\/+$/, '') || '/';
 const { title } = Astro.props as { title?: string };
 const origin = Astro.site ?? Astro.url.origin;
 const crumbs = buildCrumbs(PATH, title);
@@ -25,12 +24,9 @@ const jsonLd = {
 
 <nav aria-label="Ścieżka nawigacyjna" class="breadcrumbs" data-pagefind-ignore>
   <ol>
-    {crumbs.map((crumb) => (
+    {crumbs.map((crumb, i) => (
       <li>
-        <a
-          href={crumb.href}
-          aria-current={crumb.href.replace(/\/+$/, '') === currentPath ? 'page' : undefined}
-        >
+        <a href={crumb.href} aria-current={i === crumbs.length - 1 ? 'page' : undefined}>
           {crumb.label}
         </a>
       </li>

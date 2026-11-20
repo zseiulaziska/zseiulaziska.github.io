@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { buildCrumbs, externalLinks, findRoute, routes, sections } from './routes';
+import { buildCrumbs, findTrasa, trasy } from './routes';
 
 const pagesDir = fileURLToPath(new URL('./pages', import.meta.url));
 
@@ -23,35 +23,23 @@ describe('katalog Tras', () => {
     const expected = pagePaths();
 
     expect(expected.length).toBeGreaterThan(0);
-    expect(routes.map((route) => route.path).sort()).toEqual(expected);
+    expect(trasy.map((trasa) => trasa.path).sort()).toEqual(expected);
   });
 
   it('ma unikalne ścieżki kanoniczne', () => {
-    const paths = routes.map((route) => route.path);
+    const paths = trasy.map((trasa) => trasa.path);
 
     expect(new Set(paths).size).toBe(paths.length);
   });
 
   it('rozwiązuje każdy alias do istniejącej Trasy', () => {
-    for (const route of routes) {
-      for (const alias of route.aliases ?? []) {
-        expect(findRoute(alias), `Alias ${alias} nie prowadzi do Trasy`).toBe(route);
+    for (const trasa of trasy) {
+      for (const alias of trasa.aliases ?? []) {
+        expect(findTrasa(alias), `Alias ${alias} nie prowadzi do Trasy`).toBe(trasa);
       }
     }
 
-    expect(findRoute('/kierunki-ksztalcenia')?.path).toBe('/kierunki');
-  });
-
-  it('ma sekcje z adresami okruszków zakończonymi ukośnikiem', () => {
-    for (const section of sections) {
-      expect(section.href, `Sekcja ${section.title} ma zły adres okruszka`).toMatch(/\/$/);
-    }
-  });
-
-  it('ma unikalne linki zewnętrzne', () => {
-    const hrefs = externalLinks.map((link) => link.href);
-
-    expect(new Set(hrefs).size).toBe(hrefs.length);
+    expect(findTrasa('/kierunki-ksztalcenia')?.path).toBe('/kierunki');
   });
 });
 

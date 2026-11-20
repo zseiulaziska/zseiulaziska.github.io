@@ -10,11 +10,9 @@ export type Section = {
   description: string;
   href: string;
   groups: string[];
-  /** Kanoniczna ścieżka Trasy wyróżnionej w menu tej sekcji. */
-  highlight?: string;
 };
 
-export type Route = {
+export type Trasa = {
   path: string;
   label: string;
   navLabel?: string;
@@ -37,10 +35,10 @@ export type ExternalLink = {
   hideMobile?: boolean;
 };
 
-type RouteInput = Omit<Route, 'searchTitle'> & { searchTitle?: string };
+type TrasaInput = Omit<Trasa, 'searchTitle'> & { searchTitle?: string };
 
-function defineRoute({ searchTitle, ...route }: RouteInput): Route {
-  return { ...route, searchTitle: searchTitle ?? route.label };
+function defineTrasa({ searchTitle, ...trasa }: TrasaInput): Trasa {
+  return { ...trasa, searchTitle: searchTitle ?? trasa.label };
 }
 
 // Adresy sekcji zachowują końcowy ukośnik używany dotąd w danych strukturalnych.
@@ -58,7 +56,6 @@ export const sections: Section[] = [
     description: 'Kierunki, klasy i informacje dla kandydatów.',
     href: '/kierunki/',
     groups: ['Kierunki', 'Profile'],
-    highlight: '/rekrutacja',
   },
   {
     id: 'uczniowie-i-rodzice',
@@ -128,10 +125,10 @@ export const externalLinks: ExternalLink[] = [
   },
 ];
 
-export const routes: Route[] = [
-  defineRoute({ path: '/', label: 'Strona główna' }),
+export const trasy: Trasa[] = [
+  defineTrasa({ path: '/', label: 'Strona główna' }),
 
-  defineRoute({
+  defineTrasa({
     path: '/informacje',
     label: 'Informacje o szkole',
     description: 'Dane szkoły i podstawowe informacje',
@@ -139,7 +136,7 @@ export const routes: Route[] = [
     navGroup: 'Szkoła',
     icon: 'info',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/historia',
     label: 'Historia',
     description: 'Dzieje ZSEiU w Łaziskach Górnych',
@@ -147,16 +144,18 @@ export const routes: Route[] = [
     navGroup: 'Szkoła',
     icon: 'clock',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/kierunki',
     label: 'Kierunki kształcenia',
     description: 'Przegląd zawodów i profili',
     section: 'o-szkole',
+    // W menu Trasa należy do „O szkole”, ale jej dotychczasowy breadcrumb prowadził do „Oferta”.
+    breadcrumbParent: { href: '/kierunki/', label: 'Oferta' },
     navGroup: 'Szkoła',
     icon: 'graduation',
     aliases: ['/kierunki-ksztalcenia'],
   }),
-  defineRoute({
+  defineTrasa({
     path: '/blog',
     label: 'Blog',
     navLabel: 'Aktualności',
@@ -165,7 +164,7 @@ export const routes: Route[] = [
     navGroup: 'Szkoła',
     icon: 'news',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/dostepnosc',
     label: 'Dostępność',
     footerLabel: 'Deklaracja dostępności',
@@ -174,7 +173,7 @@ export const routes: Route[] = [
     navGroup: 'Szkoła',
     icon: 'access',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/dyrekcja',
     label: 'Dyrekcja i kierownictwo',
     description: 'Osoby zarządzające szkołą',
@@ -182,7 +181,7 @@ export const routes: Route[] = [
     navGroup: 'Ludzie',
     icon: 'people',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/grono-pedagogiczne',
     label: 'Grono pedagogiczne',
     description: 'Nauczyciele i specjaliści',
@@ -190,20 +189,20 @@ export const routes: Route[] = [
     navGroup: 'Ludzie',
     icon: 'graduation',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/klienci-i-partnerzy',
     label: 'Klienci i partnerzy',
     section: 'o-szkole',
     icon: 'briefcase',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/pracownie',
     label: 'Pracownie',
     section: 'o-szkole',
     icon: 'info',
   }),
 
-  defineRoute({
+  defineTrasa({
     path: '/rekrutacja',
     label: 'Rekrutacja',
     footerLabel: 'Rekrutacja 2026/2027',
@@ -212,7 +211,7 @@ export const routes: Route[] = [
     navGroup: 'Kierunki',
     icon: 'check',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/lo-dla-doroslych',
     label: 'LO dla Dorosłych',
     description: 'Nauka w systemie zaocznym',
@@ -220,7 +219,7 @@ export const routes: Route[] = [
     navGroup: 'Kierunki',
     icon: 'book',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/wielozawodowa',
     label: 'Klasa wielozawodowa',
     footerLabel: 'Klasa wielozawodowa (BS I)',
@@ -229,7 +228,7 @@ export const routes: Route[] = [
     navGroup: 'Kierunki',
     icon: 'clipboard',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/opw',
     label: 'Oddział Przygotowania Wojskowego',
     footerLabel: 'Oddziały Przygotowania Wojskowego - OPW',
@@ -238,7 +237,7 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'info',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/opm',
     label: 'Oddział Przygotowania Mundurowego',
     footerLabel: 'Oddziały Przygotowania Mundurowego - OPM',
@@ -247,7 +246,7 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'info',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/technik-elektryk',
     label: 'Technik elektryk',
     description: 'Instalacje, OZE, automatyka domowa i sterowniki PLC',
@@ -255,7 +254,7 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'spark',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/technik-informatyk',
     label: 'Technik informatyk',
     description: 'Programowanie, sieci i cyberbezpieczeństwo',
@@ -263,7 +262,7 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'terminal',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/technik-logistyk',
     label: 'Technik logistyk',
     footerLabel: 'Technik logistyk (Mundurowy)',
@@ -272,7 +271,7 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'globe',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/technik-organizacji-turystyki',
     label: 'Technik organizacji turystyki',
     description: 'Pilotowanie, biura podróży, języki obce',
@@ -280,7 +279,7 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'globe',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/technik-urzadzen-i-systemow-energetyki-odnawialnej',
     label: 'Technik urządzeń i systemów energetyki odnawialnej',
     navLabel: 'Technik urządzeń OZE',
@@ -290,7 +289,7 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'spark',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/technik-stylista',
     label: 'Technik stylista',
     description: 'Projektowanie mody, stylizacja, wizaż i marketing',
@@ -298,20 +297,20 @@ export const routes: Route[] = [
     navGroup: 'Profile',
     icon: 'book',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/klasy-mundurowe',
     label: 'Klasy mundurowe',
     section: 'oferta',
     icon: 'shield',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/klasa-policyjna',
     label: 'Klasa policyjna',
     section: 'oferta',
     icon: 'badge',
   }),
 
-  defineRoute({
+  defineTrasa({
     path: '/dla-uczniow',
     label: 'Dla uczniów',
     description: 'Informacje i zasoby dla uczniów',
@@ -319,7 +318,7 @@ export const routes: Route[] = [
     navGroup: 'Na co dzień',
     icon: 'graduation',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/dla-rodzicow',
     label: 'Dla rodziców',
     description: 'Komunikaty dla opiekunów',
@@ -327,7 +326,7 @@ export const routes: Route[] = [
     navGroup: 'Na co dzień',
     icon: 'people',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/praktyki-zawodowe',
     label: 'Praktyki zawodowe',
     description: 'Informacje i dokumenty praktyk',
@@ -335,7 +334,7 @@ export const routes: Route[] = [
     navGroup: 'Na co dzień',
     icon: 'briefcase',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/pracownicy-mlodociani',
     label: 'Pracownicy młodociani',
     description: 'Turnusy dokształcania teoretycznego',
@@ -343,13 +342,13 @@ export const routes: Route[] = [
     navGroup: 'Na co dzień',
     icon: 'briefcase',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/plan-lekcji',
     label: 'Plan lekcji',
     section: 'uczniowie-i-rodzice',
     icon: 'calendar',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/kalendarz',
     label: 'Kalendarz',
     footerLabel: 'Kalendarz szkolny',
@@ -358,7 +357,7 @@ export const routes: Route[] = [
     navGroup: 'Na co dzień',
     icon: 'calendar-days',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/podreczniki',
     label: 'Podręczniki',
     description: 'Wykazy podręczników',
@@ -366,7 +365,7 @@ export const routes: Route[] = [
     navGroup: 'Dokumenty',
     icon: 'book',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/dokumenty',
     label: 'Dokumenty szkolne',
     footerLabel: 'Statuty i Regulaminy',
@@ -375,7 +374,7 @@ export const routes: Route[] = [
     navGroup: 'Dokumenty',
     icon: 'file',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/rodo',
     label: 'RODO',
     footerLabel: 'RODO & Prywatność',
@@ -384,7 +383,7 @@ export const routes: Route[] = [
     navGroup: 'Dokumenty',
     icon: 'shield',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/egzaminy-zawodowe',
     label: 'Egzaminy zawodowe',
     description: 'Kwalifikacje i informacje egzaminacyjne',
@@ -392,20 +391,20 @@ export const routes: Route[] = [
     navGroup: 'Dokumenty',
     icon: 'award',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/plan-zajec-lo',
     label: 'Plan zajęć LO',
     section: 'uczniowie-i-rodzice',
     icon: 'calendar',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/dzwonki',
     label: 'Dzwonki',
     section: 'uczniowie-i-rodzice',
     icon: 'clock',
   }),
 
-  defineRoute({
+  defineTrasa({
     path: '/projekty',
     label: 'Projekty',
     description: 'Inicjatywy edukacyjne i społeczne',
@@ -413,7 +412,7 @@ export const routes: Route[] = [
     navGroup: 'Aktywności',
     icon: 'spark',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/erasmus',
     label: 'Erasmus+',
     description: 'Program Unii Europejskiej – praktyki zagraniczne',
@@ -421,7 +420,7 @@ export const routes: Route[] = [
     navGroup: 'Aktywności',
     icon: 'globe',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/erasmus-grecja',
     label: 'Erasmus+ Grecja',
     description: '„Pod stokami Olimpu” – Nei Pori',
@@ -429,7 +428,7 @@ export const routes: Route[] = [
     navGroup: 'Aktywności',
     icon: 'globe',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/erasmus-sycylia',
     label: 'Erasmus+ Sycylia',
     description: '„U podnóża Etny” – Katania',
@@ -437,7 +436,7 @@ export const routes: Route[] = [
     navGroup: 'Aktywności',
     icon: 'globe',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/zawodowy-mikolowski',
     label: 'Zawodowy Mikołowski',
     description: 'Projekt unijny – edukacja zawodowa w transformacji',
@@ -445,7 +444,7 @@ export const routes: Route[] = [
     navGroup: 'Aktywności',
     icon: 'spark',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/profesjonalny-mikolowski',
     label: 'Profesjonalny Mikołowski',
     description: 'Program Staży Uczniowskich 2024–2029',
@@ -453,7 +452,7 @@ export const routes: Route[] = [
     navGroup: 'Aktywności',
     icon: 'spark',
   }),
-  defineRoute({
+  defineTrasa({
     path: '/narodowy-program-rozwoju-czytelnictwa',
     label: 'Narodowy Program Rozwoju Czytelnictwa',
     description: 'Wsparcie dla biblioteki szkolnej',
@@ -462,16 +461,16 @@ export const routes: Route[] = [
     icon: 'book',
   }),
 
-  defineRoute({ path: '/kontakt', label: 'Kontakt', icon: 'info' }),
+  defineTrasa({ path: '/kontakt', label: 'Kontakt', icon: 'info' }),
 ];
 
 function normalizePath(pathname: string): string {
   return pathname.replace(/\/+$/, '') || '/';
 }
 
-export function findRoute(pathname: string): Route | undefined {
+export function findTrasa(pathname: string): Trasa | undefined {
   const path = normalizePath(pathname);
-  return routes.find((route) => route.path === path || route.aliases?.includes(path));
+  return trasy.find((trasa) => trasa.path === path || trasa.aliases?.includes(path));
 }
 
 export function buildCrumbs(pathname: string, postTitle?: string): Crumb[] {
@@ -484,7 +483,7 @@ export function buildCrumbs(pathname: string, postTitle?: string): Crumb[] {
 
   // Wpisy bloga mają własną ścieżkę: Aktualności → tytuł wpisu, bez sekcji.
   if (path.startsWith('/blog/')) {
-    const blog = findRoute('/blog');
+    const blog = findTrasa('/blog');
     crumbs.push({
       href: '/blog/',
       label: blog?.navLabel ?? blog?.label ?? 'Aktualności',
@@ -495,19 +494,19 @@ export function buildCrumbs(pathname: string, postTitle?: string): Crumb[] {
     return crumbs;
   }
 
-  const route = findRoute(path);
+  const trasa = findTrasa(path);
 
-  if (route?.breadcrumbParent) {
-    crumbs.push(route.breadcrumbParent);
-  } else if (route?.section) {
-    const section = sections.find((candidate) => candidate.id === route.section);
+  if (trasa?.breadcrumbParent) {
+    crumbs.push(trasa.breadcrumbParent);
+  } else if (trasa?.section) {
+    const section = sections.find((candidate) => candidate.id === trasa.section);
     if (section) {
       crumbs.push({ href: section.href, label: section.title });
     }
   }
 
-  if (route) {
-    crumbs.push({ href: route.path, label: route.label });
+  if (trasa) {
+    crumbs.push({ href: trasa.path, label: trasa.label });
   }
 
   return crumbs;
