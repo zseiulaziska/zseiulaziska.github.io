@@ -6,8 +6,14 @@
 
 **Status:** ready-for-agent
 
-- [ ] Grupy linków w stopce są budowane z katalogu Tras.
-- [ ] Dłuższe nazwy używane w stopce pozostają jawnymi wariantami Trasy, a nie zastępują etykiety kanonicznej.
-- [ ] Linki prawne oraz plany lekcji korzystają z faktów katalogu: wewnętrzne strony jako Trasy, zewnętrzne adresy jako linki zewnętrzne.
-- [ ] W stopce nie pozostają rozproszone, własne stringi opisujące trasy.
-- [ ] Build projektu i dotychczasowa walidacja przechodzą; wygląd stopki pozostaje bez zmian poza poprawionymi nazwami.
+- [x] Grupy linków w stopce są budowane z katalogu Tras.
+- [x] Dłuższe nazwy używane w stopce pozostają jawnymi wariantami Trasy, a nie zastępują etykiety kanonicznej.
+- [x] Linki prawne oraz plany lekcji korzystają z faktów katalogu: wewnętrzne strony jako Trasy, zewnętrzne adresy jako linki zewnętrzne.
+- [x] W stopce nie pozostają rozproszone, własne stringi opisujące trasy.
+- [x] Build projektu i dotychczasowa walidacja przechodzą; wygląd stopki pozostaje bez zmian poza poprawionymi nazwami.
+
+## Comments
+
+- Implementacja: `8167ca6`, merge na integrację: `21f2438`.
+- Grupy stopki pochodzą z `footerGroups`, nazwy z `footerLabel ?? label` (po przeglądzie wyciągnięte do helpera `etykietaStopki`), linki zewnętrzne z katalogu.
+- Po przeglądzie usunięto literal `/rekrutacja` — wyróżnienie stylistyczne czyta `sections[].highlight`. Aria-labeli z katalogu używają zewnętrzne linki.
