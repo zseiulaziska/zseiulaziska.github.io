@@ -501,6 +501,11 @@ export function quickAccessLinks(): QuickAccessLink[] {
   return links;
 }
 
+// Wpisy bloga i nieznane ścieżki nie są Trasami — wtedy zostaje tytuł przekazany przez stronę.
+export function resolveSearchTitle(pathname: string, fallbackTitle: string): string {
+  return findTrasa(pathname)?.searchTitle ?? fallbackTitle;
+}
+
 export function buildCrumbs(pathname: string, postTitle?: string): Crumb[] {
   const rawPath = pathname || '/';
   const path = normalizePath(rawPath);
