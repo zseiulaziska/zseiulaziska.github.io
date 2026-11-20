@@ -128,6 +128,31 @@ export const externalLinks: ExternalLink[] = [
   },
 ];
 
+// Kolejność grup stopki jest znacząca: wyznacza kolejność linków w adapterze.
+export const footerGroups = {
+  oferta: [
+    '/opw',
+    '/opm',
+    '/technik-informatyk',
+    '/technik-logistyk',
+    '/technik-elektryk',
+    '/technik-urzadzen-i-systemow-energetyki-odnawialnej',
+    '/technik-stylista',
+    '/technik-organizacji-turystyki',
+    '/wielozawodowa',
+    '/lo-dla-doroslych',
+  ],
+  spolecznosc: [
+    '/kalendarz',
+    '/podreczniki',
+    '/praktyki-zawodowe',
+    '/pracownicy-mlodociani',
+    '/egzaminy-zawodowe',
+    '/rekrutacja',
+  ],
+  prawne: ['/dostepnosc', '/rodo', '/dokumenty'],
+} as const satisfies Record<string, readonly string[]>;
+
 export const trasy: Trasa[] = [
   defineTrasa({ path: '/', label: 'Strona główna' }),
 
