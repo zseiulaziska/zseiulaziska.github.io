@@ -35,6 +35,9 @@ export type ExternalLink = {
   hideMobile?: boolean;
 };
 
+// Szybki dostęp łączy linki zewnętrzne z jedną Trasą; źródło pozostaje jawne.
+export type QuickAccessLink = ExternalLink & { source: 'external' | 'trasa' };
+
 type TrasaInput = Omit<Trasa, 'searchTitle'> & { searchTitle?: string };
 
 function defineTrasa({ searchTitle, ...trasa }: TrasaInput): Trasa {
@@ -124,6 +127,31 @@ export const externalLinks: ExternalLink[] = [
     external: true,
   },
 ];
+
+// Kolejność grup stopki jest znacząca: wyznacza kolejność linków w adapterze.
+export const footerGroups = {
+  oferta: [
+    '/opw',
+    '/opm',
+    '/technik-informatyk',
+    '/technik-logistyk',
+    '/technik-elektryk',
+    '/technik-urzadzen-i-systemow-energetyki-odnawialnej',
+    '/technik-stylista',
+    '/technik-organizacji-turystyki',
+    '/wielozawodowa',
+    '/lo-dla-doroslych',
+  ],
+  spolecznosc: [
+    '/kalendarz',
+    '/podreczniki',
+    '/praktyki-zawodowe',
+    '/pracownicy-mlodociani',
+    '/egzaminy-zawodowe',
+    '/rekrutacja',
+  ],
+  prawne: ['/dostepnosc', '/rodo', '/dokumenty'],
+} as const satisfies Record<string, readonly string[]>;
 
 export const trasy: Trasa[] = [
   defineTrasa({ path: '/', label: 'Strona główna' }),
@@ -471,6 +499,36 @@ function normalizePath(pathname: string): string {
 export function findTrasa(pathname: string): Trasa | undefined {
   const path = normalizePath(pathname);
   return trasy.find((trasa) => trasa.path === path || trasa.aliases?.includes(path));
+}
+
+const quickExternalIds = ['edziennik', 'plan-lekcji', 'plan-lo'] as const;
+const quickTrasaPath = '/dzwonki';
+
+export function quickAccessLinks(): QuickAccessLink[] {
+  const links = quickExternalIds.map((id): QuickAccessLink => {
+    const link = externalLinks.find((candidate) => candidate.id === id);
+    if (!link) throw new Error(`Brak linku zewnętrznego „${id}” w katalogu Tras`);
+    return { ...link, external: link.external ?? true, source: 'external' };
+  });
+
+  const dzwonki = findTrasa(quickTrasaPath);
+  if (!dzwonki) throw new Error(`Brak Trasy „${quickTrasaPath}” w katalogu Tras`);
+  links.push({
+    id: 'dzwonki',
+    label: dzwonki.label,
+    href: dzwonki.path,
+    icon: dzwonki.icon,
+    external: false,
+    hideMobile: true,
+    source: 'trasa',
+  });
+
+  return links;
+}
+
+// Wpisy bloga i nieznane ścieżki nie są Trasami — wtedy zostaje tytuł przekazany przez stronę.
+export function resolveSearchTitle(pathname: string, fallbackTitle: string): string {
+  return findTrasa(pathname)?.searchTitle ?? fallbackTitle;
 }
 
 export function buildCrumbs(pathname: string, postTitle?: string): Crumb[] {

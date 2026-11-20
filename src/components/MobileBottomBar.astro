@@ -1,36 +1,28 @@
 ---
-import { PLAN_LEKCJI_URL, PLAN_LO_URL } from '../consts';
+import { quickAccessLinks } from '../routes';
+
+const links = quickAccessLinks();
+
+// Ścieżki ikon należą do adaptera; nazwy i adresy pochodzą z katalogu Tras.
+const iconSvgs = {
+  edziennik: '<path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M8 7h8M8 11h6"/>',
+  'plan-lekcji': '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>',
+  'plan-lo': '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>',
+  dzwonki: '<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>',
+};
 ---
 
 <div class="mobile-bottom-bar">
-  <a href="https://uonetplus.vulcan.net.pl/powiatmikolowski" target="_blank" rel="noopener noreferrer" class="mobile-bottom-bar__link" aria-label="E-Dziennik">
-    <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-      <path d="M8 7h8M8 11h6"/>
-    </svg>
-    <span>E-Dziennik</span>
-  </a>
-  <a href={PLAN_LEKCJI_URL} target="_blank" rel="noopener noreferrer" class="mobile-bottom-bar__link" aria-label="Plan lekcji">
-    <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/>
-      <path d="M16 2v4M8 2v4M3 10h18"/>
-      <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
-    </svg>
-    <span>Plan</span>
-  </a>
-  <a href={PLAN_LO_URL} target="_blank" rel="noopener noreferrer" class="mobile-bottom-bar__link" aria-label="Plan LO dla dorosłych">
-    <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/>
-      <path d="M16 2v4M8 2v4M3 10h18"/>
-      <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
-    </svg>
-    <span>Plan LO</span>
-  </a>
-  <a href="/dzwonki" class="mobile-bottom-bar__link" aria-label="Dzwonki">
-    <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
-    </svg>
-    <span>Dzwonki</span>
-  </a>
+  {links.map((link) => (
+    <a
+      href={link.href}
+      target={link.external ? '_blank' : undefined}
+      rel={link.external ? 'noopener noreferrer' : undefined}
+      class="mobile-bottom-bar__link"
+      aria-label={link.label}
+    >
+      <svg class="mobile-bottom-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={iconSvgs[link.id as keyof typeof iconSvgs]} />
+      <span>{link.label}</span>
+    </a>
+  ))}
 </div>
