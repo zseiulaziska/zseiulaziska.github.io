@@ -1,12 +1,7 @@
 ---
-import { PLAN_LEKCJI_URL, PLAN_LO_URL } from '../consts';
+import { quickAccessLinks } from '../routes';
 
-const links = [
-  { href: 'https://uonetplus.vulcan.net.pl/powiatmikolowski', label: 'E-Dziennik', icon: 'book', external: true, hideMobile: true },
-  { href: PLAN_LEKCJI_URL, label: 'Plan lekcji', icon: 'calendar', external: true, hideMobile: true },
-  { href: PLAN_LO_URL, label: 'Plan LO', icon: 'calendar', external: true, hideMobile: true },
-  { href: '/dzwonki', label: 'Dzwonki', icon: 'bell', hideMobile: true },
-];
+const links = quickAccessLinks();
 
 const iconSvgs = {
   book: '<path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>',
