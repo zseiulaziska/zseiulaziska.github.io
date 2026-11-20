@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { buildCrumbs, findTrasa, resolveSearchTitle, trasy } from './routes';
+import { buildCrumbs, findTrasa, footerGroups, resolveSearchTitle, trasy } from './routes';
 
 const pagesDir = fileURLToPath(new URL('./pages', import.meta.url));
 
@@ -40,6 +40,49 @@ describe('katalog Tras', () => {
     }
 
     expect(findTrasa('/kierunki-ksztalcenia')?.path).toBe('/kierunki');
+  });
+});
+
+describe('katalog Tras jako źródło stopki', () => {
+  it('rozwiązuje każdy adres z grup stopki do Trasy', () => {
+    for (const [group, paths] of Object.entries(footerGroups)) {
+      for (const path of paths) {
+        expect(findTrasa(path), `Grupa ${group}: brak Trasy dla ${path}`).toBeDefined();
+      }
+    }
+  });
+
+  it('przechowuje dłuższe nazwy stopki jako jawne warianty, nie zastępując etykiet kanonicznych', () => {
+    expect(findTrasa('/opw')?.label).toBe('Oddział Przygotowania Wojskowego');
+    expect(findTrasa('/opw')?.footerLabel).toBe('Oddziały Przygotowania Wojskowego - OPW');
+    expect(findTrasa('/rekrutacja')?.label).toBe('Rekrutacja');
+    expect(findTrasa('/rekrutacja')?.footerLabel).toBe('Rekrutacja 2026/2027');
+    expect(findTrasa('/dokumenty')?.label).toBe('Dokumenty szkolne');
+    expect(findTrasa('/dokumenty')?.footerLabel).toBe('Statuty i Regulaminy');
+  });
+
+  it('zachowuje dotychczasową kolejność linków w grupach stopki', () => {
+    expect(footerGroups.oferta).toEqual([
+      '/opw',
+      '/opm',
+      '/technik-informatyk',
+      '/technik-logistyk',
+      '/technik-elektryk',
+      '/technik-urzadzen-i-systemow-energetyki-odnawialnej',
+      '/technik-stylista',
+      '/technik-organizacji-turystyki',
+      '/wielozawodowa',
+      '/lo-dla-doroslych',
+    ]);
+    expect(footerGroups.spolecznosc).toEqual([
+      '/kalendarz',
+      '/podreczniki',
+      '/praktyki-zawodowe',
+      '/pracownicy-mlodociani',
+      '/egzaminy-zawodowe',
+      '/rekrutacja',
+    ]);
+    expect(footerGroups.prawne).toEqual(['/dostepnosc', '/rodo', '/dokumenty']);
   });
 });
 
