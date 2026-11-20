@@ -35,6 +35,9 @@ export type ExternalLink = {
   hideMobile?: boolean;
 };
 
+// Szybki dostęp łączy linki zewnętrzne z jedną Trasą; źródło pozostaje jawne.
+export type QuickAccessLink = ExternalLink & { source: 'external' | 'trasa' };
+
 type TrasaInput = Omit<Trasa, 'searchTitle'> & { searchTitle?: string };
 
 function defineTrasa({ searchTitle, ...trasa }: TrasaInput): Trasa {
@@ -471,6 +474,31 @@ function normalizePath(pathname: string): string {
 export function findTrasa(pathname: string): Trasa | undefined {
   const path = normalizePath(pathname);
   return trasy.find((trasa) => trasa.path === path || trasa.aliases?.includes(path));
+}
+
+const quickExternalIds = ['edziennik', 'plan-lekcji', 'plan-lo'] as const;
+const quickTrasaPath = '/dzwonki';
+
+export function quickAccessLinks(): QuickAccessLink[] {
+  const links = quickExternalIds.map((id): QuickAccessLink => {
+    const link = externalLinks.find((candidate) => candidate.id === id);
+    if (!link) throw new Error(`Brak linku zewnętrznego „${id}” w katalogu Tras`);
+    return { ...link, external: link.external ?? true, source: 'external' };
+  });
+
+  const dzwonki = findTrasa(quickTrasaPath);
+  if (!dzwonki) throw new Error(`Brak Trasy „${quickTrasaPath}” w katalogu Tras`);
+  links.push({
+    id: 'dzwonki',
+    label: dzwonki.label,
+    href: dzwonki.path,
+    icon: dzwonki.icon,
+    external: false,
+    hideMobile: true,
+    source: 'trasa',
+  });
+
+  return links;
 }
 
 export function buildCrumbs(pathname: string, postTitle?: string): Crumb[] {

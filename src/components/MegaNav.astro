@@ -81,7 +81,7 @@ const sections = [
         title: 'Liceum dla Dorosłych',
         links: [
           ['LO dla Dorosłych', '/lo-dla-doroslych', 'Nauka w systemie zaocznym'],
-          ['Plan lekcji', PLAN_LO_URL, 'Aktualny plan zajęć'],
+          ['Plan LO', PLAN_LO_URL, 'Aktualny plan zajęć'],
         ],
       },
     ],
@@ -107,7 +107,7 @@ const sections = [
 ];
 
 const mobileSections = [
-  { title: 'Najważniejsze', links: [['Strona główna', '/'], ['Plan lekcji', PLAN_LEKCJI_URL], ['Plan LO dla dorosłych', PLAN_LO_URL], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']] },
+  { title: 'Najważniejsze', links: [['Strona główna', '/'], ['Plan lekcji', PLAN_LEKCJI_URL], ['Plan LO', PLAN_LO_URL], ['E-Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']] },
   ...sections.map((section) => ({
     title: section.title,
     links: section.groups.flatMap((group) => group.links.map(([label, href]) => [label, href])),
@@ -125,7 +125,7 @@ const mobileSections = [
 
 // Struktura akordeonu mobilnego — zachowuje hierarchię sections → groups (4 sekcje + Najważniejsze/Linki)
 const mobileAccordionData = [
-  { title: 'Najważniejsze', desc: 'Szybki dostęp', links: [['Strona główna', '/'], ['Plan lekcji', PLAN_LEKCJI_URL], ['Plan LO dla dorosłych', PLAN_LO_URL], ['Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']], isFlat: true },
+  { title: 'Najważniejsze', desc: 'Szybki dostęp', links: [['Strona główna', '/'], ['Plan lekcji', PLAN_LEKCJI_URL], ['Plan LO', PLAN_LO_URL], ['E-Dziennik', 'https://uonetplus.vulcan.net.pl/powiatmikolowski'], ['Rekrutacja', '/rekrutacja'], ['Kontakt', '/kontakt']], isFlat: true },
   ...sections.map((section) => ({ title: section.title, desc: section.desc, groups: section.groups, highlight: section.highlight, isFlat: false })),
   { title: 'Linki zewnętrzne', desc: 'Zewnętrzne serwisy', links: [['BIP', 'https://zseiu.bip.gov.pl/'], ['Facebook', 'https://www.facebook.com/zseiu'], ['Instagram', 'https://www.instagram.com/zseiu_laziska/'], ['LinkedIn', 'https://www.linkedin.com/company/zespół-szkół-energetycznych-i-usługowych-w-łaziskach-górnych']], isFlat: true },
 ];
