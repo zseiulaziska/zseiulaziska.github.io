@@ -510,12 +510,7 @@ export const trasy: Trasa[] = [
     navGroup: 'Dokumenty',
     icon: 'award',
   }),
-  defineTrasa({
-    path: '/plan-zajec-lo',
-    label: 'Plan zajęć LO',
-    section: 'uczniowie-i-rodzice',
-    icon: 'calendar',
-  }),
+  
   defineTrasa({
     path: '/dzwonki',
     label: 'Dzwonki',
