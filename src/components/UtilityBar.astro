@@ -15,7 +15,7 @@ const links = quickAccessLinks();
         rel={link.external ? 'noopener noreferrer' : undefined}
         aria-label={link.label}
       >
-        <svg class="utility-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={quickAccessIconPaths[link.icon as keyof typeof quickAccessIconPaths]} />
+        <svg class="utility-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={quickAccessIconPaths[link.id as keyof typeof quickAccessIconPaths]} />
         <span class="utility-bar__label">{link.label}</span>
       </a>
     ))}
