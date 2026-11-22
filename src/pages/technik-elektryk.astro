@@ -622,21 +622,22 @@ import Layout from '../layouts/Layout.astro';
     // Animated counters
     var cards = document.querySelectorAll('.stat-card');
     if ('IntersectionObserver' in window) {
-      function animateValue(el, target) {
+      function animateValue(el: HTMLElement, target: number): void {
         var current = 0;
         var step = Math.ceil(target / 30);
         var timer = setInterval(function () {
           current += step;
           if (current >= target) { current = target; clearInterval(timer); }
-          el.textContent = current;
+          el.textContent = String(current);
         }, 40);
       }
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            var card = entry.target;
-            var valueEl = card.querySelector('.stat-value');
-            var target = parseInt(card.getAttribute('data-count-to'), 10);
+            var card = entry.target as HTMLElement;
+            var valueEl = card.querySelector<HTMLElement>('.stat-value');
+            var attr = card.getAttribute('data-count-to');
+            var target = attr ? parseInt(attr, 10) : 0;
             if (valueEl && target) { animateValue(valueEl, target); }
             observer.unobserve(card);
           }
@@ -646,27 +647,31 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // Gallery slider
-    var track = document.getElementById('gallery-track');
-    var prevBtn = document.getElementById('slider-prev');
-    var nextBtn = document.getElementById('slider-next');
-    var dotsContainer = document.getElementById('slider-dots');
+    var track: HTMLElement | null = document.getElementById('gallery-track');
+    var prevBtn: HTMLButtonElement | null = document.getElementById('slider-prev') as HTMLButtonElement;
+    var nextBtn: HTMLButtonElement | null = document.getElementById('slider-next') as HTMLButtonElement;
+    var dotsContainer: HTMLElement | null = document.getElementById('slider-dots');
     if (track && prevBtn && nextBtn && dotsContainer) {
-      var slides = track.querySelectorAll('.gallery-slide');
+      var slides = track.querySelectorAll<HTMLElement>('.gallery-slide');
       var current = 0;
       slides.forEach(function (_, i) {
         var dot = document.createElement('button');
-        dot.className = 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-colors';
+        ;(dot as HTMLElement).className = 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-colors';
         dot.setAttribute('aria-label', 'Przejdź do slajdu ' + (i + 1));
         if (i === 0) dot.classList.add('bg-white');
         dot.addEventListener('click', function () { goTo(i); });
-        dotsContainer.appendChild(dot);
+        ;(dotsContainer as HTMLElement).appendChild(dot);
       });
-      function goTo(index) {
+      function goTo(index: number) {
         current = index;
-        track.style.transform = 'translateX(-' + (current * 100) + '%)';
-        dotsContainer.querySelectorAll('button').forEach(function (d, i) {
-          d.className = 'w-2 h-2 rounded-full ' + (i === current ? 'bg-white' : 'bg-white/40 hover:bg-white/70') + ' transition-colors';
-        });
+        if (track) {
+          track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        }
+        if (dotsContainer) {
+          ;(dotsContainer.querySelectorAll<HTMLElement>('button') || []).forEach(function (d, i) {
+            ;(d as HTMLElement).className = 'w-2 h-2 rounded-full ' + (i === current ? 'bg-white' : 'bg-white/40 hover:bg-white/70') + ' transition-colors';
+          });
+        }
       }
       prevBtn.addEventListener('click', function () { goTo(current > 0 ? current - 1 : slides.length - 1); });
       nextBtn.addEventListener('click', function () { goTo(current < slides.length - 1 ? current + 1 : 0); });
