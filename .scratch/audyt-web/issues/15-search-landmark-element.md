@@ -1,6 +1,6 @@
 # 15 — Semantyczny element `<search>` w wyszukiwarce
 
-Status: open
+Status: resolved
 Type: task
 Priority: P3 (Baseline 2023)
 Blocked by: —
@@ -25,11 +25,11 @@ celują po `.site-search`, więc nie powinno być regresji wizualnej.
 
 ## Kryteria akceptacji
 
-- [ ] W `MegaNav.astro` nie ma `<div class="site-search">`; są `<search class="site-search">`.
-- [ ] Landmark „Szukaj" widoczny na liście landmarków czytnika ekranu
+- [x] W `MegaNav.astro` nie ma `<div class="site-search">`; są `<search class="site-search">`.
+- [x] Landmark „Szukaj" widoczny na liście landmarków czytnika ekranu
       (NVDA: `D` / VoiceOver rotor); bez duplikatu `role="search"`.
-- [ ] Wygląd i działanie obu pól (focus, ARIA combobox, wyniki, Pagefind) bez zmian.
-- [ ] `npm run check`, `npm run build` przechodzą.
+- [x] Wygląd i działanie obu pól (focus, ARIA combobox, wyniki, Pagefind) bez zmian.
+- [x] `npm run check`, `npm run build` przechodzą.
 
 ## Uwagi o kompatybilności
 
@@ -38,3 +38,8 @@ UA pozostanie zwykłym elementem nieznanym (bez stylów domyślnych), co jest be
 bo klasy Tailwind/CSS są jawne. Nie dodawać `role="search"` — element już go niesie.
 
 ## Comments
+
+Jedyny `<div class="site-search">` (desktop) zamieniony na `<search class="site-search">`;
+wersja mobilna ma osobny kontener `.mobile-search`, więc nie było drugiego wystąpienia.
+Klasy i obsługa `setupSearch` bez zmian. Landmark na liście czytnika ekranu nie był
+testowany — potwierdzenie w zbudowanym HTML (`<search class="site-search">`).

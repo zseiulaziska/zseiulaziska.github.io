@@ -1,6 +1,6 @@
 # 12 — Automatyczny tryb wysokiego kontrastu dla `forced-colors` / `prefers-contrast`
 
-Status: open
+Status: resolved
 Type: task
 Priority: P2 (WCAG 1.4.11 Non-text Contrast, 1.4.6)
 Blocked by: 11
@@ -46,14 +46,14 @@ przełącznik na stronie, żeby uzyskać czytelny interfejs.
 
 ## Kryteria akceptacji
 
-- [ ] Emulacja `forced-colors: active` w DevTools (Rendering → Emulate CSS media feature)
+- [x] Emulacja `forced-colors: active` w DevTools (Rendering → Emulate CSS media feature)
       daje czytelny interfejs bez ręcznego włączania przełącznika.
-- [ ] Emulacja `prefers-contrast: more` daje ten sam efekt (albo udokumentowany,
+- [x] Emulacja `prefers-contrast: more` daje ten sam efekt (albo udokumentowany,
       celowy odpowiednik).
-- [ ] Przełącznik ręczny nadal działa i nie jest zablokowany przez media query
+- [x] Przełącznik ręczny nadal działa i nie jest zablokowany przez media query
       w przeglądarce bez wsparcia (graceful degradation).
-- [ ] `prefers-color-scheme: dark` + forced-colors nie powoduje konfliktu klas.
-- [ ] `npm run check`, `npm run build` przechodzą.
+- [x] `prefers-color-scheme: dark` + forced-colors nie powoduje konfliktu klas.
+- [x] `npm run check`, `npm run build` przechodzą.
 
 ## Ryzyka
 

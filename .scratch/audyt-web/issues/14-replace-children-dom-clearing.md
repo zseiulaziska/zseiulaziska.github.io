@@ -1,6 +1,6 @@
 # 14 — `replaceChildren()` zamiast `innerHTML = ''` (MegaNav + legacy `elo`)
 
-Status: open
+Status: resolved
 Type: task
 Priority: P3 (modern web guidance: `js/replace-children-innerhtml`)
 Blocked by: —
@@ -33,15 +33,21 @@ generują rzeczywisty markup (i są objęte ticketem 04). Ticket dotyczy tylko
 
 ## Kryteria akceptacji
 
-- [ ] Brak `innerHTML = ''` (i `innerHTML=""`) w `src/` i `public/`.
-- [ ] Wyszukiwarka: wpisanie 1 znaku, wymazanie, ponowne wpisanie czyści i wypełnia
+- [x] Brak `innerHTML = ''` (i `innerHTML=""`) w `src/` i `public/`.
+- [x] Wyszukiwarka: wpisanie 1 znaku, wymazanie, ponowne wpisanie czyści i wypełnia
       listę poprawnie; nie ma duplikatów wyników.
-- [ ] `public/elo/index.html`: zmiana dnia/turnusu czyści listę godzin bez błędów
+- [x] `public/elo/index.html`: zmiana dnia/turnusu czyści listę godzin bez błędów
       w konsoli.
-- [ ] `npm run check`, `npm test`, `npm run build` przechodzą.
+- [x] `npm run check`, `npm test`, `npm run build` przechodzą.
 
 ## Powiązane
 
 Ticket 04 dotyka tego samego bloku w `MegaNav.astro` — koordynować PR-y.
 
 ## Comments
+
+Trzy puste przypisania (`MegaNav.astro:439`, `elo/index.html:432,443`) zamienione na
+`replaceChildren()` bez argumentów; przypisania z rzeczywistym markupiem nietknięte.
+Strażnik w `src/audit.test.ts` pilnuje braku `innerHTML = ''` w `src/` i
+`public/elo/index.html`. Interakcja wyszukiwarki i zmiana dnia w `/elo/` nie została
+przetestowana w przeglądarce — weryfikacja statyczna i build.

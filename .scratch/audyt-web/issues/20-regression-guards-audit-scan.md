@@ -1,6 +1,6 @@
 # 20 — Strażnik regresji: automatyczny skan wzorców z audytu
 
-Status: open
+Status: resolved
 Type: task
 Priority: P2 (zapobieganie nawrotom)
 Blocked by: 03, 04, 05, 07, 08, 09, 13, 14
@@ -40,13 +40,13 @@ Komunikat o błędzie musi zawierać `ścieżka:linia`, żeby test był użytecz
 
 ## Kryteria akceptacji
 
-- [ ] `npm test` przechodzi po wdrożeniu ticketów 01–19.
-- [ ] Celowe wprowadzenie każdego z 10 wzorców do kopii pliku w teście
+- [x] `npm test` przechodzi po wdrożeniu ticketów 01–19.
+- [x] Celowe wprowadzenie każdego z 10 wzorców do kopii pliku w teście
       powoduje czerwony test (test testu) — wystarczy jeden przypadek
       dla wybranego wzorca jako dowód, że asercje nie są martwe.
-- [ ] Test nie błędnie oznacza poprawnych przypadków: `<a class="cursor-pointer">`,
+- [x] Test nie błędnie oznacza poprawnych przypadków: `<a class="cursor-pointer">`,
       `<summary class="cursor-pointer">`, `listbox.innerHTML = data.map(...)`.
-- [ ] Czas wykonania < 2 s; brak nowych zależności w `package.json`.
+- [x] Czas wykonania < 2 s; brak nowych zależności w `package.json`.
 
 ## Uwagi
 
@@ -54,3 +54,10 @@ To ticket „po fakcie" — nie blokuje wdrożenia poprawek, ale domyka audyt
 i uzasadnia istnienie pozostałych ticketów w CI.
 
 ## Comments
+
+Dodano `src/audit.test.ts` (12 testów) bez nowych zależności — skan `src/**` oraz
+`public/elo/index.html` przez `node:fs`. Test testu: syntetyczne `innerHTML = ''`
+daje czerwony test przed implementacją helpera (TDD), po zielony. Nieoznaczanie
+poprawnych przypadków objęte osobnym testem (`<a>`/`<summary>` z `cursor-pointer`,
+`innerHTML = data.map(...)`, `toSorted`). Czas wykonania całej suite ~0,4 s < 2 s.
+Wyniki asercji zawierają `ścieżka:linia`.

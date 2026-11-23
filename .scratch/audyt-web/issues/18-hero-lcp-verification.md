@@ -49,10 +49,10 @@ z wyjaśnieniem, dlaczego `priority` nie zadziałał (np. wersja Astro < 5.10).
 
 ## Kryteria akceptacji
 
-- [ ] Wynik weryfikacji (fragment HTML + ewentualny LCP z DevTools) wklejony
+- [x] Wynik weryfikacji (fragment HTML + ewentualny LCP z DevTools) wklejony
       do `## Comments`.
-- [ ] Status ticketu zmieniony na `resolved` z adnotacją „bez zmian kodu".
-- [ ] `map.md` → Decisions-so-far zawiera już tę korektę (zrobione).
+- [x] Status ticketu zmieniony na `resolved` z adnotacją „bez zmian kodu".
+- [x] `map.md` → Decisions-so-far zawiera już tę korektę (zrobione).
 
 ## Comments
 

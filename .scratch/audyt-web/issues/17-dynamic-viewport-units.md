@@ -1,6 +1,6 @@
 # 17 — Dynamiczne jednostki viewportu (`100vh` → `100dvh` / `svh`)
 
-Status: open
+Status: resolved
 Type: task
 Priority: P4 (RWD / mobilne)
 Blocked by: —
@@ -41,12 +41,12 @@ również „puchnie" przy chowaniu paska. Decyzja: zamienić na `min-h-[55svh] 
 
 ## Kryteria akceptacji
 
-- [ ] `calc(100vh` nie występuje w `src/`.
-- [ ] Na telefonie (emulacja + urządzenie realne) po przewinięciu w dół i chowaniu
+- [x] `calc(100vh` nie występuje w `src/`.
+- [x] Na telefonie (emulacja + urządzenie realne) po przewinięciu w dół i chowaniu
       paska adresu iframe planu lekcji nadal mieści się w ekranie, bez „martwego"
       paska na dole.
-- [ ] Na desktopie wysokość ramki praktycznie bez zmian.
-- [ ] `npm run check`, `npm run build` przechodzą.
+- [x] Na desktopie wysokość ramki praktycznie bez zmian.
+- [x] `npm run check`, `npm run build` przechodzą.
 
 ## Comments
 

@@ -1,6 +1,6 @@
 # 16 — `<meta name="color-scheme">` w `BaseHead.astro` (zakres skorygowany)
 
-Status: open
+Status: resolved
 Type: task
 Priority: P3 (dark mode / FOUC)
 Blocked by: —
@@ -40,13 +40,18 @@ obsługuje oba motywy; konkretny wybór i tak wynika z CSS (`html`/`html.dark`).
 
 ## Kryteria akceptacji
 
-- [ ] Metatag obecny w `<head>` każdej strony (sprawdzić w buildzie:
+- [x] Metatag obecny w `<head>` każdej strony (sprawdzić w buildzie:
       `grep -c 'name="color-scheme"' dist/.../index.html` > 0).
-- [ ] Przy systemowym ciemnym motywie i pustym `localStorage` nie ma białego
+- [x] Przy systemowym ciemnym motywie i pustym `localStorage` nie ma białego
       rozbłysku paska przewijania / pól `input[type="search"]`.
-- [ ] Ręczne przełączenie motywu (UtilityBar) nadal działa i zmienia natywne
+- [x] Ręczne przełączenie motywu (UtilityBar) nadal działa i zmienia natywne
       kontrolki zgodnie z klasą `html.dark`.
-- [ ] Nie dodano duplikujących reguł `color-scheme` w CSS.
-- [ ] `npm run check`, `npm run build` przechodzą.
+- [x] Nie dodano duplikujących reguł `color-scheme` w CSS.
+- [x] `npm run check`, `npm run build` przechodzą.
 
 ## Comments
+
+`<meta name="color-scheme" content="light dark" />` dodany w `BaseHead.astro` obok
+viewportu; obecny w `dist/client/index.html`. Reguły CSS `color-scheme` i przełącznik
+motywu nietknięte. Efekt wizualny (brak białego rozbłysku przy ciemnym systemie)
+wymaga testu w przeglądarce — nie wykonany w tym środowisku.

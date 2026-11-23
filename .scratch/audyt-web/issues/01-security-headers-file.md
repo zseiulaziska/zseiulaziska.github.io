@@ -52,18 +52,18 @@ Uzasadnienie odchyleń od CSP proponowanego w raporcie:
 
 ## Kryteria akceptacji
 
-- [ ] `public/_headers` istnieje i trafia do katalogu wyjściowego builda
+- [x] `public/_headers` istnieje i trafia do katalogu wyjściowego builda
       (`dist/client/_headers` lub `dist/_headers` — sprawdzić, bo
       `scripts/postbuild.cjs:4` wybiera katalog warunkowo).
-- [ ] Plik nie jest wykluczony przez `public/.assetsignore` (obecnie tylko `_worker.js`,
+- [x] Plik nie jest wykluczony przez `public/.assetsignore` (obecnie tylko `_worker.js`,
       `_routes.json` — OK, ale zweryfikować po buildzie).
-- [ ] `npm run build` przechodzi; `npm run check` bez nowych błędów.
-- [ ] `npx wrangler dev` + `curl -I http://localhost:8787/` zwraca wszystkie 6 nagłówków.
-- [ ] Lista przejrzanych podstron w konsoli bez naruszeń CSP: `/`, `/kierunki`,
+- [x] `npm run build` przechodzi; `npm run check` bez nowych błędów.
+- [x] `npx wrangler dev` + `curl -I http://localhost:8787/` zwraca wszystkie 6 nagłówków.
+- [x] Lista przejrzanych podstron w konsoli bez naruszeń CSP: `/`, `/kierunki`,
       `/plan-lekcji`, `/kontakt`, `/kalendarz`, `/dokumenty`, `/grono-pedagogiczne`,
       `/informacje`, `/historia`, wyszukiwarka (Pagefind), przełącznik motywu
       i wysokiego kontrastu.
-- [ ] Zebrane naruszenia (jeśli są) wpisane w `## Comments` jako wsad do ticketu 02.
+- [x] Zebrane naruszenia (jeśli są) wpisane w `## Comments` jako wsad do ticketu 02.
 
 ## Jak testować
 

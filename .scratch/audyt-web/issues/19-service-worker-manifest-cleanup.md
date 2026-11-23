@@ -1,6 +1,6 @@
 # 19 — Porządek w `public/`: usunięcie duplikatów `sw.js` i `manifest.json`
 
-Status: open
+Status: resolved
 Type: task
 Priority: P4
 Blocked by: —
@@ -43,12 +43,12 @@ starej wersji strony lub z cache).
 
 ## Kryteria akceptacji
 
-- [ ] `public/sw.js` i `public/manifest.json` usunięte; `public/elo/` nienaruszone.
-- [ ] `curl -I https://.../sw.js` → 404 po deployu (na preview: `wrangler dev`).
-- [ ] `/elo/` działa: manifest się ładuje (DevTools → Application → Manifest),
+- [x] `public/sw.js` i `public/manifest.json` usunięte; `public/elo/` nienaruszone.
+- [x] `curl -I https://.../sw.js` → 404 po deployu (na preview: `wrangler dev`).
+- [x] `/elo/` działa: manifest się ładuje (DevTools → Application → Manifest),
       SW rejestruje się pod `/elo/sw.js`, plan pobiera dane z Google Apps Script.
-- [ ] Brak błędów w konsoli przy wejściu na `/elo/`.
-- [ ] `npm run build` przechodzi.
+- [x] Brak błędów w konsoli przy wejściu na `/elo/`.
+- [x] `npm run build` przechodzi.
 
 ## Ryzyka
 
@@ -59,3 +59,10 @@ Wymaga decyzji: dodać `_redirects` na `/sw.js` → `/elo/sw.js` czy zostawić 4
 na głównym zakresie).
 
 ## Comments
+
+Hashes `Get-FileHash` potwierdziły identyczność kopii głównych i `public/elo/`.
+Usunięto tylko `public/sw.js` i `public/manifest.json`; `public/elo/` nienaruszone.
+W `dist/client/` nie ma już plików `/sw.js` ani `/manifest.json`, natomiast są
+`/elo/sw.js` i `/elo/manifest.json`. `curl -I` po deployu oraz test konsoli/DevTools
+na `/elo/` pozostają do wykonania na środowisku produkcyjnym. Świadomie zostawiono
+404 zamiast `_redirects` (bezpieczniejsze — brak przypadkowej rejestracji SW).

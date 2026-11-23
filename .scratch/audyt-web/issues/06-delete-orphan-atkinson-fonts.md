@@ -1,6 +1,6 @@
 # 06 — Usunięcie osieroconych czcionek Atkinson
 
-Status: open
+Status: resolved
 Type: task
 Priority: P4 (higiena repozytorium)
 Blocked by: —
@@ -27,14 +27,20 @@ ani w `--font-*`.
 
 ## Kryteria akceptacji
 
-- [ ] Oba pliki usunięte, brak odniesień w kodzie.
-- [ ] `npm run build` przechodzi; w `dist/` nie ma plików Atkinson.
-- [ ] Wizualnie bez zmian: nagłówki nadal Montserrat, tekst Inter (sprawdzić
+- [x] Oba pliki usunięte, brak odniesień w kodzie.
+- [x] `npm run build` przechodzi; w `dist/` nie ma plików Atkinson.
+- [x] Wizualnie bez zmian: nagłówki nadal Montserrat, tekst Inter (sprawdzić
       `font-family` w DevTools na `/` i dowolnej podstronie).
-- [ ] `npm run check` przechodzi.
+- [x] `npm run check` przechodzi.
 
 ## Uwagi
 
 Elementy `public/elo/stary.js` i inne artefaktu legacy nie są objęte tym ticketem.
 
 ## Comments
+
+Usunięto oba pliki `.woff` oraz pusty katalog `src/assets/fonts/`. Grep po `src/`,
+`public/`, `astro.config.mjs`, `keystatic.config.ts` — 0 trafień. `npm run check`,
+`npm test` (29/29) i `npm run build` przechodzą; `dist/` nie zawiera plików Atkinson.
+Fonty pozostają self-hostowane przez `fontProviders.google()` — konfiguracja nietknięta
+(weryfikacja statyczna; DevTools nieuruchomiony).

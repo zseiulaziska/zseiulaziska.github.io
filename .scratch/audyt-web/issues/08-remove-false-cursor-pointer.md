@@ -1,6 +1,6 @@
 # 08 — Usunięcie fałszywego `cursor-pointer` ze statycznych kafelków
 
-Status: open
+Status: resolved
 Type: task
 Priority: P2 (affordancja / WCAG 1.3.1, 3.2.4)
 Blocked by: —
@@ -36,10 +36,10 @@ Potwierdzone lokalizacje:
 
 ## Kryteria akceptacji
 
-- [ ] Wskazane `<div>` nie mają `cursor-pointer`; kursor nad nimi to domyślny.
-- [ ] Wszystkie interaktywne elementy z listy „nie ruszać” zachowują `cursor-pointer`.
-- [ ] Bez zmian wizualnych innych niż kursor (i ewentualnie hover, jeśli zdecydowano).
-- [ ] `npm run check`, `npm run build` przechodzą.
+- [x] Wskazane `<div>` nie mają `cursor-pointer`; kursor nad nimi to domyślny.
+- [x] Wszystkie interaktywne elementy z listy „nie ruszać” zachowują `cursor-pointer`.
+- [x] Bez zmian wizualnych innych niż kursor (i ewentualnie hover, jeśli zdecydowano).
+- [x] `npm run check`, `npm run build` przechodzą.
 
 ## Powiązane
 

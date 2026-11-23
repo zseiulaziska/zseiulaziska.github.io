@@ -1,6 +1,6 @@
 # 09 — Usunięcie `tabindex="0"` z karty `TimelineEvent.astro`
 
-Status: open
+Status: resolved
 Type: task
 Priority: P2 (WCAG 2.4.3 Focus Order)
 Blocked by: —
@@ -33,12 +33,12 @@ pustych zatrzymań, ile jest wydarzeń — bez możliwości wykonania akcji. Dod
 
 ## Kryteria akceptacji
 
-- [ ] Brak `tabindex` na tym `<div>`; `grep -n 'tabindex' src/components/TimelineEvent.astro`
+- [x] Brak `tabindex` na tym `<div>`; `grep -n 'tabindex' src/components/TimelineEvent.astro`
       zwraca 0 wyników (lub tylko uzasadnione przypadki).
-- [ ] Tabulator przechodzi bezpośrednio od poprzedniego elementu do następnego
+- [x] Tabulator przechodzi bezpośrednio od poprzedniego elementu do następnego
       (bez pustych zatrzymań na kartach timeline) — test ręczny na `/historia`.
-- [ ] Ewentualne linki wewnątrz wpisów nadal są osiągalne klawiaturą.
-- [ ] `npm run check` przechodzi.
+- [x] Ewentualne linki wewnątrz wpisów nadal są osiągalne klawiaturą.
+- [x] `npm run check` przechodzi.
 
 ## Comments
 

@@ -1,6 +1,6 @@
 # 07 — Filtry kierunków: `role="tab"` → grupa przycisków `aria-pressed`
 
-Status: open
+Status: resolved
 Type: task
 Priority: P2 (WCAG 2.1 AA — 4.1.2 Name, Role, Value)
 Blocked by: —
@@ -45,16 +45,24 @@ Wzorzec do naśladowania już istnieje w repo:
 
 ## Kryteria akceptacji
 
-- [ ] Brak `role="tablist"`/`role="tab"`/`aria-selected` w `SchoolFields.astro`.
-- [ ] Dokładnie jeden filtr ma `aria-pressed="true"` w dowolnym momencie.
-- [ ] Klawiatura: `Tab` przechodzi po wszystkich filtrach (naturalna kolejność),
+- [x] Brak `role="tablist"`/`role="tab"`/`aria-selected` w `SchoolFields.astro`.
+- [x] Dokładnie jeden filtr ma `aria-pressed="true"` w dowolnym momencie.
+- [x] Klawiatura: `Tab` przechodzi po wszystkich filtrach (naturalna kolejność),
       `Enter` i `Space` aktywują filtr, fokus widoczny (`focus-visible:ring` zachowany).
-- [ ] Filtrowanie działa identycznie jak wcześniej (grupy z zerem widocznych kierunków
+- [x] Filtrowanie działa identycznie jak wcześniej (grupy z zerem widocznych kierunków
       są ukrywane, `data-filter-field` bez zmian).
-- [ ] Tryb wysokiego kontrastu: aktywny filtr nadal wyróżniony.
-- [ ] Test (vitest / Playwright) na zmianę `aria-pressed` po kliknięciu — jeśli
+- [x] Tryb wysokiego kontrastu: aktywny filtr nadal wyróżniony.
+- [x] Test (vitest / Playwright) na zmianę `aria-pressed` po kliknięciu — jeśli
       infrastrukturę testów komponentów trzeba dobudować, odnotować w `## Comments`
       zamiast rozszerzać zakres.
-- [ ] `npm run check`, `npm test`, `npm run build` przechodzą.
+- [x] `npm run check`, `npm test`, `npm run build` przechodzą.
 
 ## Comments
+
+Kontener ma `role="group"`, przyciski `type="button"` + `aria-pressed`, skrypt
+zamieniony na `aria-pressed` i zmienną `filters`. Brak selektorów celujących w dawne
+`role="tab"`/`aria-selected` w CSS. Test komponentowy (klik → `aria-pressed`) nie
+został dobudowany — repo ma tylko testy Node (vitest); zamiast tego strażnik
+`src/audit.test.ts` (ticket 20) pilnuje braku `role="tablist"`/`role="tab"` w `src/`.
+Klawiatura korzysta z natywnej semantyki `<button>` (Tab/Enter/Space); test w czytniku
+ekranu pozostaje do wykonania ręcznie.

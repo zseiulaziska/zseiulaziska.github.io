@@ -1,6 +1,6 @@
 # 05 — Usunięcie martwego komponentu `src/components/Image.astro`
 
-Status: claimed
+Status: resolved
 Type: task
 Priority: P4 (higiena; raport oznacza 🔴, ale ryzyko = 0)
 Blocked by: —
@@ -30,11 +30,11 @@ Usunąć plik `src/components/Image.astro`. **Nie naprawiać** — dublowałby
 - [x] Plik usunięty.
 - [x] Ponowny grep po całym repo (łącznie z `public/`, `docs/`, `.scratch/`) nie znajduje
       nieaktualnych odniesień do tego komponentu; zaktualizowane wzmianki w raportach/spec/issue 20.
-- [ ] `npm run check` bez błędów (brak wiszących importów/typów).
-- [ ] `npm run build` przechodzi.
+- [x] `npm run check` bez błędów (brak wiszących importów/typów).
+- [x] `npm run build` przechodzi.
 - [x] `npm test` przechodzi.
 
 ## Comments
 
 - 2026-11-23: Usunięto `src/components/Image.astro` (potwierdzony brak importów w `src/`). Zaktualizowano odniesienia w `RAPORT_MODERN_WEB_GUIDANCE.md`, `.scratch/audyt-web/RAPORT_MODERN_WEB_GUIDANCE.md`, `.scratch/audyt-web/spec.md`, `.scratch/audyt-web/issues/20-regression-guards-audit-scan.md`.
-- Weryfikacja: `npm test` ✅ (3 pliki, 17 testów). `npm run check` ❌ kończy się błędami pre-existing (24 błędy w istniejących plikach, brak związku z `Image.astro`). `npm run build` ❌ kończy się pre-existing błędem `[UNRESOLVED_IMPORT] /pagefind/pagefind.js` z `src/components/MegaNav.astro:331` (potwierdzone `git blame`, poza zakresem ticketu).
+- Weryfikacja (stan na 2026-11-23 po ticketach 07–20): `npm test` ✅ (4 pliki, 29 testów), `npm run check` ✅ (0 błędów), `npm run build` ✅. Wcześniejsze błędy pre-existing opisane w poprzedniej wersji tego komentarza zostały w międzyczasie naprawione (commity `b0131ea`, `54d7b4b`). Status zmieniony z `claimed` na `resolved`.

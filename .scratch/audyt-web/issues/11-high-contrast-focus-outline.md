@@ -1,6 +1,6 @@
 # 11 — Widoczny fokus w trybie wysokiego kontrastu (`outline: none`)
 
-Status: open
+Status: resolved
 Type: task
 Priority: P2 (WCAG 2.4.7 Focus Visible)
 Blocked by: —
@@ -55,14 +55,14 @@ i przejść `Tab` przez nagłówek, menu, wyszukiwarkę, stopkę.
 
 ## Kryteria akceptacji
 
-- [ ] Brak `outline: none !important` w `src/styles/` (sprawdzić też `global.css:85`
+- [x] Brak `outline: none !important` w `src/styles/` (sprawdzić też `global.css:85`
       — tam `outline: none` przy `:focus-visible`.**
       Jeśli to dotyczy elementów z własnym `ring`, zostawić i odnotować).
-- [ ] W trybie wysokiego kontrastu każdy element z listy selektorów ma wyraźny
+- [x] W trybie wysokiego kontrastu każdy element z listy selektorów ma wyraźny
       żółty obrys z odstępem 2px po naciśnięciu `Tab`.
-- [ ] Brak podwójnego/rozjechanego obrysu na `skip-link` (reguła 116-123 ma pierwszeństwo).
-- [ ] Brak regresji w trybie normalnym i ciemnym.
-- [ ] `npm run check`, `npm run build` przechodzą.
+- [x] Brak podwójnego/rozjechanego obrysu na `skip-link` (reguła 116-123 ma pierwszeństwo).
+- [x] Brak regresji w trybie normalnym i ciemnym.
+- [x] `npm run check`, `npm run build` przechodzą.
 
 ## Powiązane
 

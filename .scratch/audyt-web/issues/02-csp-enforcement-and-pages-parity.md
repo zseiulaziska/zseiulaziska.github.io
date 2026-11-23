@@ -44,7 +44,7 @@ Ograniczenia potwierdzone w dokumentacji Cloudflare (Workers → Static assets �
 ## Kryteria akceptacji
 
 - [x] CSP w trybie wymuszającym, zero naruszeń na liście podstron z ticketu 01.
-- [ ] Zweryfikowane `curl -I` na **produkcyjnym** URL-u: wszystkie nagłówki obecne.
+- [x] Zweryfikowane `curl -I` na **produkcyjnym** URL-u: wszystkie nagłówki obecne.
 - [x] Jeśli wybrano reguły Cloudflare — konfiguracja opisana w `docs/` (nazwa reguły,
       kolejność, wyrażenie dopasowania), bo nie ma jej w repo.
 - [x] Decyzja o `preload` i o roli GH Pages zapisana w `map.md` / ADR

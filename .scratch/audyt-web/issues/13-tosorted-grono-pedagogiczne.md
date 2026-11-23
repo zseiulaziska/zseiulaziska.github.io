@@ -1,6 +1,6 @@
 # 13 — ES2023 `toSorted()` w `grono-pedagogiczne.astro`
 
-Status: open
+Status: resolved
 Type: task
 Priority: P3 (modern web guidance: `js/copying-array-methods`)
 Blocked by: —
@@ -33,11 +33,17 @@ jest starsze — dodać `ES2023.Array` do `lib` zamiast rezygnować ze zmiany.
 
 ## Kryteria akceptacji
 
-- [ ] `[...teachers].sort(` nie występuje w pliku (i w całym `src/` — sprawdzić
+- [x] `[...teachers].sort(` nie występuje w pliku (i w całym `src/` — sprawdzić
       grepem; inne pliki również mogą mieć ten wzorzec).
-- [ ] Kolejność nauczycieli na stronie identyczna jak przed zmianą (porównać
+- [x] Kolejność nauczycieli na stronie identyczna jak przed zmianą (porównać
       zrzut listy nazwisk przed/po).
-- [ ] `npm run check` bez błędów TS (to jest realny test wsparcia `lib`).
-- [ ] `npm test`, `npm run build` przechodzą.
+- [x] `npm run check` bez błędów TS (to jest realny test wsparcia `lib`).
+- [x] `npm test`, `npm run build` przechodzą.
 
 ## Comments
+
+`[...teachers].sort(` zastąpione przez `teachers.toSorted(...)` z tym samym
+comparatorem — kolejność na stronie bez zmian. Drugi wzorzec (`[...aliasy].sort()`)
+znaleziony w `src/routes.test.ts` również zamieniony, żeby spełnić kryterium
+„w całym `src/`”. `tsconfig.json` nietknięty — `astro check` potwierdza wsparcie
+`toSorted` przez aktualny `lib`.

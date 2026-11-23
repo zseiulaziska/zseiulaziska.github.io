@@ -1,6 +1,6 @@
 # 10 — Pełna obsługa `prefers-reduced-motion` (reveal + liczniki + smooth scroll)
 
-Status: open
+Status: resolved
 Type: task
 Priority: P2 (WCAG 2.3.3 Animation from Interactions)
 Blocked by: —
@@ -74,14 +74,14 @@ if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
 
 ## Kryteria akceptacji
 
-- [ ] Przy `prefers-reduced-motion: reduce` (emulacja w DevTools → Rendering)
+- [x] Przy `prefers-reduced-motion: reduce` (emulacja w DevTools → Rendering)
       wszystkie sekcje `.reveal` są widoczne **natychmiast**, bez JS i z JS.
-- [ ] Brak animacji przejścia / brak przewijania „gładkiego" przy kliknięciu
+- [x] Brak animacji przejścia / brak przewijania „gładkiego" przy kliknięciu
       linku „Pomiń do treści" i-linków.
-- [ ] Liczniki w `/kalendarz` pokazują wartość końcową od razu przy wejściu
+- [x] Liczniki w `/kalendarz` pokazują wartość końcową od razu przy wejściu
       w widoczny obszar; tryb normalny nadal animuje.
-- [ ] `<noscript>` fallback nadal działa.
-- [ ] `npm run check`, `npm test`, `npm run build` przechodzą.
+- [x] `<noscript>` fallback nadal działa.
+- [x] `npm run check`, `npm test`, `npm run build` przechodzą.
 
 ## Comments
 
