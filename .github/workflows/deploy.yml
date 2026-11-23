@@ -30,13 +30,15 @@ jobs:
       - name: Run astro check
         run: npm run check
 
-      - name: Run tests
-        run: npm test
-
       - name: Install, build, and upload your site
         uses: withastro/action@v6
         env:
           SKIP_KEYSTATIC: true
+
+      # The security-header test reads the build output (dist/client/_headers),
+      # so it has to run after the build performed by withastro/action.
+      - name: Run tests
+        run: npm test
 
   deploy:
     needs: build
