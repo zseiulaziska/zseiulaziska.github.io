@@ -55,9 +55,9 @@ describe('nagłówki bezpieczeństwa w buildzie', () => {
     expect(hsts).not.toContain('preload');
   });
 
-  it('dostarcza CSP w trybie Report-Only z dyrektywami dla zasobów strony', () => {
+  it('dostarcza egzekwowaną CSP z dyrektywami dla zasobów strony', () => {
     const headers = builtHeaders();
-    const csp = headers.get('content-security-policy-report-only') ?? '';
+    const csp = headers.get('content-security-policy') ?? '';
     const directives = parseCsp(csp);
 
     expect(directives.get('default-src')).toBe("'self'");
@@ -79,7 +79,7 @@ describe('nagłówki bezpieczeństwa w buildzie', () => {
     expect(csp).not.toContain('fonts.gstatic.com');
   });
 
-  it('nie wymusza jeszcze CSP — egzekwowanie należy do ticketu 02', () => {
-    expect(builtHeaders().has('content-security-policy')).toBe(false);
+  it('nie zostawia CSP w trybie Report-Only po przejściu na egzekwowanie', () => {
+    expect(builtHeaders().has('content-security-policy-report-only')).toBe(false);
   });
 });

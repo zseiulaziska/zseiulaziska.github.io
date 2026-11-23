@@ -1,6 +1,6 @@
 # 02 — Egzekwowanie CSP i parytet nagłówków na GitHub Pages
 
-Status: open
+Status: resolved
 Type: task
 Priority: P1
 Blocked by: 01
@@ -43,13 +43,13 @@ Ograniczenia potwierdzone w dokumentacji Cloudflare (Workers → Static assets �
 
 ## Kryteria akceptacji
 
-- [ ] CSP w trybie wymuszającym, zero naruszeń na liście podstron z ticketu 01.
+- [x] CSP w trybie wymuszającym, zero naruszeń na liście podstron z ticketu 01.
 - [ ] Zweryfikowane `curl -I` na **produkcyjnym** URL-u: wszystkie nagłówki obecne.
-- [ ] Jeśli wybrano reguły Cloudflare — konfiguracja opisana w `docs/` (nazwa reguły,
+- [x] Jeśli wybrano reguły Cloudflare — konfiguracja opisana w `docs/` (nazwa reguły,
       kolejność, wyrażenie dopasowania), bo nie ma jej w repo.
-- [ ] Decyzja o `preload` i o roli GH Pages zapisana w `map.md` / ADR
+- [x] Decyzja o `preload` i o roli GH Pages zapisana w `map.md` / ADR
       (`docs/adr/`, kolejny numer po `0001-route-catalog.md`).
-- [ ] `npm run build` + `npm test` przechodzą.
+- [x] `npm run build` + `npm test` przechodzą.
 
 ## Ryzyka
 
@@ -78,3 +78,15 @@ Testować każdy z tych przepływów, nie tylko ładowanie stron.
   zależy nam na raportach przed egzekwowaniem, trzeba osobno dodać endpoint
   (`report-uri /csp-report` + `Reporting-Endpoints`/`report-to`, SSR route w
   `src/pages/api/`, logi w Cloudflare Observability) — nie jest to część ticketu 01.
+
+**2026-11-23 — wdrożenie (ticket 02).**
+
+- **Decyzje użytkownika:** produkcja = Cloudflare (commit GitHub → build/host Cloudflare). GH Pages = mirror/preview, bez parytetu nagłówków. HSTS bez preload. Udokumentowane w docs/adr/0002-deployment-channel-and-security-headers.md i uzupełnione w .scratch/audyt-web/map.md.
+- **CSP przełączona na egzekwowanie:** public/_headers używa Content-Security-Policy (nie Report-Only). Test src/security-headers.test.ts zaktualizowany (TDD: oczekuje enforcing + brak Report-Only).
+- **Weryfikacja konsoli (AC45):** Playwright/Chromium na wrangler dev (dist/server/wrangler.json, port 8787) — 0 komunikatów konsoli na: /, /kierunki, /plan-lekcji, /kontakt, /kalendarz, /dokumenty, /grono-pedagogiczne, /informacje, /historia, wyszukiwarka Pagefind (zapytanie "rekrutacja"), przełącznik motywu, przełącznik wysokiego kontrastu.
+- **Weryfikacja nagłówków lokalnie:** curl -I http://127.0.0.1:8787/ zwraca content-security-policy (egzekwująca) + 5 pozostałych nagłówków; brak content-security-policy-report-only. **AC46 (curl na produkcyjnym URL-u) pozostaje do potwierdzenia po deployu na Cloudflare.**
+- **/_astro/* Cache-Control:** nadal wstrzykiwany przez adapter (Injected immutable Cache-Control for /_astro/* into _headers) — bez duplikatu w public/_headers.
+- **GH Pages parity:** świadomie nie realizowany jako parytet nagłówków (decyzja: mirror/preview); AC47 traktowane jako N/A przez decyzję ADR.
+- **Build/test:** 
+pm run build OK, 
+pm test 13/13 passed.

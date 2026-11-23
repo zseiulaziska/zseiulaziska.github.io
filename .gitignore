@@ -32,3 +32,6 @@ public/plan.json
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# playwright-cli artifacts
+.playwright-cli/

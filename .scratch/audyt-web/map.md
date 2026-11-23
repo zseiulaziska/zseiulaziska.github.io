@@ -58,7 +58,11 @@ regresji, 21–22 backlog opcjonalny.
 
 ## Fog / otwarte pytania
 
-- Czy `zseiulaziska.pl` stoi na Cloudflare Workers, czy na GitHub Pages z Cloudflare
-  przed nim? Odpowiedź rozstrzyga strategię w tickecie 02 (Transform Rules vs middleware).
 - Czy podprojekt `public/elo/` jest jeszcze utrzymywany, czy to zamrożony artefakt?
   Wpływa na zakres ticketów 14 i 19 (dotykać legacy czy tylko usunąć duplikaty).
+
+## Rozstrzygnięte (ticket 02, 2026-11-23)
+
+- **Kanał produkcyjny:** Cloudflare buduje i hostuje `zseiulaziska.pl` (commity na GitHub → Cloudflare). GH Pages to mirror/preview bez gwarancji parytetu nagłówków. Decyzja w `docs/adr/0002-deployment-channel-and-security-headers.md`.
+- **HSTS preload:** odłożony (brak `preload`, decyzja świadoma po audycie subdomen).
+- **CSP:** przełączona z Report-Only na egzekwowanie po przeglądzie konsoli na liście podstron z ticketu 01 (Playwright/Chromium, brak naruszeń).
