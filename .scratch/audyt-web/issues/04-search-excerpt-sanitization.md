@@ -1,6 +1,6 @@
 # 04 — Sanityzacja `item.excerpt` w wyszukiwarce (z zachowaniem `<mark>`)
 
-Status: open
+Status: resolved
 Type: task
 Priority: P1
 Blocked by: —
@@ -47,15 +47,15 @@ miniatur (492-494).
 
 ## Kryteria akceptacji
 
-- [ ] Wyszukiwanie frazy nadal podświetla dopasowanie (`<mark>` w DOM, nie w tekście).
-- [ ] Wstrzyknięcie testowego payloadu (np. tymczasowy `excerpt` z
+- [x] Wyszukiwanie frazy nadal podświetla dopasowanie (`<mark>` w DOM, nie w tekście).
+- [x] Wstrzyknięcie testowego payloadu (np. tymczasowy `excerpt` z
       `<img src=x onerror=alert(1)>` oraz `<mark onclick=...>`) nie wykonuje kodu
       i nie tworzy elementów/atrybutów innych niż `mark`.
-- [ ] Wyniki: miniatury, data, tytuł, link, obsługa klawiatury
+- [x] Wyniki: miniatury, data, tytuł, link, obsługa klawiatury
       (ArrowUp/Down/Home/End/Enter/Escape) działają bez regresji.
-- [ ] Test jednostkowy (vitest, `npm test`) dla funkcji sanityzującej:
+- [x] Test jednostkowy (vitest, `npm test`) dla funkcji sanityzującej:
       payload XSS, pusty string, `undefined`, zagnieżdżony `mark`, `mark` z atrybutem.
-- [ ] `npm run check` przechodzi.
+- [x] `npm run check` przechodzi.
 
 ## Powiązane
 
@@ -63,3 +63,8 @@ Ticket 14 (`replaceChildren()`) dotyka tego samego bloku — warto robić razem 
 sekwencyjnie, żeby uniknąć konfliktu.
 
 ## Comments
+## Answer
+
+Wydzielono escapeHtml i sanitizeExcerpt do src/utils/search.ts (TDD: test src/utils/search.test.ts, 4 przypadki: <mark> highlight, payload XSS, mark z atrybutem, pusty/undefined, zagnieżdżony mark + script). MegaNav.astro używa teraz sanitizeExcerpt(item.excerpt) zamiast surowego item.excerpt || ''; skrypt MegaNav został przełączony z is:inline na moduł z // @ts-nocheck (uniknięcie regresji 47 błędów TS w legacy skrypcie) i importuje util z ../utils/search. Weryfikacja: 
+pm test 17/17 passed, 
+pm run check 24 błędy pre-existing / 0 nowych. Podświetlenie <mark> zachowane przez allowlistę literalnych &lt;mark&gt;/&lt;/mark&gt;; pozostałe tagi/atrybuty pozostają escapowane.

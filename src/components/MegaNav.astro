@@ -321,7 +321,9 @@ const iconForName = (name: string | undefined): string =>
   </div>
 </div>
 
-<script is:inline>
+<script>
+  // @ts-nocheck - legacy inline search script, migrated to module for sanitizeExcerpt import
+  import { escapeHtml, sanitizeExcerpt } from '../utils/search';
   (function () {
     var pagefindPromise = null;
     function loadPagefind() {
@@ -338,17 +340,6 @@ const iconForName = (name: string | undefined): string =>
       return pagefindPromise;
     }
 
-    function escapeHtml(value) {
-      return String(value || '').replace(/[&<>"']/g, function (char) {
-        return {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;'
-        }[char];
-      });
-    }
 
     function formatSearchDate(value) {
       if (!value) return '';
@@ -482,7 +473,7 @@ const iconForName = (name: string | undefined): string =>
                       '<span class="search-result-content">' +
                         '<span class="search-result-title">' + escapeHtml(title) + '</span>' +
                         dateRow +
-                        '<span class="search-result-excerpt">' + (item.excerpt || '') + '</span>' +
+                        '<span class="search-result-excerpt">' + sanitizeExcerpt(item.excerpt) + '</span>' +
                       '</span>' +
                     '</a>' +
                   '</li>';
