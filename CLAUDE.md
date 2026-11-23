@@ -1,14 +1,10 @@
-AGENTS.md
+See `AGENTS.md` for development conventions and documentation links.
 
 ## Agent skills
 
 ### Issue tracker
 
 Issues and specs live as local markdown files under `.scratch/`. See `docs/agents/issue-tracker.md`.
-
-### Triage labels
-
-The five default triage roles are used, recorded as `Status:` values in issue files. See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 

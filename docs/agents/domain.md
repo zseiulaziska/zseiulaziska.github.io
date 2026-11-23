@@ -18,8 +18,7 @@ This is a single-context repo:
 /
 ├── GLOSSARY.md
 ├── docs/adr/
-│   ├── 0001-event-sourced-orders.md
-│   └── 0002-postgres-for-write-model.md
+│   └── 0001-route-catalog.md
 └── src/
 ```
 
