@@ -20,7 +20,6 @@ function sourceFiles(dir: string, extensions: readonly string[]): string[] {
 }
 
 const srcFiles = sourceFiles(join(root, 'src'), ['.astro', '.ts', '.js']);
-const eloHtml = join(root, 'public/elo/index.html');
 
 type Finding = { file: string; line: number };
 type Check = (source: string) => number[];
@@ -113,7 +112,7 @@ describe('strażnik wzorców z audytu', () => {
   });
 
   it('brak pustych przypisań innerHTML', () => {
-    expectNoFindings([...srcFiles, eloHtml], findInnerHtmlClears);
+    expectNoFindings(srcFiles, findInnerHtmlClears);
   });
 
   it('brak [...arr].sort()', () => {

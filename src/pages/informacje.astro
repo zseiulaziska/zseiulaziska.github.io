@@ -23,10 +23,10 @@ const tocSections = [
   <article>
 
     <!-- Navigation -->
-    <nav aria-label="Spis treści" class="max-w-4xl mx-auto mb-12 lg:hidden">
+    <nav aria-label="Spis treści" data-scrollspy class="toc-scrollspy max-w-4xl mx-auto mb-12 lg:hidden">
       <div class="flex flex-wrap gap-2 justify-center">
         {tocSections.map((s) => (
-          <a href={`#${s.id}`} class="px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-slate-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">{s.label}</a>
+          <a href={`#${s.id}`} class="toc-link px-4 py-2 text-sm font-medium rounded-xl bg-white dark:bg-navy-800/60 border border-slate-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-300 transition-all">{s.label}</a>
         ))}
       </div>
     </nav>
@@ -35,7 +35,7 @@ const tocSections = [
       <div class="space-y-16">
 
     <!-- Najważniejsze informacje -->
-    <section id="najwazniejsze" class="scroll-mt-20">
+    <section tabindex="-1" id="najwazniejsze" class="scroll-mt-20">
       <div class="p-8 lg:p-10 rounded-3xl bg-primary-50 dark:bg-navy-800/60 border-2 border-primary-100 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white" >Najważniejsze informacje</h2>
         <dl class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
@@ -78,13 +78,13 @@ const tocSections = [
     
 
     <!-- Struktura organizacyjna -->
-    <section id="struktura" class="scroll-mt-20">
+    <section tabindex="-1" id="struktura" class="scroll-mt-20">
       <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8" >Struktura organizacyjna</h2>
       <InfoStructure />
     </section>
 
     <!-- Kierunki kształcenia -->
-    <section id="kierunki" class="scroll-mt-20">
+    <section tabindex="-1" id="kierunki" class="scroll-mt-20">
       <div class="p-8 lg:p-10 rounded-3xl bg-linear-to-br from-primary-50 to-primary-100 dark:from-navy-800 dark:to-navy-800/60 border-2 border-primary-200 dark:border-primary-700/40 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center" >Kierunki kształcenia</h2>
         <p class="mt-2 text-center text-slate-600 dark:text-slate-400">Oferta edukacyjna:</p>
@@ -99,7 +99,7 @@ const tocSections = [
     </section>
 
     <!-- Klasy mundurowe -->
-    <section id="klasy-mundurowe" class="scroll-mt-20">
+    <section tabindex="-1" id="klasy-mundurowe" class="scroll-mt-20">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.06)]">
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white" >Klasy mundurowe</h2>
@@ -147,13 +147,13 @@ const tocSections = [
     </section>
 
     <!-- Infrastruktura i pracownie -->
-    <section id="infrastruktura" class="scroll-mt-20">
+    <section tabindex="-1" id="infrastruktura" class="scroll-mt-20">
       <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8" >Infrastruktura i pracownie</h2>
       <InfoInfrastructure />
     </section>
 
     <!-- Projekty i mobilności -->
-    <section id="projekty" class="scroll-mt-20">
+    <section tabindex="-1" id="projekty" class="scroll-mt-20">
       <div class="p-8 lg:p-10 rounded-3xl bg-white dark:bg-navy-800/90 border-2 border-slate-100 dark:border-navy-600 shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_12px_rgba(0,0,0,0.06)]">
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center" >Projekty i mobilności międzynarodowe</h2>
 
@@ -233,7 +233,7 @@ const tocSections = [
     </section>
 
     <!-- Dokumenty i polityki -->
-    <section id="dokumenty" class="scroll-mt-20">
+    <section tabindex="-1" id="dokumenty" class="scroll-mt-20">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="p-6 rounded-xl bg-white dark:bg-navy-800/60 border border-slate-200 dark:border-navy-700 shadow-sm">
           <h2 class="text-lg font-bold text-slate-900 dark:text-white" >Dokumenty i polityki</h2>
@@ -258,7 +258,7 @@ const tocSections = [
     </section>
 
     <!-- Kontakt -->
-    <section id="kontakt" class="scroll-mt-20">
+    <section tabindex="-1" id="kontakt" class="scroll-mt-20">
       <div class="p-8 lg:p-10 rounded-3xl bg-linear-to-br from-primary-50 to-primary-100 dark:from-navy-800 dark:to-navy-800/60 border-2 border-primary-200 dark:border-primary-700/40 text-center shadow-[inset_-2px_-2px_8px_rgba(0,0,0,0.02),4px_4px_16px_rgba(6,166,255,0.08)]">
         <h2 class="text-2xl font-bold text-slate-900 dark:text-white" >Kontakt i sekretariat</h2>
         <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -292,12 +292,12 @@ const tocSections = [
       </div>
 
       <aside class="hidden lg:block">
-        <nav aria-label="Spis treści" class="sticky top-24 space-y-1">
+        <nav aria-label="Spis treści" data-scrollspy class="toc-scrollspy sticky top-24 space-y-1">
           <h3 class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">Spis treści</h3>
           {tocSections.map((s) => (
             <a
               href={`#${s.id}`}
-              class="block px-3 py-1.5 text-sm rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+              class="toc-link block px-3 py-1.5 text-sm rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
             >{s.label}</a>
           ))}
         </nav>
@@ -327,4 +327,95 @@ const tocSections = [
       </div>
     </div>
   </article>
+
+  <style is:global>
+    /* Natywny scrollspy: Chrome/Edge 140+. Starsze przeglądarki ignorują
+       tę deklarację i dostają fallback z klasy .target-current (patrz skrypt). */
+    .toc-scrollspy {
+      scroll-target-group: auto;
+    }
+
+    /* :is() jest forgiving — nierozpoznany pseudoselektor :target-current
+       nie unieważnia całej reguły w przeglądarce fallbacku. */
+    .toc-link:is(:target-current, .target-current) {
+      background-color: var(--color-primary-50);
+      color: var(--color-primary-700);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .dark .toc-link:is(:target-current, .target-current) {
+      background-color: var(--color-navy-800);
+      color: var(--color-primary-300);
+    }
+  </style>
+
+  <script>
+    import { pickActiveTarget, syncTocCurrent } from '../utils/scrollspy';
+
+    const navs = [...document.querySelectorAll<HTMLElement>('[data-scrollspy]')];
+    const links = navs.flatMap((nav) => [...nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')]);
+
+    if (links.length > 0) {
+      const supportsNative =
+        typeof CSS !== 'undefined' &&
+        CSS.supports('scroll-target-group: auto') &&
+        CSS.supports('selector(:target-current)');
+
+      if (supportsNative) {
+        // Natywny stan wizualny zapewnia :target-current — aktualizujemy tylko ARIA.
+        const sync = () => {
+          const current = document.querySelector<HTMLAnchorElement>('.toc-link:target-current');
+          syncTocCurrent(links, current?.getAttribute('href') ?? null);
+        };
+        // :target-current zaczyna wskazywać dopiero po pierwszym paintcie —
+        // samo wywołanie przy load jeszcze zwraca null (zweryfikowane w Chrome).
+        const afterPaint = () => requestAnimationFrame(() => requestAnimationFrame(sync));
+        sync();
+        afterPaint();
+        window.addEventListener('load', afterPaint);
+        document.addEventListener('scrollend', sync);
+        window.addEventListener('hashchange', sync);
+
+        // :target-current przesuwa się w trakcie przewijania — ARIA nie może
+        // czekać do scrollend, inaczej stan wizualny i czytnik ekranu się rozjadą.
+        let scrollPending = false;
+        window.addEventListener('scroll', () => {
+          if (scrollPending) return;
+          scrollPending = true;
+          requestAnimationFrame(() => {
+            scrollPending = false;
+            sync();
+          });
+        }, { passive: true });
+      } else {
+        // Fallback: linia czytania w połowie viewportu wyznacza aktywną sekcję.
+        const targets = links.flatMap((link) => {
+          const href = link.getAttribute('href');
+          const target = href ? document.getElementById(href.slice(1)) : null;
+          return target ? [target] : [];
+        });
+        let activeTarget: string | null = null;
+
+        const sync = () => syncTocCurrent(links, activeTarget);
+        sync();
+
+        const observer = new IntersectionObserver((entries) => {
+          const activeId = pickActiveTarget(entries.map((entry) => ({
+            id: entry.target.id,
+            isIntersecting: entry.isIntersecting,
+            boundingClientRect: entry.boundingClientRect,
+          })));
+          if (activeId !== null) {
+            activeTarget = `#${activeId}`;
+            sync();
+          }
+        }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+
+        targets.forEach((target) => observer.observe(target));
+      }
+    }
+  </script>
 </Layout>

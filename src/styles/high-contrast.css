@@ -237,10 +237,28 @@
 
 /* Systemowy tryb wymuszonych kolorów nadpisuje kolory autorskie — obrys musi
    użyć słowa systemowego, żeby fokus pozostał widoczny (WCAG 2.4.7). */
+/* Aktywny punkt spisu treści (informacje.astro): kolor tła jest w trybie
+   wysokim nadpisywany, więc stan niesie obrys, pogrubienie i podkreślenie. */
+:is(html.high-contrast, html.system-high-contrast) .toc-link:is(:target-current, .target-current) {
+  outline: 2px solid #ffff00 !important;
+  outline-offset: 2px !important;
+  font-weight: 700 !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+}
+
 @media (forced-colors: active) {
   :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible,
   :is(html.high-contrast, html.system-high-contrast) :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
     outline: 2px solid Highlight !important;
     outline-offset: 2px !important;
+  }
+
+  .toc-link:is(:target-current, .target-current) {
+    outline: 2px solid Highlight !important;
+    outline-offset: 2px !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
   }
 }
