@@ -61,7 +61,7 @@ describe('nagłówki bezpieczeństwa w buildzie', () => {
     const directives = parseCsp(csp);
 
     expect(directives.get('default-src')).toBe("'self'");
-    expect(directives.get('script-src')).toBe("'self' 'unsafe-inline'");
+    expect(directives.get('script-src')).toBe("'self' 'unsafe-inline' 'wasm-unsafe-eval'");
     expect(directives.get('style-src')).toBe("'self' 'unsafe-inline'");
     expect(directives.get('font-src')).toBe("'self' data:");
     expect(directives.get('img-src')).toBe("'self' data: https:");
