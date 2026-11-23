@@ -429,7 +429,7 @@ function applyPlanPayload(payload) {
   allData = payload.data;
   latestUpdatedAt = payload.updatedAt;
   populateClasses(allData);
-  document.getElementById('app').innerHTML = '';
+  document.getElementById('app').replaceChildren();
   render();
 }
 
@@ -440,7 +440,7 @@ function render() {
 
   if (!allData || !allData[selected]) {
     app.innerHTML = `<div class="empty-state"><p>Brak danych dla klasy ${selected}</p></div>`;
-    dayTabs.innerHTML = '';
+    dayTabs.replaceChildren();
     return;
   }
 

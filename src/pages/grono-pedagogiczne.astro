@@ -11,7 +11,7 @@ interface Teacher {
 const { management, teachers } = staff;
 
 const lastName = (name: string) => name.split(' ').pop() ?? name;
-const sorted: Teacher[] = [...teachers].sort((a, b) => lastName(a.name).localeCompare(lastName(b.name), "pl"));
+const sorted: Teacher[] = teachers.toSorted((a, b) => lastName(a.name).localeCompare(lastName(b.name), "pl"));
 const managementSymbols = new Set(management.map((person: Teacher) => person.symbol));
 const total = management.length + sorted.filter((person) => !managementSymbols.has(person.symbol)).length;
 

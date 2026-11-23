@@ -502,6 +502,11 @@ import Layout from '../layouts/Layout.astro';
     var cards = document.querySelectorAll('.stat-card');
     if ('IntersectionObserver' in window) {
       function animateValue(el: HTMLElement, target: number) {
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+          el.textContent = String(target);
+          return;
+        }
+
         var current = 0;
         var step = Math.ceil(target / 30);
         var timer = setInterval(function () {

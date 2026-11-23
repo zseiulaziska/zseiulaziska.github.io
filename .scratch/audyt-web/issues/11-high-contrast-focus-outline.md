@@ -69,3 +69,10 @@ i przejść `Tab` przez nagłówek, menu, wyszukiwarkę, stopkę.
 Ticket 12 dodaje automatyczne włączanie tego trybu dla systemowych ustawień kontrastu.
 
 ## Comments
+
+`outline: none !important` zastąpione przez `outline: 2px solid #ffff00 !important` +
+`outline-offset: 2px !important`; dotychczasowy `border` pozostawiony (podwajanie
+obrysu zwiększa widoczność). Reguła skip-link (później w pliku) ma pierwszeństwo.
+`global.css:85` (`outline: none` przy `:focus:not(:focus-visible)`) zostawione —
+to poprawny wzorzec, ring dla `:focus-visible` jest zachowany. Test wizualny
+przełącznika nie wykonany (weryfikacja statyczna CSS).

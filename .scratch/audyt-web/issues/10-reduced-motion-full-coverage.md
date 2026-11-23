@@ -84,3 +84,16 @@ if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
 - [ ] `npm run check`, `npm test`, `npm run build` przechodzą.
 
 ## Comments
+
+Zastosowano wariant zgodny z wytycznymi `motion`: stan docelowy `.reveal` w media
+query po definicjach klasy oraz `scroll-behavior: auto`; **nie** dodano globalnego
+`animation-duration: 0.01ms`. Dodano natomiast `animation: none !important` w tym samym
+bloku — w repo istnieją nieskończone animacje CSS (`opm`, `opw`, `pracownie`,
+`wielozawodowa`, `technik-*`, `PartnersSection`), więc założenie „0 trafień” z raportu
+było błędne.
+
+Liczniki `animateValue()` objęto wczesnym wyjściem w 11 plikach (`kalendarz`,
+`lo-dla-doroslych`, `opm`, `opw`, `technik-*`, `wielozawodowa`). Auto-slide galerii
+(`setInterval(..., 5000)` w `opm`, `opw` i 6 stronach `technik-*`) również nie startuje
+przy reduced motion; pozostaje osobny temat pełnej kontrolki Pause/Play (WCAG 2.2.2).
+`requestAnimationFrame` w `MegaNav` obsługuje tylko pozycjonowanie panelu (jednorazowe).

@@ -49,3 +49,9 @@ również „puchnie" przy chowaniu paska. Decyzja: zamienić na `min-h-[55svh] 
 - [ ] `npm run check`, `npm run build` przechodzą.
 
 ## Comments
+
+`plan-lekcji.astro`: `calc(100dvh - 240px)`, `min-height` zmniejszone z 600px do 480px,
+ żeby 240px nagłówka + ramka nie wymuszały przewijania na telefonach ~667px.
+`PhotoBannerSection.astro`: `svh` (stabilny mały viewport) dla dekoracyjnego tła —
+świadomy wybór zamiast `dvh`, żeby tło nie „puchło" przy chowaniu paska adresu.
+Pozostałe `100vh` w `src/` to tylko komentarze (`global.css`, `MegaNav.astro`).

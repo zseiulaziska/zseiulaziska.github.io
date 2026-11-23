@@ -554,6 +554,11 @@ import Layout from '../layouts/Layout.astro';
     const cards = document.querySelectorAll('.stat-card');
     if ('IntersectionObserver' in window) {
       const animateValue = (el: Element, target: number) => {
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+          el.textContent = String(target);
+          return;
+        }
+
         let current = 0;
         const step = Math.ceil(target / 30);
         const timer = setInterval(() => {
@@ -604,10 +609,10 @@ import Layout from '../layouts/Layout.astro';
       };
       prevBtn.addEventListener('click', () => { goTo(current > 0 ? current - 1 : slides.length - 1); });
       nextBtn.addEventListener('click', () => { goTo(current < slides.length - 1 ? current + 1 : 0); });
-      let autoSlide = setInterval(() => { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000);
+      let autoSlide = (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? undefined : setInterval(() => { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000));
       if (gallerySlider) {
         gallerySlider.addEventListener('mouseenter', () => { clearInterval(autoSlide); });
-        gallerySlider.addEventListener('mouseleave', () => { autoSlide = setInterval(() => { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000); });
+        gallerySlider.addEventListener('mouseleave', () => { autoSlide = (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? undefined : setInterval(() => { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000)); });
       }
     }
   })();

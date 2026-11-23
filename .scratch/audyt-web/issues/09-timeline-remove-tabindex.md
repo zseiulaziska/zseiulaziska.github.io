@@ -41,3 +41,7 @@ pustych zatrzymań, ile jest wydarzeń — bez możliwości wykonania akcji. Dod
 - [ ] `npm run check` przechodzi.
 
 ## Comments
+
+Usunięto `tabindex="0"`; `role="article"` pozostawione (poprawna semantyka wpisu).
+W slotach 17 wywołań `TimelineEvent` w `historia.astro` nie ma linków ani przycisków,
+więc żaden element nie stracił dostępu klawiaturą.

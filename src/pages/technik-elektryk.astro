@@ -623,6 +623,11 @@ import Layout from '../layouts/Layout.astro';
     var cards = document.querySelectorAll('.stat-card');
     if ('IntersectionObserver' in window) {
       function animateValue(el: HTMLElement, target: number): void {
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+          el.textContent = String(target);
+          return;
+        }
+
         var current = 0;
         var step = Math.ceil(target / 30);
         var timer = setInterval(function () {
@@ -675,11 +680,11 @@ import Layout from '../layouts/Layout.astro';
       }
       prevBtn.addEventListener('click', function () { goTo(current > 0 ? current - 1 : slides.length - 1); });
       nextBtn.addEventListener('click', function () { goTo(current < slides.length - 1 ? current + 1 : 0); });
-      var autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000);
+      var autoSlide = (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? undefined : setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000));
       var sliderEl = document.getElementById('gallery-slider');
       if (sliderEl) {
         sliderEl.addEventListener('mouseenter', function () { clearInterval(autoSlide); });
-        sliderEl.addEventListener('mouseleave', function () { autoSlide = setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000); });
+        sliderEl.addEventListener('mouseleave', function () { autoSlide = (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? undefined : setInterval(function () { goTo(current < slides.length - 1 ? current + 1 : 0); }, 5000)); });
       }
     }
   })();

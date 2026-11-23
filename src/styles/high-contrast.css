@@ -1,34 +1,34 @@
 /* High contrast mode — wszystkie reguły w jednym miejscu */
 
-html.high-contrast body {
+:is(html.high-contrast, html.system-high-contrast) body {
   background: #000 !important;
   color: #fff !important;
 }
 
-html.high-contrast .site-header,
-html.high-contrast .mega-nav,
-html.high-contrast .mega-panel__content,
-html.high-contrast .mobile-nav__panel,
-html.high-contrast .mobile-search,
-html.high-contrast .search-popover,
-html.high-contrast .search-result-item,
-html.high-contrast .search-result-thumb,
-html.high-contrast .card-base,
-html.high-contrast .teacher-card,
-html.high-contrast .stat-card,
-html.high-contrast .skill-card,
-html.high-contrast .tech-chip,
-html.high-contrast .filter-btn,
-html.high-contrast .mega-item,
-html.high-contrast .mega-highlight,
-html.high-contrast footer,
-html.high-contrast article,
-html.high-contrast aside,
-html.high-contrast section > div,
-html.high-contrast pre,
-html.high-contrast table,
-html.high-contrast th,
-html.high-contrast td {
+:is(html.high-contrast, html.system-high-contrast) .site-header,
+:is(html.high-contrast, html.system-high-contrast) .mega-nav,
+:is(html.high-contrast, html.system-high-contrast) .mega-panel__content,
+:is(html.high-contrast, html.system-high-contrast) .mobile-nav__panel,
+:is(html.high-contrast, html.system-high-contrast) .mobile-search,
+:is(html.high-contrast, html.system-high-contrast) .search-popover,
+:is(html.high-contrast, html.system-high-contrast) .search-result-item,
+:is(html.high-contrast, html.system-high-contrast) .search-result-thumb,
+:is(html.high-contrast, html.system-high-contrast) .card-base,
+:is(html.high-contrast, html.system-high-contrast) .teacher-card,
+:is(html.high-contrast, html.system-high-contrast) .stat-card,
+:is(html.high-contrast, html.system-high-contrast) .skill-card,
+:is(html.high-contrast, html.system-high-contrast) .tech-chip,
+:is(html.high-contrast, html.system-high-contrast) .filter-btn,
+:is(html.high-contrast, html.system-high-contrast) .mega-item,
+:is(html.high-contrast, html.system-high-contrast) .mega-highlight,
+:is(html.high-contrast, html.system-high-contrast) footer,
+:is(html.high-contrast, html.system-high-contrast) article,
+:is(html.high-contrast, html.system-high-contrast) aside,
+:is(html.high-contrast, html.system-high-contrast) section > div,
+:is(html.high-contrast, html.system-high-contrast) pre,
+:is(html.high-contrast, html.system-high-contrast) table,
+:is(html.high-contrast, html.system-high-contrast) th,
+:is(html.high-contrast, html.system-high-contrast) td {
   background: #000 !important;
   color: #fff !important;
   border-color: #fff !important;
@@ -36,85 +36,86 @@ html.high-contrast td {
   backdrop-filter: none !important;
 }
 
-html.high-contrast a,
-html.high-contrast .mega-nav-link,
-html.high-contrast .nav-link,
-html.high-contrast .mega-item strong,
-html.high-contrast .mega-highlight strong,
-html.high-contrast .site-social a {
+:is(html.high-contrast, html.system-high-contrast) a,
+:is(html.high-contrast, html.system-high-contrast) .mega-nav-link,
+:is(html.high-contrast, html.system-high-contrast) .nav-link,
+:is(html.high-contrast, html.system-high-contrast) .mega-item strong,
+:is(html.high-contrast, html.system-high-contrast) .mega-highlight strong,
+:is(html.high-contrast, html.system-high-contrast) .site-social a {
   color: #ffff00 !important;
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
 
-html.high-contrast p,
-html.high-contrast span,
-html.high-contrast small,
-html.high-contrast li,
-html.high-contrast h1,
-html.high-contrast h2,
-html.high-contrast h3,
-html.high-contrast h4,
-html.high-contrast strong,
-html.high-contrast label,
-html.high-contrast time {
+:is(html.high-contrast, html.system-high-contrast) p,
+:is(html.high-contrast, html.system-high-contrast) span,
+:is(html.high-contrast, html.system-high-contrast) small,
+:is(html.high-contrast, html.system-high-contrast) li,
+:is(html.high-contrast, html.system-high-contrast) h1,
+:is(html.high-contrast, html.system-high-contrast) h2,
+:is(html.high-contrast, html.system-high-contrast) h3,
+:is(html.high-contrast, html.system-high-contrast) h4,
+:is(html.high-contrast, html.system-high-contrast) strong,
+:is(html.high-contrast, html.system-high-contrast) label,
+:is(html.high-contrast, html.system-high-contrast) time {
   color: #fff !important;
 }
 
-html.high-contrast input,
-html.high-contrast textarea,
-html.high-contrast select {
+:is(html.high-contrast, html.system-high-contrast) input,
+:is(html.high-contrast, html.system-high-contrast) textarea,
+:is(html.high-contrast, html.system-high-contrast) select {
   background: #000 !important;
   border-color: #fff !important;
   color: #fff !important;
 }
 
-html.high-contrast input::placeholder,
-html.high-contrast textarea::placeholder {
+:is(html.high-contrast, html.system-high-contrast) input::placeholder,
+:is(html.high-contrast, html.system-high-contrast) textarea::placeholder {
   color: #d4d4d4 !important;
 }
 
-html.high-contrast .site-icon-button,
-html.high-contrast button,
-html.high-contrast .btn-secondary {
+:is(html.high-contrast, html.system-high-contrast) .site-icon-button,
+:is(html.high-contrast, html.system-high-contrast) button,
+:is(html.high-contrast, html.system-high-contrast) .btn-secondary {
   background: #000 !important;
   border: 2px solid #fff !important;
   color: #fff !important;
 }
 
-html.high-contrast .site-icon-button:hover,
-html.high-contrast .site-icon-button:focus-visible,
-html.high-contrast .site-icon-button[aria-pressed="true"],
-html.high-contrast button:hover,
-html.high-contrast button:focus-visible,
-html.high-contrast .btn-primary,
-html.high-contrast .btn-secondary:hover {
+:is(html.high-contrast, html.system-high-contrast) .site-icon-button:hover,
+:is(html.high-contrast, html.system-high-contrast) .site-icon-button:focus-visible,
+:is(html.high-contrast, html.system-high-contrast) .site-icon-button[aria-pressed="true"],
+:is(html.high-contrast, html.system-high-contrast) button:hover,
+:is(html.high-contrast, html.system-high-contrast) button:focus-visible,
+:is(html.high-contrast, html.system-high-contrast) .btn-primary,
+:is(html.high-contrast, html.system-high-contrast) .btn-secondary:hover {
   background: #ffff00 !important;
   border-color: #ffff00 !important;
   color: #000 !important;
 }
 
-html.high-contrast .site-icon-button[aria-pressed="true"] svg,
-html.high-contrast button:hover svg,
-html.high-contrast button:focus-visible svg {
+:is(html.high-contrast, html.system-high-contrast) .site-icon-button[aria-pressed="true"] svg,
+:is(html.high-contrast, html.system-high-contrast) button:hover svg,
+:is(html.high-contrast, html.system-high-contrast) button:focus-visible svg {
   color: #000 !important;
 }
 
-html.high-contrast .mega-nav-link:focus-visible,
-html.high-contrast .mega-item:focus-visible,
-html.high-contrast .mega-highlight:focus-visible,
-html.high-contrast .nav-link:focus-visible,
-html.high-contrast .search-result-item:focus-visible,
-html.high-contrast .search-result-option.is-active .search-result-item,
-html.high-contrast .skip-link {
+:is(html.high-contrast, html.system-high-contrast) .mega-nav-link:focus-visible,
+:is(html.high-contrast, html.system-high-contrast) .mega-item:focus-visible,
+:is(html.high-contrast, html.system-high-contrast) .mega-highlight:focus-visible,
+:is(html.high-contrast, html.system-high-contrast) .nav-link:focus-visible,
+:is(html.high-contrast, html.system-high-contrast) .search-result-item:focus-visible,
+:is(html.high-contrast, html.system-high-contrast) .search-result-option.is-active .search-result-item,
+:is(html.high-contrast, html.system-high-contrast) .skip-link {
   background: #000 !important;
   color: #ffff00 !important;
   border: 2px solid #ffff00 !important;
-  outline: none !important;
+  outline: 2px solid #ffff00 !important;
+  outline-offset: 2px !important;
 }
 
-html.high-contrast .skip-link:focus,
-html.high-contrast .skip-link:focus-visible {
+:is(html.high-contrast, html.system-high-contrast) .skip-link:focus,
+:is(html.high-contrast, html.system-high-contrast) .skip-link:focus-visible {
   background: #ffff00 !important;
   color: #000 !important;
   border-color: #ffff00 !important;
@@ -122,19 +123,19 @@ html.high-contrast .skip-link:focus-visible {
   outline-offset: 2px !important;
 }
 
-html.high-contrast mark {
+:is(html.high-contrast, html.system-high-contrast) mark {
   background: #ffff00 !important;
   color: #000 !important;
 }
 
-html.high-contrast ::selection {
+:is(html.high-contrast, html.system-high-contrast) ::selection {
   background: #ffff00 !important;
   color: #000 !important;
 }
 
 /* Reguły z Layout.astro — main#content */
-html.high-contrast main#content,
-html.high-contrast main#content * {
+:is(html.high-contrast, html.system-high-contrast) main#content,
+:is(html.high-contrast, html.system-high-contrast) main#content * {
   background: #000 !important;
   border-color: #fff !important;
   box-shadow: none !important;
@@ -145,37 +146,37 @@ html.high-contrast main#content * {
   -webkit-background-clip: unset !important;
 }
 
-html.high-contrast main#content a {
+:is(html.high-contrast, html.system-high-contrast) main#content a {
   color: #ffff00 !important;
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
 
-html.high-contrast main#content a svg {
+:is(html.high-contrast, html.system-high-contrast) main#content a svg {
   color: #ffff00 !important;
 }
 
-html.high-contrast main#content img {
+:is(html.high-contrast, html.system-high-contrast) main#content img {
   filter: brightness(0.8) contrast(1.4);
 }
 
-html.high-contrast main#content button,
-html.high-contrast main#content [class*="bg-primary"] {
+:is(html.high-contrast, html.system-high-contrast) main#content button,
+:is(html.high-contrast, html.system-high-contrast) main#content [class*="bg-primary"] {
   background: #000 !important;
   border: 2px solid #fff !important;
   color: #fff !important;
 }
 
-html.high-contrast main#content [class*="bg-primary"]:hover,
-html.high-contrast main#content [class*="bg-primary"]:focus {
+:is(html.high-contrast, html.system-high-contrast) main#content [class*="bg-primary"]:hover,
+:is(html.high-contrast, html.system-high-contrast) main#content [class*="bg-primary"]:focus {
   background: #ffff00 !important;
   border-color: #ffff00 !important;
   color: #000 !important;
 }
 
 /* Reguły z index.astro — .page-index */
-html.high-contrast .page-index,
-html.high-contrast .page-index * {
+:is(html.high-contrast, html.system-high-contrast) .page-index,
+:is(html.high-contrast, html.system-high-contrast) .page-index * {
   background: #000 !important;
   border-color: #fff !important;
   box-shadow: none !important;
@@ -183,30 +184,30 @@ html.high-contrast .page-index * {
   text-shadow: none !important;
 }
 
-html.high-contrast .page-index a {
+:is(html.high-contrast, html.system-high-contrast) .page-index a {
   color: #ffff00 !important;
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
 
-html.high-contrast .page-index a svg {
+:is(html.high-contrast, html.system-high-contrast) .page-index a svg {
   color: #ffff00 !important;
 }
 
-html.high-contrast .page-index img {
+:is(html.high-contrast, html.system-high-contrast) .page-index img {
   filter: brightness(0.8) contrast(1.4);
 }
 
-html.high-contrast .page-index button,
-html.high-contrast .page-index .bg-primary-600 {
+:is(html.high-contrast, html.system-high-contrast) .page-index button,
+:is(html.high-contrast, html.system-high-contrast) .page-index .bg-primary-600 {
   background: #000 !important;
   border: 2px solid #fff !important;
   color: #fff !important;
 }
 
 /* Reguły z InfoStructure.astro — .info-structure */
-html.high-contrast .info-structure,
-html.high-contrast .info-structure * {
+:is(html.high-contrast, html.system-high-contrast) .info-structure,
+:is(html.high-contrast, html.system-high-contrast) .info-structure * {
   background: #000 !important;
   border-color: #fff !important;
   box-shadow: none !important;
@@ -214,13 +215,13 @@ html.high-contrast .info-structure * {
   text-shadow: none !important;
 }
 
-html.high-contrast .info-structure svg {
+:is(html.high-contrast, html.system-high-contrast) .info-structure svg {
   color: #ffff00 !important;
 }
 
 /* Reguły z SchoolFields.astro — .school-fields */
-html.high-contrast .school-fields,
-html.high-contrast .school-fields * {
+:is(html.high-contrast, html.system-high-contrast) .school-fields,
+:is(html.high-contrast, html.system-high-contrast) .school-fields * {
   background: #000 !important;
   border-color: #fff !important;
   box-shadow: none !important;
@@ -228,8 +229,18 @@ html.high-contrast .school-fields * {
   text-shadow: none !important;
 }
 
-html.high-contrast .school-fields a {
+:is(html.high-contrast, html.system-high-contrast) .school-fields a {
   color: #ffff00 !important;
   text-decoration: underline;
   text-underline-offset: 0.18em;
+}
+
+/* Systemowy tryb wymuszonych kolorów nadpisuje kolory autorskie — obrys musi
+   użyć słowa systemowego, żeby fokus pozostał widoczny (WCAG 2.4.7). */
+@media (forced-colors: active) {
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible,
+  :is(html.high-contrast, html.system-high-contrast) :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid Highlight !important;
+    outline-offset: 2px !important;
+  }
 }

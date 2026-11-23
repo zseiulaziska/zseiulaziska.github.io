@@ -40,6 +40,8 @@ const searchTitle = resolveSearchTitle(Astro.url.pathname, title);
         var stored = null;
         var contrast = null;
         var media = null;
+        var forcedColors = null;
+        var moreContrast = null;
 
         try {
           stored = localStorage.getItem(themeStorage);
@@ -48,6 +50,8 @@ const searchTitle = resolveSearchTitle(Astro.url.pathname, title);
 
         try {
           media = window.matchMedia('(prefers-color-scheme: dark)');
+          forcedColors = window.matchMedia('(forced-colors: active)');
+          moreContrast = window.matchMedia('(prefers-contrast: more)');
         } catch (e) {}
 
         var prefersDark = media ? media.matches : false;
@@ -71,13 +75,29 @@ const searchTitle = resolveSearchTitle(Astro.url.pathname, title);
           }
         }
 
-        if (media) {
-          if (typeof media.addEventListener === 'function') {
-            media.addEventListener('change', syncSystemTheme);
-          } else if (typeof media.addListener === 'function') {
-            media.addListener(syncSystemTheme);
+        // Preferencja systemowa jest niezależna od ręcznego przełącznika
+        // (klasa system-high-contrast nie jest zapisywana w localStorage).
+        function syncSystemContrast() {
+          doc.classList.toggle(
+            'system-high-contrast',
+            !!(forcedColors && forcedColors.matches) || !!(moreContrast && moreContrast.matches)
+          );
+        }
+
+        syncSystemContrast();
+
+        function watchMedia(query, handler) {
+          if (!query) return;
+          if (typeof query.addEventListener === 'function') {
+            query.addEventListener('change', handler);
+          } else if (typeof query.addListener === 'function') {
+            query.addListener(handler);
           }
         }
+
+        watchMedia(media, syncSystemTheme);
+        watchMedia(forcedColors, syncSystemContrast);
+        watchMedia(moreContrast, syncSystemContrast);
       })();
     </script>
   </head>

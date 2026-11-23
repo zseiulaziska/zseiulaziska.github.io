@@ -47,3 +47,7 @@ Ticket 09 usuwa `tabindex="0"` z tej samej karty `TimelineEvent.astro` — wygod
 zrobić oba w jednym PR.
 
 ## Comments
+
+Usunięto `cursor-pointer` z 3 kafelków w `index.astro`, 9 w `historia.astro` i karty
+`TimelineEvent.astro`. Hover-shadow/hover-border pozostawione świadomie (subtelna
+dekoracja bez fałszywej affordancji kursora). Lista „nie ruszać” nienaruszona.

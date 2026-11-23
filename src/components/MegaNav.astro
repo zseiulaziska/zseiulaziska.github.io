@@ -142,7 +142,7 @@ const iconForName = (name: string | undefined): string =>
       <img src="/images/Herb_powiatu.svg" alt="Herb powiatu mikołowskiego" />
     </div>
 
-    <div class="site-search">
+    <search class="site-search">
       <label for="search-input" class="sr-only">Szukaj</label>
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"></circle>
@@ -162,7 +162,7 @@ const iconForName = (name: string | undefined): string =>
       <div id="search-results" class="search-popover hidden" role="region" aria-live="polite" aria-label="Wyniki wyszukiwania">
         <ul id="search-results-listbox" class="search-results-list" role="listbox" aria-label="Wyniki wyszukiwania"></ul>
       </div>
-    </div>
+    </search>
 
     <div class="site-social" aria-label="Linki społecznościowe i BIP">
       <a href={bipLink.href} target="_blank" rel="noopener noreferrer" aria-label="Biuletyn Informacji Publicznej (otwiera się w nowej karcie)">
@@ -436,7 +436,7 @@ const iconForName = (name: string | undefined): string =>
         clearTimeout(debounceTimer);
         var query = input.value.trim();
         if (query.length < 2) {
-          listbox.innerHTML = '';
+          listbox.replaceChildren();
           closeResults();
           return;
         }

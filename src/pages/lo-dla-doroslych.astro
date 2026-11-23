@@ -202,6 +202,11 @@ import { PLAN_LO_URL } from '../consts';
     const cards = document.querySelectorAll('.stat-card');
     if ('IntersectionObserver' in window) {
       const animateValue = (el: Element, target: number) => {
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+          el.textContent = String(target);
+          return;
+        }
+
         let current = 0;
         const step = Math.ceil(target / 30);
         const timer = setInterval(() => {

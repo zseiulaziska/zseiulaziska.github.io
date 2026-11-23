@@ -62,3 +62,16 @@ systemowy tryb kontrastu „wyłącza" ręczny i odwrotnie. Wymaga testu macierz
 4 kombinacji (system on/off × przełącznik on/off).
 
 ## Comments
+
+Zastosowano wariant z klasą `system-high-contrast` ustawianą w inline-scripcie
+`Layout.astro` z `matchMedia('(forced-colors: active)')` i
+`matchMedia('(prefers-contrast: more)')`. Klasa nie jest zapisywana w `localStorage`,
+więc ręczny przełącznik działa niezależnie; system nie może zostać „wyłączony"
+przez zapisaną preferencję. Selektory w `high-contrast.css` rozszerzono o `:is(...)`,
+dzięki czemu nie ma duplikatu 93 reguł. W `forced-colors` fokus używa słowa
+systemowego `Highlight` (reguła o wyższej specyficzności niż żółty obrys).
+
+Nie dodano `forced-color-adjust`: `.cyber-grid` jest dekoracyjny (`aria-hidden`),
+a wytyczne `color` dopuszczają `none` tylko gdy kolor niesie informację —
+w forced-colors ma po prostu zniknąć. Macierz 4 kombinacji nie przetestowana
+wizualnie (brak emulatora w środowisku); wymagany ręczny test na wydaniu.

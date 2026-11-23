@@ -51,7 +51,7 @@ describe('redirecty z katalogu Tras', () => {
   it('pokrywa każdy alias Trasy i prowadzi do jej kanonicznego adresu', () => {
     const aliasy = trasy.flatMap((trasa) => trasa.aliases ?? []);
 
-    expect(Object.keys(redirects).sort()).toEqual([...aliasy].sort());
+    expect(Object.keys(redirects).sort()).toEqual(aliasy.toSorted());
     for (const trasa of trasy) {
       for (const alias of trasa.aliases ?? []) {
         expect(findTrasa(alias)?.path, `Alias ${alias} nie prowadzi do Trasy`).toBe(trasa.path);

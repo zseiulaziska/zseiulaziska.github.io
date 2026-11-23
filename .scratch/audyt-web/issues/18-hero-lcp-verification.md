@@ -1,6 +1,6 @@
 # 18 — Weryfikacja LCP w `Hero.astro` (punkt raportu 4.3 — fałszywy alarm)
 
-Status: open
+Status: resolved
 Type: task
 Priority: P4 (weryfikacja, bez zmian kodu)
 Blocked by: —
@@ -55,3 +55,7 @@ z wyjaśnieniem, dlaczego `priority` nie zadziałał (np. wersja Astro < 5.10).
 - [ ] `map.md` → Decisions-so-far zawiera już tę korektę (zrobione).
 
 ## Comments
+
+Zweryfikowane 2026-11-23 w `dist/client/index.html:163` po `npm run build` (bez zmian kodu):
+`<picture><source ... type="image/avif" sizes="100vw"><source ... type="image/webp" sizes="100vw"><img ... loading="eager" decoding="sync" fetchpriority="high" width="1200" height="840" ...></picture>`.
+`priority` na `<Picture>` działa zgodnie z dokumentacją Astro 7 — raport był w błędzie. Lighthouse/DevTools nie uruchomione (weryfikacja statyczna HTML).
