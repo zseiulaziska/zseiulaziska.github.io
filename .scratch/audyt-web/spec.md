@@ -47,10 +47,9 @@ Stack: Astro 7 + Tailwind 4, Cloudflare (Pages/Workers), Pagefind, Keystatic. St
 
 ## Priorytet 3 — Wydajność / porządek w kodzie
 
-### 3.1 Martwy komponent `Image.astro` 🔴
-- `src/components/Image.astro` **nie jest importowany nigdzie w repo** (grep po całym projekcie — 0 wyników; komponenty używają `astro:assets` bezpośrednio).
-- Ma przy tym uszkodzony `srcset` (ten sam plik ×3) i `width/height` 1200×800 niezgodne z realnymi.
-- **Usunąć plik**, nie naprawiać.
+### 3.1 Martwy komponent `Image.astro` ✅ [ZROBIONE #05]
+- `src/components/Image.astro` był martwy (0 importów) i wadliwy (potrójny `srcset`, sztywne wymiary).
+- **Zrealizowano:** plik usunięty; komponenty używają `astro:assets` bezpośrednio.
 
 ### 3.2 Wideo `public/wideo` 🔵
 - `video.mp4` 7,3 MB, `video3.mp4` 5 MB — obsługiwane poprawnie (`preload="none"` + poster w `GallerySection.astro`), ale rozważyć transkodowanie do VP9/AV1 + mniejsze bitrate.
@@ -82,7 +81,7 @@ Stack: Astro 7 + Tailwind 4, Cloudflare (Pages/Workers), Pagefind, Keystatic. St
 
 1. Nagłówki bezpieczeństwa (1.1)
 2. Szybkie poprawki: `escapeHtml` w MegaNav (1.3) + `rel` w dokumenty.astro (1.2)
-3. Usunięcie martwego `Image.astro` (3.1)
+3. [ZROBIONE #05] Usunięcie martwego `Image.astro` (3.1)
 4. SchoolFields tabs → `aria-pressed` (2.1) + reduced-motion dla liczników (2.3)
 5. Legacy findings (4.x) — kosmetyka niskiego ryzyka
 

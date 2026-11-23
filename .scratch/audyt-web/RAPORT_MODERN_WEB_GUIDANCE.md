@@ -16,14 +16,14 @@ Porównanie raportu wygenerowanego przez asystenta z plikiem `spec.md` wykazało
 1. **ES2023 `toSorted()`**: `src/pages/grono-pedagogiczne.astro:14` – zastąpienie płytkiej kopii `[...teachers].sort(...)` niemutującą metodą `toSorted()`.
 2. **Natywne `replaceChildren()`**: `src/components/MegaNav.astro:447` – czyszczenie listy przez `replaceChildren()` zamiast wywoływania parsera HTML przez `innerHTML = ''`.
 3. **Podatność i sink XSS w wyszukiwarce**: `src/components/MegaNav.astro:485` – pole `item.excerpt` jako jedyne wstawiane jest bez funkcji `escapeHtml()`.
-4. **Wadliwy komponent `src/components/Image.astro`**: uszkodzony potrójny `srcset` i sztywne wymiary.
+4. **[ZROBIONE #05] Usunięto martwy komponent `Image.astro`**: plik nie był nigdzie importowany; usunięty w ramach porządków repo.
 5. **Niepełna ochrona `prefers-reduced-motion`** w animacjach.
 6. **Kwestia Service Workera i assetów w `public/`**.
 
 ### Kluczowa wartość dodana wniesiona przez `spec.md`:
 - **Brak nagłówków bezpieczeństwa (CSP, HSTS itp.)**: identyfikacja braku `public/_headers` i konfiguracji w `wrangler.jsonc`.
 - **Brak `rel="noopener noreferrer"` w `dokumenty.astro:29, 37, 45`**: precyzyjne namierzenie 3 jedynych zewnętrznych linków BIP podatnych na reverse tabnabbing.
-- **Weryfikacja martwego kodu `Image.astro`**: potwierdzenie, że plik nie jest nigdzie importowany i należy go **usunąć**, a nie naprawiać.
+- **[ZROBIONE #05] Weryfikacja martwego kodu `Image.astro`**: potwierdzono brak importów; plik usunięty.
 - **Nadużycie wzorca ARIA Tabs w `SchoolFields.astro:184-199`**: filtry kierunków mają `role="tablist"`/`role="tab"`, ale brak im obsługi klawiatury (ArrowLeft/Right, roving tabindex) – powinny być przyciskami `aria-pressed`.
 - **Zidentyfikowanie podprojektu `public/elo/`**: wyjaśnienie obecności `sw.js` i `manifest.json` oraz namierzenie tam starych wzorców `innerHTML = ''`.
 - **Semantyczny tag `<search>`**: możliwość wdrożenia w oknie wyszukiwania.
@@ -139,9 +139,9 @@ Porównanie raportu wygenerowanego przez asystenta z plikiem `spec.md` wykazało
 
 ### Priorytet 4 — Wydajność, RWD i higiena repozytorium
 
-#### 4.1 Usunięcie martwego komponentu `Image.astro` 🔴
-- **Lokalizacja:** `src/components/Image.astro`
-- **Działanie:** Plik nie jest importowany w żadnym miejscu projektu. Należy go **usunąć z dysku**.
+#### 4.1 Usunięcie martwego komponentu `Image.astro` ✅ [ZROBIONE #05]
+- **Lokalizacja:** `src/components/Image.astro` (usunięty)
+- **Działanie:** Potwierdzono brak importów; plik usunięty z repo.
 
 #### 4.2 Usunięcie osieroconych czcionek Atkinson 🔵
 - **Lokalizacja:** `src/assets/fonts/atkinson-bold.woff`, `atkinson-regular.woff`
@@ -170,7 +170,7 @@ Krok 1: Bezpieczeństwo krytyczne
   └── Dodanie escapeHtml(item.excerpt) w src/components/MegaNav.astro:485
 
 Krok 2: Czyszczenie martwego kodu
-  ├── Usunięcie nieużywanego src/components/Image.astro
+  ├── [ZROBIONE #05] Usunięcie nieużywanego src/components/Image.astro
   └── Usunięcie nieużywanych czcionek src/assets/fonts/atkinson-*.woff
 
 Krok 3: Poprawki dostępności cyfrowej (WCAG 2.1 AA)

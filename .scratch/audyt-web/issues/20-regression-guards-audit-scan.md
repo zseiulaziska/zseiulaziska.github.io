@@ -30,7 +30,7 @@ który czyta pliki źródłowe i asertywnie sprawdza:
 | `tabindex="0"` na `role="article"` | 0 | `src/**` |
 | `role="tablist"`/`role="tab"` bez obsługi `keydown` | 0 | `src/**/*.astro` |
 | `item.excerpt` w `innerHTML` | 0 | `MegaNav.astro` |
-| `Image.astro`, `atkinson-*.woff`, `public/sw.js`, `public/manifest.json` | nie istnieją | FS |
+| martwy komponent `Image.astro` (usunięty #05), `atkinson-*.woff`, `public/sw.js`, `public/manifest.json` | nie istnieją | FS |
 | `public/_headers` | istnieje i zawiera `Content-Security-Policy` | FS |
 | `<meta name="color-scheme"` | istnieje w `BaseHead.astro` | FS |
 
