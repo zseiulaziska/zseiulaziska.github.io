@@ -583,21 +583,21 @@ import Layout from '../layouts/Layout.astro';
     // Animated counters
     var cards = document.querySelectorAll('.stat-card');
     if ('IntersectionObserver' in window) {
-      function animateValue(el, target) {
+      function animateValue(el: HTMLElement, target: number) {
         var current = 0;
         var step = Math.ceil(target / 30);
         var timer = setInterval(function () {
           current += step;
           if (current >= target) { current = target; clearInterval(timer); }
-          el.textContent = current;
+          el.textContent = String(current);
         }, 40);
       }
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            var card = entry.target;
-            var valueEl = card.querySelector('.stat-value');
-            var target = parseInt(card.getAttribute('data-count-to'), 10);
+            var card = entry.target as HTMLElement;
+            var valueEl = card.querySelector('.stat-value') as HTMLElement | null;
+            var target = parseInt(card.getAttribute('data-count-to') || '0', 10);
             if (valueEl && target) { animateValue(valueEl, target); }
             observer.unobserve(card);
           }

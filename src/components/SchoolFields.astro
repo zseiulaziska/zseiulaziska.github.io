@@ -348,7 +348,7 @@ const fieldIcons: Record<string, string> = {
 
     tabs.forEach(function(tab) {
       tab.addEventListener('click', function() {
-        var filter = tab.getAttribute('data-filter');
+        var filter = tab.getAttribute('data-filter') || 'all';
 
         tabs.forEach(function(t) {
           t.classList.remove('bg-primary-600', 'text-white', 'border-primary-600', 'shadow-sm');
@@ -360,19 +360,21 @@ const fieldIcons: Record<string, string> = {
         tab.classList.add('bg-primary-600', 'text-white', 'border-primary-600', 'shadow-sm');
         tab.setAttribute('aria-selected', 'true');
 
-groups.forEach(function(group) {
-      var fields = group.querySelectorAll('[data-filter-field]');
-      var visibleCount = 0;
+        groups.forEach(function(group) {
+          var groupEl = group as HTMLElement;
+          var fields = groupEl.querySelectorAll('[data-filter-field]');
+          var visibleCount = 0;
 
-      fields.forEach(function(field) {
-        var fieldFilters = (field.getAttribute('data-filter-field') || '').split(' ');
-        var match = filter === 'all' || fieldFilters.indexOf(filter) !== -1;
-        field.style.display = match ? '' : 'none';
-        if (match) visibleCount++;
-      });
+          fields.forEach(function(field) {
+            var fieldEl = field as HTMLElement;
+            var fieldFilters = (fieldEl.getAttribute('data-filter-field') || '').split(' ');
+            var match = filter === 'all' || fieldFilters.indexOf(filter) !== -1;
+            fieldEl.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+          });
 
-      group.style.display = visibleCount > 0 ? '' : 'none';
-    });
+          groupEl.style.display = visibleCount > 0 ? '' : 'none';
+        });
       });
     });
   })();

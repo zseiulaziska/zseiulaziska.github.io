@@ -328,7 +328,8 @@ const iconForName = (name: string | undefined): string =>
     var pagefindPromise = null;
     function loadPagefind() {
       if (!pagefindPromise) {
-        pagefindPromise = import('/pagefind/pagefind.js').then(function (mod) {
+        var pagefindPath = '/pagefind/pagefind.js';
+        pagefindPromise = import(/* @vite-ignore */ pagefindPath).then(function (mod) {
           return mod.init().then(function () {
             return mod;
           });

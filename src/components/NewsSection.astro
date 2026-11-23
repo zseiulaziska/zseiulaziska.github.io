@@ -5,7 +5,7 @@ export interface Props {
     data: {
       title: string;
       description: string;
-      pubDate: Date;
+      pubDate?: Date;
       heroImage?: string;
       imageAlt?: string;
       category?: string;
@@ -125,11 +125,12 @@ const featuredStyles: Record<string, string> = {
         btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-navy-700');
 
         cards.forEach((card) => {
-          const cardCat = card.getAttribute('data-category');
+          const el = card as HTMLElement;
+          const cardCat = el.getAttribute('data-category');
           if (cat === 'all' || cardCat === cat) {
-            card.style.display = '';
+            el.style.display = '';
           } else {
-            card.style.display = 'none';
+            el.style.display = 'none';
           }
         });
       });

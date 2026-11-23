@@ -25,11 +25,6 @@ function getSkroconyTyp(entry: typeof entries[0]): string {
   );
 }
 
-const accentMap: Record<string, string> = {
-  T: 'primary',
-  BS1S: 'emerald',
-  LO: 'violet',
-};
 
 const dotColorMap: Record<string, string> = {
   T: 'bg-primary-500',
@@ -96,7 +91,7 @@ const rendered = await Promise.all(entries.map(async (entry) => {
     </div>
 
     <!-- SEKCJE KLAS -->
-    {rendered.map(({ Content, data }, i) => {
+    {rendered.map(({ Content, data }) => {
       const st = getSkroconyTyp({ data } as typeof entries[0]);
       const borderColor = borderColorMap[st] ?? 'border-primary-500';
       const badgeBg = badgeBgMap[st] ?? 'bg-navy-100 dark:bg-navy-700';
@@ -193,7 +188,7 @@ const rendered = await Promise.all(entries.map(async (entry) => {
     const classFilters = document.querySelectorAll('.class-filter');
     const klasaSections = document.querySelectorAll('.klasa-section');
 
-    const activeBg = (school) => {
+    const activeBg = (school: string | null) => {
       if (school === 'Branżowa Szkoła I Stopnia') return 'bg-emerald-600';
       if (school === 'Lieceum Ogólnokształcące dla Dorosłych') return 'bg-violet-600';
       return 'bg-primary-600';
@@ -212,11 +207,12 @@ const rendered = await Promise.all(entries.map(async (entry) => {
         btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-navy-700');
 
         klasaSections.forEach((section) => {
-          const data = section.getAttribute('data-klasa');
+          const el = section as HTMLElement;
+          const data = el.getAttribute('data-klasa');
           if (filter === 'all' || data === filter) {
-            section.style.display = '';
+            el.style.display = '';
           } else {
-            section.style.display = 'none';
+            el.style.display = 'none';
           }
         });
       });

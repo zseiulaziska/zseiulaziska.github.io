@@ -6,7 +6,7 @@ export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	const sortedPosts = posts
 		.filter((p) => !p.data.draft)
-		.sort((a, b) => new Date(a.data.pubDate).valueOf() - new Date(b.data.pubDate).valueOf());
+		.sort((a, b) => new Date(a.data.pubDate ?? 0).valueOf() - new Date(b.data.pubDate ?? 0).valueOf());
 
 	return sortedPosts.map((post, index) => {
 		const prevPost = index > 0 ? sortedPosts[index - 1] : null;
