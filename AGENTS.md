@@ -20,3 +20,8 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Production
+
+- Production URL: https://www.zseiulaziska.pl/
+- Hosting: Cloudflare (commity na GitHub → build/host na Cloudflare; GitHub Pages to mirror/preview). Szczegóły: `docs/adr/0002-deployment-channel-and-security-headers.md`.

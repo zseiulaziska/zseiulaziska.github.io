@@ -21,5 +21,5 @@ Ticket 01 wdrożył nagłówki w trybie `Content-Security-Policy-Report-Only`. T
 ## Konsekwencje
 
 - Nagłówki bezpieczeństwa są źródłowo zarządzane w `public/_headers` i weryfikowane testem `src/security-headers.test.ts` na wyjściu buildu.
-- Weryfikacja produkcyjna nagłówków ma być wykonywana na URL-u Cloudflare (`curl -I https://zseiulaziska.pl/`), nie na URL-u GitHub Pages.
+- Weryfikacja produkcyjna nagłówków ma być wykonywana na URL-u Cloudflare (`curl -I https://www.zseiulaziska.pl/`), nie na URL-u GitHub Pages.
 - Ewentualne przyszłe wymuszenie parytetu na GH Pages wymaga osobnej decyzji (Cloudflare Transform Rules lub zmiana architektury wdrożenia) i aktualizacji tego ADR.
