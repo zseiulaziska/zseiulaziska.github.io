@@ -1,27 +1,34 @@
-## Development
+# ZSEiU — strona szkoły
 
-When starting the dev server, use background mode:
+Strona internetowa Zespołu Szkół Energetycznych i Usługowych w Łaziskach Górnych. Astro 7 + Tailwind 4 + Keystatic, wyszukiwanie Pagefind, testy Vitest, hosting na Cloudflare. Treści po polsku. Produkcja: https://www.zseiulaziska.pl/
 
-```
-astro dev --background
-```
+## Start pracy
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+- Uruchamiaj serwer dev w tle: `astro dev --background`. Zarządzanie: `astro dev stop`, `astro dev status`, `astro dev logs`.
+- Pozostałe komendy (`check`, `test`, `build`, `preview`, `deploy`) czytaj z `package.json` — nie ufaj kopiom w dokumentacji.
+- Wymagany Node >= 22.12.0.
 
-## Documentation
+## Mapa repozytorium
 
-Full documentation: https://docs.astro.build
+- `src/pages/` — strony i trasy; `src/content/` — kolekcje (blog, `podreczniki/`, `kalendarz/`, dane `teacher/` i `field/`); `src/data/` — JSON-y.
+- `src/routes.ts` — Katalog Tras: kanoniczne adresy, nazwy, breadcrumb-rodzice, ikony, aliasy.
+- `src/components/`, `src/layouts/`, `src/styles/` — UI i design system.
+- `keystatic.config.ts` — konfiguracja CMS; `scripts/` — postbuild, preview, walidacja danych strukturalnych.
+- `.scratch/` — lokalny issue tracker (specy i tickety); `docs/` — ADR-y, konfiguracja agentów i fakty o szkole.
 
-Consult these guides before working on related tasks:
+## Dokumentacja dla agentów
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- **Słownik** — `GLOSSARY.md`. Czytaj przed nazwaniem czegokolwiek w kodzie lub tickecie i używaj terminów stamtąd (Trasa, Katalog Tras, Alias).
+- **Decyzje** — `docs/adr/`. Czytaj ADR dotykające obszaru, w którym pracujesz; nie zmieniaj ich bez pytania.
+- **Konfiguracja agentów** — `docs/agents/`: `issue-tracker.md` (tracker w `.scratch/`), `triage-labels.md` (role triage), `domain.md` (jak czytać dokumenty domenowe).
+- **Fakty o szkole** — `docs/reference/szkola-fakty.md`: nazwy, adres, kontakt, historia, kierunki. Czytaj przy pisaniu i weryfikacji treści.
 
-## Production
+## Dostępność i publikacja
 
-- Production URL: https://www.zseiulaziska.pl/
-- Hosting: Cloudflare (commity na GitHub → build/host na Cloudflare; GitHub Pages to mirror/preview). Szczegóły: `docs/adr/0002-deployment-channel-and-security-headers.md`.
+- Interfejs i treści muszą spełniać WCAG 2.2 AA; deklaracja szkoły: `src/pages/dostepnosc.astro`.
+- Hosting: Cloudflare. Commity na GitHub → build/host na Cloudflare; GitHub Pages to mirror/preview. Szczegóły: `docs/adr/0002-deployment-channel-and-security-headers.md`.
+
+## Dokumentacja zewnętrzna
+
+- Astro: https://docs.astro.build — routing, komponenty, content collections, style.
+- Oficjalne dokumenty Tailwind 4, Keystatic i Pagefind — sięgaj po nie w razie potrzeby.

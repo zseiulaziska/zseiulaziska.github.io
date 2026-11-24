@@ -1,63 +1,32 @@
-# Astro Starter Kit: Blog
+# ZSEiU — strona szkoły
 
-```sh
-npm create astro@latest -- --template blog
-```
+Strona internetowa Zespołu Szkół Energetycznych i Usługowych w Łaziskach Górnych: https://www.zseiulaziska.pl/
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-Features:
+Astro 7, Tailwind CSS 4, Keystatic (CMS), Pagefind (wyszukiwanie), React (wybrane wyspy), Vitest (testy), Cloudflare (hosting). Wymagany Node >= 22.12.0.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+## Komendy
 
-## 🚀 Project Structure
+| Komenda            | Opis                                          |
+| ------------------ | --------------------------------------------- |
+| `npm run dev`      | lokalny serwer deweloperski                   |
+| `npm run check`    | sprawdzenie typów Astro                       |
+| `npm test`         | testy Vitest                                  |
+| `npm run build`    | build strony + postbuild                       |
+| `npm run preview`  | build i podgląd przez `wrangler dev`           |
+| `npm run deploy`   | build i wdrożenie na Cloudflare                |
 
-Inside of your Astro project, you'll see the following folders and files:
+Serwer dev w pracy agentów uruchamiamy w tle: `astro dev --background` (obsługa: `astro dev stop`, `astro dev status`, `astro dev logs`).
 
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
+## Gdzie jest co
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `src/pages/` — strony, `src/content/` — kolekcje treści, `src/data/` — dane JSON.
+- `src/routes.ts` — Katalog Tras (adresy, nazwy, aliasy, breadcrumbs).
+- `docs/reference/szkola-fakty.md` — fakty o szkole (nazwy, daty, kontakt).
+- `docs/adr/` — decyzje architektoniczne, `docs/agents/` — konfiguracja agentów, `.scratch/` — lokalny issue tracker.
+- Zasady pracy w repo: `AGENTS.md`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Publikacja i dostępność
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Commity na GitHub → Cloudflare buduje i hostuje stronę; GitHub Pages działa jako mirror/preview (szczegóły: `docs/adr/0002-deployment-channel-and-security-headers.md`). Interfejs spełnia WCAG 2.2 AA; deklaracja dostępności znajduje się pod `/dostepnosc`.

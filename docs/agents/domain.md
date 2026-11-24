@@ -17,8 +17,12 @@ This is a single-context repo:
 ```
 /
 ├── GLOSSARY.md
-├── docs/adr/
-│   └── 0001-route-catalog.md
+├── docs/
+│   ├── adr/
+│   │   ├── 0001-route-catalog.md
+│   │   └── 0002-deployment-channel-and-security-headers.md
+│   ├── agents/
+│   └── reference/szkola-fakty.md
 └── src/
 ```
 
