@@ -62,7 +62,7 @@ Kursy i uprawnienia: operator wózka jezdniowego, spawanie, prawo jazdy kat. B, 
 
 - Sekretariat: 32 22-42-415, sekretariat@zseiulaziska.pl, godziny 7:30–15:00.
 - Dojazd: duży parking przy szkole, wejście od ul. Chopina, komunikacja miejska.
-- Strona główna: https://www.zseiulaziska.pl/zseiu2020/
-- Kontakt: https://www.zseiulaziska.pl/zseiu2020/kontakt/
-- Kierunki kształcenia: https://www.zseiulaziska.pl/zseiu2020/kierunki-ksztalcenia-1/
-- Rekrutacja: https://www.zseiulaziska.pl/zseiu2020/rekrutacja/
+- Strona główna: https://www.zseiulaziska.pl/
+- Kontakt: https://www.zseiulaziska.pl/kontakt/
+- Kierunki kształcenia: https://www.zseiulaziska.pl/kierunki/
+- Rekrutacja: https://www.zseiulaziska.pl/rekrutacja/
