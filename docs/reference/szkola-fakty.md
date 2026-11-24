@@ -8,7 +8,7 @@ Dokument referencyjny dla agentów i autorów treści. **Źródłem prawdy dla t
 
 - Nazwa: Zespół Szkół Energetycznych i Usługowych (ZSEiU) w Łaziskach Górnych
 - Adres: ul. Chopina 11b, 43-170 Łaziska Górne
-- Telefon: 32 224 24 15
+- Telefon: 32 22-42-415
 - E-mail (sekretariat): sekretariat@zseiulaziska.pl
 - Dyrektor: mgr Anna Jadasz
 - Wicedyrektor: mgr Dorota Brudny
@@ -31,7 +31,7 @@ ZSEiU łączy kształcenie zawodowe i ogólnokształcące teorię z praktyką. D
 
 - Technikum nr 1
 - Branżowa Szkoła I stopnia (BS1S)
-- Branżowa Szkoła II stopnia
+- Branżowa Szkoła II stopnia (zaoczne)
 - Liceum Ogólnokształcące dla Dorosłych (zaoczne)
 
 Wybrane zawody: technik elektryk, technik informatyk, technik logistyk (w tym klasy mundurowe/policyjne), technik urządzeń i systemów energetyki odnawialnej, technik organizacji turystyki, technik chłodnictwa i klimatyzacji, technik spedytor, technik górnictwa podziemnego, technik mechanik (BS II). W BS1S m.in.: mechanik-monter maszyn i urządzeń, operator maszyn do przetwórstwa tworzyw sztucznych, ślusarz, magazynier-logistyk, sprzedawca (klasa wielozawodowa).
@@ -66,3 +66,7 @@ Kursy i uprawnienia: operator wózka jezdniowego, spawanie, prawo jazdy kat. B, 
 - Kontakt: https://www.zseiulaziska.pl/kontakt/
 - Kierunki kształcenia: https://www.zseiulaziska.pl/kierunki/
 - Rekrutacja: https://www.zseiulaziska.pl/rekrutacja/
+
+## Dziennik elektroniczny
+
+- szkoła korzysta tylko i wyłącznie z dziennika firmy Vulcan a nie z Librusa
