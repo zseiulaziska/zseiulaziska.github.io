@@ -64,6 +64,7 @@ export const sections: Section[] = [
           { trasa: '/historia' },
           { trasa: '/kierunki' },
           { trasa: '/blog' },
+          { trasa: '/materialy-do-pobrania' },
           { trasa: '/dostepnosc' },
         ],
       },
@@ -233,6 +234,7 @@ export const footerGroups = {
   ],
   spolecznosc: [
     '/kalendarz',
+    '/materialy-do-pobrania',
     '/podreczniki',
     '/praktyki-zawodowe',
     '/pracownicy-mlodociani',
@@ -290,6 +292,15 @@ export const trasy: Trasa[] = [
     section: 'o-szkole',
     navGroup: 'Szkoła',
     icon: 'access',
+  }),
+  defineTrasa({
+    path: '/materialy-do-pobrania',
+    label: 'Materiały do pobrania',
+    description: 'Materiały szkoły do pobrania: dokumenty, ulotki i multimedia',
+    section: 'o-szkole',
+    breadcrumbParent: { href: '/informacje/', label: 'O szkole' },
+    navGroup: 'Szkoła',
+    icon: 'file',
   }),
   defineTrasa({
     path: '/dyrekcja',
