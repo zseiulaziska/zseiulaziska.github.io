@@ -75,10 +75,10 @@ describe('buildCrumbs', () => {
   });
 
   it('dla wpisu bloga zwraca home → Aktualności → tytuł wpisu', () => {
-    expect(buildCrumbs('/blog/powitanie', 'Powitanie')).toEqual([
+    expect(buildCrumbs('/blog/policyjne-zajecia-praktyczne', 'Policyjne zajęcia praktyczne')).toEqual([
       { href: '/', label: 'Strona główna' },
       { href: '/blog/', label: 'Aktualności' },
-      { href: '/blog/powitanie', label: 'Powitanie' },
+      { href: '/blog/policyjne-zajecia-praktyczne', label: 'Policyjne zajęcia praktyczne' },
     ]);
   });
 
