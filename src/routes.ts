@@ -1,5 +1,8 @@
 import { PLAN_LEKCJI_URL, PLAN_LO_URL } from './consts';
 
+// Kanoniczny adres Trasy katalogu materiałów — jedyne źródło tej wartości.
+export const MATERIALY_DO_POBRANIA_PATH = '/materialy-do-pobrania';
+
 export type SectionId = 'o-szkole' | 'oferta' | 'uczniowie-i-rodzice' | 'projekty';
 
 export type Crumb = { href: string; label: string };
@@ -294,7 +297,7 @@ export const trasy: Trasa[] = [
     icon: 'access',
   }),
   defineTrasa({
-    path: '/materialy-do-pobrania',
+    path: MATERIALY_DO_POBRANIA_PATH,
     label: 'Materiały do pobrania',
     description: 'Materiały szkoły do pobrania: dokumenty, ulotki i multimedia',
     section: 'o-szkole',

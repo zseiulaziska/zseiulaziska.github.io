@@ -2,10 +2,17 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import DownloadCard from '../components/DownloadCard.astro';
-import { downloadCountWord, groupDownloads, visibleDownloads } from '../utils/downloads-catalog';
+import {
+  DOWNLOAD_CATEGORIES,
+  DOWNLOAD_FORMATS,
+  downloadCountWord,
+  groupDownloads,
+  visibleDownloads,
+} from '../utils/downloads-catalog';
 
 const entries = await getCollection('downloads');
 const groups = groupDownloads(visibleDownloads(entries));
+const totalCount = groups.reduce((sum, group) => sum + group.count, 0);
 ---
 
 <Layout
@@ -33,28 +40,313 @@ const groups = groupDownloads(visibleDownloads(entries));
           Brak opublikowanych materiałów. Katalog zostanie uzupełniony wkrótce.
         </p>
       ) : (
-        groups.map((group) => (
-          <section aria-labelledby={`kategoria-${group.id}`} class="mb-12">
-            <h2
-              id={`kategoria-${group.id}`}
-              class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word"
+        <>
+          <search aria-labelledby="katalog-narzedzia-tytul">
+            <form
+              id="katalog-form"
+              class="mb-6 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800/70 p-5 sm:p-6 shadow-sm"
             >
-              {group.label}
-              <span class="ml-2 inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-primary-100 dark:bg-primary-950/60 text-primary-700 dark:text-primary-300 text-sm font-semibold align-middle">
-                {group.count}<span class="sr-only"> {downloadCountWord(group.count)}</span>
-              </span>
-            </h2>
+              <h2 id="katalog-narzedzia-tytul" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-5">
+                Znajdź materiał
+              </h2>
 
-            <ul class="grid grid-cols-1 md:grid-cols-2 gap-5 list-none p-0 m-0">
-              {group.items.map((item) => (
-                <li class="min-w-0">
-                  <DownloadCard item={item} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
+              <div class="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+                <div>
+                  <label for="katalog-szukaj" class="block mb-2 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                    Szukaj w katalogu
+                  </label>
+                  <input
+                    type="search"
+                    id="katalog-szukaj"
+                    name="q"
+                    autocomplete="off"
+                    aria-describedby="katalog-szukaj-pomoc"
+                    class="block w-full min-h-12 rounded-xl border border-slate-400 dark:border-navy-600 bg-white dark:bg-navy-900 px-4 text-base text-slate-900 dark:text-white placeholder:text-slate-500"
+                    placeholder="np. ulotka rekrutacyjna"
+                  />
+                  <p id="katalog-szukaj-pomoc" class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                    Wpisz co najmniej dwie znaki. Wyszukiwanie działa bez przeładowania strony.
+                  </p>
+                </div>
+
+                <div>
+                  <label for="katalog-format" class="block mb-2 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                    Format pliku
+                  </label>
+                  <select
+                    id="katalog-format"
+                    name="format"
+                    class="block w-full min-h-12 rounded-xl border border-slate-400 dark:border-navy-600 bg-white dark:bg-navy-900 px-4 text-base text-slate-900 dark:text-white lg:min-w-48"
+                  >
+                    <option value="">Wszystkie formaty</option>
+                    {DOWNLOAD_FORMATS.map((format) => (
+                      <option value={format}>{format}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <fieldset class="mt-5">
+                <legend class="mb-3 text-sm font-semibold text-slate-800 dark:text-slate-200">Kategoria</legend>
+                <div class="flex flex-wrap gap-x-4 gap-y-2">
+                  <label class="inline-flex min-h-11 items-center gap-2 cursor-pointer rounded-lg px-1 text-sm text-slate-800 dark:text-slate-200">
+                    <input type="radio" name="kategoria" value="" checked class="size-4 accent-primary-600" />
+                    <span>Wszystkie kategorie</span>
+                  </label>
+                  {DOWNLOAD_CATEGORIES.map((category) => (
+                    <label class="inline-flex min-h-11 items-center gap-2 cursor-pointer rounded-lg px-1 text-sm text-slate-800 dark:text-slate-200">
+                      <input type="radio" name="kategoria" value={category.id} class="size-4 accent-primary-600" />
+                      <span>{category.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div class="mt-5 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  id="katalog-wszystkie"
+                  class="min-h-11 rounded-xl border border-slate-300 dark:border-navy-600 px-5 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-navy-700"
+                >
+                  Wszystkie materiały
+                </button>
+                <button
+                  type="button"
+                  id="katalog-wyczysc"
+                  class="min-h-11 rounded-xl border border-slate-300 dark:border-navy-600 px-5 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-navy-700"
+                >
+                  Wyczyść filtry
+                </button>
+              </div>
+            </form>
+          </search>
+
+          <p
+            id="katalog-status"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            class="mb-6 text-sm font-medium text-slate-700 dark:text-slate-300"
+          >
+            Wyświetlono {totalCount} {downloadCountWord(totalCount)}.
+          </p>
+
+          <div id="katalog-karty">
+            {
+              groups.map((group) => (
+                <section aria-labelledby={`kategoria-${group.id}`} data-kategoria={group.id} class="mb-12">
+                  <h2
+                    id={`kategoria-${group.id}`}
+                    class="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 pl-3 sm:pl-4 border-l-4 border-primary-500 leading-snug wrap-break-word"
+                  >
+                    {group.label}
+                    <span class="ml-2 inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-primary-100 dark:bg-primary-950/60 text-primary-700 dark:text-primary-300 text-sm font-semibold align-middle">
+                      <span data-katalog-licznik>{group.count}</span><span class="sr-only" data-katalog-licznik-slowo> {downloadCountWord(group.count)}</span>
+                    </span>
+                  </h2>
+
+                  <ul class="grid grid-cols-1 md:grid-cols-2 gap-5 list-none p-0 m-0">
+                    {group.items.map((item) => (
+                      <li class="min-w-0">
+                        <DownloadCard item={item} />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))
+            }
+          </div>
+        </>
       )
     }
   </article>
 </Layout>
+
+<script>
+  import {
+    DOWNLOAD_CATEGORY_IDS,
+    DOWNLOAD_FORMATS,
+    downloadCountWord,
+  } from '../utils/downloads-catalog';
+  import {
+    availableFilterValues,
+    cardIdFromTitleAnchor,
+    cardIdsFromPagefindResults,
+    visibleCardIds,
+    type PagefindFilters,
+    type PagefindResultData,
+  } from '../utils/downloads-search';
+
+  type PagefindApi = {
+    init?: () => Promise<void>;
+    search: (query: string | null) => Promise<{
+      results: { data: () => Promise<PagefindResultData> }[];
+    }>;
+    filters?: () => Promise<PagefindFilters>;
+  };
+
+  (function () {
+    const catalog = document.getElementById('katalog-karty');
+    if (!catalog) return;
+
+    const cards = Array.from(catalog.querySelectorAll<HTMLElement>('article[data-pagefind-title][id]'));
+    const sections = Array.from(catalog.querySelectorAll<HTMLElement>('section[data-kategoria]'));
+    const form = document.getElementById('katalog-form') as HTMLFormElement | null;
+    const searchInput = document.getElementById('katalog-szukaj') as HTMLInputElement | null;
+    const formatSelect = document.getElementById('katalog-format') as HTMLSelectElement | null;
+    const status = document.getElementById('katalog-status');
+    const clearButton = document.getElementById('katalog-wyczysc');
+    const allButton = document.getElementById('katalog-wszystkie');
+    const categoryRadios = Array.from(
+      document.querySelectorAll<HTMLInputElement>('input[name="kategoria"]'),
+    );
+
+    const filterCards = cards.map((card) => ({
+      id: card.id,
+      category: card.dataset.kategoria ?? '',
+      format: card.dataset.format ?? '',
+    }));
+    const sectionViews = sections.map((section) => ({
+      section,
+      cards: Array.from(section.querySelectorAll<HTMLElement>('article[data-pagefind-title]')),
+      count: section.querySelector<HTMLElement>('[data-katalog-licznik]'),
+      countWord: section.querySelector<HTMLElement>('[data-katalog-licznik-slowo]'),
+    }));
+    const renderedCategories = [...new Set(filterCards.map((card) => card.category))].filter(Boolean);
+    const renderedFormats = [...new Set(filterCards.map((card) => card.format))].filter(Boolean);
+
+    let pagefindPromise: Promise<PagefindApi | null> | null = null;
+    function loadPagefind(): Promise<PagefindApi | null> {
+      // Indeks powstaje dopiero w buildzie — w dev nie próbujemy go pobierać.
+      if (!import.meta.env.PROD) return Promise.resolve(null);
+      if (!pagefindPromise) {
+        // Pagefind nie istnieje przed buildem — import jest łapany, katalog działa dalej.
+        const pagefindPath = '/pagefind/pagefind.js';
+        pagefindPromise = import(/* @vite-ignore */ pagefindPath)
+          .then((mod) => {
+            const api = mod as unknown as PagefindApi;
+            return api.init ? api.init().then(() => api) : api;
+          })
+          .catch(() => null);
+      }
+      return pagefindPromise;
+    }
+
+    let matchedIds: ReadonlySet<string> | null = null;
+    let debounceTimer: number | undefined;
+    let filtersRequested = false;
+
+    function currentFilters() {
+      return {
+        category: categoryRadios.find((radio) => radio.checked)?.value ?? '',
+        format: formatSelect?.value ?? '',
+      };
+    }
+
+    function resetFilters() {
+      if (categoryRadios[0]) categoryRadios[0].checked = true;
+      if (formatSelect) formatSelect.value = '';
+    }
+
+    function render() {
+      const visibleIds = visibleCardIds(filterCards, currentFilters(), matchedIds);
+      const visibleSet = new Set(visibleIds);
+
+      for (const card of cards) card.hidden = !visibleSet.has(card.id);
+      for (const view of sectionViews) {
+        const visibleCount = view.cards.filter((card) => !card.hidden).length;
+        view.section.hidden = visibleCount === 0;
+        if (view.count) view.count.textContent = String(visibleCount);
+        if (view.countWord) view.countWord.textContent = ` ${downloadCountWord(visibleCount)}`;
+      }
+
+      if (status) {
+        const summary = `Wyświetlono ${visibleIds.length} z ${cards.length} ${downloadCountWord(cards.length)}.`;
+        status.textContent = visibleIds.length > 0 ? summary : `Brak wyników. ${summary}`;
+      }
+    }
+
+    function refreshAvailableFilters(pagefindFilters: PagefindFilters) {
+      const categories = availableFilterValues(
+        pagefindFilters,
+        'kategoria',
+        DOWNLOAD_CATEGORY_IDS,
+        renderedCategories,
+      );
+      const formats = availableFilterValues(pagefindFilters, 'format', DOWNLOAD_FORMATS, renderedFormats);
+
+      for (const radio of categoryRadios) {
+        if (!radio.value || categories.includes(radio.value)) continue;
+        const label = radio.closest('label');
+        if (label) label.hidden = true;
+        if (radio.checked && categoryRadios[0]) categoryRadios[0].checked = true;
+      }
+      if (formatSelect) {
+        for (const option of Array.from(formatSelect.options)) {
+          if (option.value && !formats.includes(option.value)) option.hidden = true;
+        }
+        if (formatSelect.value && !formats.includes(formatSelect.value)) formatSelect.value = '';
+      }
+      render();
+    }
+
+    // Wartości filtrów są ładowane dopiero przy pierwszej interakcji — w dev,
+    // gdzie indeks nie istnieje, nie ma nieudanych żądań przy wejściu na stronę.
+    function ensureFilters() {
+      if (filtersRequested) return;
+      filtersRequested = true;
+      loadPagefind()
+        .then((pagefind) => (pagefind?.filters ? pagefind.filters() : null))
+        .then(refreshAvailableFilters)
+        .catch(() => {});
+    }
+
+    refreshAvailableFilters(null);
+
+    form?.addEventListener('submit', (event) => event.preventDefault());
+    form?.addEventListener('change', () => {
+      ensureFilters();
+      render();
+    });
+
+    searchInput?.addEventListener('focus', ensureFilters, { once: true });
+    searchInput?.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const query = searchInput.value.trim();
+      if (query.length < 2) {
+        matchedIds = null;
+        render();
+        return;
+      }
+
+      debounceTimer = window.setTimeout(() => {
+        loadPagefind()
+          .then((pagefind) => (pagefind ? pagefind.search(query) : null))
+          .then((searchResult) => {
+            if (!searchResult || searchInput.value.trim() !== query) return;
+            return Promise.all(searchResult.results.map((result) => result.data())).then((data) => {
+              if (searchInput.value.trim() !== query) return;
+              matchedIds = new Set(
+                cardIdsFromPagefindResults(data, window.location.pathname, cardIdFromTitleAnchor),
+              );
+              render();
+            });
+          })
+          .catch(() => {});
+      }, 150);
+    });
+
+    allButton?.addEventListener('click', () => {
+      resetFilters();
+      render();
+    });
+
+    clearButton?.addEventListener('click', () => {
+      clearTimeout(debounceTimer);
+      if (searchInput) searchInput.value = '';
+      matchedIds = null;
+      resetFilters();
+      render();
+    });
+  })();
+</script>
