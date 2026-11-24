@@ -67,6 +67,6 @@ Kursy i uprawnienia: operator wózka jezdniowego, spawanie, prawo jazdy kat. B, 
 - Kierunki kształcenia: https://www.zseiulaziska.pl/kierunki/
 - Rekrutacja: https://www.zseiulaziska.pl/rekrutacja/
 
-## Dziennik elektroniczny
+## Dziennik
 
 - szkoła korzysta tylko i wyłącznie z dziennika firmy Vulcan a nie z Librusa

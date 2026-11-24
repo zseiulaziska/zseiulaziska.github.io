@@ -14,3 +14,11 @@ Jedyne źródło faktów o Trasach: kanoniczne adresy, nazwy, sekcje, breadcrumb
 **Alias**:
 Dodatkowy adres Trasy zachowany po zmianie jej adresu kanonicznego. Aliasy są faktem Trasy i jedynym źródłem konfiguracji redirectów.
 _Avoid_: Przekierowanie, Stary adres
+
+**Dziennik**:
+Kanoniczna nazwa szkolnego dziennika, używana w nawigacji, tekstach stron i dokumentacji. Nazwa systemu pozostaje faktem w dokumencie referencyjnym, nie nazwą linku.
+_Avoid_: E-Dziennik, e-dziennik, Dziennik Vulcan, dziennik elektroniczny
+
+**Plan LO dla Dorosłych**:
+Kanoniczna nazwa zewnętrznego arkusza planu zajęć Liceum Ogólnokształcącego dla Dorosłych.
+_Avoid_: Plan LO, Plan zajęć LO

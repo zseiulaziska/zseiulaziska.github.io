@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { buildCrumbs, findTrasa, redirects, trasy } from './routes';
+import { buildCrumbs, externalLinks, findTrasa, redirects, trasy } from './routes';
 
 const pagesDir = fileURLToPath(new URL('./pages', import.meta.url));
 
@@ -40,6 +40,15 @@ describe('katalog Tras', () => {
     }
 
     expect(findTrasa('/kierunki-ksztalcenia')?.path).toBe('/kierunki');
+  });
+
+  it('używa kanonicznych nazw linków zewnętrznych', () => {
+    const labels = Object.fromEntries(externalLinks.map((link) => [link.id, link.label]));
+
+    expect(labels).toMatchObject({
+      edziennik: 'Dziennik',
+      'plan-lo': 'Plan LO dla Dorosłych',
+    });
   });
 });
 

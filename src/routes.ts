@@ -161,7 +161,7 @@ export const sections: Section[] = [
 export const externalLinks: ExternalLink[] = [
   {
     id: 'edziennik',
-    label: 'E-Dziennik',
+    label: 'Dziennik',
     href: 'https://uonetplus.vulcan.net.pl/powiatmikolowski',
     icon: 'book',
     external: true,
@@ -178,7 +178,7 @@ export const externalLinks: ExternalLink[] = [
   },
   {
     id: 'plan-lo',
-    label: 'Plan LO',
+    label: 'Plan LO dla Dorosłych',
     href: PLAN_LO_URL,
     description: 'Aktualny plan zajęć',
     icon: 'calendar',
